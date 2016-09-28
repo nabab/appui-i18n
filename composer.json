@@ -1,0 +1,19 @@
+{
+  "name": "bbn/appui-i18n",
+  "description": "GUI for managing languages and translations in appui",
+  "keywords": ["i18n","international","languages","appui"],
+  "homepage": "https://github.com/nabab/appui-i18n",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Thomas Nabet",
+      "email": "thomas.nabet@gmail.com",
+      "homepage": "http://bbn.solutions",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "bbn/bbn": "dev-master"
+  }
+}
