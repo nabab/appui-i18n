@@ -12,14 +12,18 @@ foreach ( \bbn\file\dir::get_dirs(BBN_LIB_PATH.'bbn') as $d ){
     $name = str_replace('-', '_', basename($d));
     foreach ( $langs as $ln ){
       \bbn\file\dir::create_path($d.'/src/locale/'.$ln);
-      array_push($todo, 'cd "'.\bbn\str::escape_dquotes($d.'/src/locale/'.$ln).'"');
+      $st = 'cd "'.\bbn\str::escape_dquotes($d.'/src/locale/'.$ln).'";';
+      $st .= 'find ../../../mvc -iname "*.php" | xargs xgettext -d '.$name.' -j --from-code';
       if ( is_file($d.'src/locale/'.$ln.'/'.$name.'.po') ){
-        array_push($todo, 'find ../../../mvc -iname "*.php" | xargs xgettext -d '.$name.' -j --from-code');
+        $st .= ' -j';
       }
-      else{
-        array_push($todo, 'find ../../../mvc -iname "*.php" | xargs xgettext -d '.$name.' --from-code');
-      }
+      $st .= ' --from-code';
+      exec($st, $todo[]);
     }
   }
 }
-echo '<pre>'.implode(PHP_EOL, $todo).';</pre>';
+$file = $d.'/src/locale/'.$ln.'/'.$name.'.po';
+//echo '<pre>'.implode(PHP_EOL, $todo).';</pre>';
+//echo exec(implode(';'.PHP_EOL, $todo), $r);
+
+var_dump($todo);
