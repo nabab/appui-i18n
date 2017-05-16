@@ -8,7 +8,7 @@
 $langs = ['en', 'fr', 'it'];
 $todo = [];
 foreach ( \bbn\file\dir::get_dirs(BBN_LIB_PATH.'bbn') as $d ){
-  if ( strpos(basename($d), 'appui-') === 0 ){
+  if ( strpos(basename($d), 'bbn-') === 0 ){
     $name = str_replace('-', '_', basename($d));
     foreach ( $langs as $ln ){
       \bbn\file\dir::create_path($d.'/src/locale/'.$ln);

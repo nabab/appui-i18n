@@ -1,7 +1,7 @@
 <?php
 $todo = [];
 $dirs = \bbn\file\dir::get_dirs(BBN_APP_PATH.'locale');
-echo '<div class="appui-h-100">';
+echo '<div class="bbn-h-100">';
 echo "<h1>Missing translations</h1>";
 
 $default = 'fr';

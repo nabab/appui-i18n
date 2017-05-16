@@ -5,11 +5,11 @@
  * Date: 29/11/2016
  * Time: 05:45
  */
-echo '<div class="appui-h-100">';
+echo '<div class="bbn-h-100">';
 $langs = ['en', 'fr', 'it'];
 $todo = [];
 foreach ( \bbn\file\dir::get_dirs(BBN_LIB_PATH.'bbn') as $d ){
-  if ( strpos(basename($d), 'appui-') === 0 ){
+  if ( strpos(basename($d), 'bbn-') === 0 ){
     $name = str_replace('-', '_', basename($d));
     foreach ( $langs as $ln ){
       $dir = $d.'/src/locale/'.$ln.'/LC_MESSAGES';
