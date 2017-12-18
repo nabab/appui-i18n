@@ -9,10 +9,10 @@ echo '<div class="bbn-h-100">';
 $langs = ['en', 'fr', 'it'];
 $todo = [];
 foreach ( \bbn\file\dir::get_dirs(BBN_LIB_PATH.'bbn') as $d ){
-  if ( strpos(basename($d), 'bbn-') === 0 ){
+  if ( strpos(basename($d), 'appui-') === 0 ){
     $name = str_replace('-', '_', basename($d));
     foreach ( $langs as $ln ){
-      $dir = $d.'/src/locale/'.$ln.'/LC_MESSAGES';
+      $dir = $d.'/locale/'.$ln.'/LC_MESSAGES';
       \bbn\file\dir::create_path($dir);
       chdir($dir);
       $files = \bbn\file\dir::scan('../../../mvc', 'php');
@@ -22,17 +22,18 @@ foreach ( \bbn\file\dir::get_dirs(BBN_LIB_PATH.'bbn') as $d ){
           $translations->mergeWith($tmp);
         }
       }
-      //var_dump(get_class_methods(get_class($translations)), $translations->count());
+      //var_dump(get_class_methods(\get_class($translations)), $translations->count());
 
       foreach ( $translations->getIterator() as $r => $tr ){
-        var_dump($r);
+        //die(var_dump(get_class_methods($tr)));
+        $todo[] = $tr->getOriginal();
       }
     }
   }
 }
-$file = $d.'/src/locale/'.$ln.'/'.$name.'.po';
+//$file = $d.'/src/locale/'.$ln.'/'.$name.'.po';
 //echo '<pre>'.implode(PHP_EOL, $todo).';</pre>';
 //echo exec(implode(';'.PHP_EOL, $todo), $r);
 
-var_dump($todo);
+\bbn\x::hdump($todo);
 echo '</div>';

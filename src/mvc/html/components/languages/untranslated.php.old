@@ -1,0 +1,4 @@
+<bbn-table :source="table_source">
+	<bbn-column field="id">
+  </bbn-column>	
+</bbn-table>

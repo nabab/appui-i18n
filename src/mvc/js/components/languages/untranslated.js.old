@@ -1,0 +1,10 @@
+(() => {
+  return {
+    data(){
+      return{}
+    },  
+    beforeMount(){
+  
+    },
+  }
+})();

@@ -1,0 +1,42 @@
+<bbn-table :source="source.list"
+           :toolbar="[{
+              text: '<?=_('Untranslated strings')?>',
+              command: open_untranslated,
+              icon: 'fa fa-window-close-o'
+           }]"
+           class="glossary_table"
+           :editMode="true"
+           :editable="true"
+>
+	<bbn-column field="string"
+              title="String in source Language"
+
+
+  >
+  </bbn-column>
+
+  <bbn-column title="Translated Sting"
+  >
+  </bbn-column>
+
+
+
+  <bbn-column field="id"
+              title="Actions"
+              width="10%"
+              class="bbn-c"
+              :buttons="[{
+                command: edit_translation,
+                icon: 'fa fa-edit',
+                text: '<?=_("Upload")?>',
+                title: 'Upload translation for this string'
+              }]"
+  >
+  </bbn-column>
+
+
+
+
+
+
+</bbn-table>

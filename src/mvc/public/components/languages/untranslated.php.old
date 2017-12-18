@@ -1,0 +1,4 @@
+<?php
+//$ctrl->obj->data['root'] = APPUI_LANGUAGES_ROOT;
+$ctrl->obj->url = 'languages/glossaries';
+$ctrl->combo('<span class="bbn-xl"><i class="fa fa-window-close-o" title="Untranslated strings">To translate</i></span>', true);
