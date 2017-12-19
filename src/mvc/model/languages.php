@@ -23,7 +23,6 @@ if ( $all = $model->db->get_column_values('bbn_projects', 'id') ){
 
   return[
     'primary' => $primaries,
-    'projects' => $projects,
-
+    'projects' => $projects
   ];
 }

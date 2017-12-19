@@ -1,20 +1,21 @@
 <div class="appui-strings-table" style="min-height: 500px">
 
 
+  <bbn-table :source="source.strings_in_db"
+             :columns="languages"
 
-  <bbn-table :source="source">
+  >
 
-    <bbn-column field="source.todo"
-                title="<?=_('Source language')?>"
+    <bbn-column field="expression"
+                :title="first_column_title"
                 width="40%"
                 class="bbn-xl"
                 ftitle="<?=_('The strings in their original language')?>"
-    ></bbn-column>
-
-    <bbn-column field=""
-                title="Language"
+                :fixed="true"
 
     ></bbn-column>
+
+
 
     <bbn-column field="id_option"
                 width="50"

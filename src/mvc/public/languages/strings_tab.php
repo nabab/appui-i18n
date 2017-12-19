@@ -7,9 +7,8 @@
 
 
 if( !empty($ctrl->arguments[0]) ){
-  $ctrl->obj->url = 'strings_tab/'.$ctrl->arguments[0];
+  $ctrl->obj->url = APPUI_I18N_ROOT.'languages/strings_tab/'.$ctrl->arguments[0];
   //to send $ctrl->arguments[0] to the $model
-  $ctrl->combo('Strings to translate in '.$ctrl->arguments[1], $ctrl->get_model('', ['id_option' =>
-    $ctrl->arguments[0]]));
+  $ctrl->add_data(['id_option' => $ctrl->arguments[0]])->combo('$pageTitle', true);
 
 }

@@ -5,55 +5,87 @@
  * Date: 14/12/17
  * Time: 13.05
  */
-/*
 
-if (
-  isset($model->data['id_option']) &&
-  ($o = $model->inc->options->option($model->data['id_option']))
-){
 
-  $model->data['success'] = false;
-  if (
-    ($parent = $model->inc->options->parent($o['id'])) &&
-    defined($parent['code'])
-  ){
-    $to_explore = constant($parent['code']).$o['code'];
-    $files = \bbn\file\dir::scan($to_explore, 'php');
-    $translations = new \Gettext\Translations();
-    $todo = [];
-    foreach ( $files as $f ){
-      if ( $tmp = \Gettext\Translations::fromPhpCodeFile($f, ['functions' => ['_' => 'gettext']]) ){
-        $translations->mergeWith($tmp);
+
+if( !empty($model->data['id_option'])){
+  $parent = $model->inc->options->parent($model->data['id_option']);
+  if(defined($parent['code'])){
+    $to_explore = constant($parent['code']).$model->inc->options->code($model->data['id_option']);
+    $i18n = new \bbn\appui\i18n($model->db);
+    $i18n->analyse_folder($to_explore, true);
+    $todo = $i18n->result();
+
+    $id_project = $model->db->select_one('bbn_projects_assets', 'id_project', ['id_option' => $model->data['id_option']]);
+
+    $project = new \bbn\appui\project($model->db, $id_project);
+    $lang = $project->get_lang();
+     
+		$source_glossary = $model->db->rselect_all(
+      'bbn_i18n_exp',	['id_exp','expression','lang'], [ 'lang' => $lang ]);
+    //$new_strings = [];
+   
+foreach( $todo as $t ){
+  $new_strings = $model->db->rselect_all('bbn_i18n_exp', ['id_exp','expression','lang'], [ 'lang' => $lang , 'expression' => $t ] );
+   die(var_dump('jkhj', count($new_strings)));
+      //i$todo che non sono contenuti in source_glossary
+  	if( !empty($new_strings) ){
+      foreach( $new_strings as $n ){
+        $id_user = $model->inc->user->get_id();
+        $model->db->insert('bbn_i18n', [
+          'exp' => $n,
+          'last_modified' => date('Y-m-d H:i:s'),
+          'id_user' => hex2bin($id_user),
+        ]);
+        $new_id_exp = $model->db->last_id();
+        //die(var_dump($n, $id_user,date('Y-m-d H:i:s'), $new_id_exp));
+        if( !( $id_exp = $model->db->select_one('bbn_i18n_exp', 'id_exp', [ 'id_exp' => $new_id_exp, 'lang' => $lang ]) ) ){
+          $new_strings_updated += (int)$model->db->insert('bbn_i18n_exp', [
+            'id_exp' => hex2bin($new_id_exp),
+            'lang' => $lang,
+            'expression' => $n
+          ]);
+        }
       }
     }
-    foreach ( $translations->getIterator() as $r => $tr ){
-      $todo[] = $tr->getOriginal();
-      $model->data['success'] = true;
+  	
+    else{
+      $exp_in_db = [];
+//LUI VA A CERCARE DI NUOVO NEL DB DOPO L'INSERT? SOURCE_GLOSSARY CONTIENE LE NUOVE?
+      foreach ( $todo as $t ){
+
+        if( $exp = array_filter($source_glossary, function($v){
+          return [
+            $v['lang'] => $lang,
+            $v['expression'] => $t
+          ];
+       	 })	
+
+        ){
+          //devo prendere solo i linguaggi configurati per il progetto
+          if( !empty($project->get_langs() ) ){
+            foreach ($project->get_langs() as $p){
+                 if($other_langs = $model->db->rselect_all('bbn_i18n_exp', ['expression', 'lang', 'id_exp'],[
+              ['id_exp', '=', $exp['id_exp']],
+              ['lang', '=', $p]
+            ])){
+              foreach ( $other_langs as $o ){
+                $exp[$lang] = $o['expression'];
+              }
+              $exp_in_db[] = $exp;
+            }
+            }
+          }
+        }
+      };
     }
-
-    //basing on the path id_option I take from the db the languages for which this project is configured to use it in the table of strings
-    if( !empty($id_project = $model->db->select_one('bbn_projects_assets', 'id_project', ['id_option' => $model->data['id_option']]) ) ){
-      $asset_type_lang = $model->inc->options->from_code('lang', 'assets','projects','appui');
-      $langs = $model->db->get_field_values('bbn_projects_assets', 'id_option', [
-        'id_project' => $id_project,
-        'asset_type' => $asset_type_lang
-      ]);
-    };
-
-
-    return [
-      'langs' => $langs,
-      'files' => $files,
-      'path' => $to_explore,
-      'todo' => $todo,
-      'success' => $model->data['success'],
-    ];
-  }
-}
-
-*/
-if( !empty($model->data['id_option'] )){
-  $id_parent = $model->inc->options->get_id_parent($model->data['id_option']);
-  //$source_lang
-  die(var_dump($id_parent, $model->data['id_option'], get_class_methods($model->inc->options)));
-}
+  }  
+  return [
+    'newStringUpdated' => $new_strings_updated,
+    'pageTitle' => 'Strings to translate in '.$lang,
+    'strings_in_db' => $exp_in_db,
+    'source_lang' => $lang,
+    'this_path' => $model->inc->options->text($model->data['id_option']),
+    'configured_langs' => $project->get_langs()
+  ];
+}}

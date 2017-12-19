@@ -62,7 +62,6 @@ if (
           'expression' => $t
         ]);
         if( !empty($done) ){
-          var_dump($done);
           $model->data['success'] = true;
         }
         else{

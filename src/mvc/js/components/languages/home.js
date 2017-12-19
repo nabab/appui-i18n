@@ -78,8 +78,8 @@
           }
         },
         methods: {
-           open_strings_table(row){
-            bbn.fn.link(bbn.vue.closest(this, 'bbn-tabnav').baseURL + 'strings_tab/' +row.id_option );
+          open_strings_table(row){
+            bbn.fn.link(bbn.vue.closest(this, 'bbn-tabnav').baseURL + 'strings_tab/' + row.id_option );
           },
           run_script(row){
             bbn.fn.post('internationalization/find_strings', row, (d) => {

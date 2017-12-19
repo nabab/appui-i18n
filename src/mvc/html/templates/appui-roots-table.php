@@ -4,6 +4,7 @@
                 title="Path"
                 ftitle="All different paths of this project"
                 ref="paths_table"
+                width="35%"
     ></bbn-column>
 <!--cambiare il nome a questo file in paths_table-->
     <bbn-column field=""
@@ -15,7 +16,7 @@
     ></bbn-column>
 
     <bbn-column field="id_option"
-                width="50"
+                width="15%"
                 :buttons="[{
                 command: run_script,
                 icon: 'fa fa-superpowers',
