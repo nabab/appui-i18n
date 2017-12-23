@@ -6,6 +6,6 @@
  * Time: 12.51
  */
 
-//die(var_dump('hello public'));
-$ctrl->combo();
+
 $ctrl->obj->url = APPUI_I18N_ROOT.'languages/home';
+$ctrl->combo();

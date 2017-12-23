@@ -13,7 +13,7 @@ if (
 ){
   $asset_type_path =  $model->inc->options->from_code('path', 'assets','projects','appui');
 
-  $project_id = $model->db->get_val(
+  $id_project = $model->db->get_val(
     'bbn_projects_assets',
     'id_project',
     [
@@ -22,16 +22,10 @@ if (
     ]
   );
 
+  $project = new \bbn\appui\project($model->db, $id_project);
+  $project_lang = $project->get_lang();
 
-  $project_lang = $model->db->get_val(
-    'bbn_projects',
-    'lang',
-    [
-      'id' => $project_id,
-    ]
-  );
-
-  $langs = $model->data['langs'];
+  $langs = $project->get_langs();
 
   $model->data['success'] = false;
 
@@ -52,11 +46,13 @@ if (
           'exp' => $t,
           'last_modified' => date('Y-m-d H:i:s'),
           'id_user' => $model->inc->user->get_id(),
+          'lang' => $project_lang,
         ]);
         $id = $model->db->last_id();
       }
+
       if( !( $id_exp = $model->db->select_one('bbn_i18n_exp', 'id_exp', [ 'id_exp' => $id, 'lang' => $project_lang ]) ) ){
-        $done += (int)$model->db->insert('bbn_i18n_exp', [
+        $done += (int)$model->db->insert_ignore('bbn_i18n_exp', [
           'id_exp' => $id,
           'lang' => $project_lang,
           'expression' => $t
@@ -70,7 +66,6 @@ if (
         }
       }
     }
-
 
     return [
       'total' => count($todo),

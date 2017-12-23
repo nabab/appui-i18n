@@ -4,9 +4,9 @@
     <bbn-tab url="home"
              title="<i class='fa fa-home bbn-l' title='Home'></i> Languages Home"
              :static="true"
-             :load="false"
+             :load="true"
              :source="source"
-             component="appui-languages-home"
+
     ></bbn-tab>
 
 

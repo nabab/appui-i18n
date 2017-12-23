@@ -1,13 +1,14 @@
 <?php
 if ( $all = $model->db->get_column_values('bbn_projects', 'id') ){
-
+  $id_user = $model->inc->user->get_id();
+  $is_admin =  $model->db->val_by_id("bbn_users", "admin", $id_user);
   $projects = [];
   foreach ( $all as $id_project ){
 
     $project = new \bbn\appui\project($model->db, $id_project);
     $p = [
       'path' => $project->get_path(),
-      'langs' => $project->get_langs($p['id'], $asset_type_lang),
+      'langs' => $project->get_langs_id(),
       'id' => $id_project,
       'lang' => $project->get_lang(),
       'name' => $project->get_name()
@@ -21,8 +22,12 @@ if ( $all = $model->db->get_column_values('bbn_projects', 'id') ){
     return $v['primary'] == '1';
   }));
 
+
+
+
   return[
     'primary' => $primaries,
-    'projects' => $projects
+    'projects' => $projects,
+    'is_admin' => $is_admin
   ];
 }

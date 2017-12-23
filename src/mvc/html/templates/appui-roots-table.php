@@ -1,5 +1,6 @@
 <div style="min-height: 500px">
-  <bbn-table :source="source.path">
+  <bbn-table :source="source.path"
+  >
     <bbn-column field="text"
                 title="Path"
                 ftitle="All different paths of this project"
@@ -7,25 +8,22 @@
                 width="35%"
     ></bbn-column>
 <!--cambiare il nome a questo file in paths_table-->
-    <bbn-column field=""
-                title="<?=_('Progress')?>"
-                width="40%"
-                class="bbn-xl"
-                component="bbn-progressbar"
-                ftitle="<?=_('Progress in translation for all languages configured for this root')?>"
-    ></bbn-column>
+    
 
-    <bbn-column field="id_option"
-                width="15%"
+    <bbn-column field="code"
                 :buttons="[{
-                command: run_script,
-                icon: 'fa fa-superpowers',
-								title:'Check for new untranslated strings in this path'
-								},{
-                command: open_strings_table,
-                icon: 'fa fa-book',
-								title:'View the table of strings to translate'
-								}]"
+                  class:'path_button_expander',          
+                  command: run_script,
+                  icon: 'fa fa-superpowers',
+                  title:'Check for new untranslated strings',
+                  text: 'Find new strings in this path',
+                  },{
+                  class:'path_button_expander',      
+                  command: open_strings_table,
+                  icon: 'fa fa-book',
+                  text: 'Table of translations for this path',
+                  title:'View the table of strings to translate',
+           	  	 }]"
     ></bbn-column>
 
   </bbn-table>
