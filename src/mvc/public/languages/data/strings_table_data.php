@@ -6,4 +6,9 @@
 
 /** @var $this \bbn\mvc\controller */
 
-$ctrl->action();
+
+
+if($ctrl->post['limit']){
+  $ctrl->action();
+}
+

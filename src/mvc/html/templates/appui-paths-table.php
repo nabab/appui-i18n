@@ -5,24 +5,22 @@
                 title="Path"
                 ftitle="All different paths of this project"
                 ref="paths_table"
-                width="35%"
+                width="90%"
     ></bbn-column>
-<!--cambiare il nome a questo file in paths_table-->
-    
 
     <bbn-column field="code"
                 :buttons="[{
-                  class:'path_button_expander',          
+                  notext: true,
                   command: run_script,
                   icon: 'fa fa-superpowers',
                   title:'Check for new untranslated strings',
                   text: 'Find new strings in this path',
                   },{
-                  class:'path_button_expander',      
+                  notext: true,
                   command: open_strings_table,
                   icon: 'fa fa-book',
-                  text: 'Table of translations for this path',
-                  title:'View the table of strings to translate',
+                  text: 'Go to the table of translations of this path',
+                  title:'Go to the table of translations of this path',
            	  	 }]"
     ></bbn-column>
 

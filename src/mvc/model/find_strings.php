@@ -6,6 +6,7 @@
  * Time: 15.13
  */
 
+//called when the button to search for new string in a path is clicked
 
 if (
   isset($model->data['id_option']) &&
@@ -26,7 +27,6 @@ if (
   $project_lang = $project->get_lang();
 
   $langs = $project->get_langs();
-
   $model->data['success'] = false;
 
   if (
@@ -34,14 +34,17 @@ if (
     defined($parent['code'])
   ){
     $to_explore = constant($parent['code']).$o['code'];
-    $files = [];
+
     $i18n = new \bbn\appui\i18n($model->db);
     $i18n->analyse_folder($to_explore, true);
     $todo = $i18n->result();
     $done = 0;
 
+    //check if $t is already present in bbn_i18n
     foreach ( $todo as $t ){
+
       if ( !($id = $model->db->select_one('bbn_i18n', 'id', ['exp' => $t])) ){
+
        $model->db->insert('bbn_i18n', [
           'exp' => $t,
           'last_modified' => date('Y-m-d H:i:s'),
@@ -52,18 +55,12 @@ if (
       }
 
       if( !( $id_exp = $model->db->select_one('bbn_i18n_exp', 'id_exp', [ 'id_exp' => $id, 'lang' => $project_lang ]) ) ){
-        $done += (int)$model->db->insert_ignore('bbn_i18n_exp', [
+        $done += (int)$model->db->insert('bbn_i18n_exp', [
           'id_exp' => $id,
           'lang' => $project_lang,
           'expression' => $t
         ]);
-        if( !empty($done) ){
-          $model->data['success'] = true;
-        }
-        else{
-          $model->data['success'] = true;
-          var_dump('No strings to update');
-        }
+        $model->data['success'] = true;
       }
     }
 
@@ -71,7 +68,6 @@ if (
       'total' => count($todo),
       'done' => $done,
       'langs' => $langs,
-      'files' => $files,
       'path' => $to_explore,
       'todo' => $todo,
       'success' => $model->data['success'],

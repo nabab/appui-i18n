@@ -6,9 +6,13 @@
  * Time: 13.05
  */
 
-
 /* @var string ID of the path to analyze is expected */
+
 if ( !empty($model->data['id_option']) ){
+
+  //delete from db rows having an empty string as expression
+  $deleted_empty = $model->db->delete('bbn_i18n_exp', ['expression' => '']);
+
   /** @var array Root of the path */
   $parent = $model->inc->options->parent($model->data['id_option']);
   // Parent's code must correspond to a defined constant
@@ -55,14 +59,17 @@ if ( !empty($model->data['id_option']) ){
           'exp' => $t,
           'last_modified' => date('Y-m-d H:i:s'),
           'id_user' => $id_user,
+          'lang' => $lang
         ];
+
         if ( $model->db->insert('bbn_i18n', $data) ){
           $data['id'] = $model->db->last_id();
           $tmp = [
-            'id_exp' => $new_id_exp,
+            'id_exp' => $data['id'],
             'lang' => $lang,
-            'expression' => $n
+            'expression' => $t
           ];
+
           if ( $model->db->insert('bbn_i18n_exp', $tmp) ){
             $db_str = $data;
           }
@@ -81,6 +88,7 @@ if ( !empty($model->data['id_option']) ){
     }
 
     return [
+      'empty_row_deleted' => $deleted_empty,
       'source_glossary' => $source_glossary,
       'pageTitle' => $path.'\'s translations',
       'source_lang' => $lang,

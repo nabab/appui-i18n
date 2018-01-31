@@ -1,9 +1,17 @@
 <div class="appui-strings-table" style="min-height: 500px">
 
-  <bbn-table :source="source.source_glossary"
+  <bbn-table :source="source_glossary"
              :columns="configured_langs"
              editable="inline"
-
+             :pageable="true"
+             :sortable="true"
+             :limit="25"
+             :info="true"
+             :filterable="true"
+             :multifilter="true"
+             ref="strings_table"
+             :order="[{field: 'expression', dir: 'ASC'}]"
+             :data="{ id_option: source.id_option, langs: source.langs }"
   >
     <bbn-column field="id_exp"
                 width="40%"

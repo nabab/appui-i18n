@@ -22,10 +22,10 @@ if ( $all = $model->db->get_column_values('bbn_projects', 'id') ){
     return $v['primary'] == '1';
   }));
 
-
-
+  $langs_in_db = $model->db->get_col_array("SELECT DISTINCT lang FROM bbn_i18n_exp WHERE actif = 1");
 
   return[
+    'langs_in_db' => $langs_in_db,
     'primary' => $primaries,
     'projects' => $projects,
     'is_admin' => $is_admin

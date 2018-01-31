@@ -11,4 +11,4 @@ if ( !empty($templates) ){
     ];
   }, $templates);
 }
-$ctrl->combo('Translations home', true);
+$ctrl->combo('i18n', true);

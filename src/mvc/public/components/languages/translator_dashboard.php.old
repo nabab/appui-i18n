@@ -1,7 +1,0 @@
-<?php
-//$ctrl->obj->data['root'] = APPUI_LANGUAGES_ROOT;
-$ctrl->obj->url = 'languages/translator_dashboard';
-echo $ctrl
-  ->set_title('<span class="bbn-xl"><i class="fa fa-flag" title="Translator Panel"> Translator Dashboard</i></span> ')
-  ->add_js()
-  ->get_view();

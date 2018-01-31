@@ -1,19 +1,68 @@
-.home_buttons{
-  button{
-    width: 5em;
-    //height:5em;
-    min-height: 55%;
-    //min-width: auto;
-    margin-left: 1em;
-    margin-right: 1em;
-    text-align: center;
-    border:2px solid !important;
+/*.appui-languages{
+  .bbn-tabnav{
+    ul{
+      li {
+        background-color: darkorange!important;
+      }
+    }
   }
-}
+}*/
 
-.path_button_expander{
-  min-width: 49%!important;
-}
-.home_table{
-  width:100%;
+.statistic_list{
+  list-style-type: none;
+  li {
+    padding: 1.2em;
+    div {
+      display: inline;
+      &.statistic_description {
+        font-size: 1.5em;
+        padding-right: 0.5em;
+      }
+      &.statistic_val {
+        height: 50px;
+        width: 50px;
+        font-size: 1.8em;
+        padding-left: 0.5em;
+      }
+    }
+    .bbn-progressbar{
+      //classes are added to progressbar depending of its value
+      &.low {
+        .k-progressbar {
+          .k-state-selected {
+            background-color: darkorange;
+            border-color: darkorange;
+            color: darkgrey;
+          }
+        }
+      }
+      &.medium {
+        .k-progressbar {
+          .k-state-selected {
+            background-color: yellow;
+            border-color: yellow;
+            color: darkgrey;
+          }
+        }
+      }
+      &.medium-high {
+        .k-progressbar {
+          .k-state-selected {
+            background-color: yellowgreen;
+            border-color: yellowgreen;
+            color: darkgrey;
+          }
+        }
+      }
+      &.high {
+        .k-progressbar {
+          .k-state-selected {
+            background-color: green;
+            border-color: green;
+            color: darkgrey;
+          }
+        }
+      }
+    }
+  }
 }

@@ -2,7 +2,7 @@
   <bbn-tabnav :autoload="true"
   >
     <bbn-tab url="home"
-             title="<i class='fa fa-home bbn-l' title='Home'></i> Languages Home"
+             title="<i class='fa fa-home bbn-l' title='Home'></i>"
              :static="true"
              :load="true"
              :source="source"

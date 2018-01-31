@@ -5,6 +5,9 @@
  * Date: 12/12/17
  * Time: 14.20
  */
+
+//this controller is called when the form to config languages for a project is submitted
+
 $model->data['success'] = false;
 if( $id_project = $model->data['id'] ){
   $asset_type_lang = $model->inc->options->from_code('lang', 'assets','projects','appui');
