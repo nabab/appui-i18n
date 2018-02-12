@@ -1,4 +1,4 @@
-<div class="bbn-flex-width" v-if="source.is_admin">
+<div class="bbn-flex-width" v-if="source.is_dev">
 
   <bbn-table source="internationalization/languages/data/complete_history_table"
              :info="true"

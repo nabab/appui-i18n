@@ -9,9 +9,9 @@
 
 $model->data['success'] = false;
 $id_user = $model->inc->user->get_id();
-$is_admin =  $model->db->val_by_id("bbn_users", "admin", $id_user);
+$is_dev =  $model->db->val_by_id("bbn_users", "admin", $id_user);
 if (!empty($id_user) ){
-  if ( !empty($is_admin) ){
+  if ( !empty($is_dev) ){
     //CASE admin
 
     //$project_count is the number of bbn_project

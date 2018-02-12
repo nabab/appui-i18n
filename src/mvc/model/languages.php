@@ -1,7 +1,7 @@
 <?php
 if ( $all = $model->db->get_column_values('bbn_projects', 'id') ){
   $id_user = $model->inc->user->get_id();
-  $is_admin =  $model->db->val_by_id("bbn_users", "admin", $id_user);
+  $is_dev =  $model->inc->user->get_session('dev');
   $projects = [];
   foreach ( $all as $id_project ){
 
@@ -28,6 +28,6 @@ if ( $all = $model->db->get_column_values('bbn_projects', 'id') ){
     'langs_in_db' => $langs_in_db,
     'primary' => $primaries,
     'projects' => $projects,
-    'is_admin' => $is_admin
+    'is_dev' => $is_dev
   ];
 }

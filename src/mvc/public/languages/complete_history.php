@@ -6,7 +6,7 @@
  * Time: 14.43
  */
 $ctrl->obj->url = APPUI_I18N_ROOT.'languages/complete_history';
-$is_admin = $ctrl->inc->user->is_admin();
+$is_dev = $ctrl->inc->user->is_dev();
 
 
-$ctrl->add_data(['is_admin' => $is_admin])->combo('Complete history of translations', true);
+$ctrl->add_data(['is_dev' => $is_dev])->combo('Complete history of translations', true);

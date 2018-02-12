@@ -13,6 +13,9 @@
       this.open_statistic_list = this.$options.components['toolbar'].methods['open_statistic_list'];
     },
     methods: {
+      render_lang_name(row){
+        return bbn.fn.get_field(this.source.primary, 'code', row.lang, 'text');
+      },
       render_projects(row){
         return '<a href="internationalization/components/languages/glossaries">'+ row.name +'</a>'
       },

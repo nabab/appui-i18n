@@ -25,6 +25,12 @@
                 class="bbn-xl"
     ></bbn-column>
 
+    <bbn-column title="<?=_('Source language')?>"
+                field="lang"
+                :render="render_lang_name"
+                class="bbn-xl"
+    ></bbn-column>
+
     <bbn-column :buttons="[{
                     command: cfg_languages,
                     icon: 'fa fa-flag',
