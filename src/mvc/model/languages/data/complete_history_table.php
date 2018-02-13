@@ -8,6 +8,7 @@
 
 
 if ( !empty($model->data['limit']) ){
+
   $filters = ['bbn_i18n_exp.actif' => 1];
 
   $count = "
@@ -29,9 +30,6 @@ if ( !empty($model->data['limit']) ){
         ON bbn_i18n.id = bbn_i18n_exp.id_exp
      ";
 
-
-
-
   $grid = new \bbn\appui\grid($model->db, $model->data, [
 
     'query'=> $query,
@@ -44,6 +42,7 @@ if ( !empty($model->data['limit']) ){
   if ( $grid->check() ){
     return $grid->get_datatable();
   }
+
 }
 
 

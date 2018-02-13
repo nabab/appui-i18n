@@ -1,4 +1,3 @@
-
 (() => {
   return {
     props:['source'],
@@ -38,7 +37,7 @@
             this.active = 1
           }
         });
-        return this.$refs.table1.edit(row, bbn._("Config languages for the project"));
+        return this.$refs.table1.edit(row, bbn._("Config languages for the project"), {height: 600, width:400});
       },
     },
     components: {
@@ -102,7 +101,7 @@
             bbn.fn.link('internationalization/languages/strings_tab/' + row.id_option );
           },
           run_script(row){
-            bbn.fn.post('internationalization/find_strings', row, (d) => {
+            bbn.fn.post('internationalization/actions/find_strings', row, (d) => {
               if( d.done > 0 ){
                 bbn.fn.alert(d['todo'].length + ' strings successfully updated for '+ row.text + '<i class="fa' +
                   ' fa-smile-o"></i>!');

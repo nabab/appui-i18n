@@ -43,7 +43,10 @@ if (
     //check if $t is already present in bbn_i18n
     foreach ( $todo as $t ){
 
-      if ( !($id = $model->db->select_one('bbn_i18n', 'id', ['exp' => $t])) ){
+      if ( !($id = $model->db->select_one('bbn_i18n', 'id', ['exp' => $t, 'lang' => $project_lang])) ){
+       if ( strpos($t, 'Search in') !== false ){
+         die(var_dump($t));
+       }
 
        $model->db->insert('bbn_i18n', [
           'exp' => $t,

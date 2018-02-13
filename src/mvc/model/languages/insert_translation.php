@@ -40,9 +40,6 @@ if ( !empty($model->data['row']) ){
         }
       }
 
-
-
-
       //case in which $old_exp doesn't exist for the language §$r
       else if ( !empty($val) && ( $old_exp === false ) && $model->db->insert('bbn_i18n_exp',
           [ 'expression' => $val,
