@@ -1,7 +1,7 @@
 <bbn-form class="bbn-full-screen"
 								:source="source.row"
                 ref="form"
-                action="internationalization/languages_form"
+                action="internationalization/actions/languages_form"
                 confirm-leave="<?=_("Are you sure you want to exit without saving changes?")?>"
 
 >

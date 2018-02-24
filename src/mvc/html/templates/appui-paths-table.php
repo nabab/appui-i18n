@@ -9,18 +9,20 @@
     ></bbn-column>
 
     <bbn-column field="code"
+                title=" "
+                cls="bbn-c"
                 :buttons="[{
                   notext: true,
-                  command: run_script,
-                  icon: 'fa fa-superpowers',
-                  title:'Check for new untranslated strings',
-                  text: 'Find new strings in this path',
+                  command: find_new_strings,
+                  icon: 'zmdi zmdi-flash',
+                  title:'Check for new strings in this path',
+                  text: 'Check for new strings in this path',
                   },{
                   notext: true,
                   command: open_strings_table,
                   icon: 'fa fa-book',
-                  text: 'Go to the table of translations of this path',
-                  title:'Go to the table of translations of this path',
+                  text: 'Go to the table of strings of this path',
+                  title:'Go to the table of strings of this path',
            	  	 }]"
     ></bbn-column>
 

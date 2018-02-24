@@ -8,22 +8,74 @@
       }
     },
     methods: {
-      //original expression
-      render_original_lang(row){
-        if ( row.lang === row.original_lang ){
-          return '<span style="color:grey; opacity:0.4">'+ this.source.lang_name +' is the original language of this expression</span>'
+      delete_expression(){
+        alert('deleted')
+      },
+      insert_translation(row,idx){
+        bbn.fn.post('internationalization/actions/insert_translation',
+          {
+            'id_exp' : row.id,
+            'expression': row.translation,
+            'translation_lang': this.source.translation_lang
+          }, (success) => {
+          if (success){
+            appui.success('Translation saved');
+          }
+          else{
+            appui.error('An error occurred while saving translation');
+          }
+        });
+      },
+      buttons(row){
+        let res = [];
+        if ( ( row.original_expression === row.translation ) && ( this.source.source_lang === this.source.translation_lang ) ) {
+          res.push({
+            icon: 'fa fa-check',
+            disabled: true,
+            title: "Expressions are identical"
+          });
+        }
+        else if ( ( row.translation !== null ) && ( row.translation !== row.original_expression ) && ( this.source.source_lang === this.source.translation_lang ) ){
+          res.push({
+            icon: 'zmdi zmdi-alert-triangle ',
+            disabled: true,
+            title: "Expression changed in its original language"
+          });
+        }
+        else if ( ( row.translation !== null ) && ( row.original_expression !== row.translation ) && ( this.source.source_lang !== this.source.translation_lang ) ) {
+          res.push({
+            icon: 'fa fa-smile-o',
+            disabled: true,
+            title: "Expression translated"
+          })
         }
         else {
-          return bbn.fn.get_field(this.primary, 'code', row.original_lang, 'text');
+          res.push({
+            icon: 'fa fa-frown-o ',
+            command: this.delete_expression,
+            title: "Expression not translated. Click to remove the original"
+          })
+
         }
+        return res;
       },
       render_user(row){
         if (row.user){
           return row.user;
         }
         else {
-          return '<span style="color:grey; opacity:0.4">No username</span>'
+          return '<span class="bbn-i" style="color:grey; opacity:0.4">Unknown user</span>'
         }
+      }
+    },
+    components:{
+      'delete_button': {
+        template: '<bbn-button icon="fa fa-frown-o"></bbn-button>',
+        props: ['source'],
+        data(){
+          return {
+          }
+        },
       }
     }
   }

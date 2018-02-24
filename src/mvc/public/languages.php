@@ -1,5 +1,5 @@
 <?php
-
+// the folder of components templates
 $templates = \bbn\file\dir::get_files($ctrl->plugin_path().'mvc/html/templates');
 $ctrl->data['templates'] = [];
 $ctrl->obj->url = APPUI_I18N_ROOT.'languages';

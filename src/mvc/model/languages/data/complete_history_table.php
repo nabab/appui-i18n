@@ -12,18 +12,18 @@ if ( !empty($model->data['limit']) ){
   $filters = ['bbn_i18n_exp.actif' => 1];
 
   $count = "
-    SELECT COUNT(bbn_i18n_exp.id)
+    SELECT COUNT(bbn_i18n_exp.id_exp)
             FROM `bbn_i18n_exp` 
             JOIN bbn_history
-              ON bbn_history.uid = bbn_i18n_exp.id
-           WHERE bbn_i18n_exp.id = bbn_history.uid
+              ON bbn_history.uid = bbn_i18n_exp.id_exp
+           WHERE bbn_i18n_exp.id_exp = bbn_history.uid
     ";
   $query = "
-    SELECT bbn_i18n_exp.id, expression, bbn_i18n_exp.lang, bbn_i18n_exp.actif AS 'translation_lang', bbn_users.nom AS 
-    'user', bbn_history.dt as 'last_modification', bbn_history.opr as 'operation', bbn_i18n.exp AS 'original_expression', bbn_i18n.lang AS 'original_lang'
+    SELECT bbn_i18n_exp.id_exp, expression, bbn_i18n_exp.actif, bbn_i18n_exp.lang AS translation_lang, bbn_users.nom AS 
+    user, bbn_history.dt as last_modification, bbn_history.opr as operation, bbn_i18n.exp AS original_expression, bbn_i18n.lang AS original_lang
       FROM `bbn_i18n_exp` 
       JOIN bbn_history
-        ON bbn_history.uid = bbn_i18n_exp.id
+        ON bbn_history.uid = bbn_i18n_exp.id_exp
       JOIN bbn_users
         ON bbn_history.usr = bbn_users.id
       JOIN bbn_i18n
@@ -33,7 +33,7 @@ if ( !empty($model->data['limit']) ){
   $grid = new \bbn\appui\grid($model->db, $model->data, [
 
     'query'=> $query,
-    'count' => $count,
+    'count' => $count
     //momentaneamente ho tolto filters, vorrei usare quelli della tabella opzionalmente...
 
     //'filters' => $filters

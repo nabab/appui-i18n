@@ -3,7 +3,8 @@
 <div class="bbn-flex-width">
 
   <div class="bbn-full-screen bbn-c bbn-middle">
-    <bbn-scroll>
+    <bbn-loader loadingText="Cooming Soon..."></bbn-loader>
+    <!--<bbn-scroll>
       <ul class="statistic_list">
         <li v-for="(s, index) in source.statistics">
           <div class="statistic_description bbn-darkgrey" v-text="index"></div>
@@ -66,7 +67,7 @@
         <li>
 
           <!--the function on lang_statistic.source_lang in v-text is made for not having 'undefined' until lang_statistic.source_lang is filled after the post-->
-          <div class="statistic_description bbn-darkgrey"
+          <!--div class="statistic_description bbn-darkgrey"
                v-text="'Total number of ' + (lang_statistic.source_lang ? lang_statistic.source_lang : '') + ' strings in all projects:'"
           ></div>
           <div class="statistic_val bbn-purple"
@@ -75,7 +76,7 @@
           </div>
         </li>
 
-        <!--<li>
+        <li>
 
           <div class="statistic_description bbn-darkgrey">
             Select a project for more informations
@@ -85,7 +86,7 @@
           >
           </bbn-dropdown>
 
-        </li>-->
+        </li>
 
 
 
@@ -93,7 +94,7 @@
 
 
       </ul>
-    </bbn-scroll>
+    </bbn-scroll>-->
   </div>
 
 </div>

@@ -9,24 +9,29 @@
              :limit="25"
              :info="true"
              :order="[{field: 'expression', dir: 'ASC'}]"
-             :data="{lang: source.lang, lang_name:source.lang_name}"
+             :data="{source_lang: source.source_lang, lang_name:source.lang_name, translation_lang: source.translation_lang}"
+             @change="insert_translation"
   >
-    <bbn-column field="expression"
-                title="<?=_('Expression')?>"
-    ></bbn-column>
-
-    <bbn-column field="original_lang"
-                title="<?=_('Translated from:')?>"
-                :render="render_original_lang"
-    ></bbn-column>
-
-    <bbn-column field="original_exp"
+    <bbn-column field="original_expression"
                 title="<?=_('Original Expression')?>"
+                :editable="false"
+                cls="bbn-i"
+    ></bbn-column>
+
+    <bbn-column ftitle="<?=_('Status')?>"
+                width="40"
+                cls="bbn-l"
+                :buttons="buttons"
+    ></bbn-column>
+
+    <bbn-column field="translation"
+                title="<?=_('Translation')?>"
     ></bbn-column>
 
     <bbn-column field="user"
                 title="<?=_('User')?>"
                 :render="render_user"
+                :editable="false"
     ></bbn-column>
 
   </bbn-table>

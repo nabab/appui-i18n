@@ -1,29 +1,21 @@
 (() => {
   return {
     props:['source'],
-    created(){
-      this.run_script = this.$options.components['appui-paths-table'].methods['run_script'];
-      this.open_strings_table = this.$options.components['appui-paths-table'].methods['open_roots_table'];
-      //this.path_code = this.$options.components['appui-paths-table'].methods['path_code'];
-
-      //methods of toolbar component
-      this.open_user_history = this.$options.components['toolbar'].methods['open_user_history '];
-      this.open_complete_history = this.$options.components['toolbar'].methods['open_complete_history'];
-      this.open_statistic_list = this.$options.components['toolbar'].methods['open_statistic_list'];
-    },
     methods: {
+      //render for the third column of the projects table
       render_lang_name(row){
         return bbn.fn.get_field(this.source.primary, 'code', row.lang, 'text');
       },
+      //render for the first column of the projects table
       render_projects(row){
         return '<a href="internationalization/components/languages/glossaries">'+ row.name +'</a>'
       },
+      //render for the second column of the projects table
       render_langs(row){
         var st = '';
         if ( ( row.langs !== null ) && ( row.langs.length ) ){
           $.each( row.langs, (i, v) => {
             st += bbn.fn.get_field(this.source.primary, 'id', v, 'text') + '<br>'});
-
           return st;
         }
         else {
@@ -31,60 +23,20 @@
         }
       },
       //cfg language for the project
-      cfg_languages(row){
+      cfg_languages(row, col, idx){
         $.each( this.source.primary, (a, z) => {
           if( $.inArray(z.id, row.langs) ){
             this.active = 1
           }
         });
-        return this.$refs.table1.edit(row, bbn._("Config languages for the project"), {height: 600, width:400});
+        //edit projects' table using the form $options.components['appui-languages-form'] declared in the html of
+        // the projects table
+        return this.$refs.table1.edit(row,  {height: 600, width:500, title: bbn._("Config languages for the project")}, idx);
       },
     },
     components: {
-      //the toolbar of the table
-      'toolbar': {
-        template:'#toolbar',
-        props:['source'],
-        data(){
-          return{
-            lang:  false,
-            langs: bbn.vue.closest(this, 'bbn-table').$parent.source['langs_in_db'],
-            primary: bbn.vue.closest(this, 'bbn-table').$parent.source['primary'],
-          }
-        },
-        computed: {
-          //the source of dropdown
-          dd_source(){
-            let res = [];
-            $.each(this.langs, (i, v) => {
-              res.push({value:v, text: bbn.fn.get_field(this.primary, 'code', v, 'text') })
-            })
-            return res;
-          },
-        },
-        methods: {
-          open_user_history(){
-            bbn.fn.link('internationalization/languages/user_history');
-          },
-          open_complete_history(){
-            bbn.fn.link('internationalization/languages/complete_history');
-          },
-          open_statistic_list(){
-            bbn.fn.link('internationalization/languages/statistic_tab');
-          },
-        },
-        watch: {
-          lang(val){
-            if (val){
-              //link to open glossary table of each language in db after the selection of dropdown in the toolbar
-              bbn.fn.link('internationalization/languages/glossary_tab/' + val
-              );
-            }
-          }
-        }
-      },
       'appui-paths-table':{
-        //expander
+        //expand the rows of projects table using the template contained in the folder templates
         template:'#appui-paths-table',
         props:['source'],
         data(){
@@ -96,25 +48,31 @@
         },
         methods: {
           open_strings_table(row){
-            //the table's source will take id_option as arguments[0]
+            //open the table of strings of this path combining new strings found in the files with strings present in db
+            //send arguments[0] (id_option of the path) to 'internationalization/languages/strings_tab/'
             this.id_option = row.id_option;
-            bbn.fn.link('internationalization/languages/strings_tab/' + row.id_option );
+            //internationalization/languages/strings_tab/ will return the cached_model in its data, if a
+            // cached_model doesn't exist for this id_option it will be created
+            bbn.fn.link('internationalization/languages/strings_tab/' + row.id_option);
           },
-          run_script(row){
+          find_new_strings(row){
+            //check in the path for new strings
             bbn.fn.post('internationalization/actions/find_strings', row, (d) => {
+              //d.done is the number of new strings inserted in the db
+              //the empty string passed to bbn.fn.alert is for the title of the alert
               if( d.done > 0 ){
-                bbn.fn.alert(d['todo'].length + ' strings successfully updated for '+ row.text + '<i class="fa' +
-                  ' fa-smile-o"></i>!');
+                bbn.fn.alert( d.done + ' strings successfully updated for '+ row.text + '<i class="fa' +
+                  ' fa-smile-o"></i>!', ' ');
               }
               else {
-                bbn.fn.alert('There are no new strings to update <i class="fa fa-frown-o" aria-hidden="true"></i>');
+                bbn.fn.alert('There are no new strings to update <i class="fa fa-smile-o" aria-hidden="true"></i>', ' ');
               }
             });
           },
         },
 
       },
-
+      //the component form to configure languages in which translate the project
       'appui-languages-form': {
         template: '#appui-languages-form',
         methods:{

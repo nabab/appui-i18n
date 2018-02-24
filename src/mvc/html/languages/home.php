@@ -10,7 +10,7 @@
              :editor="$options.components['appui-languages-form']"
              :expander="$options.components['appui-paths-table']"
              :info="false"
-             :toolbar="$options.components['toolbar']"
+
   >
     <bbn-column field="name"
                 width="35%"
@@ -34,9 +34,10 @@
     <bbn-column :buttons="[{
                     command: cfg_languages,
                     icon: 'fa fa-flag',
-                    title: 'Configure languages for this project'
+                    title: 'Configure languages of translation for this project'
                   }]"
                 width="80"
+                cls="bbn-c"
     ></bbn-column>
 
   </bbn-table>

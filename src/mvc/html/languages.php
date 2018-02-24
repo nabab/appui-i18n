@@ -2,13 +2,20 @@
   <bbn-tabnav :autoload="true"
   >
     <bbn-tab url="home"
-             title="<i class='fa fa-home bbn-l' title='Home'></i>"
+             title="<i class='fa fa-home bbn-l' title='Projects'></i>"
              :static="true"
              :load="true"
              :source="source"
 
     ></bbn-tab>
 
+    <bbn-tab url="complete_history"
+             title="<i class='fa fa-flag bbn-l' title='Translations'></i>"
+             :static="true"
+             :load="true"
+             :source="source"
+
+    ></bbn-tab>
 
   </bbn-tabnav>
 </div>

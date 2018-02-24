@@ -8,6 +8,6 @@
 
 //$ctrl->post['data']['lang'] is sent by :data of bbn-table
 
-if ( !empty($ctrl->post['limit']) && !empty($ctrl->post['data']['lang']) ){
+if ( !empty($ctrl->post['limit']) && !empty($ctrl->post['data']['translation_lang']) ){
   $ctrl->action();
 }

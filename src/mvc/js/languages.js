@@ -29,6 +29,8 @@
       }];
       bbn.vue.setComponentRule('internationalization/components/', 'appui');
       bbn.vue.addComponent('languages/home', mixins);
+      bbn.vue.addComponent('languages/complete_history', mixins);
+
       bbn.vue.addComponent('languages/strings_table', mixins);
       bbn.vue.addComponent('languages/glossaries', mixins);
       bbn.vue.unsetComponentRule();

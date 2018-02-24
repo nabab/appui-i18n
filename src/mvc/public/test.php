@@ -1,4 +1,10 @@
 <?php
+$ctrl->db->insert('bbn_i18n_exp', [
+  'lang'=> 'it', 
+	'id_exp'=> '11f742bc16f611e89bdf366237393031', 
+  'expression'=> 'stiamo facendo un test'
+]);
+die();
 $todo = [];
 $dirs = \bbn\file\dir::get_dirs(BBN_APP_PATH.'locale');
 echo '<div class="bbn-h-100">';
