@@ -13,12 +13,12 @@ echo "<h1>Missing translations</h1>";
 $default = 'fr';
 foreach ( $dirs as $dir ){
   var_dump($dir);
-  if ( is_file($dir.'/LC_MESSAGES/apst.po') ){
+  if ( is_file($dir.'/LC_MESSAGES/appui.app.po') ){
     $lang = basename($dir);
     $translations = new Gettext\Translations();
     $todo[$lang] = [];
     echo "<h2>$lang</h2>";
-    Gettext\Extractors\Po::fromFile($dir.'/LC_MESSAGES/apst.po', $translations);
+    Gettext\Extractors\Po::fromFile($dir.'/LC_MESSAGES/appui.app.po', $translations);
     foreach ( $translations->getIterator() as $r => $tr ){
       if ( !isset($shown) ){
         var_dump($tr);

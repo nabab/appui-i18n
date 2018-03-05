@@ -1,6 +1,6 @@
 <?php
 
 
-if ( !empty($ctrl->post['id_exp']) ){
+if ( !empty($ctrl->post['row']['id_exp']) ){
   $ctrl->action();
 }

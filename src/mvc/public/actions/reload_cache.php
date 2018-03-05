@@ -9,19 +9,20 @@
 //post from the toolbar's button reload_cache of strings table
 $id_option = $ctrl->post['id_option'];
 
-if ( $id_option && ( $res = $ctrl->get_model($ctrl->plugin_url('appui-i18n').'/actions/find_strings', ['id_option'
-  => $id_option]) ) ){
+if ( !empty($id_option) ){
 
   //delete the model from the cache
   $ctrl->delete_cached_model($ctrl->plugin_url('appui-i18n').'/actions/find_strings', ['id_option'
   => $id_option ]);
-  //die(var_dump('fda'));
-  //$ctrl->set_cached_model($res, $ctrl->data['id_option'], 0);
 
-  //$ctrl->set_cache($res,$ctrl->plugin_url('appui-i18n').'/actions/find_strings', $id_option );
-  $cached_model = $ctrl->get_cached_model($ctrl->plugin_url('appui-i18n').'/actions/find_strings', ['id_option'
+  //create a new model in the cache
+  $ctrl->set_cached_model($ctrl->plugin_url('appui-i18n').'/actions/find_strings', ['id_option'
   => $id_option]);
+  //get the model from the cache
+  $cached_model  = $ctrl->get_cached_model('internationalization/actions/find_strings', $ctrl->post);
+
   $ctrl->data['cached_model'] = $cached_model;
+
 
   $ctrl->action();
 }

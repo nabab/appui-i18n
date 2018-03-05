@@ -1,0 +1,8 @@
+(() => {
+  return {
+    props:['source'],
+    methods: {
+
+    }
+  }
+})();

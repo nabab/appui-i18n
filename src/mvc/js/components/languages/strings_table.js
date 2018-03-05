@@ -7,13 +7,44 @@
       }
     },
     methods: {
+      buttons(){
+        let res = [];
+        res.push({
+          command: this.delete_expression,
+          icon: 'fa fa-close',
+          title: 'Delete original expression'
+        })
+        return res;
+      },
+      delete_expression(row){
+        bbn.fn.log(row)
+        let id_exp = row.id_exp,
+            data = this.source.cached_model.res,
+            idx = bbn.fn.search(data, { id_exp: id_exp });
+        bbn.fn.confirm('Did you remove the the expression from code before to delete the row?', () => {
+          bbn.fn.post('internationalization/actions/delete_expression', { id_exp: row.id_exp, exp: row.original_exp },  (d) => {
+            if ( d.success ){
+              data.splice(idx, 1);
+              this.$refs.strings_table.updateData();
+              appui.success('Expression deleted');
+              this.remake_cache()
+            }
+            else{
+              appui.error('An error occurred while deleting the expression');
+            }
+          } );
+        })
+      },
       insert_translation(row,idx){
         //use a different controller
-        bbn.fn.post('internationalization/actions/insert_translations',
-          row, (success) => {
-          if (success){
+        bbn.fn.post('internationalization/actions/insert_translations', {
+          row: row,
+          langs: this.source.langs
+          }, (d) => {
+          if (d.success){
             appui.success('Translation saved');
-            bbn.vue.find(this, 'bbn-table').updateData();
+            this.$refs.strings_table.updateData();
+            this.remake_cache();
           }
           else{
             appui.error('An error occurred while saving translation');
@@ -23,11 +54,8 @@
       remake_cache(){
         bbn.fn.post('internationalization/actions/reload_cache', { id_option: this.source.id_option }, (d) => {
           if ( d.success ){
-            bbn.fn.log()
-            this.source.cached_model.res = d.res;
-            this.$nextTick(() => {
-              this.$refs.strings_table.updateData();
-            });
+            this.source.cached_model.res = d.cached_model.res;
+            this.$refs.strings_table.updateData();
           }
         })
       },
@@ -67,44 +95,19 @@
         if ( def ){
           r.splice(0, 0, r.splice(def, 1)[0]);
         }
+        r.push({
+          ftitle: 'Remove original expression',
+          buttons: this.buttons,
+          width: 40,
+          cls: 'bbn-c'
+        })
 
         return r;
       },
 
     },
     watch: {
-      'source_glossary': {
-        deep: true,
-        handler(val, oldval){
-          if ( val ){
-            $(".bbn-input input", this.$refs.strings_table.$el).off('keyup');
-            $(".bbn-input input", this.$refs.strings_table.$el).on('keyup', (e) => {
-              if ( e.keyCode === 13){
-                this.pressedEnterKey = true;
-                e.preventDefault();
-              }
-              else {
-                this.pressedEnterKey = false;
-              }
-            })
-          }
-        }
-      },
 
-      pressedEnterKey(val){
-        if ( val ){
-          let editedRow = bbn.vue.find(this, 'bbn-table').editedRow;
-
-          bbn.fn.post('internationalization/languages/insert_translation', { row: editedRow }, (d) => {
-            if ( d.success ){
-              bbn.fn.log('Expression successfully updated!');
-            }
-            else {
-              bbn.fn.log('Something went wrong while updating this expression, please contact system\'s admin');
-            }
-          } );
-        }
-      }
     },
     components: {
       'file_linker': {

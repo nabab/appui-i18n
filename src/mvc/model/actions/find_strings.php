@@ -9,7 +9,8 @@
 
 /** @todo this $model should set the cached model, I need help to do it. Now the cached model is created when opening
  * strings tab*/
-//called when the button to search for new string in a path is clicked and from internationalization/languages/strings_tab/ to open the tab of the strings in the path
+//called when the button to search for new string in a path is clicked and from
+// internationalization/languages_tabs/path_translations/ to open the tab of the strings in the path
 
 if (
   isset($model->data['id_option']) &&
