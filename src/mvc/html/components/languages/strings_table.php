@@ -14,7 +14,17 @@
                :order="[{field: 'expression', dir: 'ASC'}]"
                :data="{ id_option: source.id_option, langs: source.langs }"
                :expander="$options.components['file_linker']"
-               :toolbar="[{command: remake_cache, icon: 'fa fa-retweet', title: 'Update cache', class:'bbn-b'}]"
+               :toolbar="[{
+                         command: remake_cache,
+                         icon: 'fa fa-retweet',
+                         title: 'Update cache',
+                         class:'bbn-xl'
+                         }, {
+                         command: generate,
+                         icon: 'fa fa-exchange',
+                         title: 'Update translations\' files',
+                         class:'bbn-xl'
+                         }]"
                @change="insert_translation"
   >
     <bbn-column field="id_exp"

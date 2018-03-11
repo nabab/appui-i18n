@@ -1,12 +1,21 @@
 <div class="appui-languages bbn-full-screen">
   <bbn-tabnav :autoload="true"
   >
+   
+      
+    <bbn-tab url="dashboard"
+             title="<i class='fa fa-edit bbn-l' title='Dashboard'></i>Dashboard"
+             :static="true"
+             :load="true"
+             :source="source"
+    ></bbn-tab>
+  
+    
     <bbn-tab url="home"
              title="<i class='fa fa-home bbn-l' title='Projects'></i>"
              :static="true"
              :load="true"
              :source="source"
-
     ></bbn-tab>
 
     <bbn-tab url="history"

@@ -7,9 +7,9 @@
  */
 
 
+$success = false;
 // row sent by post
 if ( !empty($model->data['row']['id_exp'])){
-  $success = false;
   $row = $model->data['row'];
   $langs = $model->data['langs'];
 //receives configured langs from the post
@@ -19,35 +19,24 @@ if ( !empty($model->data['row']['id_exp'])){
       $expression = $row[$l];
 
       //case update the expression exists in this lang ($l)
-      if ( $model->db->get_val('bbn_i18n_exp', 'expression', [
+      if ( $id = $model->db->get_val('bbn_i18n_exp', 'id', [
         'id_exp' => $row['id_exp'],
         'lang' => $l
       ]) ){
-        /*die(var_dump($row['id_exp'], $l,$model->db->update('bbn_i18n_exp', ['expression' => $expression ], [
-          'id_exp' => $row['id_exp'],
-          'lang' => $l,
-
-        ]) ));*/
-        if ( $model->db->update('bbn_i18n_exp', ['expression' => $expression ], [
-          'id_exp' => $row['id_exp'],
-          'lang' => $l,
-        ]) ){
-          $success = true;
-        };
+        $success = $model->db->update('bbn_i18n_exp', ['expression' => $expression ], [
+          'id' => $id
+        ]);
       }
       //case insert
       else {
-        if ( $model->db->insert('bbn_i18n_exp', [
+        $success = $model->db->insert('bbn_i18n_exp', [
           'expression' => $expression,
           'id_exp' => $row['id_exp'],
           'lang' => $l,
           'actif' => 1
-        ]) ){
-          $success = true;
-        };
+        ]);
       }
     }
   }
-
-  return [ 'success' => $success ];
 }
+return ['success' => $success];

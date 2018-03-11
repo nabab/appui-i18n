@@ -1,5 +1,7 @@
 <?php
 if ( $all = $model->db->get_column_values('bbn_projects', 'id') ){
+  //instantiate the class i18n
+  $translation = new \bbn\appui\i18n($model->db);
 
   //return if the user is_dev
   $is_dev =  $model->inc->user->get_session('dev');
@@ -17,13 +19,9 @@ if ( $all = $model->db->get_column_values('bbn_projects', 'id') ){
     ];
     $projects[] = $p;
   }
+  //primary languages from bbn_options
+  $primaries = $translation->get_primaries_langs();
 
-  //get the uid of languages to create an array of primary languages from db
-  $uid_languages = $model->inc->options->from_code('languages', 'i18n', 'appui');
-  $languages = $model->inc->options->full_tree($uid_languages);
-  $primaries = array_values(array_filter($languages['items'], function($v) {
-    return $v['primary'] == '1';
-  }));
 
   //create an array of all languages existing in the table of expressions 'bbn_i18n_exp '
   $langs_in_db = $model->db->get_col_array("SELECT DISTINCT lang FROM bbn_i18n_exp WHERE actif = 1");

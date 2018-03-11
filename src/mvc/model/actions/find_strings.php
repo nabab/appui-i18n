@@ -12,10 +12,12 @@
 //called when the button to search for new string in a path is clicked and from
 // internationalization/languages_tabs/path_translations/ to open the tab of the strings in the path
 
+
 if (
   isset($model->data['id_option']) &&
   ($o = $model->inc->options->option($model->data['id_option']))
 ){
+
   $asset_type_path = $model->inc->options->from_code('path', 'assets','projects','appui');
 
   //get the id of the current project using the id_option of the path
@@ -30,7 +32,7 @@ if (
   //instantiate an object to the class appui\project
   $project = new \bbn\appui\project($model->db, $id_project);
 
-  //$project_lang  the source language of the project
+  /** @var string the source language of the project */
   $project_lang = $project->get_lang();
 
   //$langs for which the project is configured
@@ -46,7 +48,7 @@ if (
     $i18n = new \bbn\appui\i18n($model->db);
 
     // $res array of the files indexed to the strings found in the directory $to_explore
-    $res = $i18n->analyse_folder($to_explore, true);
+    $res = $i18n->analyze_folder($to_explore, true);
 
     $done = 0;
 

@@ -7,13 +7,18 @@
       }
     },
     methods: {
+      generate(){
+        bbn.fn.post(this.source.root + 'actions/generate', {id: this.source.id_option}, (d) => {
+          bbn.fn.log(d);
+        })
+      },
       buttons(){
         let res = [];
         res.push({
           command: this.delete_expression,
           icon: 'fa fa-close',
           title: 'Delete original expression'
-        })
+        });
         return res;
       },
       delete_expression(row){
@@ -22,7 +27,7 @@
             data = this.source.cached_model.res,
             idx = bbn.fn.search(data, { id_exp: id_exp });
         bbn.fn.confirm('Did you remove the the expression from code before to delete the row?', () => {
-          bbn.fn.post('internationalization/actions/delete_expression', { id_exp: row.id_exp, exp: row.original_exp },  (d) => {
+          bbn.fn.post(this.source.root + 'actions/delete_expression', { id_exp: row.id_exp, exp: row.original_exp },  (d) => {
             if ( d.success ){
               data.splice(idx, 1);
               this.$refs.strings_table.updateData();
@@ -37,7 +42,7 @@
       },
       insert_translation(row,idx){
         //use a different controller
-        bbn.fn.post('internationalization/actions/insert_translations', {
+        bbn.fn.post(this.source.root + 'actions/insert_translations', {
           row: row,
           langs: this.source.langs
           }, (d) => {
@@ -61,17 +66,15 @@
       },
       render_first_col(row){
         let st = '';
-        if ( row[this.source.source_lang] !== row.original_exp ){
-          st += row[this.source.source_lang] + '<i class="zmdi zmdi-alert-triangle bbn-s bbn-orange" style="float:right" title="Expression changed in its original language"></i>'
+        if ( row[row.translation[this.source.source_lang]] !== row.original_exp ){
+          st +=row[row.translation[this.source.source_lang]] + '<i class="zmdi zmdi-alert-triangle bbn-s bbn-orange" style="float:right" title="Expression changed in its original language"></i>'
         }
         else{
-          st = row[this.source.source_lang]
+          st = row[row.original_exp]
         }
         return st;
       },
-      render_original_exp(row){
-        return bbn.fn.get_field(this.source.langs[this.source.source_lang], 'code', row[this.source.source_lang], 'text')
-      },
+     
     },
     props: ['source'],
     computed: {
