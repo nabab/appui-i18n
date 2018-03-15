@@ -1,9 +1,7 @@
 <?php
 
 
-if ( !empty($model->data['id_option']) && !empty($model->data['cached_model']) ){
-  return [
-    'success' => true,
-    'cached_model' => $model->data['cached_model']
-  ];
+if ( !empty($model->data['id_option']) ){
+
+  return $model->get_model(APPUI_I18N_ROOT.'languages_tabs/data/widgets');
 }

@@ -7,12 +7,13 @@
                :pageable="true"
                :sortable="true"
                :limit="25"
+               :map="mapData"
                :info="true"
                :filterable="true"
                :multifilter="true"
                ref="strings_table"
                :order="[{field: 'expression', dir: 'ASC'}]"
-               :data="{ id_option: source.id_option, langs: source.langs }"
+               :data="{ id_option: source.id_option, langs: source.langs, source_lang: source.source_lang }"
                :expander="$options.components['file_linker']"
                :toolbar="[{
                          command: remake_cache,
@@ -31,12 +32,13 @@
                 :hidden="true"
     ></bbn-column>
 
-    <bbn-column field="original_exp"
-                title="<?=_('Original expression')?>"
-                width="20%"
-                :editable="false"
-                cls="bbn-l bbn-i"
-                ftitle="<?=_('The strings in their original language')?>"
+   <bbn-column field="original_exp"
+               title="<?=_('Original expression')?>"
+               :index="1"
+               width="20%"
+               :editable="false"
+               cls="bbn-i"
+               ftitle="'The original language of strings is' + source.langs[source_lang].text"
     ></bbn-column>
 
   </bbn-table>

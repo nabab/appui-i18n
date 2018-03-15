@@ -30,7 +30,7 @@ foreach ( $projects as $i => $p ){
         'url' => APPUI_I18N_ROOT.'languages_tabs/data/widgets/'.$projects[$i]['path'][$idx]['id_option'],
         'id_project' => $project['id'],
         'buttonsRight' => [[
-          'text' => 'Check for new strings',
+          'text' => 'Check for new strings in files and new translations',
           'icon' => 'fa fa-flash',
           'action' => 'find_strings'
           ],[

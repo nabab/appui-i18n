@@ -9,6 +9,9 @@
       }
     },
     methods: {
+      render_user(row){
+        return appui.app.getUserName(row.id_user);
+      },
       buttons(){
         let res = [];
         res.push({

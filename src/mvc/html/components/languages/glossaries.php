@@ -23,7 +23,8 @@
                 title="<?=_('Translation')?>"
     ></bbn-column>
 
-    <bbn-column field="user"
+    <bbn-column field="id_user"
+                :render="render_user"
                 title="<?=_('User')?>"
                 :editable="false"
     ></bbn-column>

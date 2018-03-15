@@ -3,7 +3,7 @@
   <bbn-table id="table_paths"
              class="paths_table bbn-flex-fill"
              :source="source.projects"
-             :data="{primary:source.primary}"
+             :data="{primary: source.primary}"
              :limit="25"
              ref="table1"
              :editable="true"

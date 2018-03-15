@@ -127,9 +127,11 @@
           open_user_history(){
             bbn.fn.link('internationalization/languages_tabs/user_history');
           },
-          open_statistic_list(){
+
+          //for a button statistic list in the toolbar of history
+          /*open_statistic_list(){
             bbn.fn.link('internationalization/languages_tabs/statistic');
-          },
+          },*/
         },
       },
       //popup to choise the languages for glossary table, IS NOT A FORM

@@ -11,6 +11,7 @@ if( !empty($id_option = $ctrl->arguments[0])){
   //if a cached model for this id_option doesn't exist creates one
   if ( $cached_model = $ctrl->get_cached_model($ctrl->plugin_url('appui-i18n').'/languages_tabs/data/widgets', ['id_option'
   => $id_option]) ){
+    
 
     //if the user is_dev allow to use the class appui\ide to load the clicked file in the ide
     if ( $ctrl->inc->user->is_dev() && $ctrl->has_plugin('appui-ide') ){

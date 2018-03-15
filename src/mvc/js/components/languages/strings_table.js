@@ -1,12 +1,17 @@
 (() => {
   return {
-    data(){
-      return{
-        source_glossary: this.source.source_glossary,
-        pressedEnterKey: false,
-      }
-    },
     methods: {
+      mapData(row){
+        if ( row.translation ){
+          row =  $.extend(row.translation, {
+            id_exp: row.id_exp,
+            original_exp: row.original_exp,
+            path: row.path,
+
+          })
+        }
+        return row;
+      },
       generate(){
         bbn.fn.post(this.source.root + 'actions/generate', {id: this.source.id_option}, (d) => {
           bbn.fn.log(d);
@@ -22,11 +27,12 @@
         return res;
       },
       delete_expression(row){
-        bbn.fn.log(row)
+
         let id_exp = row.id_exp,
             data = this.source.cached_model.res,
             idx = bbn.fn.search(data, { id_exp: id_exp });
-        bbn.fn.confirm('Did you remove the the expression from code before to delete the row?', () => {
+        bbn.fn.log(row,  this.$refs.strings_table,data,idx)
+        bbn.fn.confirm('Did you remove the expression from code before to delete the row?', () => {
           bbn.fn.post(this.source.root + 'actions/delete_expression', { id_exp: row.id_exp, exp: row.original_exp },  (d) => {
             if ( d.success ){
               data.splice(idx, 1);
@@ -41,6 +47,7 @@
         })
       },
       insert_translation(row,idx){
+        bbn.fn.log(row, '******', arguments )
         //use a different controller
         bbn.fn.post(this.source.root + 'actions/insert_translations', {
           row: row,
@@ -48,7 +55,11 @@
           }, (d) => {
           if (d.success){
             appui.success('Translation saved');
-            this.$refs.strings_table.updateData();
+            row = d.row;
+            let table = bbn.vue.find(this, 'bbn-table');
+            this.source.cached_model.res[idx] = d.row
+            //table.currentData[idx] = d.row;
+            table.updateData();
             this.remake_cache();
           }
           else{
@@ -59,12 +70,14 @@
       remake_cache(){
         bbn.fn.post('internationalization/actions/reload_cache', { id_option: this.source.id_option }, (d) => {
           if ( d.success ){
-            this.source.cached_model.res = d.cached_model.res;
-            this.$refs.strings_table.updateData();
+            this.source.cached_model.res = d.res;
+            bbn.fn.log(this);
+            bbn.vue.find(this, 'bbn-table').updateData();
+
           }
         })
       },
-      render_first_col(row){
+      /*render_first_col(row){
         let st = '';
         if ( row[row.translation[this.source.source_lang]] !== row.original_exp ){
           st +=row[row.translation[this.source.source_lang]] + '<i class="zmdi zmdi-alert-triangle bbn-s bbn-orange" style="float:right" title="Expression changed in its original language"></i>'
@@ -73,30 +86,32 @@
           st = row[row.original_exp]
         }
         return st;
-      },
+      },*/
      
     },
     props: ['source'],
     computed: {
-    	configured_langs(){
+      configured_langs(){
         let r = [],
             i = 0,
             def = null;
+    	  var field = '';
         for ( let n in this.source.langs ){
           r.push({
             field: n,
-            title: this.source.langs[n].text,
-            fixed: n === this.source.source_lang,
-            editable: true
+            title: ( n === this.source.source_lang ) ? this.source.langs[n].text + '  <i class="fa fa-asterisk" title="The language is the same as original expression"></i>' : this.source.langs[n].text ,
+            //fixed: n === this.source.source_lang,
+            editable: true,
+            //render: this.render_columns
           });
           if ( n === this.source.source_lang ){
             def = i;
-            r[i].render = this.render_first_col
+            //r[i].title = 'Original Exp'
           }
           i++;
         }
         if ( def ){
-          r.splice(0, 0, r.splice(def, 1)[0]);
+        //  r.splice(0, 0, r.splice(def, 1)[0]);
         }
         r.push({
           ftitle: 'Remove original expression',
@@ -109,8 +124,8 @@
       },
 
     },
-    watch: {
-
+    mounted(){
+      this.remake_cache();
     },
     components: {
       'file_linker': {
@@ -134,7 +149,7 @@
         template:
         '<ul style="width:100%; list-style-type:none; padding-left:0">' +
          '<li class="bbn-vspadded bbn-grid-fields" :source="source" v-for="s in source.path">' +
-        '<span class="bbn-l">File:</span>' +
+        '<span class="bbn-lg">File:</span>' +
         '<a v-text="s" @click="link_ide(s)" style="width:100%;cursor:pointer" title="Open the file in i.d.e"></a>' +
         ' </li>' +
         '</ul>',

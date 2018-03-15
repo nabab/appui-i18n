@@ -2,6 +2,16 @@
   return {
     props:['source'],
     computed: {
+      langs(){
+        let res = [];
+        if ( this.source.configured_langs ){
+          Object.values(this.source.configured_langs).forEach( (v, i) => {
+            res.push(v.id)
+          });
+        }
+        return res;
+
+      },
       //the source of projects' dropdown
       dd_projects(){
         let res = [];
@@ -19,6 +29,17 @@
       this.load_widgets()
     },
     methods: {
+      cfg_project_languages(){
+
+        bbn.vue.closest(this, 'bbn-tab').popup().open({
+          width: 600,
+          height: 500,
+          title: bbn._("Config translation languages for the project"),
+          component: this.$options.components['appui-languages-form'],
+          //send the configured langs for this id_project
+          source: { data: { primary: this.source.primary }, row: { langs: this.langs, id: this.id_project } }
+        })
+      },
       get_field: bbn.fn.get_field,
       load_widgets(){
         if ( this.id_project ){
@@ -36,6 +57,29 @@
       return {
         id_project: null,
 
+      }
+    },
+    components: {
+      'appui-languages-form': {
+        template: '#appui-languages-form',
+        methods:{
+          inArray: $.inArray,
+          change_checked_langs(val, obj){
+            bbn.fn.log(JSON.stringify(bbn.vue.closest(this, 'bbn-tab').getComponent().source.configured_langs))
+            let form = bbn.vue.find(this, 'bbn-form'),
+                idx =  $.inArray(obj.id, this.source.row.langs);
+
+            if ( idx > -1 ){
+              bbn.vue.closest(this, 'bbn-tab').getComponent().langs.splice(idx, 1);
+              bbn.vue.closest(this, 'bbn-tab').getComponent().$forceUpdate();
+            }
+            else {
+              bbn.vue.closest(this, 'bbn-tab').getComponent().langs.push(obj.id)
+              bbn.vue.closest(this, 'bbn-tab').getComponent().$forceUpdate();
+            }
+          }
+        },
+        props: ['source'],
       }
     }
   }

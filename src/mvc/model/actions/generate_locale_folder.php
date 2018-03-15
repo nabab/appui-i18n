@@ -19,7 +19,9 @@ if ( !empty( $id_option = $model->data['id_option'])){
   //locale dirs existing before this configuration
   $languages_old = array_map(function($a){
     return basename($a);
-  }, \bbn\file\dir::get_dirs($locale_dir));
+  }, \bbn\file\dir::get_dirs($locale_dir)) ? : [];
+
+
   $new_langs = array_diff($model->data['languages'], $languages_old);
   if ( !empty($new_langs) ){
     $translation = new \bbn\appui\i18n($model->db);

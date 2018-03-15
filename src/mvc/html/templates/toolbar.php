@@ -9,13 +9,7 @@
                   placeholder="Glossary table"
                   @click="config_translations"
       ><?=_('Go to translation\'s tab')?></bbn-button>
-      
-      <bbn-button title="<?=_('Go to statistic\'s list')?>"
-                  class="k-button bbn-button bbn-events-component"
-                  @click="open_statistic_list"
-                  icon="fa fa-bar-chart-o"
-                  text="<?=_('Statistic\'s list')?>">
-      </bbn-button>
+
       <bbn-button title="<?=_('Go to the table of your translations')?>"
                   class="k-button bbn-button bbn-events-component"
                   @click="open_user_history"

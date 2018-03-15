@@ -10,12 +10,14 @@
 $success = false;
 // row sent by post
 if ( !empty($model->data['row']['id_exp'])){
+
   $row = $model->data['row'];
   $langs = $model->data['langs'];
 //receives configured langs from the post
 
   foreach( $langs as $l => $val ){
     if ( !empty($row[$l]) ){
+
       $expression = $row[$l];
 
       //case update the expression exists in this lang ($l)
@@ -23,9 +25,12 @@ if ( !empty($model->data['row']['id_exp'])){
         'id_exp' => $row['id_exp'],
         'lang' => $l
       ]) ){
-        $success = $model->db->update('bbn_i18n_exp', ['expression' => $expression ], [
-          'id' => $id
-        ]);
+        if ( $model->db->update('bbn_i18n_exp', ['expression' => $expression ], [
+          'id' => $id,
+
+        ]) ){
+          $success = true;
+        }
       }
       //case insert
       else {
@@ -39,4 +44,7 @@ if ( !empty($model->data['row']['id_exp'])){
     }
   }
 }
-return ['success' => $success];
+return [
+  'row' => $model->data['row'],
+  'success' => $success
+];

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../../../../cdn.thomas.lan/public_html/lib/appui/.idea/appui.iml" filepath="$PROJECT_DIR$/../../../../../cdn.thomas.lan/public_html/lib/appui/.idea/appui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/appui-i18n.iml" filepath="$PROJECT_DIR$/.idea/appui-i18n.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../../.idea/apstapp.thomas.lan.iml" filepath="$PROJECT_DIR$/../../../../.idea/apstapp.thomas.lan.iml" />
+    </modules>
+  </component>
+</project>

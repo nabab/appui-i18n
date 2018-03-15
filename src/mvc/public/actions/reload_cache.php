@@ -12,17 +12,19 @@ $id_option = $ctrl->post['id_option'];
 if ( !empty($id_option) ){
 
   //delete the model from the cache
-  $ctrl->delete_cached_model($ctrl->plugin_url('appui-i18n').'/actions/find_strings', ['id_option'
+  $ctrl->delete_cached_model($ctrl->plugin_url('appui-i18n').'/languages_tabs/data/widgets', ['id_option'
   => $id_option ]);
 
   //create a new model in the cache
-  $ctrl->set_cached_model($ctrl->plugin_url('appui-i18n').'/actions/find_strings', ['id_option'
+  $ctrl->set_cached_model($ctrl->plugin_url('appui-i18n').'/languages_tabs/data/widgets', ['id_option'
   => $id_option]);
+
   //get the model from the cache
-  $cached_model  = $ctrl->get_cached_model('internationalization/actions/find_strings', $ctrl->post);
+  $cached_model  = $ctrl->get_cached_model('/languages_tabs/data/widgets', $ctrl->post);
 
   $ctrl->data['cached_model'] = $cached_model;
 
 
+ //$ctrl->cached_action(0);
   $ctrl->action();
 }
