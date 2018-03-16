@@ -19,7 +19,7 @@ if( $id_project = $model->data['id'] ){
   ]);
 
 //active langs arriving from the post
-  $post_langs = $model->data['langs'];
+  $post_langs = $model->data['configured_langs'];
 
 //extrapolate the difference among the langs sent from the post and the original active langs for the project
   $new_active_langs = array_diff($post_langs, $initial_langs);

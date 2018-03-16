@@ -20,7 +20,7 @@ if ( !empty( $id_option = $model->data['id_option'])){
   $languages_old = array_map(function($a){
     return basename($a);
   }, \bbn\file\dir::get_dirs($locale_dir)) ? : [];
-
+//die(var_dump($languages_old, $model->data['languages']));
 
   $new_langs = array_diff($model->data['languages'], $languages_old);
   if ( !empty($new_langs) ){

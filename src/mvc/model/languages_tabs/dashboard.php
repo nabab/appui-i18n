@@ -21,7 +21,11 @@ foreach ( $projects as $i => $p ){
 
    $project = $projects[$i];
    $project_class = new \bbn\appui\project($model->db, $projects[$i]['id']);
-    $configured_langs = $project_class->get_langs();
+   $configured_langs = [];
+    foreach ( $project_class->get_langs() as $p ){
+      $configured_langs[] = $p['id'];
+    };
+
     foreach ( $project['path'] as $idx => $pa ){
       $res[$idx] = [
         'title' => $projects[$i]['name']. '/' . $projects[$i]['path'][$idx]['text'],
@@ -31,7 +35,7 @@ foreach ( $projects as $i => $p ){
         'id_project' => $project['id'],
         'buttonsRight' => [[
           'text' => 'Check for new strings in files and new translations',
-          'icon' => 'fa fa-flash',
+          'icon' => 'fa fa-retweet',
           'action' => 'find_strings'
           ],[
           'text' => 'Configure locale folder of translation\'s files for this path',

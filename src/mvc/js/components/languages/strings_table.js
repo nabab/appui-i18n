@@ -1,5 +1,10 @@
 (() => {
   return {
+    data(){
+      return {
+        primary: this.languages.source.primary
+      }
+    },
     methods: {
       mapData(row){
         if ( row.translation ){
@@ -7,7 +12,6 @@
             id_exp: row.id_exp,
             original_exp: row.original_exp,
             path: row.path,
-
           })
         }
         return row;
@@ -27,18 +31,15 @@
         return res;
       },
       delete_expression(row){
-
         let id_exp = row.id_exp,
-            data = this.source.cached_model.res,
+            data = this.source.res,
             idx = bbn.fn.search(data, { id_exp: id_exp });
-        bbn.fn.log(row,  this.$refs.strings_table,data,idx)
         bbn.fn.confirm('Did you remove the expression from code before to delete the row?', () => {
           bbn.fn.post(this.source.root + 'actions/delete_expression', { id_exp: row.id_exp, exp: row.original_exp },  (d) => {
             if ( d.success ){
               data.splice(idx, 1);
               this.$refs.strings_table.updateData();
               appui.success('Expression deleted');
-              this.remake_cache()
             }
             else{
               appui.error('An error occurred while deleting the expression');
@@ -47,20 +48,19 @@
         })
       },
       insert_translation(row,idx){
-        bbn.fn.log(row, '******', arguments )
-        //use a different controller
         bbn.fn.post(this.source.root + 'actions/insert_translations', {
           row: row,
-          langs: this.source.langs
+          langs: this.source.languages,
+          id_option: this.source.id_option
           }, (d) => {
           if (d.success){
             appui.success('Translation saved');
             row = d.row;
             let table = bbn.vue.find(this, 'bbn-table');
-            this.source.cached_model.res[idx] = d.row
+            this.source.res[idx] = d.row
             //table.currentData[idx] = d.row;
             table.updateData();
-            this.remake_cache();
+            //this.remake_cache();
           }
           else{
             appui.error('An error occurred while saving translation');
@@ -70,36 +70,34 @@
       remake_cache(){
         bbn.fn.post('internationalization/actions/reload_cache', { id_option: this.source.id_option }, (d) => {
           if ( d.success ){
-            this.source.cached_model.res = d.res;
-            bbn.fn.log(this);
-            bbn.vue.find(this, 'bbn-table').updateData();
-
+            this.source.res = d.res;
+            let diff = ( d.total - this.source.total );
+            if ( diff > 0 ){
+              appui.warning(diff + ' new string(s) found in ' + this.source.path);
+            }
+            else if ( diff < 0 ){
+              appui.warning(Math.abs(diff) + ' string(s) deleted from ' + this.source.path + ' files');
+            }
+            this.source.total = d.total;
+            this.$nextTick( () => {
+              bbn.vue.find(this, 'bbn-table').updateData();
+            } )
           }
         })
       },
-      /*render_first_col(row){
-        let st = '';
-        if ( row[row.translation[this.source.source_lang]] !== row.original_exp ){
-          st +=row[row.translation[this.source.source_lang]] + '<i class="zmdi zmdi-alert-triangle bbn-s bbn-orange" style="float:right" title="Expression changed in its original language"></i>'
-        }
-        else{
-          st = row[row.original_exp]
-        }
-        return st;
-      },*/
      
     },
     props: ['source'],
     computed: {
-      configured_langs(){
+      columns(){
         let r = [],
             i = 0,
             def = null;
     	  var field = '';
-        for ( let n in this.source.langs ){
+        for ( let n in this.source.languages ){
           r.push({
-            field: n,
-            title: ( n === this.source.source_lang ) ? this.source.langs[n].text + '  <i class="fa fa-asterisk" title="The language is the same as original expression"></i>' : this.source.langs[n].text ,
+            field: this.source.languages[n],
+            title:  ( this.source.languages[n] === this.source.source_lang) ? (bbn.fn.get_field(this.primary, 'code', this.source.languages[n], 'text') + '  <i class="fa fa-asterisk" title="This is the original language of the expression"></i>') : bbn.fn.get_field(this.primary, 'code', this.source.languages[n], 'text'),
             //fixed: n === this.source.source_lang,
             editable: true,
             //render: this.render_columns
@@ -125,7 +123,7 @@
 
     },
     mounted(){
-      this.remake_cache();
+      //this.remake_cache();
     },
     components: {
       'file_linker': {

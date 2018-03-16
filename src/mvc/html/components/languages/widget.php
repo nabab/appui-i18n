@@ -16,10 +16,9 @@
     <span v-if="source.new > 0">New strings found in this path's files:</span>
     <span v-if="source.new" v-text="source.new"></span>
 
-    <div v-if="(source.languages.length > 0 ) && translated" class="bbn-grid-full">
+    <div v-if="languages" class="bbn-grid-full">
       <div v-for="(t, i) in translated">
         <span v-text="get_field(primary, 'code', i, 'text')"
-              v-if="(t/source.total*100) > 0"
               class="bbn-b bbn-i"
         ></span>
         <span v-text="' ' + t + ' / '+ source.total"></span>
@@ -27,7 +26,6 @@
         <bbn-progressbar :value="(t/source.total*100)"
                          style="padding-top:6px"
                          type="percent"
-                         v-if="(t/source.total*100) > 0"
         ></bbn-progressbar>
 
 

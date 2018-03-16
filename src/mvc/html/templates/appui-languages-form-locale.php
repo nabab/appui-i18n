@@ -3,7 +3,7 @@
           ref="form-locale"
           action="internationalization/actions/generate_locale_folder"
           confirm-leave="<?=_("Are you sure you want to exit without saving changes?")?>"
-
+          @success="source.data.remake_cache()"
 >
   <div class="bbn-grid-fields bbn-full-screen">
 
@@ -16,11 +16,12 @@
            class="bbn-vlpadded"
            ref="checkbox"
       >
-        <bbn-checkbox :value="l"
-                      :checked="inArray(l, source.row.languages) > -1"
+        <bbn-checkbox :value="source.data.get_field(source.data.primary, 'id', l, 'code')"
+                      :checked="inArray(source.data.get_field(source.data.primary, 'id', l, 'code'), source.row
+                      .languages) > -1"
                       @change="change_languages"
         ></bbn-checkbox>
-        <label v-text="source.data.get_field(source.primary, 'id', l, 'text')"></label>
+        <label v-text="source.data.get_field(source.data.primary, 'id', l, 'text')"></label>
 
       </div>
 

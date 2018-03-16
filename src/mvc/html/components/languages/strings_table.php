@@ -1,8 +1,8 @@
 <div class="appui-strings-table" style="min-height: 500px; width:100%">
 
-    <bbn-table v-if="source.cached_model.res.length"
-               :source="source.cached_model.res"
-               :columns="configured_langs"
+    <bbn-table v-if="source.res.length"
+               :source="source.res"
+               :columns="columns"
                editable="inline"
                :pageable="true"
                :sortable="true"
@@ -13,18 +13,17 @@
                :multifilter="true"
                ref="strings_table"
                :order="[{field: 'expression', dir: 'ASC'}]"
-               :data="{ id_option: source.id_option, langs: source.langs, source_lang: source.source_lang }"
                :expander="$options.components['file_linker']"
                :toolbar="[{
                          command: remake_cache,
                          icon: 'fa fa-retweet',
-                         title: 'Update cache',
-                         class:'bbn-xl'
+                         title: 'Check for new strings and translations in this path',
+                         class:'bbn-l'
                          }, {
                          command: generate,
                          icon: 'fa fa-exchange',
                          title: 'Update translations\' files',
-                         class:'bbn-xl'
+                         class:'bbn-l'
                          }]"
                @change="insert_translation"
   >

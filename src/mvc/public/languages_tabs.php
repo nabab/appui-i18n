@@ -11,4 +11,4 @@ if ( !empty($templates) ){
     ];
   }, $templates);
 }
-$ctrl->combo('i18n', true);
+$ctrl->set_icon('fa fa-flag')->set_color('#ff9900', '#FFF')->combo('i18n', true);

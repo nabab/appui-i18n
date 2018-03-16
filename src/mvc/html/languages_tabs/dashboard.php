@@ -10,29 +10,35 @@
     >
       <div class="bbn-full-screen bbn-middle">
         <div class="bbn-grid-fields bbn-padded">
-          <span>Select a project</span>
+          <span class="bbn-r">Select a project</span>
           <bbn-dropdown :source="dd_projects"
                         v-model="id_project"
                         @change="load_widgets"
           ></bbn-dropdown>
 
 
-          <span>Languages configured for translation of this project:</span>
-          <div v-if="langs.length">
-            <div v-for="c in langs"
-                 v-text="get_field(source.primary, 'id', c, 'text')"
-                 style="display:inline;padding-right:6px"></div>
-          </div>
-
-          <span>Configure languages for this project</span>
-          <div>
+          <span class="bbn-r">Configure languages for this project</span>
+          <div style="max-height: 25px;">
             <bbn-button icon="fa fa-flag"
                         :noText="true"
                         @click="cfg_project_languages"
             ></bbn-button>
           </div>
 
-
+          <span class="bbn-r">Languages configured for translation of this project:</span>
+          <div v-if="source.configured_langs">
+            <div v-for="c in source.configured_langs"
+                 class="bbn-b bbn-i"
+                 v-text="get_field(source.primary, 'id', c, 'text')"
+                 style="display:inline;padding-right:6px"></div>
+          </div>
+        </div>
+        <div style="position:absolute; right: 7px; top: 7px;">
+          <bbn-button icon="fa fa-table"
+                      :noText="true"
+                      @click="link_projects_table"
+                      title="Open table view of projects"
+          ></bbn-button>
         </div>
       </div>
     </bbn-pane>

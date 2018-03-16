@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/mvc/js/components/languages/strings_table.js" line="94" />
+    <bookmark url="file://$PROJECT_DIR$/src/mvc/js/components/languages/strings_table.js" line="92" />
+    <bookmark url="file://$PROJECT_DIR$/src/mvc/model/languages_tabs/data/widgets.php" line="105" />
+    <bookmark url="file://$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php" line="46" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa7275c0-f582-49e2-8ddb-478d27d57d9a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/Mirko.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vagrant.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/mvc/public/actions/delete_cache.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/mvc/public/languages_tabs/testrename.php" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/mvc/model/languages_tabs/home.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/mvc/html/languages_tabs/testrename.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/mvc/js/components/languages/test.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/mvc/public/rename5g.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/mvc/public/test.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/mvc/public/test23.php" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/mvc/model/actions/find_strings.php" afterPath="$PROJECT_DIR$/src/mvc/model/actions/find_strings.php.bak" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/locale/en/LC_MESSAGES/appui-i18n.mo" afterPath="$PROJECT_DIR$/src/locale/en/LC_MESSAGES/appui-i18n.mo" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/locale/fr/LC_MESSAGES/appui-i18n.mo" afterPath="$PROJECT_DIR$/src/locale/fr/LC_MESSAGES/appui-i18n.mo" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/appui-i18n.iml" afterPath="$PROJECT_DIR$/.idea/appui-i18n.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Mirko.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Mirko.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vagrant.xml" afterPath="$PROJECT_DIR$/.idea/vagrant.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LICENSE" afterPath="$PROJECT_DIR$/LICENSE" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/locale/en/LC_MESSAGES/appui-i18n.po" afterPath="$PROJECT_DIR$/src/locale/en/LC_MESSAGES/appui-i18n.po" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/locale/fr/LC_MESSAGES/appui-i18n.po" afterPath="$PROJECT_DIR$/src/locale/fr/LC_MESSAGES/appui-i18n.po" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/css/languages_tabs.less" afterPath="$PROJECT_DIR$/src/mvc/css/languages_tabs.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/css/languages_tabs/dashboard.less" afterPath="$PROJECT_DIR$/src/mvc/css/languages_tabs/dashboard.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/css/languages_tabs/home.less" afterPath="$PROJECT_DIR$/src/mvc/css/languages_tabs/home.less" />
@@ -28,7 +45,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/html/languages_tabs/home.php" afterPath="$PROJECT_DIR$/src/mvc/html/languages_tabs/home.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/html/languages_tabs/path_translations.php" afterPath="$PROJECT_DIR$/src/mvc/html/languages_tabs/path_translations.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/html/languages_tabs/statistic.php" afterPath="$PROJECT_DIR$/src/mvc/html/languages_tabs/statistic.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/html/languages_tabs/testrename.php" afterPath="$PROJECT_DIR$/src/mvc/html/languages_tabs/testrename.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/html/languages_tabs/user_history.php" afterPath="$PROJECT_DIR$/src/mvc/html/languages_tabs/user_history.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form-locale.php" afterPath="$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form-locale.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form.php" afterPath="$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form.php" />
@@ -48,7 +64,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/js/languages_tabs/statistic.js" afterPath="$PROJECT_DIR$/src/mvc/js/languages_tabs/statistic.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/js/languages_tabs/user_history.js" afterPath="$PROJECT_DIR$/src/mvc/js/languages_tabs/user_history.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/model/actions/delete_expression.php" afterPath="$PROJECT_DIR$/src/mvc/model/actions/delete_expression.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/model/actions/find_strings.php" afterPath="$PROJECT_DIR$/src/mvc/model/actions/find_strings.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/model/actions/generate.php" afterPath="$PROJECT_DIR$/src/mvc/model/actions/generate.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/model/actions/generate_locale_folder.php" afterPath="$PROJECT_DIR$/src/mvc/model/actions/generate_locale_folder.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/model/actions/insert_translation.php" afterPath="$PROJECT_DIR$/src/mvc/model/actions/insert_translation.php" />
@@ -67,6 +82,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/model/languages_tabs/path_translations.php" afterPath="$PROJECT_DIR$/src/mvc/model/languages_tabs/path_translations.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/model/languages_tabs/statistic.php" afterPath="$PROJECT_DIR$/src/mvc/model/languages_tabs/statistic.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/public/_ctrl.php" afterPath="$PROJECT_DIR$/src/mvc/public/_ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/public/actions/delete_cache.php" afterPath="$PROJECT_DIR$/src/mvc/public/actions/delete_cache.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/public/actions/delete_expression.php" afterPath="$PROJECT_DIR$/src/mvc/public/actions/delete_expression.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/public/actions/find_strings.php" afterPath="$PROJECT_DIR$/src/mvc/public/actions/find_strings.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/public/actions/generate.php" afterPath="$PROJECT_DIR$/src/mvc/public/actions/generate.php" />
@@ -94,9 +110,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/public/languages_tabs/path_translations.php" afterPath="$PROJECT_DIR$/src/mvc/public/languages_tabs/path_translations.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/public/languages_tabs/statistic.php" afterPath="$PROJECT_DIR$/src/mvc/public/languages_tabs/statistic.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/public/languages_tabs/user_history.php" afterPath="$PROJECT_DIR$/src/mvc/public/languages_tabs/user_history.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/public/rename5g.php" afterPath="$PROJECT_DIR$/src/mvc/public/rename5g.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/public/test.php" afterPath="$PROJECT_DIR$/src/mvc/public/test.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/public/test23.php" afterPath="$PROJECT_DIR$/src/mvc/public/test23.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mvc/public/update.php" afterPath="$PROJECT_DIR$/src/mvc/public/update.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -107,212 +120,167 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.27419356">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="db.log" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../../../../APST_DATA/logs/db.log">
-              <provider selected="true" editor-type-id="LogFileEditorProvider">
-                <state relative-caret-position="-4">
-                  <caret line="657" column="7" lean-forward="false" selection-start-line="657" selection-start-column="7" selection-end-line="657" selection-end-column="7" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="history.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mvc/html/languages_tabs/history.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="181">
-                  <caret line="34" column="27" lean-forward="false" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="history.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mvc/js/languages_tabs/history.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="379">
-                  <caret line="27" column="19" lean-forward="false" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
-                  <folding>
-                    <marker date="1521029364000" expanded="true" signature="1412:1423" ph="..." />
-                    <marker date="1521029364000" expanded="true" signature="2414:2436" ph="..." />
-                    <marker date="1521029364000" expanded="true" signature="2622:2644" ph="..." />
-                    <marker date="1521029364000" expanded="true" signature="2838:2860" ph="..." />
-                    <marker date="1521029364000" expanded="true" signature="3054:3076" ph="..." />
-                    <marker date="1521029364000" expanded="true" signature="3270:3292" ph="..." />
-                    <marker date="1521029364000" expanded="true" signature="3689:3711" ph="..." />
-                    <marker date="1521029364000" expanded="true" signature="3894:3916" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="history.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mvc/model/languages_tabs/history.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="history.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mvc/public/languages_tabs/history.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="396">
-                  <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-                  <folding>
-                    <marker date="1519907549000" expanded="true" signature="260:296" ph="SELECT DISTI... bbn_i18n" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="languages_form.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/languages_form.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="37" column="8" lean-forward="false" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="languages_tabs.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mvc/html/languages_tabs.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="dashboard.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/mvc/html/languages_tabs/dashboard.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="496">
-                  <caret line="22" column="58" lean-forward="false" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
-                  <folding>
-                    <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#bbn-pane#0;n#bbn-splitter#0;n#div#0;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mvc/js/languages_tabs/home.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="550">
-                  <caret line="79" column="41" lean-forward="false" selection-start-line="79" selection-start-column="41" selection-end-line="79" selection-end-column="41" />
-                  <folding>
-                    <element signature="e#1390#3086#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="home.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mvc/html/languages_tabs/home.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="5" column="30" lean-forward="false" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="appui-languages-form.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <splitter split-orientation="vertical" split-proportion="0.30407524">
-          <split-first>
-            <leaf>
-              <file leaf-file-name="dashboard.js" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/mvc/js/languages_tabs/dashboard.js">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="288">
-                      <caret line="78" column="13" lean-forward="false" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="appui-languages-form-locale.php" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form-locale.php">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="180">
-                      <caret line="10" column="43" lean-forward="false" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="generate_locale_folder.php" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/generate_locale_folder.php">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="144">
-                      <caret line="13" column="38" lean-forward="false" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="widgets.php" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/mvc/model/languages_tabs/data/widgets.php">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="154">
-                      <caret line="20" column="49" lean-forward="false" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="widget.php" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/src/mvc/html/components/languages/widget.php">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="54">
-                      <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-                      <folding>
-                        <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#bbn-progressbar#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                        <marker date="1521047060000" expanded="true" signature="1234:1265" ph="..." />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-            </leaf>
-          </split-first>
-          <split-second>
-            <leaf>
-              <file leaf-file-name="widget.js" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/src/mvc/js/components/languages/widget.js">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="1899">
-                      <caret line="120" column="177" lean-forward="false" selection-start-line="120" selection-start-column="177" selection-end-line="120" selection-end-column="177" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-            </leaf>
-          </split-second>
-        </splitter>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="widget.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/mvc/js/components/languages/widget.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="29" column="36" lean-forward="true" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+              <folding>
+                <element signature="e#375#1042#0" expanded="false" />
+                <element signature="e#385#493#0" expanded="false" />
+                <element signature="e#615#718#0" expanded="false" />
+                <element signature="e#835#951#0" expanded="false" />
+                <element signature="e#964#1034#0" expanded="false" />
+                <element signature="e#1473#2124#0" expanded="false" />
+                <element signature="e#1650#2113#0" expanded="false" />
+                <element signature="e#1678#2103#0" expanded="false" />
+                <element signature="e#1800#1898#0" expanded="false" />
+                <element signature="e#1931#2050#0" expanded="false" />
+                <element signature="e#3070#3158#0" expanded="false" />
+                <element signature="e#3240#3654#0" expanded="false" />
+                <element signature="e#3314#3351#0" expanded="false" />
+                <element signature="e#3398#3620#0" expanded="false" />
+                <element signature="e#3432#3608#0" expanded="false" />
+                <element signature="e#3486#3593#0" expanded="false" />
+                <element signature="e#3529#3577#0" expanded="false" />
+                <element signature="e#3668#3699#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reload_cache.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mvc/public/actions/reload_cache.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reload_cache.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/reload_cache.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="3" column="15" lean-forward="true" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="widget.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mvc/html/components/languages/widget.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="18" column="45" lean-forward="false" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dashboard.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mvc/js/languages_tabs/dashboard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="612">
+              <caret line="70" column="7" lean-forward="false" selection-start-line="70" selection-start-column="7" selection-end-line="70" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="appui-languages-form.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="6" column="47" lean-forward="false" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="languages_form.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mvc/public/actions/languages_form.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="languages_form.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/languages_form.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="603">
+              <caret line="53" column="38" lean-forward="false" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dashboard.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mvc/model/languages_tabs/dashboard.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="257">
+              <caret line="26" column="6" lean-forward="false" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dashboard.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mvc/html/languages_tabs/dashboard.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="28" column="44" lean-forward="false" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="appui-languages-form-locale.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form-locale.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" column="46" lean-forward="false" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="generate_locale_folder.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/generate_locale_folder.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="11" column="48" lean-forward="false" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="generate.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/generate.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-17">
+              <caret line="16" column="46" lean-forward="false" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="widgets.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mvc/model/languages_tabs/data/widgets.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1639">
+              <caret line="105" column="25" lean-forward="false" selection-start-line="105" selection-start-column="21" selection-end-line="105" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -323,51 +291,54 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mapData</find>
-      <find>000000</find>
-      <find>/////////</find>
-      <find>delete_expression</find>
-      <find>button</find>
-      <find>remake_cache</find>
-      <find>reload_</find>
-      <find>translated</find>
-      <find>translation</find>
-      <find>mounted</find>
+      <find>delete_cache</find>
+      <find>delete_cached_model</find>
+      <find>$projects</find>
+      <find>fda</find>
+      <find>appui_</find>
+      <find>bbn-tab</find>
+      <find>close</find>
+      <find>tab</find>
+      <find>&lt;bbn-tab</find>
+      <find>result</find>
+      <find>.log</find>
+      <find>l</find>
+      <find>lang</find>
+      <find>link</find>
+      <find>LANGS</find>
+      <find>get_cache</find>
+      <find>get_cached_</find>
+      <find>get_ca</find>
+      <find>load_widgets</find>
+      <find>unset</find>
+      <find>$configured_langs</find>
       <find>die</find>
-      <find>statistic</find>
-      <find>insert_t</find>
-      <find>username</find>
-      <find>getUserName</find>
-      <find>user</find>
-      <find>update</find>
-      <find>insert</find>
-      <find>mountes</find>
-      <find>source:</find>
-      <find>dd_translation_lang</find>
-      <find>active</find>
-      <find>components</find>
-      <find>$languages</find>
       <find>configured_langs</find>
-      <find>languages</find>
       <find>popup</find>
-      <find>mounte</find>
-      <find>change_languages</find>
-      <find>$primary</find>
+      <find>find_new</find>
+      <find>langs</find>
+      <find>change_checked_langs</find>
+      <find>remake_cache</find>
+      <find>languages</find>
+      <find>computed</find>
     </findStrings>
     <replaceStrings>
       <replace>bbn-lg</replace>
+      <replace>columns</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/../appui-ide</dir>
       <dir>$PROJECT_DIR$/src/mvc/public/actions</dir>
-      <dir>$PROJECT_DIR$/src/mvc/public</dir>
-      <dir>$PROJECT_DIR$/src/mvc/model</dir>
-      <dir>$PROJECT_DIR$</dir>
       <dir>$PROJECT_DIR$/../../../current/mvc/js</dir>
       <dir>$PROJECT_DIR$/src/mvc/js/languages_tabs</dir>
       <dir>$PROJECT_DIR$/../../../../../cdn.thomas.lan/public_html/lib/appui</dir>
       <dir>$PROJECT_DIR$/../../../..</dir>
       <dir>$PROJECT_DIR$/src/mvc/js</dir>
+      <dir>$PROJECT_DIR$/src/mvc/model</dir>
+      <dir>$PROJECT_DIR$/src/mvc/public</dir>
+      <dir>$PROJECT_DIR$/../../../../../cdn.thomas.lan/public_html/lib/bbn-vue/2.0.2/src/components/tabnav</dir>
+      <dir>$PROJECT_DIR$</dir>
+      <dir>$PROJECT_DIR$/src</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -376,39 +347,45 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/mvc/model/actions/generate_locale_folder.php" />
         <option value="$PROJECT_DIR$/../../../../APST_DATA/logs/db.log" />
         <option value="$PROJECT_DIR$/../../../current/plugins/appui-options/html/champs_fiscaux.php" />
         <option value="$PROJECT_DIR$/../../../current/mvc/js/components/adherent/tab/contacts.js" />
         <option value="$PROJECT_DIR$/../../../current/mvc/js/tiers.js" />
         <option value="$PROJECT_DIR$/../../../current/mvc/html/tiers.php" />
-        <option value="$PROJECT_DIR$/src/mvc/public/languages_tabs/path_translations.php" />
         <option value="$USER_HOME$/Desktop/apst-mail/12_03/12_03.html" />
         <option value="$PROJECT_DIR$/src/mvc/public/actions/delete_cache.php" />
-        <option value="$PROJECT_DIR$/src/mvc/public/actions/insert_translations.php" />
         <option value="$PROJECT_DIR$/src/mvc/js/components/languages/test.html" />
         <option value="$PROJECT_DIR$/src/mvc/html/test.html" />
-        <option value="$PROJECT_DIR$/src/mvc/html/components/languages/strings_table.php" />
-        <option value="$PROJECT_DIR$/src/mvc/public/languages_tabs/data/widgets.php" />
-        <option value="$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php" />
-        <option value="$PROJECT_DIR$/src/mvc/model/actions/reload_cache.php" />
-        <option value="$PROJECT_DIR$/src/mvc/public/actions/reload_cache.php" />
-        <option value="$PROJECT_DIR$/src/mvc/js/components/languages/strings_table.js" />
-        <option value="$PROJECT_DIR$/../appui-styles/src/mvc/html/components/test.php" />
-        <option value="$PROJECT_DIR$/src/mvc/model/languages_tabs/dashboard.php" />
-        <option value="$PROJECT_DIR$/src/mvc/model/languages_tabs/data/widgets.php" />
         <option value="$PROJECT_DIR$/src/mvc/html/templates/toolbar.php" />
         <option value="$PROJECT_DIR$/src/mvc/js/languages_tabs/history.js" />
         <option value="$PROJECT_DIR$/src/mvc/html/components/languages/glossaries.php" />
         <option value="$PROJECT_DIR$/src/mvc/js/components/languages/glossaries.js" />
-        <option value="$PROJECT_DIR$/src/mvc/html/languages_tabs.php" />
+        <option value="$PROJECT_DIR$/src/mvc/public/languages_tabs/data/widgets.php" />
+        <option value="$PROJECT_DIR$/src/mvc/model/languages_tabs/path_translations.php" />
+        <option value="$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php" />
+        <option value="$PROJECT_DIR$/../../../../bbn/bbn/src/bbn/mvc/controller.php" />
+        <option value="$PROJECT_DIR$/src/mvc/public/languages_tabs/path_translations.php" />
+        <option value="$PROJECT_DIR$/../bbn/src/bbn/mvc/controller.php" />
         <option value="$PROJECT_DIR$/src/mvc/html/languages_tabs/home.php" />
-        <option value="$PROJECT_DIR$/src/mvc/model/actions/languages_form.php" />
+        <option value="$PROJECT_DIR$/src/mvc/model/languages_tabs/home.php" />
+        <option value="$PROJECT_DIR$/src/mvc/public/languages_tabs/home.php" />
+        <option value="$PROJECT_DIR$/src/mvc/html/languages_tabs.php" />
+        <option value="$PROJECT_DIR$/../bbn/src/bbn/appui/i18n.php" />
+        <option value="$PROJECT_DIR$/src/mvc/public/actions/insert_translations.php" />
+        <option value="$PROJECT_DIR$/src/mvc/model/languages_tabs/data/widgets.php" />
+        <option value="$PROJECT_DIR$/src/mvc/public/actions/reload_cache.php" />
+        <option value="$PROJECT_DIR$/src/mvc/model/actions/reload_cache.php" />
+        <option value="$PROJECT_DIR$/src/mvc/html/components/languages/strings_table.php" />
+        <option value="$PROJECT_DIR$/src/mvc/js/components/languages/strings_table.js" />
+        <option value="$PROJECT_DIR$/../appui-styles/src/mvc/html/components/test.php" />
         <option value="$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form.php" />
+        <option value="$PROJECT_DIR$/src/mvc/model/languages_tabs/dashboard.php" />
         <option value="$PROJECT_DIR$/src/mvc/html/languages_tabs/dashboard.php" />
         <option value="$PROJECT_DIR$/src/mvc/js/languages_tabs/dashboard.js" />
-        <option value="$PROJECT_DIR$/src/mvc/js/components/languages/widget.js" />
+        <option value="$PROJECT_DIR$/src/mvc/model/actions/languages_form.php" />
+        <option value="$PROJECT_DIR$/src/mvc/model/actions/generate_locale_folder.php" />
         <option value="$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form-locale.php" />
+        <option value="$PROJECT_DIR$/src/mvc/js/components/languages/widget.js" />
         <option value="$PROJECT_DIR$/src/mvc/html/components/languages/widget.php" />
       </list>
     </option>
@@ -569,14 +546,183 @@
             </path>
             <path>
               <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="appui-i18n" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="mvc" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="appui-i18n" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="mvc" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="actions" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="appui-i18n" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="mvc" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="appui-i18n" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="mvc" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="actions" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="appui-notes" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="appui-notes" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="appui-notes" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="locale" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="appui-styles" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="appui-styles" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="appui-styles" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="mvc" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="appui-styles" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="mvc" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
               <item name="appui" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -622,26 +768,29 @@
       <workItem from="1520865191686" duration="10451000" />
       <workItem from="1520932714640" duration="22578000" />
       <workItem from="1521017212813" duration="28331000" />
+      <workItem from="1521103561371" duration="22126000" />
+      <workItem from="1521190920248" duration="445000" />
+      <workItem from="1521192039171" duration="12802000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61360000" />
+    <option name="totallyTimeSpent" value="96733000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2048" height="1118" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.256" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.265" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -650,6 +799,26 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.259" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -667,175 +836,82 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/../../../../../cdn.thomas.lan/public_html/lib/bbnjs/1.0.1/src/fn/object.js</url>
           <line>9</line>
-          <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/mvc/js/components/languages/widget.js</url>
-          <line>1</line>
-          <properties />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="4" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/appui/i18n.php">
+    <entry file="file://$PROJECT_DIR$/src/mvc/html/languages_tabs/history.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="134" column="32" lean-forward="false" selection-start-line="134" selection-start-column="18" selection-end-line="134" selection-end-column="32" />
+        <state relative-caret-position="612">
+          <caret line="34" column="27" lean-forward="false" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/model/languages_tabs/path_translations.php">
+    <entry file="file://$PROJECT_DIR$/src/mvc/model/languages_tabs/data/history.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="44" lean-forward="false" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
-          <folding />
+        <state relative-caret-position="486">
+          <caret line="30" column="44" lean-forward="true" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/public/actions/delete_cache.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="7" column="52" lean-forward="false" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/js/components/languages/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="18" column="292" lean-forward="true" selection-start-line="18" selection-start-column="292" selection-end-line="18" selection-end-column="292" />
-          <folding>
-            <element signature="e#11#19#0" expanded="false" />
-            <element signature="e#40#46#1" expanded="false" />
-            <element signature="e#70#78#0" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#p#2;n#!!top" expanded="false" />
-            <element signature="e#201#209#0" expanded="false" />
-            <element signature="e#210#218#0" expanded="false" />
-            <element signature="e#232#240#0" expanded="false" />
-            <element signature="e#307#313#0" expanded="false" />
-            <element signature="e#329#335#1" expanded="false" />
-            <element signature="e#365#371#1" expanded="false" />
-            <element signature="e#422#428#1" expanded="false" />
-            <element signature="e#455#463#0" expanded="false" />
-            <element signature="e#501#509#0" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#p#8;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#1;n#p#8;n#!!top" expanded="false" />
-            <element signature="e#695#701#0" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#a#0;n#p#9;n#!!top" expanded="false" />
-            <element signature="e#866#872#1" expanded="false" />
-            <element signature="e#880#886#1" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#p#12;n#!!top" expanded="false" />
-            <element signature="e#965#971#1" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#p#13;n#!!top" expanded="false" />
-            <element signature="e#1099#1107#0" expanded="false" />
-            <element signature="n#style#0;n#span#1;n#p#13;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#p#14;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#1;n#p#14;n#!!top" expanded="false" />
-            <element signature="e#1430#1437#0" expanded="false" />
-            <element signature="e#1444#1452#0" expanded="false" />
-            <element signature="e#1510#1517#0" expanded="false" />
-            <element signature="e#1594#1602#0" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#p#15;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#li#0;n#ul#0;n#!!top" expanded="false" />
-            <element signature="e#1771#1779#0" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#a#0;n#p#16;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#li#0;n#ul#1;n#!!top" expanded="false" />
-            <element signature="e#2088#2096#0" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#a#0;n#p#17;n#!!top" expanded="false" />
-            <element signature="e#2369#2375#1" expanded="false" />
-            <element signature="e#2445#2453#0" expanded="false" />
-            <element signature="e#2462#2468#1" expanded="false" />
-            <element signature="e#2502#2508#1" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#em#0;n#p#24;n#!!top" expanded="false" />
-            <element signature="e#2648#2654#1" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#p#25;n#!!top" expanded="false" />
-            <element signature="e#2748#2754#1" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#p#26;n#!!top" expanded="false" />
-            <element signature="e#2848#2854#1" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#p#27;n#!!top" expanded="false" />
-            <element signature="e#2936#2942#1" expanded="false" />
-            <element signature="e#2957#2963#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/public/components/languages/widget.php">
+    <entry file="file://$PROJECT_DIR$/src/mvc/model/languages_tabs/history.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/public/actions/insert_translations.php">
+    <entry file="file://$PROJECT_DIR$/src/mvc/public/languages_tabs.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-          <folding />
+        <state relative-caret-position="162">
+          <caret line="9" column="55" lean-forward="true" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../current/mvc/html/components/adherent/tab/attestations.php">
+    <entry file="file://$PROJECT_DIR$/../../../../APST_DATA/logs/db.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="11826">
+          <caret line="657" column="7" lean-forward="false" selection-start-line="657" selection-start-column="7" selection-end-line="657" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/html/templates/cfg_translations_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/public/languages_tabs/history.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/js/languages_tabs/history.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" column="19" lean-forward="false" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/public/actions/generate_locale_folder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../current/mvc/public/adherent/data/attestations.php">
+    <entry file="file://$PROJECT_DIR$/src/mvc/js/languages_tabs/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../current/mvc/js/components/adherent/tab/attestations.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="29" column="17" lean-forward="false" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../current/mvc/model/adherent/data/attestations.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1518695212000" expanded="true" signature="145:308" ph="SELECT id, d... apst_attestations" />
-            <marker date="1518695212000" expanded="true" signature="339:474" ph="SELECT COUNT... apst_attestations" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../current/lib/apst/tiers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="222" column="6" lean-forward="false" selection-start-line="222" selection-start-column="6" selection-end-line="222" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../current/mvc/html/components/adherent/form/contact.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="10" column="17" lean-forward="true" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../current/mvc/public/actions/tiers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="170" column="25" lean-forward="false" selection-start-line="170" selection-start-column="19" selection-end-line="170" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="576">
+          <caret line="32" column="29" lean-forward="false" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -847,255 +923,132 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="7" column="198" lean-forward="true" selection-start-line="7" selection-start-column="198" selection-end-line="7" selection-end-column="198" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/db.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="292" column="20" lean-forward="false" selection-start-line="292" selection-start-column="20" selection-end-line="292" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../../cdn.thomas.lan/public_html/lib/bbnjs/1.0.1/src/fn/object.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="582" column="0" lean-forward="false" selection-start-line="582" selection-start-column="0" selection-end-line="582" selection-end-column="0" />
-          <folding>
-            <element signature="e#103#135#0" expanded="false" />
-            <element signature="e#163#790#0" expanded="false" />
-            <element signature="e#816#1092#0" expanded="false" />
-            <element signature="e#1021#1084#0" expanded="false" />
-            <element signature="e#1129#2115#0" expanded="false" />
-            <element signature="e#1387#1418#0" expanded="false" />
-            <element signature="e#1441#1484#0" expanded="false" />
-            <element signature="e#1495#1953#0" expanded="false" />
-            <element signature="e#1505#1945#0" expanded="false" />
-            <element signature="e#1835#1916#0" expanded="false" />
-            <element signature="e#1974#2023#0" expanded="false" />
-            <element signature="e#2044#2093#0" expanded="false" />
-            <element signature="e#2133#2240#0" expanded="false" />
-            <element signature="e#2183#2232#0" expanded="false" />
-            <element signature="e#2443#2945#0" expanded="false" />
-            <element signature="e#2512#2657#0" expanded="false" />
-            <element signature="e#2568#2627#0" expanded="false" />
-            <element signature="e#2715#2938#0" expanded="false" />
-            <element signature="e#2769#2912#0" expanded="false" />
-            <element signature="e#2865#2902#0" expanded="false" />
-            <element signature="e#2996#3755#0" expanded="false" />
-            <element signature="e#3080#3749#0" expanded="false" />
-            <element signature="e#3212#3497#0" expanded="false" />
-            <element signature="e#3255#3320#0" expanded="false" />
-            <element signature="e#3335#3387#0" expanded="false" />
-            <element signature="e#3413#3487#0" expanded="false" />
-            <element signature="e#3562#3723#0" expanded="false" />
-            <element signature="e#3599#3713#0" expanded="false" />
-            <element signature="e#3661#3701#0" expanded="false" />
-            <element signature="e#3791#4025#0" expanded="false" />
-            <element signature="e#3826#3942#0" expanded="false" />
-            <element signature="e#3892#3934#0" expanded="false" />
-            <element signature="e#4048#4192#0" expanded="false" />
-            <element signature="e#4076#4186#0" expanded="false" />
-            <element signature="e#4142#4178#0" expanded="false" />
-            <element signature="e#5435#6389#0" expanded="false" />
-            <element signature="e#6433#7778#0" expanded="false" />
-            <element signature="e#6451#7755#0" expanded="false" />
-            <element signature="e#6593#6720#0" expanded="false" />
-            <element signature="e#6788#7747#0" expanded="false" />
-            <element signature="e#6812#6933#0" expanded="false" />
-            <element signature="e#6980#7025#0" expanded="false" />
-            <element signature="e#7040#7158#0" expanded="false" />
-            <element signature="e#7206#7246#0" expanded="false" />
-            <element signature="e#7315#7351#0" expanded="false" />
-            <element signature="e#7406#7737#0" expanded="false" />
-            <element signature="e#7466#7635#0" expanded="false" />
-            <element signature="e#7550#7621#0" expanded="false" />
-            <element signature="e#7660#7725#0" expanded="false" />
-            <element signature="e#7812#7888#0" expanded="false" />
-            <element signature="e#7923#8066#0" expanded="false" />
-            <element signature="e#7999#8042#0" expanded="false" />
-            <element signature="e#8158#9154#0" expanded="false" />
-            <element signature="e#8400#8429#0" expanded="false" />
-            <element signature="e#8494#9129#0" expanded="false" />
-            <element signature="e#8516#8574#0" expanded="false" />
-            <element signature="e#8619#8660#0" expanded="false" />
-            <element signature="e#8673#8787#0" expanded="false" />
-            <element signature="e#8832#9121#0" expanded="false" />
-            <element signature="e#8888#9047#0" expanded="false" />
-            <element signature="e#8970#9035#0" expanded="false" />
-            <element signature="e#9070#9111#0" expanded="false" />
-            <element signature="e#9160#9735#0" expanded="false" />
-            <element signature="e#9900#10521#0" expanded="false" />
-            <element signature="e#10558#10703#0" expanded="false" />
-            <element signature="e#10620#10677#0" expanded="false" />
-            <element signature="e#10710#11046#0" expanded="false" />
-            <element signature="e#11071#11253#0" expanded="false" />
-            <element signature="e#11126#11227#0" expanded="false" />
-            <element signature="e#11175#11201#0" expanded="false" />
-            <element signature="e#11260#11617#0" expanded="false" />
-            <element signature="e#11640#11798#0" expanded="false" />
-            <element signature="e#11679#11710#0" expanded="false" />
-            <element signature="e#11754#11776#0" expanded="false" />
-            <element signature="e#11805#12297#0" expanded="false" />
-            <element signature="e#12330#12750#0" expanded="false" />
-            <element signature="e#12390#12728#0" expanded="false" />
-            <element signature="e#12436#12720#0" expanded="false" />
-            <element signature="e#12503#12710#0" expanded="false" />
-            <element signature="e#12561#12637#0" expanded="false" />
-            <element signature="e#12654#12698#0" expanded="false" />
-            <element signature="e#13385#13860#0" expanded="false" />
-            <element signature="e#13943#14796#0" expanded="false" />
-            <element signature="e#13993#14120#0" expanded="false" />
-            <element signature="e#14163#14248#0" expanded="false" />
-            <element signature="e#14271#14310#0" expanded="false" />
-            <element signature="e#14323#14788#0" expanded="false" />
-            <element signature="e#14364#14778#0" expanded="false" />
-            <element signature="e#14604#14671#0" expanded="false" />
-            <element signature="e#14713#14766#0" expanded="false" />
-            <element signature="e#14825#15221#0" expanded="false" />
-            <element signature="e#15252#15446#0" expanded="false" />
-            <element signature="e#15282#15359#0" expanded="false" />
-            <element signature="e#15392#15440#0" expanded="false" />
-            <element signature="e#15452#15573#0" expanded="false" />
-            <element signature="e#15594#15806#0" expanded="false" />
-            <element signature="e#15648#15782#0" expanded="false" />
-            <element signature="e#15696#15774#0" expanded="false" />
-            <element signature="e#15721#15764#0" expanded="false" />
-            <element signature="e#15837#15942#0" expanded="false" />
-            <element signature="e#15885#15918#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mvc/public/languages_tabs/data/widgets.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state relative-caret-position="162">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../APST_DATA/logs/_php_error.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="612">
+          <caret line="611" column="79" lean-forward="false" selection-start-line="611" selection-start-column="78" selection-end-line="611" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../bbn/bbn/src/bbn/mvc/controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="946" column="40" lean-forward="true" selection-start-line="946" selection-start-column="40" selection-end-line="946" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/mvc/controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="966" column="4" lean-forward="false" selection-start-line="966" selection-start-column="4" selection-end-line="966" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/model/languages_tabs/path_translations.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="2" lean-forward="false" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/public/languages_tabs/path_translations.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/components/languages/strings_table.php">
+    <entry file="file://$PROJECT_DIR$/src/mvc/html/languages_tabs/home.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-          <folding>
-            <marker date="1521020584000" expanded="true" signature="1677:1692" ph="..." />
-          </folding>
+        <state relative-caret-position="72">
+          <caret line="4" column="14" lean-forward="false" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/js/components/languages/strings_table.js">
+    <entry file="file://$PROJECT_DIR$/src/mvc/model/languages_tabs/home.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
-          <caret line="62" column="12" lean-forward="false" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="12" />
-          <folding>
-            <element signature="e#402#438#0" expanded="false" />
-            <element signature="e#464#666#0" expanded="false" />
-            <element signature="e#505#636#0" expanded="false" />
-            <element signature="e#3023#3976#0" expanded="false" />
-            <element signature="e#3608#3684#0" expanded="false" />
-            <element signature="e#4085#4496#0" expanded="false" />
-            <element signature="e#4111#4486#0" expanded="false" />
-            <element signature="e#4347#4389#0" expanded="false" />
-            <element signature="e#4406#4446#0" expanded="false" />
-            <marker date="1521026852000" expanded="false" signature="4537:4585" ph="..." />
-            <marker date="1521026852000" expanded="false" signature="4785:4810" ph="..." />
-          </folding>
+        <state relative-caret-position="108">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/model/languages_tabs/dashboard.php">
+    <entry file="file://$PROJECT_DIR$/../../../../../cdn.thomas.lan/public_html/lib/bbn-vue/2.0.2/src/components/tabnav/tabnav.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="36" column="44" lean-forward="false" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
+        <state relative-caret-position="3348">
+          <caret line="172" column="34" lean-forward="false" selection-start-line="172" selection-start-column="34" selection-end-line="172" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../../cdn.thomas.lan/public_html/lib/bbn-vue/2.0.2/src/components/tabnav/tabnav.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="42" column="72" lean-forward="true" selection-start-line="42" selection-start-column="72" selection-end-line="42" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/html/languages_tabs.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="11" column="2" lean-forward="false" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/insert_translation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/public/languages_tabs/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/appui/i18n.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2682">
+          <caret line="154" column="3" lean-forward="false" selection-start-line="154" selection-start-column="3" selection-end-line="154" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/BACKUP MODEL" />
+    <entry file="file://$USER_HOME$/Desktop/BACKUP GLOSSARIES.txt" />
+    <entry file="file://$USER_HOME$/Desktop/filter alpes numerazione" />
+    <entry file="file://$PROJECT_DIR$/src/mvc/public/generate_po.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="47" lean-forward="false" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="27" column="57" lean-forward="false" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="57" />
+        <state relative-caret-position="738">
+          <caret line="48" column="31" lean-forward="true" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
           <folding>
-            <element signature="e#659#694#0#PHP" expanded="false" />
+            <element signature="e#652#687#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-styles/src/mvc/html/components/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="1" column="168" lean-forward="false" selection-start-line="1" selection-start-column="168" selection-end-line="1" selection-end-column="168" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/reload_cache.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/templates/toolbar.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="10" lean-forward="true" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/public/actions/reload_cache.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="27" column="27" lean-forward="false" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/components/languages/glossaries.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="26" column="36" lean-forward="false" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/js/components/languages/glossaries.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="23" column="29" lean-forward="true" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/languages_tabs/history.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="34" column="27" lean-forward="false" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/model/languages_tabs/data/history.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="30" column="44" lean-forward="true" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/model/languages_tabs/history.php">
+    <entry file="file://$PROJECT_DIR$/src/mvc/public/generate_po2.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1103,69 +1056,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/public/languages_tabs/path_translations.php">
+    <entry file="file://$PROJECT_DIR$/src/mvc/public/actions/generate.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        <state relative-caret-position="72">
+          <caret line="7" column="16" lean-forward="false" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/public/languages_tabs.php">
+    <entry file="file://$PROJECT_DIR$/src/mvc/html/templates/toolbar.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="55" lean-forward="true" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
+        <state relative-caret-position="306">
+          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../APST_DATA/logs/db.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="-4">
-          <caret line="657" column="7" lean-forward="false" selection-start-line="657" selection-start-column="7" selection-end-line="657" selection-end-column="7" />
+    <entry file="file://$PROJECT_DIR$/src/mvc/html/components/languages/strings_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="84" lean-forward="false" selection-start-line="19" selection-start-column="84" selection-end-line="19" selection-end-column="84" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/languages_tabs/home.php">
+    <entry file="file://$PROJECT_DIR$/src/mvc/js/components/languages/strings_table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="82" column="59" lean-forward="false" selection-start-line="82" selection-start-column="59" selection-end-line="82" selection-end-column="59" />
+          <folding>
+            <marker date="1521196180000" expanded="true" signature="4563:4611" ph="..." />
+            <marker date="1521196180000" expanded="true" signature="4811:4836" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../appui-styles/src/mvc/html/components/test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="1" column="415" lean-forward="false" selection-start-line="1" selection-start-column="415" selection-end-line="1" selection-end-column="415" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/public/actions/insert_translations.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="5" column="30" lean-forward="false" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+          <caret line="3" column="118" lean-forward="false" selection-start-line="3" selection-start-column="118" selection-end-line="3" selection-end-column="118" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/templates/cfg_translations_form.php">
+    <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/generate.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+        <state relative-caret-position="-17">
+          <caret line="16" column="46" lean-forward="false" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/public/languages_tabs/history.php">
+    <entry file="file://$PROJECT_DIR$/src/mvc/model/languages_tabs/dashboard.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <marker date="1519907549000" expanded="true" signature="260:296" ph="SELECT DISTI... bbn_i18n" />
-          </folding>
+        <state relative-caret-position="257">
+          <caret line="26" column="6" lean-forward="false" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/js/languages_tabs/history.js">
+    <entry file="file://$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="27" column="19" lean-forward="false" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
-          <folding>
-            <marker date="1521029364000" expanded="true" signature="1412:1423" ph="..." />
-            <marker date="1521029364000" expanded="true" signature="2414:2436" ph="..." />
-            <marker date="1521029364000" expanded="true" signature="2622:2644" ph="..." />
-            <marker date="1521029364000" expanded="true" signature="2838:2860" ph="..." />
-            <marker date="1521029364000" expanded="true" signature="3054:3076" ph="..." />
-            <marker date="1521029364000" expanded="true" signature="3270:3292" ph="..." />
-            <marker date="1521029364000" expanded="true" signature="3689:3711" ph="..." />
-            <marker date="1521029364000" expanded="true" signature="3894:3916" ph="..." />
-          </folding>
+        <state relative-caret-position="108">
+          <caret line="6" column="47" lean-forward="false" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1179,104 +1141,99 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/languages_form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="37" column="8" lean-forward="false" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/js/languages_tabs/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="79" column="41" lean-forward="false" selection-start-line="79" selection-start-column="41" selection-end-line="79" selection-end-column="41" />
-          <folding>
-            <element signature="e#1390#3086#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/languages_tabs.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/languages_tabs/dashboard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="22" column="58" lean-forward="false" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#bbn-pane#0;n#bbn-splitter#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/public/actions/generate_locale_folder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/js/languages_tabs/dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="78" column="13" lean-forward="false" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/js/components/languages/widget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1899">
-          <caret line="120" column="177" lean-forward="false" selection-start-line="120" selection-start-column="177" selection-end-line="120" selection-end-column="177" />
+        <state relative-caret-position="603">
+          <caret line="53" column="38" lean-forward="false" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/generate_locale_folder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="13" column="38" lean-forward="false" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form-locale.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="43" lean-forward="false" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+        <state relative-caret-position="108">
+          <caret line="11" column="48" lean-forward="false" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mvc/model/languages_tabs/data/widgets.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="20" column="49" lean-forward="false" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
+        <state relative-caret-position="1639">
+          <caret line="105" column="25" lean-forward="false" selection-start-line="105" selection-start-column="21" selection-end-line="105" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/html/languages_tabs/dashboard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="28" column="44" lean-forward="false" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/js/languages_tabs/dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="70" column="7" lean-forward="false" selection-start-line="70" selection-start-column="7" selection-end-line="70" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mvc/html/components/languages/widget.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="18" column="45" lean-forward="false" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form-locale.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="46" lean-forward="false" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/reload_cache.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
-          <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+          <caret line="3" column="15" lean-forward="true" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/public/actions/reload_cache.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/js/components/languages/widget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="29" column="36" lean-forward="true" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#bbn-progressbar#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <marker date="1521047060000" expanded="true" signature="1234:1265" ph="..." />
+            <element signature="e#375#1042#0" expanded="false" />
+            <element signature="e#385#493#0" expanded="false" />
+            <element signature="e#615#718#0" expanded="false" />
+            <element signature="e#835#951#0" expanded="false" />
+            <element signature="e#964#1034#0" expanded="false" />
+            <element signature="e#1473#2124#0" expanded="false" />
+            <element signature="e#1650#2113#0" expanded="false" />
+            <element signature="e#1678#2103#0" expanded="false" />
+            <element signature="e#1800#1898#0" expanded="false" />
+            <element signature="e#1931#2050#0" expanded="false" />
+            <element signature="e#3070#3158#0" expanded="false" />
+            <element signature="e#3240#3654#0" expanded="false" />
+            <element signature="e#3314#3351#0" expanded="false" />
+            <element signature="e#3398#3620#0" expanded="false" />
+            <element signature="e#3432#3608#0" expanded="false" />
+            <element signature="e#3486#3593#0" expanded="false" />
+            <element signature="e#3529#3577#0" expanded="false" />
+            <element signature="e#3668#3699#0" expanded="false" />
           </folding>
         </state>
       </provider>

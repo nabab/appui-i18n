@@ -108,7 +108,7 @@ if (
     //set a cached model for this id_option
 
 
-//    $model->get_cached_model('internationalization/actions/find_strings'.$model->data['id_option']);
+
 
     $model->data['success'] = true;
 

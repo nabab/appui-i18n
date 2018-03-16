@@ -15,7 +15,8 @@ if ( !empty($model->data['row']['id_exp'])){
   $langs = $model->data['langs'];
 //receives configured langs from the post
 
-  foreach( $langs as $l => $val ){
+  foreach( $langs as $l ){
+
     if ( !empty($row[$l]) ){
 
       $expression = $row[$l];

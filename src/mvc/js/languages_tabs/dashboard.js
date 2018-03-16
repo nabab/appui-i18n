@@ -2,7 +2,7 @@
   return {
     props:['source'],
     computed: {
-      langs(){
+      /*langs(){
         let res = [];
         if ( this.source.configured_langs ){
           Object.values(this.source.configured_langs).forEach( (v, i) => {
@@ -10,8 +10,7 @@
           });
         }
         return res;
-
-      },
+      },*/
       //the source of projects' dropdown
       dd_projects(){
         let res = [];
@@ -29,6 +28,10 @@
       this.load_widgets()
     },
     methods: {
+      //open the table of projects
+      link_projects_table(){
+        bbn.fn.link(this.source.root + 'languages_tabs/home');
+      },
       cfg_project_languages(){
 
         bbn.vue.closest(this, 'bbn-tab').popup().open({
@@ -37,7 +40,15 @@
           title: bbn._("Config translation languages for the project"),
           component: this.$options.components['appui-languages-form'],
           //send the configured langs for this id_project
-          source: { data: { primary: this.source.primary }, row: { langs: this.langs, id: this.id_project } }
+          source: {
+            data: {
+              primary: this.source.primary
+            },
+            row: {
+              configured_langs: this.source.configured_langs,
+              id: this.id_project
+            }
+          }
         })
       },
       get_field: bbn.fn.get_field,
@@ -65,16 +76,15 @@
         methods:{
           inArray: $.inArray,
           change_checked_langs(val, obj){
-            bbn.fn.log(JSON.stringify(bbn.vue.closest(this, 'bbn-tab').getComponent().source.configured_langs))
             let form = bbn.vue.find(this, 'bbn-form'),
-                idx =  $.inArray(obj.id, this.source.row.langs);
+                idx =  $.inArray(obj.id, this.source.row.configured_langs);
 
             if ( idx > -1 ){
-              bbn.vue.closest(this, 'bbn-tab').getComponent().langs.splice(idx, 1);
+              bbn.vue.closest(this, 'bbn-tab').getComponent().source.configured_langs.splice(idx, 1);
               bbn.vue.closest(this, 'bbn-tab').getComponent().$forceUpdate();
             }
             else {
-              bbn.vue.closest(this, 'bbn-tab').getComponent().langs.push(obj.id)
+              bbn.vue.closest(this, 'bbn-tab').getComponent().source.configured_langs.push(obj.id)
               bbn.vue.closest(this, 'bbn-tab').getComponent().$forceUpdate();
             }
           }

@@ -4,19 +4,19 @@
    
       
     <bbn-tab url="dashboard"
-             title="<i class='fa fa-edit bbn-lg' title='Dashboard'></i>Dashboard"
-             :static="true"
+             title="<i class='fa fa-edit bbn-lg' title='Dashboard'></i>Projects Dashboard"
              :load="true"
              :source="source"
+             :static="false"
     ></bbn-tab>
   
     
-    <bbn-tab url="home"
+  <!--  <bbn-tab url="home"
              title="<i class='fa fa-tasks bbn-lg' title='Projects'></i>Projects table"
              :load="true"
              :source="source"
     ></bbn-tab>
-
+-->
     <bbn-tab url="history"
              title="<i class='fa fa-flag bbn-lg' title='Translations'></i>Translations"
              :static="true"

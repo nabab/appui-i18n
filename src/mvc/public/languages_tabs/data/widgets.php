@@ -7,10 +7,7 @@
  */
 
 if ( $ctrl->arguments[0] ){
-  $ctrl->data['id_option'] = $ctrl->arguments[0];
-  /*$ctrl->delete_cached_model($ctrl->plugin_url('appui-i18n').'/languages_tabs/data/widgets', ['id_option'
-  => $ctrl->data['id_option'] ]);*/
-
-
+  $ctrl->post = [];
+  $ctrl->data = ['id_option' => $ctrl->arguments[0]];
   $ctrl->cached_action(0);
 }
