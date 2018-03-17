@@ -3,7 +3,6 @@
           ref="form-locale"
           action="internationalization/actions/generate_locale_folder"
           confirm-leave="<?=_("Are you sure you want to exit without saving changes?")?>"
-          @success="source.data.remake_cache()"
 >
   <div class="bbn-grid-fields bbn-full-screen">
 

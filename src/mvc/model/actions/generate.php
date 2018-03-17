@@ -22,22 +22,36 @@ if (
   }, \bbn\file\dir::get_dirs($locale_dir));
 
   $data = $model->get_model(APPUI_I18N_ROOT.'languages_tabs/data/widgets', ['id_option' => $model->data['id']]);
-  
+
   $translations = [];
 
+  //$domain = 'appui-task3';
+  clearstatcache();
   foreach ( $languages as $lang ){
     $po = $locale_dir.'/'.$lang.'/LC_MESSAGES/'.$domain.'.po';
     $mo = $locale_dir.'/'.$lang.'/LC_MESSAGES/'.$domain.'.mo';
     if ( is_file($po) ){
       $translations[$lang] = Translations::fromPoFile($po);
+      @unlink($po);
+      @unlink($mo);
     }
     else{
       $translations[$lang] = new Gettext\Translations();
     }
+    $translations[$lang]->setHeader('Project-Id-Version', 1);
+    $translations[$lang]->setHeader('Last-Translator', 'BBN Solutions <support@bbn.solutions>');
+//    $translations[$lang]->setHeader('Report-Msgid-Bugs-To', 'BBN Solutions <support@bbn.solutions>');
+    $translations[$lang]->setHeader('POT-Creation-Date', date('Y-m-d H:iO'));
+    $translations[$lang]->setHeader('PO-Revision-Date', date('Y-m-d H:iO'));
+    $translations[$lang]->setHeader('Language-Team', strtoupper($lang).' <'.strtoupper($lang).'@li.org>');
+    $translations[$lang]->setHeader('MIME-Version', '1.0');
+    $translations[$lang]->setHeader('Content-Type', 'text/plain; charset=UTF-8');
+    //$translations[$lang]->setHeader('Content-Transfer-Encoding', '8bit');
+    $translations[$lang]->setDomain($o['text']);
     $translations[$lang]->setPluralForms(0, '');
     $translations[$lang]->setLanguage($lang);
     foreach ( $data['res'] as $r ){
-      $t = new Gettext\Translation($r['original_exp'], $r['original_exp'], $r['original_exp']);
+      $t = new Gettext\Translation(null, $r['original_exp']);
       $t->setTranslation($r['translation'][$lang]);
       foreach ( $r['path'] as $p ){
         $t->addReference($p, 1);
@@ -45,7 +59,8 @@ if (
       $translations[$lang][] = $t;
     }
     Gettext\Generators\Po::toFile($translations[$lang], $po);
-    $translations[$lang]->toMoFile($mo);
+    clearstatcache();
+    Gettext\Generators\Mo::toFile($translations[$lang], $mo);
   }
   clearstatcache();
 
