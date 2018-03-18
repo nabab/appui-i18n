@@ -25,7 +25,6 @@ if (
 
   $translations = [];
 
-  //$domain = 'appui-task3';
   clearstatcache();
   foreach ( $languages as $lang ){
     $po = $locale_dir.'/'.$lang.'/LC_MESSAGES/'.$domain.'.po';
@@ -51,8 +50,13 @@ if (
     $translations[$lang]->setPluralForms(0, '');
     $translations[$lang]->setLanguage($lang);
     foreach ( $data['res'] as $r ){
-      $t = new Gettext\Translation(null, $r['original_exp']);
+      if ( !($t = $translations[$lang]->find('', $r['original_exp'])) ){
+        $t = new Gettext\Translation(null, $r['original_exp']);
+      }
       $t->setTranslation($r['translation'][$lang]);
+      if ( $r['translation'][$lang] === 'Référence' ){
+        //die(var_dump($t));
+      }
       foreach ( $r['path'] as $p ){
         $t->addReference($p, 1);
       }
@@ -63,6 +67,7 @@ if (
     Gettext\Generators\Mo::toFile($translations[$lang], $mo);
   }
   clearstatcache();
+  //die(var_dump($translations));
 
   /*
   $pp = $translation->get_parser();
