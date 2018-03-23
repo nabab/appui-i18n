@@ -4,7 +4,8 @@
           action="internationalization/actions/generate_locale_folder"
           confirm-leave="<?=_("Are you sure you want to exit without saving changes?")?>"
 >
-  <div class="bbn-grid-fields bbn-full-screen">
+
+  <div class="bbn-grid-fields">
 
     <div style="height:300px;" class="bbn-padded bbn-middle">
       <span>Check the box to create local folder of translation's files for the language in this path</span>
@@ -15,12 +16,11 @@
            class="bbn-vlpadded"
            ref="checkbox"
       >
-        <bbn-checkbox :value="source.data.get_field(source.data.primary, 'id', l, 'code')"
-                      :checked="inArray(source.data.get_field(source.data.primary, 'id', l, 'code'), source.row
-                      .languages) > -1"
+        <bbn-checkbox :value="get_field(primary, 'id', l, 'code')"
+                      :checked="checked_lang(l)"
                       @change="change_languages"
         ></bbn-checkbox>
-        <label v-text="source.data.get_field(source.data.primary, 'id', l, 'text')"></label>
+        <label v-text="get_field(primary, 'id', l, 'text')"></label>
 
       </div>
 

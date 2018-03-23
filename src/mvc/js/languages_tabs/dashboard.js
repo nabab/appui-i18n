@@ -2,6 +2,59 @@
   return {
     props:['source'],
     computed: {
+      widgets(){
+        var res = [];
+        if (this.source.data){
+          this.source.data.forEach( (v, i) => {
+            var disabled =
+            res.push({
+              title: v.text,
+              key: v.id,
+              component : 'appui-languages-widget',
+              id_project: this.id_project,
+              buttonsRight: [{
+                text: 'Update widget data',
+                icon: 'fa fa-retweet',
+                action: 'remake_cache'
+              },{
+                text: 'Configure locale folder of translation\'s files for this path',
+                icon: 'fa fa-flag',
+                action: 'config_locale_dir'
+              },{
+                text: 'Open the strings table of this path',
+                icon: 'fa fa-book',
+                action: 'open_strings_table'
+              }]
+            })
+          })
+          return res;
+        }
+
+      },
+/*      widgets(){
+
+          'title' => $projects[$i]['name']. '/' . $projects[$i]['path'][$idx]['text'],
+          'key' => $projects[$i]['path'][$idx]['id_option'],
+          'component' => 'appui-languages-widget',
+          'url' => APPUI_I18N_ROOT.'languages_tabs/data/widgets/'.$projects[$i]['path'][$idx]['id_option'],
+          'id_project' => $project['id'],
+          'buttonsRight' => [[
+          'text' => 'Check for new strings in files and new translations',
+          'icon' => 'fa fa-retweet',
+          'action' => 'find_strings'
+      ],[
+          'text' => 'Configure locale folder of translation\'s files for this path',
+          'icon' => 'fa fa-flag',
+          'action' => 'config_locale_dir'
+      ],[
+          'text' => 'Open the strings table of this path',
+          'icon' => 'fa fa-book',
+          'action' => 'open_strings_table'
+      ]
+      ]
+
+
+      }*/
       /*langs(){
         let res = [];
         if ( this.source.configured_langs ){
@@ -19,13 +72,10 @@
         })
         return res;
       },
-      widgets(){
-        return this.source.data
-      }
     },
     mounted(){
       //if I want widgets before to select the dropdown
-      this.load_widgets()
+      //this.load_widgets()
     },
     methods: {
       //open the table of projects

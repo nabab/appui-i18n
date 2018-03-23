@@ -2,42 +2,79 @@
   return {
     props: ['source'],
     name: 'widget',
+    data(){
+      return {
+        id_option: bbn.vue.closest(this, 'bbn-widget').uid,
+        //source language of the path
+        'language': bbn.vue.closest(this, 'bbn-tab').getComponent().source.data[this.$parent.index].language ? bbn.vue.closest(this, 'bbn-tab').getComponent().source.data[this.$parent.index].language : null,
+      }
+    },
     mounted(){
       if ( this.source.new > 0 ){
         appui.warning(
-          this.source.new + ' new strings found in ' + this.source.path );
-          //I remake_cache because i don't see the correct data in the widget
-          this.remake_cache();
+          this.source.new + ' new strings found in ' + this.source.path
+        );
       }
     },
     methods: {
+      search: bbn.fn.search,
+      get_field: bbn.fn.get_field,
+      set_language(){
+        /* the data coming from the post change the source of the dashboard at the index of this specific */
+        bbn.fn.post('internationalization/actions/define_path_lang', {
+          'language': this.language,
+          'id_option': bbn.vue.closest(this.$parent, 'bbn-tab').getComponent().widgets[bbn.vue.closest(this, 'bbn-widget').index].key
+        }, (d) => {
+          if ( d.success ){
+            delete d.success;
+            delete d.time;
+            bbn.vue.closest(this, 'bbn-tab').getComponent().source.data[this.widget_idx].data_widget = d.data_widget ;
+            this.$set(this.data_widget, d);
+            appui.confirm('Source language updated');
+            this.$forceUpdate();
+
+          }
+        })
+      },
+      remove_language(){
+        //removes the property language of the path
+        bbn.fn.post('internationalization/actions/delete_path_lang', {
+          'id_option': bbn.vue.closest(this.$parent, 'bbn-tab').getComponent().widgets[bbn.vue.closest(this, 'bbn-widget').index].key,
+          'language': this.language
+        }, (d) => {
+          if ( d.success ){
+            this.language = null
+            appui.confirm('Source language resetted');
+          }
+        })
+      },
       open_strings_table(){
         //open the table of strings of this path combining new strings found in the files with strings present in db
         //send arguments[0] (id_option of the path) to 'internationalization/languages_tabs/path_translations/'
-
+        //only if the the language of the path is set
         //internationalization/languages_tabs/path_translations/ will return the cached_model in its data, if a
         // cached_model doesn't exist for this id_option it will be created
-        if ( this.source.res.length >0 ){
-          bbn.fn.link('internationalization/languages_tabs/path_translations/' + this.source.id_option);
+        if ( this.data_widget ){
+          bbn.fn.link('internationalization/languages_tabs/path_translations/' + this.id_option);
         }
         else{
           appui.error('There are no strings in this path')
         }
       },
       remake_cache(){
-        bbn.fn.post('internationalization/actions/reload_cache', { id_option: this.source.id_option }, (d) => {
+        bbn.fn.post('internationalization/actions/reload_widget_cache', { id_option: this.id_option }, (d) => {
           if ( d.success ){
-            this.source.res = d.res;
-            this.source.total = d.total;
-            this.$nextTick( () => {
-              this.source.languages = d.languages;
-            })
+            appui.confirm('Widget updated');
+            this.$set(this.locale_dirs,  d.data_widget.locale_dirs);
+
+            this.$forceUpdate();
+
           }
         })
       },
-      get_field: bbn.fn.get_field,
+
       find_strings(){
-        let url = bbn.vue.closest(this, 'bbn-tab').getComponent().source.root + 'actions/reload_cache';
+        let url = bbn.vue.closest(this, 'bbn-tab').getComponent().source.root + 'actions/reload_widget_cache';
         bbn.fn.post(url, { id_option: this.source.id_option },  (d) => {
           if ( d.success ){
             this.source.res = d.res;
@@ -61,52 +98,68 @@
           component: this.$options.components['appui-languages-form-locale'],
           source: {
             row: {
-              id_option: this.source.id_option,
+              id_option: bbn.vue.closest(this, 'bbn-widget').uid,
               //locale dirs
-              languages: this.source.languages
+              languages: this.locale_dirs
             },
             data: {
+              widget_idx : this.widget_idx,
               //langs configured for the project
               configured_langs: this.configured_langs,
-              translated: this.translated,
-              get_field: this.get_field,
-              primary: this.primary,
-              remake_cache: this.remake_cache
             }
           }
         })
       },
     },
     computed: {
+      widget_idx(){
+        return bbn.vue.closest(this, 'bbn-widget').index
+      },
+      //used to render the widget, language of locale folder
+      data_widget(){
+        //if the source language of the path is set takes the array result from dashboard source
+        let result = bbn.vue.closest(this, 'bbn-tab').getComponent().source.data[this.widget_idx].data_widget.result;
+        if ( this.language && result){
+          return Object.values(result);
+        }
+        else {
+          return [];
+        }
+      },
+      locale_dirs(){
+        //if the source language of the path is set takes the array result from dashboard source
+        let locale_dirs = bbn.vue.closest(this, 'bbn-tab').getComponent().source.data[this.widget_idx].data_widget.locale_dirs;
+        if ( this.language && locale_dirs.length){
+          return locale_dirs;
+        }
+        else {
+          return [];
+        }
+      },
+      /*locale_langs(){
+        let res = [];
+        if ( this.data_widget.length ){
+          this.data_widget.forEach( (v, i) => {
+            res.push(v.lang);
+          });
+          return res;
+        }
+        return res;
+      },*/
       configured_langs(){
         return bbn.vue.closest(this, 'bbn-tab').getComponent().source.configured_langs
       },
       primary(){
         return bbn.vue.closest(this, 'bbn-tab').getComponent().source.primary;
       },
-      translated(){
-        var count = {};
-        if( this.source.res.length ){
-
-          let res = {};
-          this.source.languages.forEach((a) => {
-            res[a] = 0;
-          });
-          $.each(this.source.res, (i, v) => {
-            if ( v.translation ){
-              this.source.languages.forEach((lng) =>{
-                if ( v.translation[lng] ){
-                  res[lng]++
-                }
-              })
-            }
-          });
-          return res;
-        }
-        else {
-          res = [];
-        }
+      dd_primary(){
+        let res = []
+        this.primary.forEach( ( v, i) => {
+          res.push({value: v.code, text: v.text})
+        })
+        return res;
       },
+
     },
     components: {
       'appui-languages-form-locale': {
@@ -115,28 +168,40 @@
           message(){
             return 'If the language for which you want to create the translation file is not in this list, you have to configure it for the whole project using the form ( <i class="fa fa-cogs"></i> ) in the dashboard'
           },
-         /* languages(){
-            let res = [];
-            if ( this.source.row.languages.length ){
-              this.source.row.languages.forEach( (v) => {
-                res.push(bbn.fn.get_field(this.source.data.primary, 'code', v, 'id') )
-              } )
-            }
-            return res;
-          }*/
+          primary(){
+            return bbn.vue.closest(this, 'bbn-tab').getComponent().source.primary;
+          },
+
         },
         methods: {
+          get_field: bbn.fn.get_field,
+          inArray: $.inArray,
+
           //change the languages of locale dirs
-          change_languages(val, obj){
-            let idx =  $.inArray(obj.value, this.source.row.languages);
-            if( idx > -1 ){
-              this.source.row.languages.splice(idx, 1)
+          change_languages(val, obj) {
+            let dashboard = bbn.vue.closest(this, 'bbn-tab').getComponent(),
+                widgets = bbn.vue.findAll(dashboard, 'bbn-widget'),
+                this_widget = widgets[this.source.data.widget_idx].$children,
+                idx = $.inArray(obj.value, this_widget[0].locale_dirs );
+            if (idx > -1) {
+              this_widget[0].locale_dirs.splice(idx, 1)
             }
-            else{
-              this.source.row.languages.push(obj.value)
+            else {
+              this_widget[0].locale_dirs.push(val);
+              }
+
+          },
+          checked_lang(l){
+            let code = bbn.fn.get_field(this.primary, 'id', l, 'code');
+            if ( $.inArray(code, this.source.row.languages) > -1 ){
+              return true;
+            }
+            else {
+              return false;
             }
           },
-          inArray: $.inArray,
+          
+
         },
         props: ['source'],
       }

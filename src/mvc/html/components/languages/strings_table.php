@@ -1,7 +1,7 @@
 <div class="appui-strings-table" style="min-height: 500px; width:100%">
 
-    <bbn-table v-if="source.res.length"
-               :source="source.res"
+    <bbn-table v-if="source.res.strings.length && column_length"
+               :source="source.res.strings"
                :columns="columns"
                editable="inline"
                :pageable="true"

@@ -10,11 +10,15 @@
     >
       <div class="bbn-full-screen bbn-middle">
         <div class="bbn-grid-fields bbn-padded">
+
           <span class="bbn-r">Select a project</span>
           <bbn-dropdown :source="dd_projects"
                         v-model="id_project"
                         @change="load_widgets"
           ></bbn-dropdown>
+
+          <span class="bbn-r">The source language for this project is:</span>
+          <span v-text="get_field(source.primary, 'code', get_field(source.projects, 'id', id_project, 'lang'), 'text')"></span>
 
 
           <span class="bbn-r">Configure languages for this project</span>

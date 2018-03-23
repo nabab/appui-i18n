@@ -1,27 +1,43 @@
 <?php
 /**
- * Created by BBN Solutions.
- * User: Loredana Bruno
- * Date: 07/03/18
- * Time: 10.37
+ * Created by PhpStorm.
+ * User: bbn
+ * Date: 19/03/18
+ * Time: 16.01
  */
 
-$projects = $model->get_model(APPUI_I18N_ROOT.'languages_tabs')['projects'];
 
-if ( !empty( $id_option = $model->data['id_option']) &&
+use Gettext\Translations;
+//get the array projects
+$projects = $model->get_model(APPUI_I18N_ROOT.'languages_tabs')['projects'];
+$success = false;
+$result = [];
+$timer = new \bbn\util\timer();
+$timer->start();
+
+//the cached model will be created only if the source language of the path is defined
+if (
+  ($id_option = $model->data['id_option']) &&
   ($o = $model->inc->options->option($id_option)) &&
+  !empty($o['language']) &&
   ($parent = $model->inc->options->parent($id_option)) &&
-  defined($parent['code']) ){
+  defined($parent['code']) &&
+  isset($o['language'])
+){
+  $domain = $o['text'];
+
   $to_explore = constant($parent['code']).$o['code'];
+  //take locale dirs
   $locale_dir = dirname($to_explore).'/locale';
 
-
+  $dirs = scandir($locale_dir, 1);
+  //create the array $languages basing on locale dirs in the path
   $languages = array_map(function($a){
     return basename($a);
   }, \bbn\file\dir::get_dirs($locale_dir)) ?: [];
-
+  //instantiate the class appui\i18n
   $translation = new \bbn\appui\i18n($model->db);
-  $expressions = $translation->analyze_folder($to_explore, true);
+
 
   $new = 0;
   //get the id of the project from id_option
@@ -35,76 +51,38 @@ if ( !empty( $id_option = $model->data['id_option']) &&
 
   //$r is the string, $val is the array of files in which this string is contained
   $i = 0;
-  $res = [];
-  foreach ( $expressions as $r => $val ){
-    //for each string create a property 'path' containing the files' name in which the string is contained
 
-    $res[$i] = ['path' => $val];
-
-    //check if the table bbn_i18n of db already contains the string $r for this $project_lang
-
-    if ( !($id = $model->db->select_one('bbn_i18n', 'id', [
-      'exp' => $r,
-      'lang' => $project_lang
-    ])) ){
-
-      //if the string $r is not in 'bbn_i18n' inserts the string
-      $model->db->insert('bbn_i18n', [
-        'exp' => $r,
-        'last_modified' => date('Y-m-d H:i:s'),
-        'id_user' => $model->inc->user->get_id(),
-        'lang' => $project_lang,
-      ]);
-      $id = $model->db->last_id();
-    }
-    //create the property 'id_exp' for the string $r
-    $res[$i]['id_exp'] = $id;
-
-    //put the string $r into the property 'original_exp' (I'll use only array_values at the end)
-    $res[$i]['original_exp'] = $r;
-
-    //check in 'bbn_i18n_exp' table of db if the string $r exist for this $project_lang
-    if( !( $id_exp = $model->db->select_one('bbn_i18n_exp', 'id_exp', [
-      'id_exp' => $id,
-      'lang' => $project_lang
-    ]) ) ){
-      //if the string $r is not in 'bbn_i18n_exp' inserts the string
-      //$new will be the number of strings found in the folder $to_explore that has not been found in the table
-      // 'bbn_i18n_exp' of db, so $new is the number of new strings inserted in in 'bbn_i18n_exp'
-      $new += (int)$model->db->insert_ignore('bbn_i18n_exp', [
-        'id_exp' => $id,
-        'lang' => $project_lang,
-        'expression' => $r
-      ]);
-    }
-
-    /**var (array) the languages found in locale dir*/
-    if ( !empty($languages) ){
-      foreach ( $languages as $lng ){
-        //create a property indexed to the code of $lng containing the string $r from 'bbn_i18n_exp' in this $lng
-
-        $res[$i]['translation'][$lng] = (string)$model->db->select_one(
-          'bbn_i18n_exp',
-          'expression',
-          [
-            'id_exp' => $id,
+  /**var (array) the languages found in locale dir*/
+  if ( !empty($languages) ){
+    $result = [];
+    foreach ( $languages as $lng ){
+      //the name of po and mo files
+      $po = $locale_dir.'/'.$lng.'/LC_MESSAGES/'.$domain.'.po';
+      $mo = $locale_dir.'/'.$lng.'/LC_MESSAGES/'.$domain.'.mo';
+      //takes the content of the po file using Gettext\Translations class
+      if ( is_file($po) ){
+        if ( $translations = Gettext\Translations::fromPoFile($po) ){
+          //result contains num: the total number of strings in the path, nm_translations: the number of strings translated in $lng
+          $result[$lng] = [
+            'num' => $translations->count(),
+            'nm_translations' => $translations->countTranslated(),
             'lang' => $lng
-          ]
-        );
+          ];
+        }
+        else{
+          $translations = new Gettext\Translations();
+        }
       }
-    }
 
-    $i++;
-    $success = true;
+    }
   }
-  return [
-    'source_lang' => $project_lang,
-    'path' => $project->get_path_text($model->data['id_option']),
-    'success' => $success,
-    'new' => $new,
-    'languages' => $languages,
-    'total' => count($res),
-    'res' => $res,
-    'id_option' => $model->data['id_option']
-  ];
+  $i++;
+  $success = true;
+
 }
+return [
+  'locale_dirs' => $languages,
+  'result' => $result,
+  'success' => $success,
+  'time' => $timer->measure()
+];

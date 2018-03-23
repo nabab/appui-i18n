@@ -2,7 +2,8 @@
   return {
     data(){
       return {
-        primary: this.languages.source.primary
+        primary: this.languages.source.primary,
+        column_length: true
       }
     },
     methods: {
@@ -17,9 +18,19 @@
         return row;
       },
       generate(){
-        bbn.fn.post(this.source.root + 'actions/generate', {id: this.source.id_option}, (d) => {
-          bbn.fn.log(d);
-        })
+        if ( this.source.res.languages.length ){
+          bbn.fn.post(this.source.root + 'actions/generate', {id: this.source.id_option}, (d) => {
+            if ( d.success ){
+              d.languages = d.languages.map( (v) => {
+                return bbn.fn.get_field(this.primary, 'code', v, 'text');
+              })
+              appui.success('Files of translation successfully updated for '+ d.languages.join(' and ') );
+            }
+          })
+        }
+        else {
+           bbn.fn.alert('You have to configure at least a language using the button <i class="fa fa-flag"></i> of the widget in the dashboard')
+        }
       },
       buttons(){
         let res = [];
@@ -32,7 +43,7 @@
       },
       delete_expression(row){
         let id_exp = row.id_exp,
-            data = this.source.res,
+            data = this.source.res.strings,
             idx = bbn.fn.search(data, { id_exp: id_exp });
         bbn.fn.confirm('Did you remove the expression from code before to delete the row?', () => {
           bbn.fn.post(this.source.root + 'actions/delete_expression', { id_exp: row.id_exp, exp: row.original_exp },  (d) => {
@@ -50,14 +61,14 @@
       insert_translation(row,idx){
         bbn.fn.post(this.source.root + 'actions/insert_translations', {
           row: row,
-          langs: this.source.languages,
+          langs: this.source.res.languages,
           id_option: this.source.id_option
           }, (d) => {
           if (d.success){
             appui.success('Translation saved');
             row = d.row;
             let table = bbn.vue.find(this, 'bbn-table');
-            this.source.res[idx] = d.row
+            this.source.res.strings[idx] = d.row
             //table.currentData[idx] = d.row;
             table.updateData();
             //this.remake_cache();
@@ -68,20 +79,29 @@
         });
       },
       remake_cache(){
-        bbn.fn.post('internationalization/actions/reload_cache', { id_option: this.source.id_option }, (d) => {
+        // look for new strings/translations/ remakes the model in cache
+        this.column_length = false;
+        bbn.fn.post('internationalization/actions/reload_table_cache', { id_option: this.source.id_option }, (d) => {
           if ( d.success ){
-            this.source.res = d.res;
-            let diff = ( d.total - this.source.total );
+
+            let diff = ( d.res.total - this.source.res.total );
+            this.source.res.languages = d.res.languages;
             if ( diff > 0 ){
-              appui.warning(diff + ' new string(s) found in ' + this.source.path);
+              appui.warning(diff + ' new string(s) found in ' + this.source.res.path);
+              this.source.res.strings = d.res.strings;
+              this.source.res.total = d.res.total;
+              bbn.vue.find(this, 'bbn-table').updateData();
             }
             else if ( diff < 0 ){
-              appui.warning(Math.abs(diff) + ' string(s) deleted from ' + this.source.path + ' files');
-            }
-            this.source.total = d.total;
-            this.$nextTick( () => {
+              appui.warning(Math.abs(diff) + ' string(s) deleted from ' + this.source.res.path + ' files');
+              this.source.res.strings = d.res.strings;
+              this.source.res.total = d.res.total;
               bbn.vue.find(this, 'bbn-table').updateData();
-            } )
+            }
+            else if ( diff = 0 ){
+              appui.warning('There are no changes in data')
+            }
+            this.column_length = true
           }
         })
       },
@@ -94,15 +114,15 @@
             i = 0,
             def = null;
     	  var field = '';
-        for ( let n in this.source.languages ){
+        for ( let n in this.source.res.languages ){
           r.push({
-            field: this.source.languages[n],
-            title:  ( this.source.languages[n] === this.source.source_lang) ? (bbn.fn.get_field(this.primary, 'code', this.source.languages[n], 'text') + '  <i class="fa fa-asterisk" title="This is the original language of the expression"></i>') : bbn.fn.get_field(this.primary, 'code', this.source.languages[n], 'text'),
+            field: this.source.res.languages[n],
+            title:  ( this.source.res.languages[n] === this.source.res.path_source_lang) ? (bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text') + '  <i class="fa fa-asterisk" title="This is the original language of the expression"></i>') : bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text'),
             //fixed: n === this.source.source_lang,
             editable: true,
             //render: this.render_columns
           });
-          if ( n === this.source.source_lang ){
+          if ( n === this.source.res.source_lang ){
             def = i;
             //r[i].title = 'Original Exp'
           }
@@ -122,9 +142,7 @@
       },
 
     },
-    mounted(){
-      //this.remake_cache();
-    },
+
     components: {
       'file_linker': {
         methods: {
