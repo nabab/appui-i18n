@@ -62,18 +62,23 @@ if (
       //takes the content of the po file using Gettext\Translations class
       if ( is_file($po) ){
         if ( $translations = Gettext\Translations::fromPoFile($po) ){
-          //result contains num: the total number of strings in the path, nm_translations: the number of strings translated in $lng
+          //result contains num: the total number of strings in the path, num_translations: the number of strings translated in $lng
           $result[$lng] = [
             'num' => $translations->count(),
-            'nm_translations' => $translations->countTranslated(),
+            'num_translations' => $translations->countTranslated(),
             'lang' => $lng
           ];
         }
-        else{
-          $translations = new Gettext\Translations();
-        }
-      }
 
+      }
+      else{
+        $result[$lng] = [
+          'num' => 0,
+          'num_translations' => 0,
+          'lang' => $lng
+        ];
+        $translations = new Gettext\Translations();
+      }
     }
   }
   $i++;

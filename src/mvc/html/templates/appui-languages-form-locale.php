@@ -25,10 +25,12 @@
       </div>
 
     </div>
+
     <div class="bbn-s bbn-grid-full bbn-padded"
          v-html="message"
          style="position:absolute; bottom:0"
     ></div>
+
   </div>
 
 

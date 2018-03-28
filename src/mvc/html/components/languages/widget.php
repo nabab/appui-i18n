@@ -18,7 +18,7 @@
       <span class="bbn-l" v-text="get_field(primary, 'code', language, 'text')" style="float:right"></span>
     </div>
 
-    <div class="bbn-grid-fields" v-if="locale_dirs.length" style="padding-top:10px">
+    <div class="bbn-grid-fields" v-show="locale_dirs.length" style="padding-top:10px">
       <span>Locale files of translations found: </span>
       <div>
         <div v-for="w in locale_dirs"
@@ -33,9 +33,9 @@
       <!--<span v-else>There are no locale files of translation configured for this path, click on <i class="bbn-b fa fa-flag"></i> button</span>-->
 
 
-      <span v-if="search(data_widget, 'lang', language) > -1" > Number of strings in the source language: </span>
+     <span v-if="search(data_widget, 'lang', language) > -1" > Number of strings in the source language: </span>
       <span v-if="search(data_widget, 'lang', language) > -1"
-            v-text="get_field(data_widget, 'lang', language, 'nm_translations') || 0"
+            v-text="get_field(data_widget, 'lang', language, 'num') || 0"
             class="bbn-r"
       ></span>
 
@@ -45,22 +45,16 @@
         <span v-text="get_field(primary, 'code', w.lang, 'text')"
               class="bbn-b bbn-i"
         ></span>
-        <span v-text="' ' + w.nm_translations + ' / '+ w.num"></span>
+        <span v-text="(w.num_translations > 0 ) ? ( w.num_translations + ' / '+ w.num ) : ( '0' + ' / '+ w.num) "></span>
 
-        <bbn-progressbar :value="(w.nm_translations/w.num*100)"
+        <bbn-progressbar :value="(w.num_translations > 0 ) ? (w.num_translations/w.num*100) : 0"
                          style="padding-top:6px"
                          type="percent"
         ></bbn-progressbar>
       </div>
-
     </div>
     <div v-else style="padding-top:10px"><?=_("No translation files found for this path, to start translation configure at least one language using the  ")?> <i class="fa fa-flag bbn-large"></i> <?=_("button")?></div>
-    <!-- i want to exist to have the possibility to have the button to check for new strings in this path-->
-    <!--div v-else>
-      <span>No strings found in this path, check if there are new ones by clicking <i class="fa fa-flash bbn-b"></i>
-        button
-      </span>
-    </div-->
+
 
   </div>
 

@@ -1,13 +1,13 @@
 <div class="appui-strings-table" style="min-height: 500px; width:100%">
 
-    <bbn-table v-if="source.res.strings.length && column_length"
-               :source="source.res.strings"
+    <bbn-table v-if="source.res.languages.length"
+               :source="mapData"
                :columns="columns"
                editable="inline"
                :pageable="true"
                :sortable="true"
                :limit="25"
-               :map="mapData"
+
                :info="true"
                :filterable="true"
                :multifilter="true"
@@ -17,19 +17,24 @@
                :toolbar="[{
                          command: remake_cache,
                          icon: 'fa fa-retweet',
-                         title: 'Check for new strings and translations in this path',
+                         title: '<?=addslashes(_('Update table'))?>',
                          class:'bbn-l'
                          }, {
                          command: generate,
                          icon: 'fa fa-exchange',
-                         title: 'Update translations\' files',
+                         title: '<?=addslashes(_('Update translations\' files'))?>',
+                         class:'bbn-l'
+                         }, {
+                         command: find_strings,
+                         icon: 'fa fa-search',
+                         title: '<?=addslashes(_('Check into the files for new strings'))?>',
                          class:'bbn-l'
                          }]"
                @change="insert_translation"
   >
-    <bbn-column field="id_exp"
+    <!--<bbn-column field="id_exp"
                 :hidden="true"
-    ></bbn-column>
+    ></bbn-column>-->
 
    <bbn-column field="original_exp"
                title="<?=_('Original expression')?>"
@@ -37,11 +42,14 @@
                width="20%"
                :editable="false"
                cls="bbn-i"
-               ftitle="'The original language of strings is' + source.langs[source_lang].text"
     ></bbn-column>
 
   </bbn-table>
+
   <div v-else>
-    <h1 class="bbn-c">No strings found in files of this path!</h1>
+    <h5 class="bbn-c"><?=_('Close the tab and configure translation files from the widget')?> <i class="fa fa-flag"></i> <?=_('button before to open the table of strings')?>.</h5>
+    <br>
+    <h5 class="bbn-c"><?=_('If the widget seems to have translation files configured but you see this message, reload the widget from')?> <i class="fa fa-retweet"></i> <?=_('button and then configure files using')?></h5>
   </div>
+
 </div>

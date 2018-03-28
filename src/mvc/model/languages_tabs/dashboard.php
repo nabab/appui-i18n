@@ -37,12 +37,18 @@ foreach ( $projects as $i => $p ){
       //if the property language is already set for the path takes the cached model of the option
       if ( isset( $res[$idx]['language'] ) ){
         $res[$idx]['data_widget'] = $model->get_cached_model(APPUI_I18N_ROOT.'languages_tabs/data/widgets', ['id_option' => $res[$idx]['id']], 0);
-        }
+      }
+      else {
+        $res[$idx]['data_widget'] = [];
+        //locale dirs is the list of dirs found in locale for option with the property language defined
+
+        $res[$idx]['data_widget']['locale_dirs'] = [];
+      }
     }
     $timer->stop('3');
     $success = true;
   }
-  unset($projects[$i]['langs'], $projects[$i]['path']);
+  unset( $projects[$i]['langs'], $projects[$i]['path'] );
 }
 
 return [

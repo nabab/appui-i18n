@@ -19,9 +19,14 @@ if (
   $to_explore = constant($parent['code']).$o['code'];
   $locale_dir = dirname($to_explore).'/locale';
   $domain = $o['text'];
+  //take the source lang of id_option
+
+  $model->data['language'] = $model->inc->options->get_prop($model->data['id'], 'language');
+
 
   //takes the cached_model of strings_table for this path, the third argument of get_cached_model is true to remake the cache
-  if ( $data = $model->get_cached_model(APPUI_I18N_ROOT.'languages_tabs/data/strings_table', ['id_option' => $model->data['id']], true) ){
+  if ( $data = $model->get_model(APPUI_I18N_ROOT.'actions/find_strings', ['id_option'=> $model->data['id'], 'language'=> $model->data['language']]) ){
+
     $languages = $data['languages'];
 
 
@@ -51,11 +56,13 @@ if (
       $translations[$lang]->setDomain($o['text']);
       $translations[$lang]->setPluralForms(0, '');
       $translations[$lang]->setLanguage($lang);
-      foreach ( $data['strings'] as $r ){
+      foreach ( $data['res'] as $r ){
         if ( !($t = $translations[$lang]->find('', $r['original_exp'])) ){
           $t = new Gettext\Translation(null, $r['original_exp']);
         }
+        die(var_dump($r['translation']));
         $t->setTranslation($r['translation'][$lang]);
+        //die(var_dump($t->setTranslation($r['translation'][$lang])));
         /*if ( $r['translation'][$lang] === 'Référence' ){
           //die(var_dump($t));
         }*/
@@ -63,6 +70,7 @@ if (
           $t->addReference($p, 1);
         }
         $translations[$lang][] = $t;
+
       }
       Gettext\Generators\Po::toFile($translations[$lang], $po);
       clearstatcache();

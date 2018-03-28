@@ -22,22 +22,26 @@ if (
     //locale dirs existing before this configuration
     $languages_old = $data['languages'];
 
-
-
     $new_langs = array_diff($model->data['languages'], $languages_old);
-
     if (!empty($new_langs)) {
       foreach ($new_langs as $lang) {
-
-        bbn\file\dir::create_path( $locale_dir . '/' . $lang . '/LC_MESSAGES');
+        \bbn\file\dir::create_path( $locale_dir . '/' . $lang . '/LC_MESSAGES');
           //create en empty locale folder for each new language
         $success = true;
       }
+    }
+    $ex_langs = array_diff($languages_old, $model->data['languages']);
+    if (!empty($ex_langs) ) {
+      foreach ( $ex_langs as $ex ){
+        $dir = $locale_dir . '/' . $ex . '/LC_MESSAGES';
+        \bbn\file\dir::delete($dir);
+        }
     }
   }
   return [
     'path' => $to_explore,
     'new_dir' => $new_langs,
+    'ex_dir' => $ex_langs,
     'success' => $success
   ];
 

@@ -6,17 +6,26 @@
         column_length: true
       }
     },
+    mounted(){
+      bbn.fn.log(JSON.stringify(this.source.res.strings))
+    },
     methods: {
-      mapData(row){
-        if ( row.translation ){
-          row =  $.extend(row.translation, {
-            id_exp: row.id_exp,
-            original_exp: row.original_exp,
-            path: row.path,
-          })
-        }
-        return row;
+      find_strings(){
+        bbn.fn.post(this.source.root + 'actions/find_strings', {
+          id_option: this.source.id_option,
+          language: this.source.res.path_source_lang
+        }, (d) => {
+          if ( d.success ){
+            if ( d.done > 0 ){
+              appui.success(d.done + ' new strings found')
+            }
+            else {
+              appui.warning('No new strings')
+            }
+          }
+        } )
       },
+
       generate(){
         if ( this.source.res.languages.length ){
           bbn.fn.post(this.source.root + 'actions/generate', {id: this.source.id_option}, (d) => {
@@ -80,10 +89,10 @@
       },
       remake_cache(){
         // look for new strings/translations/ remakes the model in cache
+        //column_length just used on a v-if of the table to remake the table if data changes
         this.column_length = false;
         bbn.fn.post('internationalization/actions/reload_table_cache', { id_option: this.source.id_option }, (d) => {
           if ( d.success ){
-
             let diff = ( d.res.total - this.source.res.total );
             this.source.res.languages = d.res.languages;
             if ( diff > 0 ){
@@ -105,7 +114,7 @@
           }
         })
       },
-     
+
     },
     props: ['source'],
     computed: {
@@ -124,15 +133,11 @@
           });
           if ( n === this.source.res.source_lang ){
             def = i;
-            //r[i].title = 'Original Exp'
           }
           i++;
         }
-        if ( def ){
-        //  r.splice(0, 0, r.splice(def, 1)[0]);
-        }
         r.push({
-          ftitle: 'Remove original expression',
+          ftitle: bbn._('Remove original expression'),
           buttons: this.buttons,
           width: 40,
           cls: 'bbn-c'
@@ -140,7 +145,37 @@
 
         return r;
       },
+      //contains original from po file and translations from dib
+      translations_db(){
+        let res = [],
+          source_lang = this.source.res.path_source_lang;
+        this.source.res.strings.forEach( (obj, idx ) => {
+          let ob = {};
+          for (let prop in obj){
+            ob['original_exp'] = this.source.res.strings[idx][source_lang].original;
+            ob['id_exp'] = this.source.res.strings[idx][source_lang].id_exp;
+            ob[prop] = this.source.res.strings[idx][prop].translations_db;
+          }
+          res.push(ob);
+        })
+        return res
 
+      },
+      //contains strings from original and translations string from po file
+      mapData(){
+        let res = [],
+          source_lang = this.source.res.path_source_lang;
+        this.source.res.strings.forEach( (obj, idx ) => {
+          let ob = {};
+          for (let prop in obj){
+            ob['original_exp'] = this.source.res.strings[idx][source_lang].original;
+            ob['id_exp'] = this.source.res.strings[idx][source_lang].id_exp;
+            ob[prop] = this.source.res.strings[idx][prop].translations_po;
+            }
+          res.push(ob);
+        })
+        return res
+      },
     },
 
     components: {

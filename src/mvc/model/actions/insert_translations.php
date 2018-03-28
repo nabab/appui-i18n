@@ -26,6 +26,7 @@ if ( !empty($model->data['row']['id_exp'])){
         'id_exp' => $row['id_exp'],
         'lang' => $l
       ]) ){
+
         if ( $model->db->update('bbn_i18n_exp', ['expression' => $expression ], [
           'id' => $id,
 
@@ -33,9 +34,11 @@ if ( !empty($model->data['row']['id_exp'])){
           $success = true;
         }
       }
+
       //case insert
       else {
-        $success = $model->db->insert('bbn_i18n_exp', [
+
+        $success = $model->db->insert_ignore('bbn_i18n_exp', [
           'expression' => $expression,
           'id_exp' => $row['id_exp'],
           'lang' => $l,
@@ -44,6 +47,7 @@ if ( !empty($model->data['row']['id_exp'])){
       }
     }
   }
+  //$model->get_cached_model(APPUI_I18N_ROOT.'actions/find_strings', ['id_option' =>]);
 }
 return [
   'row' => $model->data['row'],
