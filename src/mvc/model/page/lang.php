@@ -15,9 +15,9 @@ if ( $lang = $model->data['lang'] ){
   $model->data['success'] = false;
 
   //source of the dropdown of source languages
-  $dropdown_langs = $model->get_model('internationalization/languages_tabs/statistic')['dropdown_langs'];
+  $dropdown_langs = $model->get_model('internationalization/page/statistic')['dropdown_langs'];
   //source of dropdown of translation languages
-  $source_dd_langs = $model->get_model('internationalization/languages_tabs/statistic')['source_dd_langs'];
+  $source_dd_langs = $model->get_model('internationalization/page/statistic')['source_dd_langs'];
 
   $lang_name = '';
   if ( !empty($lang) || !empty($source_lang) ){

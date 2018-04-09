@@ -1,6 +1,6 @@
 <div class="appui-strings-table" style="min-height: 500px">
 
-  <bbn-table source="internationalization/languages_tabs/data/glossary"
+  <bbn-table source="internationalization/page/data/glossary"
              editable="inline"
              :pageable="true"
              :sortable="true"

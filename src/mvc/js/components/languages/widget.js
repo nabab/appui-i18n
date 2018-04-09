@@ -53,12 +53,12 @@
       },
       open_strings_table(){
         //open the table of strings of this path combining new strings found in the files with strings present in db
-        //send arguments[0] (id_option of the path) to 'internationalization/languages_tabs/path_translations/'
+        //send arguments[0] (id_option of the path) to 'internationalization/page/path_translations/'
         //only if the the language of the path is set
-        //internationalization/languages_tabs/path_translations/ will return the cached_model in its data, if a
+        //internationalization/page/path_translations/ will return the cached_model in its data, if a
         // cached_model doesn't exist for this id_option it will be created
         if ( this.configured_langs !== undefined ){
-          bbn.fn.link('internationalization/languages_tabs/path_translations/' + this.id_option);
+          bbn.fn.link('internationalization/page/path_translations/' + this.id_option);
         }
         else {
           bbn.vue.closest(this, 'bbn-tab').popup().alert(bbn._('You have to configure at least a language of translation using the button') +' <i class="fa fa-flag"></i> ' + bbn._('of the widget before to open the strings table') );
@@ -112,6 +112,7 @@
                 languages: this.locale_dirs
               },
               data: {
+                language: this.language,
                 widget_idx : this.widget_idx,
                 //langs configured for the project
                 configured_langs: this.configured_langs,
@@ -134,7 +135,7 @@
         //if the source language of the path is set takes the array result from dashboard source
         let result = bbn.vue.closest(this, 'bbn-tab').getComponent().source.data[this.widget_idx].data_widget.result;
         if ( this.language && result){
-          return Object.values(result);
+          return result;
         }
         else {
           return [];
@@ -177,6 +178,12 @@
     components: {
       'appui-languages-form-locale': {
         template: '#appui-languages-form-locale',
+        mounted(){
+          //push the source language of the path in the array row.languages to have it as default language
+          if ( $.inArray(this.source.data.language, this.source.row.languages) <= -1 ){
+            this.source.row.languages.push(this.source.data.language)
+          }
+        },
         computed: {
           message(){
             return bbn._( 'If the language for which you want to create the translation file is not in this list, you have to configure it for the whole project using the form ( <i class="fa fa-cogs"></i> ) in the dashboard')
@@ -193,32 +200,27 @@
           change_languages(val, obj) {
             let dashboard = bbn.vue.closest(this, 'bbn-tab').getComponent(),
                 widgets = bbn.vue.findAll(dashboard, 'bbn-widget'),
-                this_widget = widgets[this.source.data.widget_idx].$children,
-                idx = $.inArray(obj.value, this_widget[0].locale_dirs );
+                this_widget = dashboard.source.data[this.source.data.widget_idx],
+                idx = $.inArray(obj.value, dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs );
 
-            //case check language
+            //case uncheck language
             if (idx > -1) {
-              if (this_widget[0].locale_dirs.length) {
-                bbn.fn.confirm(bbn._('Are you sure you want to delete these file\'s of translation?'), () => {
-                  let index = bbn.fn.search(this_widget[0].data_widget, 'lang', obj.value),
-                  dash_idx = bbn.fn.search(dashboard.source.data[this_widget.widget_idx].data_widget.result, 'lang', obj.value );
-                  this_widget[0].locale_dirs.splice(idx, 1);
-                  if ( this_widget[0].data_widget.length && ( dash_idx > -1) ){
-                    this_widget[0].data_widget.splice(index, 1);
-                    dashboard.source.data[this_widget.widget_idx].data_widget.result.splice(dash_idx, 1)
-                  }
-                });
-                this.$forceUpdate();
+              if (this_widget.data_widget.locale_dirs.length) {
+                if ( this_widget.data_widget.result[obj.value] !== undefined){
+                  this_widget.data_widget.locale_dirs.splice(idx, 1);
+                  delete this_widget.data_widget.result[obj.value];
+                }
               }
             }
-            //case uncheck language
+            //case check language
             else {
-              this_widget[0].locale_dirs.push(obj.value);
-              this_widget[0].data_widget.push({
+
+              dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs.push(obj.value);
+              dashboard.source.data[this.source.data.widget_idx].data_widget.result[obj.value] = {
                 lang: obj.value,
                 num_translations: 0,
                 num: 0
-              });
+              }
             }
           },
           checked_lang(l){
@@ -230,7 +232,27 @@
               return false;
             }
           },
+					success(d){
+            if ( d.success ){
+              var st = '';
+              if ( d.ex_dir.length ){
+                bbn.fn.log('ex', d.ex_dir, typeof(d.ex_dir))
+	            	d.ex_dir.forEach( (v, i) => {
+                  appui.success( bbn.fn.get_field(this.primary, 'code', v, 'text') + ' translation files successfully files deleted')
+                })
+              }
+              if ( d.new_dir.length ){
+								d.new_dir.forEach((v, i) => {
+                  bbn.fn.log('new',v)
+								  appui.success(  bbn.fn.get_field(this.primary, 'code', v, 'text') + ' translation files successfully created')
+                } )
 
+
+
+              
+              }
+            }
+          }
 
         },
         props: ['source'],

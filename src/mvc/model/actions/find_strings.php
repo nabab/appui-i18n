@@ -10,8 +10,12 @@
 /** @todo this $model should set the cached model, I need help to do it. Now the cached model is created when opening
  * strings tab*/
 //called when the button to search for new string in a path is clicked and from
-// internationalization/languages_tabs/path_translations/ to open the tab of the strings in the path
+// internationalization/page/path_translations/ to open the tab of the strings in the path
 
+
+if ( empty($model->data['language']) ){
+  $model->data['language'] = $model->inc->options->get_prop($model->data['id_option'], 'language');
+}
 
 if (
   ($id_option = $model->data['id_option']) &&
@@ -21,7 +25,6 @@ if (
   defined($parent['code']) &&
   ($source_language = $model->data['language'])
 ){
-
   //instantiate $i18n to the class appui\i18n
   $i18n = new \bbn\appui\i18n($model->db);
 
@@ -104,15 +107,15 @@ if (
 
   $model->data['success'] = true;
 
-  $ret = [
+ /* $ret = [
     'res' => array_values($res),
     'done' => $done,
     'languages' => $languages,
     'path' => $to_explore,
     'success' => $model->data['success']
-  ];
+  ];*/
 
-  $test = $model->get_cached_model(APPUI_I18N_ROOT.'actions/find_strings', ['id_option'=> $model->post['id_option'], 'data'=>$ret], 0);
+  //$test = $model->get_cached_model(APPUI_I18N_ROOT.'actions/find_strings', ['id_option'=> $model->post['id_option'], 'data'=>$ret], 0);
 
 //vorrei mettere in cache questi risultati per recuperarli quando genero il file po ma non riesco a prendere lo stesso cached model
 
@@ -120,6 +123,13 @@ if (
 //die(var_dump($test));
   //$var = $model->get_cached_model(['id_option'=> $id_option]);
 
-  return $ret;
+  return [
+    'id_option' => $id_option,
+    'res' => array_values($res),
+    'done' => $done,
+    'languages' => $languages,
+    'path' => $to_explore,
+    'success' => $model->data['success']
+  ];;
 
 }

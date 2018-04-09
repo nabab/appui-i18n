@@ -5,7 +5,7 @@
  * Date: 11/01/18
  * Time: 14.43
  */
-$ctrl->obj->url = APPUI_I18N_ROOT.'languages_tabs/history';
+$ctrl->obj->url = APPUI_I18N_ROOT.'page/history';
 $is_dev = $ctrl->inc->user->is_dev();
 
 //transfer to $model

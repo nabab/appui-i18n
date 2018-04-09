@@ -1,4 +1,4 @@
-<div >
+<div ref="widget">
   <!--if the source language of the path is set -->
   <div v-if="language">
 
@@ -28,13 +28,13 @@
       </div>
     </div>
 
-    <div v-if="data_widget.length" class="bbn-grid-fields" style="padding-top:10px">
+    <div v-if="data_widget" class="bbn-grid-fields" style="padding-top:10px">
 
       <!--<span v-else>There are no locale files of translation configured for this path, click on <i class="bbn-b fa fa-flag"></i> button</span>-->
 
 
-     <span v-if="search(data_widget, 'lang', language) > -1" > Number of strings in the source language: </span>
-      <span v-if="search(data_widget, 'lang', language) > -1"
+     <span v-if="data_widget[language]" > Number of strings in the source language: </span>
+      <span v-if="data_widget[language]"
             v-text="get_field(data_widget, 'lang', language, 'num') || 0"
             class="bbn-r"
       ></span>
@@ -42,7 +42,7 @@
 
       <div v-for="(w, i) in data_widget"  class="bbn-grid-full">
 
-        <span v-text="get_field(primary, 'code', w.lang, 'text')"
+        <span v-text="get_field(primary, 'code', i, 'text')"
               class="bbn-b bbn-i"
         ></span>
         <span v-text="(w.num_translations > 0 ) ? ( w.num_translations + ' / '+ w.num ) : ( '0' + ' / '+ w.num) "></span>

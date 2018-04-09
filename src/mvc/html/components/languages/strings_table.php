@@ -17,16 +17,19 @@
                :toolbar="[{
                          command: remake_cache,
                          icon: 'fa fa-retweet',
+                         text: '<?=addslashes(_('Update table'))?>',
                          title: '<?=addslashes(_('Update table'))?>',
                          class:'bbn-l'
                          }, {
                          command: generate,
                          icon: 'fa fa-exchange',
-                         title: '<?=addslashes(_('Update translations\' files'))?>',
+                         text: '<?=addslashes(_('Force translation files update'))?>',
+                         title: '<?=addslashes(_('Force translation files update'))?>',
                          class:'bbn-l'
                          }, {
                          command: find_strings,
                          icon: 'fa fa-search',
+                         text: '<?=addslashes(_('Check into the files for new strings'))?>',
                          title: '<?=addslashes(_('Check into the files for new strings'))?>',
                          class:'bbn-l'
                          }]"

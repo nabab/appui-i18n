@@ -9,13 +9,13 @@
 
 use Gettext\Translations;
 //get the array projects
-$projects = $model->get_model(APPUI_I18N_ROOT.'languages_tabs')['projects'];
+$projects = $model->get_model(APPUI_I18N_ROOT.'page')['projects'];
 $success = false;
 $result = [];
 $timer = new \bbn\util\timer();
 $timer->start();
 
-//the cached model will be created only if the source language of the path is defined
+//the cached model will be created only if the property language of the path is defined
 if (
   ($id_option = $model->data['id_option']) &&
   ($o = $model->inc->options->option($id_option)) &&
@@ -27,11 +27,11 @@ if (
   $domain = $o['text'];
 
   $to_explore = constant($parent['code']).$o['code'];
-  //take locale dirs
+  //takes locale dirs
   $locale_dir = dirname($to_explore).'/locale';
 
   $dirs = scandir($locale_dir, 1);
-  //create the array $languages basing on locale dirs in the path
+  //creates the array $languages basing on locale dirs in the path
   $languages = array_map(function($a){
     return basename($a);
   }, \bbn\file\dir::get_dirs($locale_dir)) ?: [];
@@ -44,10 +44,7 @@ if (
   $id_project = $translation->get_id_project($id_option, $projects);
 
 
-  //instantiate the class appui\project
-  $project = new \bbn\appui\project($model->db, $id_project);
-  /**@var (string) the source lang of the project*/
-  $project_lang = $project->get_lang();
+
 
   //$r is the string, $val is the array of files in which this string is contained
   $i = 0;

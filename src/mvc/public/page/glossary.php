@@ -11,7 +11,7 @@ if( !empty($ctrl->arguments[0]) && !empty($ctrl->arguments[1]) ){
   $ctrl->data['source_lang'] = $ctrl->arguments[0];
 
   $ctrl->obj->url = APPUI_I18N_ROOT.'languages/glossary/'.$ctrl->arguments[0].$ctrl->arguments[1];
-  $primary = $ctrl->get_model('internationalization/languages_tabs')['primary'];
+  $primary = $ctrl->get_model('internationalization/page')['primary'];
 
   foreach ( $primary as $p => $val ){
     if  ($primary[$p]['code'] === $ctrl->arguments[1]){

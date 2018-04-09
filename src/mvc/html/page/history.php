@@ -1,66 +1,68 @@
-<div class="bbn-flex-width">
+<div class="bbn-flex-width" v-if="source.is_dev">
 
-  <bbn-table source="internationalization/languages_tabs/data/user_history"
+  <bbn-table source="internationalization/page/data/history"
+             :info="true"
              :sortable="true"
              :pageable="true"
              :filterable="true"
              :multifilter="true"
              :limit="25"
              editable="inline"
-             ref="user_history"
+             ref="history"
              :order="[{field: 'last_modification', dir: 'DESC'}]"
-             :pagination="true"
+             :toolbar="$options.components['toolbar']"
              @change="insert_translation"
   >
+    <bbn-column field="last_modification"
+                title="<?=_('Date')?>"
+                type="date"
+                ftitle="<?=_('Date of last modification')?>"
+                :editable="false"
+                width="8%"
+    ></bbn-column>
+
+    <bbn-column field="user"
+                title="<?=_('User')?>"
+                ftitle="<?=_('Translator\'s name')?>"
+                :editable="false"
+                width="12%"
+    ></bbn-column>
 
     <bbn-column field="original_exp"
                 title="<?=_('Original Expression')?>"
                 ftitle="<?=_('Expression in the source language')?>"
-                cls="bbn-i"
                 :editable="false"
+                cls="bbn-i"
     ></bbn-column>
 
     <bbn-column field="original_lang"
                 title="<?=_('Source Language')?>"
                 ftitle="<?=_('The source language of the expression')?>"
                 width="50"
+                :editable="false"
                 :render="render_original_lang"
                 cls="bbn-c"
-                :editable="false"
     ></bbn-column>
 
     <bbn-column field="expression"
                 title="<?=_('Translation')?>"
-                ftitle="<?=_('The expression you translated')?>"
-                :editable="true"
+                ftitle="<?=_('The expression translated by the user')?>"
     ></bbn-column>
 
-    <bbn-column field="lang"
+
+    <bbn-column field="translation_lang"
                 title="<?=_('Language')?>"
-                ftitle="<?=_('The language of your translation')?>"
+                ftitle="<?=_('The language of translation')?>"
                 width="50"
                 :render="render_lang"
                 cls="bbn-c"
                 :editable="false"
     ></bbn-column>
 
-    <bbn-column field="last_modification"
-                title="<?=_('Last modification')?>"
-                ftitle="<?=_('Date of last modification')?>"
-                type="date"
-                :editable="false"
-    ></bbn-column>
-
-    <bbn-column field="operation"
-                title=" "
-                :editable="false"
-                width="80"
-                cls="bbn-c"
-    ></bbn-column>
-
     <bbn-column ftitle="<?=_('Status')?>"
                 :render="render_status"
                 width="40"
+                cls="bbn-c"
     ></bbn-column>
 
   </bbn-table>

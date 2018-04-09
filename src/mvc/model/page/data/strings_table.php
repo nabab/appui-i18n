@@ -10,7 +10,7 @@ use Gettext\Translations;
 $timer = new \bbn\util\timer();
 $timer->start();
 
-$projects = $model->get_model(APPUI_I18N_ROOT.'languages_tabs')['projects'];
+$projects = $model->get_model(APPUI_I18N_ROOT.'page')['projects'];
 
 
 if ( !empty( $id_option = $model->data['id_option']) &&
@@ -28,17 +28,25 @@ if ( !empty( $id_option = $model->data['id_option']) &&
   $locale_dir = dirname($to_explore).'/locale';
 
 
-  $languages = [];
+  $languages = array_map(function($a){
+    return basename($a);
+  }, \bbn\file\dir::get_dirs($locale_dir)) ?: [];
+
 
   /** @var  $languages array of dirs name in locale folder*/
-  $languages = $model->get_cached_model(APPUI_I18N_ROOT.'languages_tabs/data/widgets', ['id_option' => $id_option])['locale_dirs'];
+  $widget = $model->get_cached_model(APPUI_I18N_ROOT.'page/data/widgets', ['id_option' => $id_option ], true);
+
+  //$languages = $widget['locale_dirs'];
+//die(var_dump($widget, $languages));
 
 
   /** @var  $translation instantiate the class appui\i18n*/
   $translation = new \bbn\appui\i18n($model->db);
-  /** @var  $expressions found in the path*/
+  /** @var  OLD $expressions found in the path*/
+  //$expressions = $translation->analyze_folder($to_explore, true);
 
-  $expressions = $translation->analyze_folder($to_explore, true);
+  //gets the strings from the action find_strings
+//  $expressions = $model->get_model(APPUI_I18N_ROOT.'actions/find_strings', ['id_option' => $id_option, 'language' => $path_source_lang])['res'];
   $new = 0;
 
   //$r is the string, $val is the array of files in which this string is contained
@@ -52,6 +60,7 @@ if ( !empty( $id_option = $model->data['id_option']) &&
       $po = $locale_dir.'/'.$lng.'/LC_MESSAGES/'.$o['text'].'.po';
       $mo = $locale_dir.'/'.$lng.'/LC_MESSAGES/'.$o['text'].'.mo';
       if (file_exists($po)){
+        $success = true;
         $translations = Gettext\Translations::fromPoFile($po);
 
         foreach ($translations as $i => $t ){
@@ -72,9 +81,9 @@ if ( !empty( $id_option = $model->data['id_option']) &&
         }
       }
     }
-    $strings = [];
 
-    //die(var_dump(array_values($po_file), $languages));
+
+
   }
 
   return [
@@ -84,11 +93,9 @@ if ( !empty( $id_option = $model->data['id_option']) &&
     'success' => $success,
     'new' => $new,
     'languages' => $languages,
-    'total' => count($res),
+    'total' => count(array_values($po_file)),
     'strings' => array_values($po_file),
     'id_option' => $model->data['id_option'],
     'time' => $timer->measure()
   ];
 }
-
-

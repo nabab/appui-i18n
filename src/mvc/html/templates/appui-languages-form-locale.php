@@ -1,8 +1,10 @@
 <bbn-form class="bbn-full-screen"
           :source="source.row"
           ref="form-locale"
-          action="internationalization/actions/generate_locale_folder"
+          action="internationalization/actions/generate"
           confirm-leave="<?=_("Are you sure you want to exit without saving changes?")?>"
+          :prefilled="true"
+          @success="success"
 >
 
   <div class="bbn-grid-fields">
@@ -19,6 +21,8 @@
         <bbn-checkbox :value="get_field(primary, 'id', l, 'code')"
                       :checked="checked_lang(l)"
                       @change="change_languages"
+                      :disabled="get_field(primary, 'id', l, 'code') === source.data.language"
+                      :title="get_field(primary, 'id', l, 'code') === source.data.language ? 'You cannot delete translation file in source language before to reset \'Source language of this path:\' from the widget' : 'Select to create or delete a translation file' "
         ></bbn-checkbox>
         <label v-text="get_field(primary, 'id', l, 'text')"></label>
 

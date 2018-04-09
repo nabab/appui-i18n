@@ -3,6 +3,7 @@
           ref="form"
           action="internationalization/actions/languages_form"
           confirm-leave="<?=_("Are you sure you want to exit without saving changes?")?>"
+          :prefilled="true"
 >
   <div class="bbn-grid-fields bbn-full-screen">
 

@@ -49,11 +49,11 @@
         methods: {
           open_strings_table(row){
             //open the table of strings of this path combining new strings found in the files with strings present in db
-            //send arguments[0] (id_option of the path) to 'internationalization/languages_tabs/path_translations/'
+            //send arguments[0] (id_option of the path) to 'internationalization/page/path_translations/'
             this.id_option = row.id_option;
-            //internationalization/languages_tabs/path_translations/ will return the cached_model in its data, if a
+            //internationalization/page/path_translations/ will return the cached_model in its data, if a
             // cached_model doesn't exist for this id_option it will be created
-            bbn.fn.link('internationalization/languages_tabs/path_translations/' + row.id_option);
+            bbn.fn.link('internationalization/page/path_translations/' + row.id_option);
           },
           find_new_strings(row){
             //check in the path for new strings

@@ -17,11 +17,11 @@
                 icon: 'fa fa-retweet',
                 action: 'remake_cache'
               },{
-                text: bbn._('Configure locale folder of translation\'s files for this path'),
+                text: bbn._('Create and delete files of translation'),
                 icon: 'fa fa-flag',
                 action: 'config_locale_dir'
               },{
-                text: bbn._('Open the strings table of this path'),
+                text: bbn._('Open the table of strings of this path'),
                 icon: 'fa fa-book',
                 action: 'open_strings_table'
               }]
@@ -48,7 +48,7 @@
     methods: {
       //open the table of projects
       link_projects_table(){
-        bbn.fn.link(this.source.root + 'languages_tabs/home');
+        bbn.fn.link(this.source.root + 'page/home');
       },
       cfg_project_languages(){
 
@@ -73,7 +73,7 @@
       load_widgets(){
         if ( this.id_project ){
           this.source.data = [];
-            bbn.fn.post('internationalization/languages_tabs/dashboard', { id_project: this.id_project }, (d) => {
+            bbn.fn.post('internationalization/page/dashboard', { id_project: this.id_project }, (d) => {
           if ( d.data.success ){
               this.source.data = d.data.data;
               this.source.configured_langs = d.data.configured_langs;

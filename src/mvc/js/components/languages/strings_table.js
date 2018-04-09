@@ -6,9 +6,6 @@
         column_length: true
       }
     },
-    mounted(){
-      bbn.fn.log(JSON.stringify(this.source.res.strings))
-    },
     methods: {
       find_strings(){
         bbn.fn.post(this.source.root + 'actions/find_strings', {
@@ -23,22 +20,22 @@
               appui.warning('No new strings')
             }
           }
-        } )
+        } );
       },
-
       generate(){
         if ( this.source.res.languages.length ){
-          bbn.fn.post(this.source.root + 'actions/generate', {id: this.source.id_option}, (d) => {
+          bbn.fn.post(this.source.root + 'actions/generate', {id_option: this.source.id_option, languages: this.source.res.languages}, (d) => {
             if ( d.success ){
               d.languages = d.languages.map( (v) => {
                 return bbn.fn.get_field(this.primary, 'code', v, 'text');
               })
               appui.success('Files of translation successfully updated for '+ d.languages.join(' and ') );
+              this.remake_cache();
             }
-          })
+          });
         }
         else {
-           bbn.fn.alert('You have to configure at least a language using the button <i class="fa fa-flag"></i> of the widget in the dashboard')
+          bbn.fn.alert('You have to configure at least a language using the button <i class="fa fa-flag"></i> of the widget in the dashboard')
         }
       },
       buttons(){
@@ -52,8 +49,8 @@
       },
       delete_expression(row){
         let id_exp = row.id_exp,
-            data = this.source.res.strings,
-            idx = bbn.fn.search(data, { id_exp: id_exp });
+          data = this.mapData,
+          idx = bbn.fn.search(data, { id_exp: id_exp });
         bbn.fn.confirm('Did you remove the expression from code before to delete the row?', () => {
           bbn.fn.post(this.source.root + 'actions/delete_expression', { id_exp: row.id_exp, exp: row.original_exp },  (d) => {
             if ( d.success ){
@@ -72,15 +69,20 @@
           row: row,
           langs: this.source.res.languages,
           id_option: this.source.id_option
-          }, (d) => {
+        }, (d) => {
           if (d.success){
             appui.success('Translation saved');
             row = d.row;
             let table = bbn.vue.find(this, 'bbn-table');
-            this.source.res.strings[idx] = d.row
-            //table.currentData[idx] = d.row;
+            //wanted to update the widget from the table
+              /*tab = bbn.vue.closest(this, 'bbn-tab'),
+              tabnav = bbn.vue.closest(tab, 'bbn-tabnav'),
+              dashboard = bbn.vue.find(tabnav, 'bbn-dashboard'),
+              widgets = bbn.vue.findAll(dashboard, 'bbn-widget')
+            ;*/
+            this.mapData[idx] = d.row
             table.updateData();
-            //this.remake_cache();
+
           }
           else{
             appui.error('An error occurred while saving translation');
@@ -91,10 +93,14 @@
         // look for new strings/translations/ remakes the model in cache
         //column_length just used on a v-if of the table to remake the table if data changes
         this.column_length = false;
-        bbn.fn.post('internationalization/actions/reload_table_cache', { id_option: this.source.id_option }, (d) => {
+        bbn.fn.post('internationalization/actions/reload_table_cache', {
+          id_option: this.source.id_option
+        }, (d) => {
           if ( d.success ){
             let diff = ( d.res.total - this.source.res.total );
             this.source.res.languages = d.res.languages;
+            this.source.res.strings = d.res.strings;
+            bbn.vue.find(this, 'bbn-table').updateData();
             if ( diff > 0 ){
               appui.warning(diff + ' new string(s) found in ' + this.source.res.path);
               this.source.res.strings = d.res.strings;
@@ -120,15 +126,32 @@
     computed: {
       columns(){
         let r = [],
-            i = 0,
-            def = null;
-    	  var field = '';
+          i = 0,
+          def = null;
+        var field = '',
+          vm = this;
         for ( let n in this.source.res.languages ){
           r.push({
             field: this.source.res.languages[n],
             title:  ( this.source.res.languages[n] === this.source.res.path_source_lang) ? (bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text') + '  <i class="fa fa-asterisk" title="This is the original language of the expression"></i>') : bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text'),
             //fixed: n === this.source.source_lang,
             editable: true,
+            render(row){
+              var idx = bbn.fn.search(vm.translations_db, 'id_exp', row.id_exp ),
+                translation_db = vm.translations_db[idx][this.field];
+              //why this is the column??
+              if ( ( translation_db !== false ) && ( translation_db === row[this.field] ) ){
+                return row[this.field] + '<i class="fa fa-check bbn-large bbn-green" title="Expression found in translation file" style="float:right"><i/>'
+              }
+              else if ( ( row[this.field] !== "" ) && ( translation_db !== row[this.field] ) ){
+                return row[this.field] + '<i style="float:right" class="fa fa-thumbs-up bbn-large bbn-green" title="Translation files updated"><i/>'
+              }
+              else {
+                return row[this.field]
+              }
+
+            }
+            //render: this.render_columns();
             //render: this.render_columns
           });
           if ( n === this.source.res.source_lang ){
@@ -171,13 +194,12 @@
             ob['original_exp'] = this.source.res.strings[idx][source_lang].original;
             ob['id_exp'] = this.source.res.strings[idx][source_lang].id_exp;
             ob[prop] = this.source.res.strings[idx][prop].translations_po;
-            }
+          }
           res.push(ob);
         })
         return res
-      },
+      }
     },
-
     components: {
       'file_linker': {
         methods: {
@@ -199,7 +221,7 @@
 
         template:
         '<ul style="width:100%; list-style-type:none; padding-left:0">' +
-         '<li class="bbn-vspadded bbn-grid-fields" :source="source" v-for="s in source.path">' +
+        '<li class="bbn-vspadded bbn-grid-fields" :source="source" v-for="s in source.path">' +
         '<span class="bbn-lg">File:</span>' +
         '<a v-text="s" @click="link_ide(s)" style="width:100%;cursor:pointer" title="Open the file in i.d.e"></a>' +
         ' </li>' +

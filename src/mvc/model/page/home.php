@@ -6,6 +6,6 @@
  * Time: 14.56
  */
 
-$data = $model->get_model(APPUI_I18N_ROOT.'languages_tabs');
+$data = $model->get_model(APPUI_I18N_ROOT.'page');
 
 return $data;

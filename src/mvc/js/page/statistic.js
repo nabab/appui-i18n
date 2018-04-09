@@ -65,7 +65,7 @@
       //v-model of the first dropdown
       source_lang(val){
         if ( val ){
-          bbn.fn.post('internationalization/languages_tabs/lang', {
+          bbn.fn.post('internationalization/page/lang', {
             'source_lang': val,
             'lang' : this.search_for_lang
           }, (d) => {

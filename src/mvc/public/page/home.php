@@ -7,5 +7,5 @@
  */
 
 
-$ctrl->obj->url = APPUI_I18N_ROOT.'languages_tabs/home';
+$ctrl->obj->url = APPUI_I18N_ROOT.'page/home';
 $ctrl->combo('<i class="fa fa-table"></i>Projects table', true);

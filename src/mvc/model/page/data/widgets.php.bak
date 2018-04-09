@@ -9,7 +9,7 @@
 
 
 
-$projects = $model->get_model(APPUI_I18N_ROOT.'languages_tabs')['projects'];
+$projects = $model->get_model(APPUI_I18N_ROOT.'page')['projects'];
 
 if ( !empty( $id_option = $model->data['id_option']) &&
   ($o = $model->inc->options->option($id_option)) &&

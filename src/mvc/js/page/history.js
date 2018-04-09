@@ -125,12 +125,12 @@
 
           },
           open_user_history(){
-            bbn.fn.link('internationalization/languages_tabs/user_history');
+            bbn.fn.link('internationalization/page/user_history');
           },
 
           //for a button statistic list in the toolbar of history
           /*open_statistic_list(){
-            bbn.fn.link('internationalization/languages_tabs/statistic');
+            bbn.fn.link('internationalization/page/statistic');
           },*/
         },
       },
@@ -140,7 +140,7 @@
         props:['source'],
         methods: {
           link(){
-            bbn.fn.link('internationalization/languages_tabs/glossary/' + this.source.source_lang + '/' + this.source.translation_lang);
+            bbn.fn.link('internationalization/page/glossary/' + this.source.source_lang + '/' + this.source.translation_lang);
             bbn.vue.closest(this, 'bbn-popup').close();
           },
           cancel(){
