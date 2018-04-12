@@ -1,27 +1,17 @@
 (() => {
+  var this_tab;
   return {
+    created(){
+      this_tab = this;
+    },
     data(){
       return {
         primary: this.languages.source.primary,
-        column_length: true
+        column_length: true,
       }
     },
+
     methods: {
-      find_strings(){
-        bbn.fn.post(this.source.root + 'actions/find_strings', {
-          id_option: this.source.id_option,
-          language: this.source.res.path_source_lang
-        }, (d) => {
-          if ( d.success ){
-            if ( d.done > 0 ){
-              appui.success(d.done + ' new strings found')
-            }
-            else {
-              appui.warning('No new strings')
-            }
-          }
-        } );
-      },
       generate(){
         if ( this.source.res.languages.length ){
           bbn.fn.post(this.source.root + 'actions/generate', {id_option: this.source.id_option, languages: this.source.res.languages}, (d) => {
@@ -37,6 +27,21 @@
         else {
           bbn.fn.alert('You have to configure at least a language using the button <i class="fa fa-flag"></i> of the widget in the dashboard')
         }
+      },
+      find_strings(){
+        bbn.fn.post(this.source.root + 'actions/find_strings', {
+          id_option: this.source.id_option,
+          language: this.source.res.path_source_lang
+        }, (d) => {
+          if ( d.success ){
+            if ( d.done > 0 ){
+              appui.success(d.done + ' new strings found')
+            }
+            else {
+              appui.warning('No new strings found')
+            }
+          }
+        } );
       },
       buttons(){
         let res = [];
@@ -200,7 +205,46 @@
         return res
       }
     },
-    components: {
+
+    components:{
+      'toolbar-strings-table': {
+        template:'#toolbar-strings-table',
+        props: ['source'],
+        data(){
+          return {
+            hide_source_language: false
+          }
+        },
+        methods: {
+          //this_tab is a var declared at created of the tab
+          generate(){
+            return this_tab.generate();
+          },
+          find_strings(){
+            return this_tab.find_strings();
+          },
+          remake_cache(){
+            return this_tab.remake_cache();
+          }
+        },
+        watch: {
+          hide_source_language(val, oldVal){
+            //get the index of the column of source language
+            var idx = bbn.fn.search(this_tab.columns, 'field', this_tab.source.res.path_source_lang);
+            bbn.fn.log(idx);
+            if ( ( val === true ) && ( idx > -1) ){
+              this_tab.columns[idx].hidden = true;
+              this_tab.$forceUpdate()
+              bbn.fn.log(this_tab.columns)
+            }
+            else if (( val === false )){
+              this_tab.columns[idx].hidden = false;
+              this_tab.$forceUpdate()
+            }
+          }
+        },
+
+      },
       'file_linker': {
         methods: {
           link_ide(path){

@@ -6,7 +6,7 @@
         var res = [];
         if (this.source.data){
           this.source.data.forEach( (v, i) => {
-            var disabled =
+
             res.push({
               title: v.text,
               key: v.id,
@@ -23,7 +23,8 @@
               },{
                 text: bbn._('Open the table of strings of this path'),
                 icon: 'fa fa-book',
-                action: 'open_strings_table'
+                action: 'open_strings_table',
+
               }]
             })
           })

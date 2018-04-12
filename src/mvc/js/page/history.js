@@ -100,7 +100,7 @@
         template:'#toolbar',
         props:['source'],
         data(){
-          return{
+          return {
             langs: bbn.vue.closest(this, 'bbn-tabnav').$parent.source.langs_in_db,
             primary: bbn.vue.closest(this, 'bbn-tab').getComponent().primary
           }

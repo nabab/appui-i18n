@@ -46,7 +46,7 @@ if ( !empty($model->data['row']['id_exp'])){
   }
   $model->get_cached_model(APPUI_I18N_ROOT.'actions/find_strings', ['id_option'=> $model->data['id_option']], true);
 	$model->get_cached_model(APPUI_I18N_ROOT.'page/data/widgets', ['id_option'=> $model->data['id_option']], true);
-  $model->get_cached_model(APPUI_I18N_ROOT.'page/data/strings_table', ['id_option' => $ctrl->data['id_option']], true);
+  $model->get_cached_model(APPUI_I18N_ROOT.'page/data/strings_table', ['id_option' => $model->data['id_option']], true);
   $model->get_model(APPUI_I18N_ROOT.'actions/generate', ['id_option' => $model->data['id_option']]);
 }
 return [

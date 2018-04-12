@@ -1,5 +1,9 @@
 (() => {
+  var current_widget;
   return {
+    created(){
+      current_widget = this;
+    },
     props: ['source'],
     name: 'widget',
     data(){
@@ -31,7 +35,7 @@
             this.$nextTick( () => {
               bbn.vue.closest(this, 'bbn-tab').getComponent().source.data[this.widget_idx].data_widget = d.data_widget;
 
-              appui.confirm(bbn._('Source language updated'));
+              appui.success(bbn._('Source language updated'));
               this.$forceUpdate();
             });
 
@@ -47,7 +51,7 @@
         }, (d) => {
           if ( d.success ){
             this.language = null
-            appui.confirm(bbn._('Source language resetted'));
+            appui.success(bbn._('Source language resetted'));
           }
         })
       },
@@ -127,8 +131,21 @@
       },
     },
     computed: {
+      //no strings in the path
+      no_strings(){
+        if ( this.data_widget && this.data_widget[this.language] ){
+          if (this.data_widget[this.language].num > 0 ){
+            return false;
+          }
+          else {
+            return true;
+          }
+        }
+      },
       widget_idx(){
-        return bbn.vue.closest(this, 'bbn-widget').index
+        //return the real index of this widget in the array of data of dashboard it works also after drag and drop
+        let data = bbn.vue.closest(this, 'bbn-tab').getComponent().source.data;
+        return bbn.fn.search(data, 'id', this.id_option);
       },
       //used to render the widget, language of locale folder
       data_widget(){
@@ -185,6 +202,9 @@
           }
         },
         computed: {
+          widget(){
+            return current_widget;
+          },
           message(){
             return bbn._( 'If the language for which you want to create the translation file is not in this list, you have to configure it for the whole project using the form ( <i class="fa fa-cogs"></i> ) in the dashboard')
           },
@@ -202,7 +222,10 @@
                 widgets = bbn.vue.findAll(dashboard, 'bbn-widget'),
                 this_widget = dashboard.source.data[this.source.data.widget_idx],
                 idx = $.inArray(obj.value, dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs );
-
+            //if I want source language in locale dir as default can create error if the po file doesn't exists//
+            /*if ( $.inArray(this.source.data.language, dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs ) < 0 ){
+              dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs.push(this.source.data.language);
+            }*/
             //case uncheck language
             if (idx > -1) {
               if (this_widget.data_widget.locale_dirs.length) {
@@ -214,7 +237,6 @@
             }
             //case check language
             else {
-
               dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs.push(obj.value);
               dashboard.source.data[this.source.data.widget_idx].data_widget.result[obj.value] = {
                 lang: obj.value,
@@ -232,25 +254,26 @@
               return false;
             }
           },
-					success(d){
+          success(d){
             if ( d.success ){
               var st = '';
               if ( d.ex_dir.length ){
                 bbn.fn.log('ex', d.ex_dir, typeof(d.ex_dir))
-	            	d.ex_dir.forEach( (v, i) => {
+                d.ex_dir.forEach( (v, i) => {
+                  this.widget.remake_cache();
                   appui.success( bbn.fn.get_field(this.primary, 'code', v, 'text') + ' translation files successfully files deleted')
-                })
+                });
+
               }
-              if ( d.new_dir.length ){
-								d.new_dir.forEach((v, i) => {
-                  bbn.fn.log('new',v)
-								  appui.success(  bbn.fn.get_field(this.primary, 'code', v, 'text') + ' translation files successfully created')
+              if ( d.new_dir.length){
+                d.new_dir.forEach((v, i) => {
+                  //this.widget.remake_cache();
+                  appui.success(  bbn.fn.get_field(this.primary, 'code', v, 'text') + ' translation files successfully created')
                 } )
-
-
-
-              
               }
+            }
+            else if (d.no_strings === true){
+              appui.warning(bbn._("There are no strings in this path"))
             }
           }
 

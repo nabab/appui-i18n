@@ -5,7 +5,13 @@
                 title="Path"
                 ftitle="<?=_('All different paths of this project')?>"
                 ref="paths_table"
-                width="90%"
+                width="80%"
+    ></bbn-column>
+
+    <bbn-column field="language"
+                title="<?=_('Language')?>"
+                ftitle="<?=_('Original language of the path')?>"
+                width="10%"
     ></bbn-column>
 
     <bbn-column field="code"

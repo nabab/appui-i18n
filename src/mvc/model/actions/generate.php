@@ -22,16 +22,15 @@ if (
   //take the source lang of id_option
 
   $model->data['language'] = $model->inc->options->get_prop($model->data['id_option'], 'language');
-
+  $data = $model->get_cached_model(APPUI_I18N_ROOT.'actions/find_strings', ['id_option'=> $model->data['id_option'], 'language'=> $model->data['language']], true);
   //takes the cached_model of strings_table for this path, the third argument of get_cached_model is true to remake the cache
-  if ( $data = $model->get_cached_model(APPUI_I18N_ROOT.'actions/find_strings', ['id_option'=> $model->data['id_option'], 'language'=> $model->data['language']], true) ){
+  if ( !empty($data['res'] )){
 
     //case generate from table
     if ( !isset($model->data['languages']) ){
       $languages = array_map(function($a){
         return basename($a);
       }, \bbn\file\dir::get_dirs($locale_dir)) ?: [];
-      ;
     }
     else {
       //case generate from widget
@@ -44,7 +43,7 @@ if (
           array_splice($languages, $idx);
           $dir = $locale_dir . '/' . $ex;
           \bbn\file\dir::delete($dir);
-         }
+        }
       }
       $new_dir = [];
       if ( !empty($new_dir = array_diff($languages, $old_langs ) ) ){
@@ -122,8 +121,12 @@ if (
 
     $success = true;
   }
+  else {
+    $no_strings = true;
+  }
 
   return [
+    'no_strings' => $no_strings,
     'new_dir' => array_values($new_dir),
     'ex_dir'=> array_values($ex_dir),
     'path' => $to_explore,
