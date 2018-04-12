@@ -12,7 +12,6 @@ $timer->start();
 
 $projects = $model->get_model(APPUI_I18N_ROOT.'page')['projects'];
 
-
 if ( !empty( $id_option = $model->data['id_option']) &&
   ($o = $model->inc->options->option($id_option)) &&
   ($parent = $model->inc->options->parent($id_option)) &&
@@ -36,10 +35,6 @@ if ( !empty( $id_option = $model->data['id_option']) &&
   /** @var  $languages array of dirs name in locale folder*/
   $widget = $model->get_cached_model(APPUI_I18N_ROOT.'page/data/widgets', ['id_option' => $id_option ], true);
 
-  //$languages = $widget['locale_dirs'];
-//die(var_dump($widget, $languages));
-
-
   /** @var  $translation instantiate the class appui\i18n*/
   $translation = new \bbn\appui\i18n($model->db);
   /** @var  OLD $expressions found in the path*/
@@ -52,6 +47,10 @@ if ( !empty( $id_option = $model->data['id_option']) &&
   //$r is the string, $val is the array of files in which this string is contained
   $i = 0;
   $res = [];
+
+  $path = $model->plugin_path('appui-ide');
+  $model->register_plugin_classes($path);
+  $ide = new \appui\ide($model->inc->options, $model->data['routes'], $model->inc->pref);
 
   if ( !empty($languages) ){
     $po_file = [];
@@ -76,7 +75,11 @@ if ( !empty( $id_option = $model->data['id_option']) &&
 
             $po_file[$i][$lng]['translations_db'] = $model->db->select_one('bbn_i18n_exp', 'expression', ['id_exp' => $id, 'lang' => $lng]);
             $po_file[$i][$lng]['id_exp'] = $id;
-
+            //gets the paths in which the original string was found
+            $paths = $t->getReferences();
+            foreach ( $paths as $p ){
+              $po_file[$i][$lng]['paths'][] = $ide->real_to_url($p[0]);
+            }
           };
         }
       }

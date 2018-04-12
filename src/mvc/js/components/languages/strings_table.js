@@ -196,6 +196,11 @@
         this.source.res.strings.forEach( (obj, idx ) => {
           let ob = {};
           for (let prop in obj){
+            //ob['paths'] = this.source.res.strings[idx][source_lang].paths;
+            //takes the path of the string from file po
+
+
+            ob['path'] = this.source.res.strings[idx][source_lang].paths;
             ob['original_exp'] = this.source.res.strings[idx][source_lang].original;
             ob['id_exp'] = this.source.res.strings[idx][source_lang].id_exp;
             ob[prop] = this.source.res.strings[idx][prop].translations_po;
@@ -259,6 +264,7 @@
             else{
               st += ext;
             }
+
             bbn.fn.link(st)
           }
         },
