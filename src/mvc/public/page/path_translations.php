@@ -9,7 +9,7 @@
  */
 
 if ( !empty($ctrl->arguments[0]) ){
-  //add id_option to data
+  /** add id_option to data and routes needed to instantiate the class ide */
   $ctrl->add_data([
     'id_option' => $ctrl->arguments[0],
     'routes' => $ctrl->get_routes()

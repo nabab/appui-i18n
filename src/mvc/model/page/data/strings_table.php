@@ -9,7 +9,7 @@ use Gettext\Translations;
 
 $timer = new \bbn\util\timer();
 $timer->start();
-
+/** @var (array) $projects from db*/
 $projects = $model->get_model(APPUI_I18N_ROOT.'page')['projects'];
 
 if ( !empty( $id_option = $model->data['id_option']) &&
@@ -37,17 +37,15 @@ if ( !empty( $id_option = $model->data['id_option']) &&
 
   /** @var  $translation instantiate the class appui\i18n*/
   $translation = new \bbn\appui\i18n($model->db);
-  /** @var  OLD $expressions found in the path*/
-  //$expressions = $translation->analyze_folder($to_explore, true);
 
-  //gets the strings from the action find_strings
-//  $expressions = $model->get_model(APPUI_I18N_ROOT.'actions/find_strings', ['id_option' => $id_option, 'language' => $path_source_lang])['res'];
+
   $new = 0;
 
-  //$r is the string, $val is the array of files in which this string is contained
+
   $i = 0;
   $res = [];
 
+  /** operation to instantiate the class ide */
   $path = $model->plugin_path('appui-ide');
   $model->register_plugin_classes($path);
   $ide = new \appui\ide($model->inc->options, $model->data['routes'], $model->inc->pref);
@@ -55,38 +53,43 @@ if ( !empty( $id_option = $model->data['id_option']) &&
   if ( !empty($languages) ){
     $po_file = [];
     foreach ( $languages as $lng ){
-      //create a property indexed to the code of $lng containing the string $r from 'bbn_i18n_exp' in this $lng
+      /** the path of po and mo files */
       $po = $locale_dir.'/'.$lng.'/LC_MESSAGES/'.$o['text'].'.po';
       $mo = $locale_dir.'/'.$lng.'/LC_MESSAGES/'.$o['text'].'.mo';
+      /** if the file po exist takes its content */
       if (file_exists($po)){
         $success = true;
         $translations = Gettext\Translations::fromPoFile($po);
 
         foreach ($translations as $i => $t ){
+          /** @var  $original the original expression */
           $original = $t->getOriginal();
           $po_file[$i][$lng]['original'] = $original;
+          /** the translation of the string found in the po file */
           $po_file[$i][$lng]['translations_po'] = $t->getTranslation();
+          /** @var  $id takes the id of the original expression in db */
           if ( $id = $model->db->select_one('bbn_i18n',
             'id',
             [
               'exp' => $original,
               'lang' => $path_source_lang
             ]) ){
-
+            /** the translation of the string found in db */
             $po_file[$i][$lng]['translations_db'] = $model->db->select_one('bbn_i18n_exp', 'expression', ['id_exp' => $id, 'lang' => $lng]);
+            /** the id of the string */
             $po_file[$i][$lng]['id_exp'] = $id;
-            //gets the paths in which the original string was found
+            /** @var (array) takes $paths of files in which the string was found from the file po */
             $paths = $t->getReferences();
+            /** get the url to use it for the link to ide from the table */
             foreach ( $paths as $p ){
               $po_file[$i][$lng]['paths'][] = $ide->real_to_url($p[0]);
             }
+            /** the number of times the strings is found in the files of the path  */
+            $po_file[$i][$lng]['occurrence'] = count($po_file[$i][$path_source_lang]['paths']);
           };
         }
       }
     }
-
-
-
   }
 
   return [

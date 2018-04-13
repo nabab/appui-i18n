@@ -19,7 +19,7 @@
               },{
                 text: bbn._('Create and delete files of translation'),
                 icon: 'fa fa-flag',
-                action: 'config_locale_dir'
+                action: 'generate'
               },{
                 text: bbn._('Open the table of strings of this path'),
                 icon: 'fa fa-book',

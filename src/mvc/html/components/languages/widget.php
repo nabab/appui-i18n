@@ -1,4 +1,4 @@
-<div ref="widget">
+<div ref="widget" :key="id_option">
   <!--if the source language of the path is set -->
   <div v-if="language">
 
@@ -17,11 +17,8 @@
     </div>
 
 
-    <!--<div class="bbn-grid-full bbn-c bbn-orange" v-else style="padding-top:10px">
-      <span><?/*=_("No translation files found for this path, configure it using the button ")*/?><i class="fa fa-flag"></i> <?/*=_("of the widget")*/?></span>
 
-    </div>-->
-    <div class="bbn-grid-fields" v-if="data_widget && locale_dirs.length " style="padding-top: 8px">
+    <div class="bbn-grid-fields" v-if="data_widget && locale_dirs.length && !no_strings" style="padding-top: 8px">
       <span>Files of translations found: </span>
       <div>
         <div v-for="w in locale_dirs"
@@ -30,6 +27,8 @@
         ></div>
       </div>
     </div>
+
+    <div v-if="no_strings" class="bbn-grid-full bbn-orange bbn-c"><?=_("There are no strings in this path")?></div>
 
     <div v-if="data_widget && data_widget[language]" class="bbn-grid-fields" style="padding-top:8px; width:100%">
 
@@ -53,9 +52,10 @@
         ></span>
 
 
-        <bbn-progressbar :value="(w.num_translations > 0 ) ? (w.num_translations/w.num*100) : 0"
-                         style="padding-top:6px"
+        <bbn-progressbar :value="( w.num_translations > 0 ) ? ( w.num_translations/w.num*100 ) : 0"
+                         style="padding-top:6px;"
                          type="percent"
+                         :class="progress_bar_class"
                          v-if="i !== language"
         ></bbn-progressbar>
 

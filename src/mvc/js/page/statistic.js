@@ -103,23 +103,17 @@
       //change the css class for the progressbar basing on its value
       translatedPercentage(val){
         if ( val ){
-          bbn.fn.log('vvvvvvvvv', val, parseFloat(val));
           if ( 0 < parseFloat(val) < 30 ){
             this.progressbar_color = 'low'
-            bbn.fn.log(this.progressbar_color )
-
           }
           else if ( 30 <= parseFloat(val) < 60  ){
             this.progressbar_color = 'medium'
-            bbn.fn.log(this.progressbar_color )
           }
           else if ( 60 <= parseFloat(val) < 90  ){
             this.progressbar_color = 'medium-high'
-            bbn.fn.log(this.progressbar_color )
           }
           else if ( 90 <= parseFloat(val) <= 100  ){
             this.progressbar_color = 'high'
-            bbn.fn.log(this.progressbar_color )
           }
         }
       }

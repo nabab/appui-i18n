@@ -1,30 +1,22 @@
 (() => {
-  var current_widget;
   return {
-    created(){
-      current_widget = this;
-    },
     props: ['source'],
     name: 'widget',
     data(){
       return {
+        /** @todo this property should be true after the success of the form in the case of return of d.no_strings = true*/
+        no_strings : false,
         id_option: bbn.vue.closest(this, 'bbn-widget').uid,
         //source language of the path
         'language': bbn.vue.closest(this, 'bbn-tab').getComponent().source.data[this.$parent.index].language ? bbn.vue.closest(this, 'bbn-tab').getComponent().source.data[this.$parent.index].language : null,
       }
     },
-    mounted(){
-      if ( this.source.new > 0 ){
-        appui.warning(
-          this.source.new + bbn._(' new strings found in ') + this.source.path
-        );
-      }
-    },
     methods: {
       search: bbn.fn.search,
       get_field: bbn.fn.get_field,
+      /** set the property language in db for this path */
       set_language(){
-        /* the data coming from the post change the source of the dashboard at the index of this specific */
+        /* the data coming from the post change the source of the dashboard at the index of this specific widget*/
         bbn.fn.post('internationalization/actions/define_path_lang', {
           'language': this.language,
           'id_option': bbn.vue.closest(bbn.vue.closest(this, 'bbn-widget'), 'bbn-tab').getComponent().widgets[this.widget_idx].key
@@ -38,8 +30,6 @@
               appui.success(bbn._('Source language updated'));
               this.$forceUpdate();
             });
-
-
           }
         })
       },
@@ -84,7 +74,6 @@
           bbn.vue.closest(this, 'bbn-tab').popup().alert(bbn._('Select a source language for the path before to update the widget'))
         }
       },
-
       find_strings(){
         let url = bbn.vue.closest(this, 'bbn-tab').getComponent().source.root + 'actions/reload_widget_cache';
         bbn.fn.post(url, { id_option: this.source.id_option },  (d) => {
@@ -102,7 +91,7 @@
         });
 
       },
-      config_locale_dir(){
+      generate(){
         if ( this.language !== null ){
           bbn.vue.closest(this, 'bbn-tab').popup().open({
             width: 500,
@@ -120,6 +109,8 @@
                 widget_idx : this.widget_idx,
                 //langs configured for the project
                 configured_langs: this.configured_langs,
+                /** widget is needed to make operations on the current widget*/
+                widget: this,
               }
             }
           })
@@ -131,15 +122,27 @@
       },
     },
     computed: {
-      //no strings in the path
-      no_strings(){
-        if ( this.data_widget && this.data_widget[this.language] ){
-          if (this.data_widget[this.language].num > 0 ){
-            return false;
-          }
-          else {
-            return true;
-          }
+      /** define the css class for the progressbar*/
+      progress_bar_class(){
+        if ( this.data_widget ){
+          var val = '',
+              st = '';
+          $.each( this.data_widget, (i, v) => {
+            val = v.num_translations/v.num * 100;
+            if ( 0 < val < 30 ){
+              st += 'low'
+            }
+            else if ( 30 <= val < 60  ){
+              st += 'medium'
+            }
+            else if ( 60 <= val < 90  ){
+              st += 'medium-high'
+            }
+            else if ( 90 <= val <= 100  ){
+              st += 'high'
+            }
+          });
+          return st;
         }
       },
       widget_idx(){
@@ -202,9 +205,6 @@
           }
         },
         computed: {
-          widget(){
-            return current_widget;
-          },
           message(){
             return bbn._( 'If the language for which you want to create the translation file is not in this list, you have to configure it for the whole project using the form ( <i class="fa fa-cogs"></i> ) in the dashboard')
           },
@@ -238,6 +238,9 @@
             //case check language
             else {
               dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs.push(obj.value);
+              if ( $.inArray(obj.value, this.source.row.languages ) < 0 ){
+                this.source.row.languages.push(obj.value);
+              }
               dashboard.source.data[this.source.data.widget_idx].data_widget.result[obj.value] = {
                 lang: obj.value,
                 num_translations: 0,
@@ -255,15 +258,14 @@
             }
           },
           success(d){
+            this.send_no_strings = false;
             if ( d.success ){
               var st = '';
               if ( d.ex_dir.length ){
-                bbn.fn.log('ex', d.ex_dir, typeof(d.ex_dir))
                 d.ex_dir.forEach( (v, i) => {
-                  this.widget.remake_cache();
+                  this.source.data.widget.remake_cache();
                   appui.success( bbn.fn.get_field(this.primary, 'code', v, 'text') + ' translation files successfully files deleted')
                 });
-
               }
               if ( d.new_dir.length){
                 d.new_dir.forEach((v, i) => {
@@ -273,10 +275,11 @@
               }
             }
             else if (d.no_strings === true){
-              appui.warning(bbn._("There are no strings in this path"))
+              /** change the property no_strings of the widget to render html */
+              this.source.data.widget.no_strings = true
+              appui.warning(bbn._("There are no strings in this path"));
             }
           }
-
         },
         props: ['source'],
       }

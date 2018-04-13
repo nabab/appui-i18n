@@ -9,5 +9,5 @@
 if ( $ctrl->arguments[0] ){
   $ctrl->post = [];
   $ctrl->data = ['id_option' => $ctrl->arguments[0]];
-  $ctrl->cached_action(true);
+  $ctrl->cached_action(0);
 }

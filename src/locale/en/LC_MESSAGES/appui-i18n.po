@@ -1,0 +1,288 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: BBN Solutions <support@bbn.solutions>\n"
+"Language-Team: EN <EN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2018-04-13 10:15+0200\n"
+"PO-Revision-Date: 2018-04-13 10:15+0200\n"
+"Language: en\n"
+"X-Domain: appui-i18n\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/components/languages/glossaries.php:1
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/history.php:1
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/user_history.php:1
+msgid "Original Expression"
+msgstr "Original Expression"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/components/languages/glossaries.php:1
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/history.php:1
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/user_history.php:1
+msgid "Translation"
+msgstr "Translation"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/components/languages/glossaries.php:1
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/history.php:1
+msgid "User"
+msgstr "User"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/components/languages/glossaries.php:1
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/history.php:1
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/user_history.php:1
+msgid "Status"
+msgstr "Status"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/components/languages/glossaries.php:1
+msgid "Actions"
+msgstr "Actions"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/components/languages/strings_table.php:1
+msgid "Original expression"
+msgstr "Original Expression"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/components/languages/strings_table.php:1
+msgid "Close this tab and configure translation files from the widget"
+msgstr "Close this tab and configure translation files from the widget"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/components/languages/strings_table.php:1
+msgid "button before to open the table of strings"
+msgstr "button before to open the table of strings"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/components/languages/strings_table.php:1
+msgid "If the widget seems to have translation files configured but you see this message, try to reload the widget from"
+msgstr "If the widget seems to have translation files configured but you see this message, try to reload the widget from"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/components/languages/strings_table.php:1
+msgid "button and then configure files"
+msgstr "button and then configure files"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/components/languages/widget.php:1
+msgid "Source language of this path:"
+msgstr "Source language of this path:"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/components/languages/widget.php:1
+msgid "Translation completed"
+msgstr "Translation completed"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/components/languages/widget.php:1
+msgid "No translation files found for this path, to start translation configure at least one language using the  "
+msgstr "No translation files found for this path, to start translation configure at least one language using the"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/components/languages/widget.php:1
+msgid "button"
+msgstr "button"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/components/languages/widget.php:1
+msgid "Select a language"
+msgstr "Select a language"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/history.php:1
+msgid "Date"
+msgstr "Date"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/history.php:1
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/user_history.php:1
+msgid "Date of last modification"
+msgstr "Date of last modification"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/history.php:1
+msgid "Translator's name"
+msgstr "Translator's name"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/history.php:1
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/user_history.php:1
+msgid "Expression in the source language"
+msgstr "Expression in the source language"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/history.php:1
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/user_history.php:1
+msgid "Source Language"
+msgstr "Source Language"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/history.php:1
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/user_history.php:1
+msgid "The source language of the expression"
+msgstr "The source language of the expression"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/history.php:1
+msgid "The expression translated by the user"
+msgstr "The expression translated by the user"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/history.php:1
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/user_history.php:1
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/templates/appui-paths-table.php:1
+msgid "Language"
+msgstr "Language"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/history.php:1
+msgid "The language of translation"
+msgstr "The language of translation"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/home.php:1
+msgid "Projects"
+msgstr "Projects"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/home.php:1
+msgid "Language(s)"
+msgstr "Language(s)"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/home.php:1
+msgid "Source language"
+msgstr "Source Language"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/user_history.php:1
+msgid "The expression you translated"
+msgstr "The expression you translated"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/user_history.php:1
+msgid "The language of your translation"
+msgstr "The language of your translation"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/page/user_history.php:1
+msgid "Last modification"
+msgstr "Last modification"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/templates/appui-languages-form-locale.php:1
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/templates/appui-languages-form.php:1
+msgid "Are you sure you want to exit without saving changes?"
+msgstr "Are you sure you want to exit without saving changes?"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/templates/appui-paths-table.php:1
+msgid "All different paths of this project"
+msgstr "All different paths of this project"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/templates/appui-paths-table.php:1
+msgid "Original language of the path"
+msgstr "Original language of the path"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/templates/appui-paths-table.php:1
+msgid "Check for new strings in this path"
+msgstr "Check for new strings in this path"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/templates/appui-paths-table.php:1
+msgid "Go to the table of strings of this path"
+msgstr "Go to the table of strings of this path"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/templates/toolbar-strings-table.php:1
+msgid "Update table"
+msgstr "Update table"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/templates/toolbar-strings-table.php:1
+msgid "Force translation files update"
+msgstr "Force translation files update"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/templates/toolbar-strings-table.php:1
+msgid "Check into the files for new strings"
+msgstr "Check into the files for new strings"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/templates/toolbar-strings-table.php:1
+msgid "If the column with "
+msgstr "If the column with"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/templates/toolbar-strings-table.php:1
+msgid "is empty be sure to force translation files update and then update the table"
+msgstr "is empty be sure to force translation files update and then update the table"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/templates/toolbar.php:1
+msgid "Open translation's table"
+msgstr "Open translation's table"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/templates/toolbar.php:1
+msgid "Go to translation's tab"
+msgstr "Go to translation's tab"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/templates/toolbar.php:1
+msgid "Go to the table of your translations"
+msgstr "Go to the table of your translations"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/html/templates/toolbar.php:1
+msgid "User's translation"
+msgstr "User's translation"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/components/languages/strings_table.js:1
+msgid "Number of occurrences of the strings in the path files"
+msgstr "Number of occurrences of the strings in the path files"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/components/languages/strings_table.js:1
+msgid "Remove original expression"
+msgstr "Remove original expression"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/components/languages/widget.js:1
+msgid " new strings found in "
+msgstr "new strings found in"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/components/languages/widget.js:1
+msgid "Source language updated"
+msgstr "Source language updated"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/components/languages/widget.js:1
+msgid "Source language resetted"
+msgstr "Source language resetted"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/components/languages/widget.js:1
+msgid "You have to configure at least a language of translation using the button"
+msgstr "You have to configure at least a language of translation using the button"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/components/languages/widget.js:1
+msgid "of the widget before to open the strings table"
+msgstr "of the widget before to open the strings table"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/components/languages/widget.js:1
+msgid "Widget updated"
+msgstr "Widget updated"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/components/languages/widget.js:1
+msgid "Select a source language for the path before to update the widget"
+msgstr "Select a source language for the path before to update the widget"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/components/languages/widget.js:1
+msgid " new string(s) found in "
+msgstr "new string(s) found in"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/components/languages/widget.js:1
+msgid " string(s) deleted from "
+msgstr "string(s) deleted from"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/components/languages/widget.js:1
+msgid " files"
+msgstr "files"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/components/languages/widget.js:1
+msgid "Define languages for the translation"
+msgstr "Define languages for the translation"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/components/languages/widget.js:1
+msgid "Set a source language using the dropdown before to create translation file(s)"
+msgstr "Set a source language using the dropdown before to create translation file(s)"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/components/languages/widget.js:1
+msgid "If the language for which you want to create the translation file is not in this list, you have to configure it for the whole project using the form ( <i class=\"fa fa-cogs\"></i> ) in the dashboard"
+msgstr "If the language for which you want to create the translation file is not in this list, you have to configure it for the whole project using the form ( <i class=\"fa fa-cogs\"></i> ) in the dashboard"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/components/languages/widget.js:1
+msgid "There are no strings in this path"
+msgstr "There are no strings in this path"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js:1
+msgid "Update widget data"
+msgstr "Update widget data"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js:1
+msgid "Create and delete files of translation"
+msgstr "Create and delete files of translation"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js:1
+msgid "Open the table of strings of this path"
+msgstr "Open the table of strings of this path"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js:1
+msgid "Config translation languages for the project"
+msgstr "Config translation languages for the project"
+
+#: /home/thomas/domains/apstapp2.thomas.lan/_appui/vendor/bbn/appui-i18n/src/mvc/js/page/home.js:1
+msgid "Config languages for the project"
+msgstr "Config languages for the project"

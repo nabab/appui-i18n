@@ -8,6 +8,8 @@
 
 $ctrl->obj->url = APPUI_I18N_ROOT.'page/dashboard';
 
-$ctrl->add_data(['url' => $ctrl->obj->url , 'id_project' => $ctrl->post['id_project']]);
-
-$ctrl->combo('', true);
+$ctrl->add_data([
+  'url' => $ctrl->obj->url ,
+  'id_project' => $ctrl->post['id_project']
+])
+->combo('', true);

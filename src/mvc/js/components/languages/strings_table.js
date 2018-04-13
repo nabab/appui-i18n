@@ -12,6 +12,7 @@
     },
 
     methods: {
+      /** generate po files for all columns of the table */
       generate(){
         if ( this.source.res.languages.length ){
           bbn.fn.post(this.source.root + 'actions/generate', {id_option: this.source.id_option, languages: this.source.res.languages}, (d) => {
@@ -28,6 +29,7 @@
           bbn.fn.alert('You have to configure at least a language using the button <i class="fa fa-flag"></i> of the widget in the dashboard')
         }
       },
+      /** checks if there are new strings in the files of the path */
       find_strings(){
         bbn.fn.post(this.source.root + 'actions/find_strings', {
           id_option: this.source.id_option,
@@ -35,6 +37,7 @@
         }, (d) => {
           if ( d.success ){
             if ( d.done > 0 ){
+              this.remake_cache();
               appui.success(d.done + ' new strings found')
             }
             else {
@@ -43,6 +46,7 @@
           }
         } );
       },
+      /** button delete row of table */
       buttons(){
         let res = [];
         res.push({
@@ -52,6 +56,7 @@
         });
         return res;
       },
+      /** deletes the original expression from db, if the expression is not deleted before from the file (using the link of the expander to the code) it will be again in the table when the table is reloaded or updated */
       delete_expression(row){
         let id_exp = row.id_exp,
           data = this.mapData,
@@ -69,6 +74,7 @@
           } );
         })
       },
+      /** called at @change of the table (when the idx of the row focused changes), insert translation in db and remake the po file */
       insert_translation(row,idx){
         bbn.fn.post(this.source.root + 'actions/insert_translations', {
           row: row,
@@ -80,11 +86,11 @@
             row = d.row;
             let table = bbn.vue.find(this, 'bbn-table');
             //wanted to update the widget from the table
-              /*tab = bbn.vue.closest(this, 'bbn-tab'),
-              tabnav = bbn.vue.closest(tab, 'bbn-tabnav'),
-              dashboard = bbn.vue.find(tabnav, 'bbn-dashboard'),
-              widgets = bbn.vue.findAll(dashboard, 'bbn-widget')
-            ;*/
+            /*tab = bbn.vue.closest(this, 'bbn-tab'),
+            tabnav = bbn.vue.closest(tab, 'bbn-tabnav'),
+            dashboard = bbn.vue.find(tabnav, 'bbn-dashboard'),
+            widgets = bbn.vue.findAll(dashboard, 'bbn-widget')
+          ;*/
             this.mapData[idx] = d.row
             table.updateData();
 
@@ -94,9 +100,8 @@
           }
         });
       },
+      /** remakes the model of table in cache */
       remake_cache(){
-        // look for new strings/translations/ remakes the model in cache
-        //column_length just used on a v-if of the table to remake the table if data changes
         this.column_length = false;
         bbn.fn.post('internationalization/actions/reload_table_cache', {
           id_option: this.source.id_option
@@ -129,6 +134,7 @@
     },
     props: ['source'],
     computed: {
+      /**array of columns for the table*/
       columns(){
         let r = [],
           i = 0,
@@ -139,7 +145,6 @@
           r.push({
             field: this.source.res.languages[n],
             title:  ( this.source.res.languages[n] === this.source.res.path_source_lang) ? (bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text') + '  <i class="fa fa-asterisk" title="This is the original language of the expression"></i>') : bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text'),
-            //fixed: n === this.source.source_lang,
             editable: true,
             render(row){
               var idx = bbn.fn.search(vm.translations_db, 'id_exp', row.id_exp ),
@@ -156,24 +161,33 @@
               }
 
             }
-            //render: this.render_columns();
-            //render: this.render_columns
           });
           if ( n === this.source.res.source_lang ){
             def = i;
           }
           i++;
         }
+        /** column occurrence */
+        r.push({
+          ftitle: bbn._('Number of occurrences of the strings in the path files'),
+          title: '#',
+          field: 'occurrence',
+          editable: false,
+          render(row){
+            return row.occurrence ? row.occurrence : 0;
+          },
+          width: 40,
+          cls: 'bbn-c'
+        });
         r.push({
           ftitle: bbn._('Remove original expression'),
           buttons: this.buttons,
           width: 40,
           cls: 'bbn-c'
-        })
-
+        });
         return r;
       },
-      //contains original from po file and translations from dib
+      /** contains original from po file and translations from db, used to render differences between the strings in the po file and the one in db */
       translations_db(){
         let res = [],
           source_lang = this.source.res.path_source_lang;
@@ -185,21 +199,20 @@
             ob[prop] = this.source.res.strings[idx][prop].translations_db;
           }
           res.push(ob);
-        })
+        });
         return res
-
       },
-      //contains strings from original and translations string from po file
+      /** the source of the table */
       mapData(){
         let res = [],
           source_lang = this.source.res.path_source_lang;
         this.source.res.strings.forEach( (obj, idx ) => {
           let ob = {};
           for (let prop in obj){
-            //ob['paths'] = this.source.res.strings[idx][source_lang].paths;
+            //number of occurrence of the strings in files of the path
+         //   ob['occurrence'] = this.source.res.strings[idx][source_lang].paths.length || 0;
             //takes the path of the string from file po
-
-
+            ob['occurrence'] = this.source.res.strings[idx][source_lang].occurrence;
             ob['path'] = this.source.res.strings[idx][source_lang].paths;
             ob['original_exp'] = this.source.res.strings[idx][source_lang].original;
             ob['id_exp'] = this.source.res.strings[idx][source_lang].id_exp;
@@ -210,8 +223,8 @@
         return res
       }
     },
-
     components:{
+      /** the toolbar of the table, the template is on html/template folder */
       'toolbar-strings-table': {
         template:'#toolbar-strings-table',
         props: ['source'],
@@ -221,7 +234,7 @@
           }
         },
         methods: {
-          //this_tab is a var declared at created of the tab
+          /** takes the methods from the parent component using @var this_tab declared at created */
           generate(){
             return this_tab.generate();
           },
@@ -233,14 +246,13 @@
           }
         },
         watch: {
+          /** v-model of bbn-switch used to hide the column of original language */
           hide_source_language(val, oldVal){
             //get the index of the column of source language
             var idx = bbn.fn.search(this_tab.columns, 'field', this_tab.source.res.path_source_lang);
-            bbn.fn.log(idx);
             if ( ( val === true ) && ( idx > -1) ){
               this_tab.columns[idx].hidden = true;
               this_tab.$forceUpdate()
-              bbn.fn.log(this_tab.columns)
             }
             else if (( val === false )){
               this_tab.columns[idx].hidden = false;
@@ -250,6 +262,7 @@
         },
 
       },
+      /** expander of the table, shows the path of the files containing the string */
       'file_linker': {
         methods: {
           link_ide(path){
@@ -268,14 +281,13 @@
             bbn.fn.link(st)
           }
         },
-
         template:
-        '<ul style="width:100%; list-style-type:none; padding-left:0">' +
-        '<li class="bbn-vspadded bbn-grid-fields" :source="source" v-for="s in source.path">' +
-        '<span class="bbn-lg">File:</span>' +
-        '<a v-text="s" @click="link_ide(s)" style="width:100%;cursor:pointer" title="Open the file in i.d.e"></a>' +
-        ' </li>' +
-        '</ul>',
+          '<ul style="width:100%; list-style-type:none; padding-left:0">' +
+          '<li class="bbn-vspadded bbn-grid-fields" :source="source" v-for="s in source.path">' +
+          '<span class="bbn-lg">File:</span>' +
+          '<a v-text="s" @click="link_ide(s)" style="width:100%;cursor:pointer" title="Open the file in i.d.e"></a>' +
+          ' </li>' +
+          '</ul>',
         props: ['source'],
       },
     }
