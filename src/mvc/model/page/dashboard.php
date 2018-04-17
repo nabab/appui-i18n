@@ -11,6 +11,7 @@ $timer = new \bbn\util\timer();
 $timer->start('1');
 /** @var (array) $projects from db*/
 $projects = $model->get_model(APPUI_I18N_ROOT.'page')['projects'];
+
 $timer->stop('1');
 //the first time the dashboard is loaded it returns $res empty and $success null
 $res = [];
@@ -54,6 +55,7 @@ foreach ( $projects as $i => $p ){
   }
   /** unset langs and path because don't needed */
   unset( $projects[$i]['langs'], $projects[$i]['path'] );
+
 }
 
 return [

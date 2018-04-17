@@ -9,6 +9,8 @@
         id_option: bbn.vue.closest(this, 'bbn-widget').uid,
         //source language of the path
         'language': bbn.vue.closest(this, 'bbn-tab').getComponent().source.data[this.$parent.index].language ? bbn.vue.closest(this, 'bbn-tab').getComponent().source.data[this.$parent.index].language : null,
+        /** the css class for progress bar the value is decided by the watch of progress_bar_val */
+        progress_bar_class: '',
       }
     },
     methods: {
@@ -122,29 +124,6 @@
       },
     },
     computed: {
-      /** define the css class for the progressbar*/
-      progress_bar_class(){
-        if ( this.data_widget ){
-          var val = '',
-              st = '';
-          $.each( this.data_widget, (i, v) => {
-            val = v.num_translations/v.num * 100;
-            if ( 0 < val < 30 ){
-              st += 'low'
-            }
-            else if ( 30 <= val < 60  ){
-              st += 'medium'
-            }
-            else if ( 60 <= val < 90  ){
-              st += 'medium-high'
-            }
-            else if ( 90 <= val <= 100  ){
-              st += 'high'
-            }
-          });
-          return st;
-        }
-      },
       widget_idx(){
         //return the real index of this widget in the array of data of dashboard it works also after drag and drop
         let data = bbn.vue.closest(this, 'bbn-tab').getComponent().source.data;
@@ -152,9 +131,29 @@
       },
       //used to render the widget, language of locale folder
       data_widget(){
+
         //if the source language of the path is set takes the array result from dashboard source
         let result = bbn.vue.closest(this, 'bbn-tab').getComponent().source.data[this.widget_idx].data_widget.result;
         if ( this.language && result){
+          for ( let r in result ){
+            result[r].class = '';
+            if (result[r].num_translations >= 0 ){
+              result[r].val = result[r].num_translations/result[r].num * 100
+              /** the css class for progress bar */
+              if ( ( result[r].val >= 0 ) && (result[r].val <= 30) ){
+                result[r].class = 'low'
+              }
+              else if ( ( result[r].val > 30 ) && ( result[r].val <= 70 ) ){
+                result[r].class = 'medium'
+              }
+              else if ( ( result[r].val > 70 ) && ( result[r].val <= 100 ) ){
+                result[r].class = 'high'
+              }
+             
+            }
+          }
+
+
           return result;
         }
         else {
@@ -189,6 +188,9 @@
 
     },
     watch: {
+      /** define the css class for the progressbar*/
+     
+      
       locale_dirs(val, oldVal){
         if(val){
           this.$forceUpdate();
@@ -257,6 +259,9 @@
               return false;
             }
           },
+          update(){
+            this.source.data.widget.remake_cache();
+          },
           success(d){
             this.send_no_strings = false;
             if ( d.success ){
@@ -264,12 +269,14 @@
               if ( d.ex_dir.length ){
                 d.ex_dir.forEach( (v, i) => {
                   this.source.data.widget.remake_cache();
-                  appui.success( bbn.fn.get_field(this.primary, 'code', v, 'text') + ' translation files successfully files deleted')
+                  this.$nextTick( () => {
+                    appui.success( bbn.fn.get_field(this.primary, 'code', v, 'text') + ' translation files successfully files deleted')
+                  })
                 });
               }
               if ( d.new_dir.length){
                 d.new_dir.forEach((v, i) => {
-                  //this.widget.remake_cache();
+                  this.source.data.widget.remake_cache();
                   appui.success(  bbn.fn.get_field(this.primary, 'code', v, 'text') + ' translation files successfully created')
                 } )
               }

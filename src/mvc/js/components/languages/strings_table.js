@@ -110,18 +110,18 @@
             let diff = ( d.res.total - this.source.res.total );
             this.source.res.languages = d.res.languages;
             this.source.res.strings = d.res.strings;
-            bbn.vue.find(this, 'bbn-table').updateData();
+            //bbn.vue.find(this, 'bbn-table').updateData();
             if ( diff > 0 ){
               appui.warning(diff + ' new string(s) found in ' + this.source.res.path);
               this.source.res.strings = d.res.strings;
               this.source.res.total = d.res.total;
-              bbn.vue.find(this, 'bbn-table').updateData();
+              //bbn.vue.find(this, 'bbn-table').updateData();
             }
             else if ( diff < 0 ){
               appui.warning(Math.abs(diff) + ' string(s) deleted from ' + this.source.res.path + ' files');
               this.source.res.strings = d.res.strings;
               this.source.res.total = d.res.total;
-              bbn.vue.find(this, 'bbn-table').updateData();
+              //bbn.vue.find(this, 'bbn-table').updateData();
             }
             else if ( diff = 0 ){
               appui.warning('There are no changes in data')
@@ -134,6 +134,10 @@
     },
     props: ['source'],
     computed: {
+      /** the source language of this id_option */ 
+      source_lang(){
+        return bbn.fn.get_field(this.primary, 'code' , this.source.res.path_source_lang, 'text')
+      },
       /**array of columns for the table*/
       columns(){
         let r = [],
@@ -148,8 +152,11 @@
             editable: true,
             render(row){
               var idx = bbn.fn.search(vm.translations_db, 'id_exp', row.id_exp ),
-                translation_db = vm.translations_db[idx][this.field];
+                  translation_db = vm.translations_db[idx][this.field];
               //why this is the column??
+              /*if ( this.source.res.languages[n] === this.source.res.path_source_lang){
+                if(){}
+              }*/
               if ( ( translation_db !== false ) && ( translation_db === row[this.field] ) ){
                 return row[this.field] + '<i class="fa fa-check bbn-large bbn-green" title="Expression found in translation file" style="float:right"><i/>'
               }
@@ -212,7 +219,14 @@
             //number of occurrence of the strings in files of the path
          //   ob['occurrence'] = this.source.res.strings[idx][source_lang].paths.length || 0;
             //takes the path of the string from file po
-            ob['occurrence'] = this.source.res.strings[idx][source_lang].occurrence;
+						if ( this.source.res.strings[idx][source_lang].occurrence ){
+            	ob['occurrence'] =  this.source.res.strings[idx][source_lang].occurrence;   
+            }
+            else {
+              ob['occurrence'] = 0;
+            }
+            
+
             ob['path'] = this.source.res.strings[idx][source_lang].paths;
             ob['original_exp'] = this.source.res.strings[idx][source_lang].original;
             ob['id_exp'] = this.source.res.strings[idx][source_lang].id_exp;

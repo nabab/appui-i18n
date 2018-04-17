@@ -8,6 +8,7 @@
              :load="true"
              :source="source"
              :static="false"
+             :pinned="true"
     ></bbn-tab>
   
     

@@ -5,6 +5,7 @@
           confirm-leave="<?=_("Are you sure you want to exit without saving changes?")?>"
           :prefilled="true"
           @success="success"
+          @close="update"
 >
 
   <div class="bbn-grid-fields">

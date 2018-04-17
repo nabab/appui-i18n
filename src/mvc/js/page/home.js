@@ -79,13 +79,15 @@
           inArray: $.inArray,
           change_checked_langs(val, obj){
             let form = bbn.vue.find(this, 'bbn-form'),
-              checkboxes = bbn.vue.findAll(this, 'bbn-checkbox'),
               idx =  $.inArray(obj.id, this.source.row.langs);
-            if( idx > -1 ){
-              this.source.row.langs.splice(idx, 1)
+
+            if ( idx > -1 ){
+              bbn.vue.closest(this, 'bbn-tab').getComponent().source.langs.splice(idx, 1);
+              bbn.vue.closest(this, 'bbn-tab').getComponent().$forceUpdate();
             }
-            else{
-              this.source.row.langs.push(obj.id)
+            else {
+              bbn.vue.closest(this, 'bbn-tab').getComponent().source.langs.push(obj.id)
+              bbn.vue.closest(this, 'bbn-tab').getComponent().$forceUpdate();
             }
           }
         },

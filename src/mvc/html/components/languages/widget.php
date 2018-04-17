@@ -36,7 +36,7 @@
         Total number of strings:
       </span>
       <span v-if="data_widget[language]"
-            v-text="(data_widget[language].num > 0) ? data_widget[language].num : 'There are no strings in this path'"
+            v-text="(data_widget[language].num > 0) ? data_widget[language].num : (!no_strings) ? 'There are no strings in this path' : ''"
             :class="(data_widget[language].num > 0) ? 'bbn-r' : 'bbn-grid-full bbn-orange bbn-c' "
       ></span>
       <div v-if="(data_widget[language]) && (data_widget[language].num > 0) "
@@ -49,17 +49,18 @@
         ></span>
         <span v-text=" w.num_translations + ' / '+ w.num"
               v-if="i !== language"
+              style="padding-loeft:6px"
         ></span>
 
 
-        <bbn-progressbar :value="( w.num_translations > 0 ) ? ( w.num_translations/w.num*100 ) : 0"
+        <bbn-progressbar :value="w.val"
                          style="padding-top:6px;"
                          type="percent"
-                         :class="progress_bar_class"
+												 :class="w.class"	
                          v-if="i !== language"
         ></bbn-progressbar>
 
-        <div class="bbn-grid-full bbn-c bbn-green"
+        <div class="bbn-grid-full bbn-c green-text"
              v-if="( w.num !== 0 ) && ( w.num_translations === w.num ) && ( i !== language )"
         >
           <i class="fa fa-check bbn-large"></i><?=_("Translation completed")?>

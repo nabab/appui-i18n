@@ -32,6 +32,7 @@ if ( !empty( $id_option = $model->data['id_option']) &&
   }, \bbn\file\dir::get_dirs($locale_dir)) ?: [];
 
 
+
   /** @var  $languages array of dirs name in locale folder*/
   $widget = $model->get_cached_model(APPUI_I18N_ROOT.'page/data/widgets', ['id_option' => $id_option ], true);
 
@@ -90,6 +91,7 @@ if ( !empty( $id_option = $model->data['id_option']) &&
         }
       }
     }
+	
   }
 
   return [

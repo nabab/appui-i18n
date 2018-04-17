@@ -19,6 +19,7 @@ if ( $all = $model->db->get_column_values('bbn_projects', 'id') ){
     ];
     $projects[] = $p;
   }
+  
   //primary languages from bbn_options
   $primaries = $translation->get_primaries_langs();
 
