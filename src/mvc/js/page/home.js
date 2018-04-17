@@ -81,13 +81,14 @@
             let form = bbn.vue.find(this, 'bbn-form'),
               idx =  $.inArray(obj.id, this.source.row.langs);
 
+            bbn.fn.log('++++++++++++', obj.id, idx)
             if ( idx > -1 ){
-              bbn.vue.closest(this, 'bbn-tab').getComponent().source.langs.splice(idx, 1);
-              bbn.vue.closest(this, 'bbn-tab').getComponent().$forceUpdate();
+              this.source.row.langs.splice(idx, 1);
+
             }
             else {
-              bbn.vue.closest(this, 'bbn-tab').getComponent().source.langs.push(obj.id)
-              bbn.vue.closest(this, 'bbn-tab').getComponent().$forceUpdate();
+              this.source.row.langs.push(obj.id);
+              //bbn.vue.closest(this, 'bbn-tab').getComponent().$forceUpdate();
             }
           }
         },

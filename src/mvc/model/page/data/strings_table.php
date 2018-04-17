@@ -31,8 +31,6 @@ if ( !empty( $id_option = $model->data['id_option']) &&
     return basename($a);
   }, \bbn\file\dir::get_dirs($locale_dir)) ?: [];
 
-
-
   /** @var  $languages array of dirs name in locale folder*/
   $widget = $model->get_cached_model(APPUI_I18N_ROOT.'page/data/widgets', ['id_option' => $id_option ], true);
 
@@ -53,7 +51,9 @@ if ( !empty( $id_option = $model->data['id_option']) &&
 
   if ( !empty($languages) ){
     $po_file = [];
+
     foreach ( $languages as $lng ){
+
       /** the path of po and mo files */
       $po = $locale_dir.'/'.$lng.'/LC_MESSAGES/'.$o['text'].'.po';
       $mo = $locale_dir.'/'.$lng.'/LC_MESSAGES/'.$o['text'].'.mo';
@@ -61,7 +61,6 @@ if ( !empty( $id_option = $model->data['id_option']) &&
       if (file_exists($po)){
         $success = true;
         $translations = Gettext\Translations::fromPoFile($po);
-
         foreach ($translations as $i => $t ){
           /** @var  $original the original expression */
           $original = $t->getOriginal();
@@ -86,12 +85,12 @@ if ( !empty( $id_option = $model->data['id_option']) &&
               $po_file[$i][$lng]['paths'][] = $ide->real_to_url($p[0]);
             }
             /** the number of times the strings is found in the files of the path  */
-            $po_file[$i][$lng]['occurrence'] = count($po_file[$i][$path_source_lang]['paths']);
+            $po_file[$i][$lng]['occurrence'] = !empty($po_file[$i][$path_source_lang]) ? count($po_file[$i][$path_source_lang]['paths']) : 0;
           };
         }
+
       }
     }
-	
   }
 
   return [

@@ -46,7 +46,10 @@ if ( !empty($model->data['row']['id_exp'])){
   }
   /** @todo if from I could update the widget after the insert I need to remake the cached model of the widget */
   //$model->get_cached_model(APPUI_I18N_ROOT.'page/data/widgets', ['id_option'=> $model->data['id_option']], true);
-  $model->get_cached_model(APPUI_I18N_ROOT.'page/data/strings_table', ['id_option' => $model->data['id_option']], true);
+  $model->get_cached_model(APPUI_I18N_ROOT.'page/data/strings_table', [
+    'id_option' => $model->data['id_option'],
+    'routes' => $model->data['routes']
+  ], true);
   $model->get_model(APPUI_I18N_ROOT.'actions/generate', ['id_option' => $model->data['id_option']]);
 }
 return [

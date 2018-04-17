@@ -14,6 +14,7 @@ if (
   defined($parent['code'])
 ){
   $success = false;
+
   /** $to_explore is the directory to explore for strings */
   $to_explore = constant($parent['code']).$o['code'];
   $locale_dir = dirname($to_explore).'/locale';
@@ -26,7 +27,6 @@ if (
 
   /** $data['res'] is the array of strings */
   if ( !empty($data['res'] )){
-
     /**  case generate called from strings table */
     if ( !isset($model->data['languages']) ){
       $languages = array_map(function($a){
@@ -38,6 +38,7 @@ if (
       $languages = $model->data['languages'];
       /** @var  (array) $old_langs languages in locale folder before of this call */
       $old_langs = $data['languages'];
+
       /** @var (array) $ex_dir languages unchecked in the form */
       if ( !empty($ex_dir = array_diff($old_langs, $languages)) ){
         foreach ( $ex_dir as $ex ){
@@ -136,7 +137,10 @@ if (
     /** remakes the cached_model of the widget to show changes */
     $model->get_cached_model(APPUI_I18N_ROOT.'page/data/widgets', ['id_option'=> $model->data['id_option']], true);
     /** remakes the cached_model of the table to show changes */
-    $model->get_cached_model(APPUI_I18N_ROOT.'page/data/strings_table', ['id_option' => $ctrl->data['id_option']], true);
+    $model->get_cached_model(APPUI_I18N_ROOT.'page/data/strings_table', [
+      'id_option' => $ctrl->data['id_option'],
+      'routes' => $ctrl->data['routes'],
+      ], true);
 
     $success = true;
   }

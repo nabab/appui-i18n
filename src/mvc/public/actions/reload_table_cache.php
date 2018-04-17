@@ -8,5 +8,6 @@
 
 
 if ( !empty($ctrl->post['id_option']) ){
- $ctrl->action();
+  $ctrl->post['routes'] = $ctrl->get_routes();
+  $ctrl->action();
 }

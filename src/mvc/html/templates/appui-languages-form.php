@@ -23,7 +23,7 @@
       >
       	<bbn-checkbox :id="l.id"
                       value="1"
-                      :checked="inArray(l.id, source.row.configured_langs) > -1"
+                      :checked="inArray(l.id, source.row.configured_langs) > -1 || inArray(l.id, source.row.langs) > -1"
                       @change="change_checked_langs"
         ></bbn-checkbox>
         <label v-text="l.text"></label>

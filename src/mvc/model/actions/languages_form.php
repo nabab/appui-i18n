@@ -18,8 +18,16 @@ if( $id_project = $model->data['id'] ){
     'asset_type' => $asset_type_lang
   ]);
 
-//active langs arriving from the post
+
+/** case of form from dashboard active langs arriving from the post*/
+if ( !empty($model->data['configured_langs']) ){
   $post_langs = $model->data['configured_langs'];
+}
+/** case of form from projects_table active langs arriving from the post*/
+else if ( !empty($model->data['langs']) ){
+  $post_langs = $model->data['langs'];
+}
+
 
 //extrapolate the difference among the langs sent from the post and the original active langs for the project
   $new_active_langs = array_diff($post_langs, $initial_langs);

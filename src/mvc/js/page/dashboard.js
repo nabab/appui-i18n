@@ -6,7 +6,6 @@
         var res = [];
         if (this.source.data){
           this.source.data.forEach( (v, i) => {
-
             res.push({
               title: v.text,
               key: v.id,

@@ -18,7 +18,10 @@ if ( isset( $model->data['language'] ) && $model->data['id_option'] ) {
 
   //delete_cached_model doesn't work
   $model->get_cached_model(APPUI_I18N_ROOT.'page/data/strings_table',
-    ['id_option' => $model->data['id_option'] ], true);
+    [
+      'id_option' => $model->data['id_option'],
+      'routes'=> $model->data['routes']
+    ], true);
 	return [
     'data_widget' => $data_widget,
     'success' => true
