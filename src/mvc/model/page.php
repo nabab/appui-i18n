@@ -8,7 +8,6 @@ if ( $all = $model->db->get_column_values('bbn_projects', 'id') ){
   $is_dev =  $model->inc->user->get_session('dev');
   $projects = [];
 
-
   foreach ( $all as $id_project ){
     //instantiate the class project
     $project = new \bbn\appui\project($model->db, $id_project);
@@ -25,8 +24,10 @@ if ( $all = $model->db->get_column_values('bbn_projects', 'id') ){
   //primary languages from bbn_options
   $primaries = $translation->get_primaries_langs();
 
+  /** path will be filled only if the project 'options' is selected by the dropdown of the dashboard*/
+
   $projects[] = [
-    'path' => $model->inc->options->find_i18n(),
+    'path' => [],
     'langs' => array_map(function($p){
       return $p['id'];
     }, $primaries),

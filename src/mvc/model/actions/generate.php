@@ -25,6 +25,8 @@ if (
   /** @var (array)$data creates a cached model of the strings found in the files using the action find_strings */
   $data = $model->get_cached_model(APPUI_I18N_ROOT.'actions/find_strings', ['id_option'=> $model->data['id_option'], 'language'=> $model->data['language']], true);
 
+  /** @var (boolean) $no_strings case of empty($data['res']), there are no strings in this path . Return true if there are no strings from find_strings*/
+  $no_strings = false;
   /** $data['res'] is the array of strings */
   if ( !empty($data['res'] )){
     /**  case generate called from strings table */
@@ -138,14 +140,13 @@ if (
     $model->get_cached_model(APPUI_I18N_ROOT.'page/data/widgets', ['id_option'=> $model->data['id_option']], true);
     /** remakes the cached_model of the table to show changes */
     $model->get_cached_model(APPUI_I18N_ROOT.'page/data/strings_table', [
-      'id_option' => $ctrl->data['id_option'],
-      'routes' => $ctrl->data['routes'],
+      'id_option' => $model->data['id_option'],
+      'routes' => $model->data['routes'],
       ], true);
 
     $success = true;
   }
   else {
-    /** @var (boolean)$no_strings case of empty($data['res']), there are no strings in this path */
     $no_strings = true;
   }
 

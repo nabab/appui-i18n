@@ -41,10 +41,6 @@
         return res;
       },
     },
-    mounted(){
-      //if I want widgets before to select the dropdown
-      //this.load_widgets()
-    },
     methods: {
       //open the table of projects
       link_projects_table(){
@@ -71,14 +67,22 @@
       },
       get_field: bbn.fn.get_field,
       load_widgets(){
-        if ( this.id_project ){
-          this.source.data = [];
-            bbn.fn.post('internationalization/page/dashboard', { id_project: this.id_project }, (d) => {
+        this.source.data = [];
+        if ( this.id_project !== 'options' ){
+          bbn.fn.post('internationalization/page/dashboard', { id_project: this.id_project }, (d) => {
           if ( d.data.success ){
               this.source.data = d.data.data;
               this.source.configured_langs = d.data.configured_langs;
             }
           });
+        }
+        else if ( this.id_project === 'options' ){
+          bbn.fn.post('internationalization/options/options_data', { id_project: this.id_project }, (d) => {
+            if ( d.success && d.path ){
+              this.source.data = d.path;
+              bbn.fn.log('projects', d.projects)
+            }
+          })
         }
       }
     },

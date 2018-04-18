@@ -19,24 +19,33 @@ $success = null;
 /** @var  $translation instantiate the class i18n */
 $translation = new \bbn\appui\i18n($model->db);
 
+$configured_langs = [];
 foreach ( $projects as $i => $p ){
-  if ( $model->data['id_project'] === $projects[$i]['id'] ){
+
+
+
+  if ( !empty($model->data['id_project']) && ( $model->data['id_project'] === $projects[$i]['id'] )){
     $timer->start('2');
     /** takes the current project from projects array */
     $project = $projects[$i];
     /** @var  $project_class instantiate the class of project */
     $project_class = new \bbn\appui\project($model->db, $projects[$i]['id']);
-    $configured_langs = [];
+
 
     /** takes the langs configured in db for the project translation */
     foreach ( $project_class->get_langs() as $p ){
-      $configured_langs[] = $p['id'];
+      if ( $p['id'] ){
+        $configured_langs[] = $p['id'];
+      }
+
     }
     $timer->stop('2');
     $timer->start('3');
     foreach ( $project['path'] as $idx => $pa ){
       /** for every project takes the full option of each path */
-      $res[$idx] = $model->inc->options->option($projects[$i]['path'][$idx]['id_option']);
+      if ( !empty($model->inc->options->option($projects[$i]['path'][$idx]['id_option']))){
+        $res[$idx] = $model->inc->options->option($projects[$i]['path'][$idx]['id_option']);
+      }
 
       /** if language is set takes the cached_model_of the widget */
       if ( isset( $res[$idx]['language'] ) ){
