@@ -7,7 +7,7 @@
       <span><?=_("Source language of this path:")?></span>
       <i class="fa fa-remove"
          @click="remove_language"
-         title="<?=("Reset source language for this path")?>"
+         title="<?=_("Reset source language for this path")?>"
          style="float:right; margin-left:6px; cursor: pointer; margin-top: 4px"
       ></i>
       <span class="bbn-l"
@@ -19,7 +19,8 @@
 
 
     <div class="bbn-grid-fields" v-if="data_widget && locale_dirs.length && !no_strings" style="padding-top: 8px">
-      <span>Files of translations found: </span>
+      <span v-if="id_project !== 'options'"><?=_("Files of translations found: ")?></span>
+      <span v-else><?=_("Languages of translation allowed for this option: ")?></span>
       <div>
         <div v-for="w in locale_dirs"
              v-text="w" style="display: inline; padding-left: 6px; float: right;"

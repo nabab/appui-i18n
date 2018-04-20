@@ -10,7 +10,6 @@
         column_length: true,
       }
     },
-
     methods: {
       /** generate po files for all columns of the table */
       generate(){
@@ -81,7 +80,7 @@
           langs: this.source.res.languages,
           id_option: this.source.id_option
         }, (d) => {
-          if (d.success){
+          if (d.success && !d.deleted){
             appui.success('Translation saved');
             row = d.row;
             let table = bbn.vue.find(this, 'bbn-table');
@@ -95,8 +94,11 @@
             table.updateData();
 
           }
-          else{
+          else if ( !d.success && !d.deleted ){
             appui.error('An error occurred while saving translation');
+          }
+          else if ( d.success && d.deleted ){
+            appui.warning('Translation deleted from db');
           }
         });
       },
@@ -146,17 +148,17 @@
         var field = '',
           vm = this;
         for ( let n in this.source.res.languages ){
-          r.push({
+          var obj = {
             field: this.source.res.languages[n],
             title:  ( this.source.res.languages[n] === this.source.res.path_source_lang) ? (bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text') + '  <i class="fa fa-asterisk" title="This is the original language of the expression"></i>') : bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text'),
-            editable: true,
-            render(row){
+            editable: true
+          };
+          /**render for the columns when the  project is not options */
+          if ( this.source.id_project !== 'options'){
+            obj.render = (row) => {
               var idx = bbn.fn.search(vm.translations_db, 'id_exp', row.id_exp ),
-                  translation_db = vm.translations_db[idx][this.field];
+                translation_db = vm.translations_db[idx][this.field];
               //why this is the column??
-              /*if ( this.source.res.languages[n] === this.source.res.path_source_lang){
-                if(){}
-              }*/
               if ( ( translation_db !== false ) && ( translation_db === row[this.field] ) ){
                 return row[this.field] + '<i class="fa fa-check bbn-large bbn-green" title="Expression found in translation file" style="float:right"><i/>'
               }
@@ -166,26 +168,34 @@
               else {
                 return row[this.field]
               }
-
             }
-          });
+          }
+          /** render for the options table (project options)*/
+         /* else if ( this.source.id_project === 'options'){
+            obj.render = (row) => {
+               return row[this.field]
+            }
+          }*/
+          r.push(obj);
           if ( n === this.source.res.source_lang ){
             def = i;
           }
           i++;
         }
-        /** column occurrence */
-        r.push({
-          ftitle: bbn._('Number of occurrences of the strings in the path files'),
-          title: '#',
-          field: 'occurrence',
-          editable: false,
-          render(row){
-            return row.occurrence ? row.occurrence : 0;
-          },
-          width: 40,
-          cls: 'bbn-c'
-        });
+        /** column occurrence --- doesn't exist for project option */
+        if ( this.source.id_project !== 'options' ){
+          r.push({
+            ftitle: bbn._('Number of occurrences of the strings in the path files'),
+            title: '#',
+            field: 'occurrence',
+            editable: false,
+            render(row){
+              return row.occurrence ? row.occurrence : 0;
+            },
+            width: 40,
+            cls: 'bbn-c'
+          });
+        }
         r.push({
           ftitle: bbn._('Remove original expression'),
           buttons: this.buttons,
@@ -212,29 +222,38 @@
       /** the source of the table */
       mapData(){
         let res = [],
-          source_lang = this.source.res.path_source_lang;
-        this.source.res.strings.forEach( (obj, idx ) => {
-          let ob = {};
-          for (let prop in obj){
-            //number of occurrence of the strings in files of the path
-         //   ob['occurrence'] = this.source.res.strings[idx][source_lang].paths.length || 0;
-            //takes the path of the string from file po
-						if ( this.source.res.strings[idx][source_lang].occurrence ){
-            	ob['occurrence'] =  this.source.res.strings[idx][source_lang].occurrence;   
+            source_lang = this.source.res.path_source_lang;
+        if ( this.source.id_project !== 'options'){
+          this.source.res.strings.forEach( (obj, idx ) => {
+            let ob = {};
+            for (let prop in obj){
+              //number of occurrence of the strings in files of the path
+              //   ob['occurrence'] = this.source.res.strings[idx][source_lang].paths.length || 0;
+              //takes the path of the string from file po
+              if ( this.source.res.strings[idx][source_lang].occurrence ){
+                ob['occurrence'] =  this.source.res.strings[idx][source_lang].occurrence;
+              }
+              else {
+                ob['occurrence'] = 0;
+              }
+              ob['path'] = this.source.res.strings[idx][source_lang].paths;
+              ob['original_exp'] = this.source.res.strings[idx][source_lang].original;
+              ob['id_exp'] = this.source.res.strings[idx][source_lang].id_exp;
+              ob[prop] = this.source.res.strings[idx][prop].translations_po;
             }
-            else {
-              ob['occurrence'] = 0;
+            res.push(ob);
+          })
+        }
+        else {
+          res = this.source.res.strings.map((o) => {
+            if ( o.original ){
+              o.original_exp = o.original;
+              delete o.original;
+              return o;
             }
-            
-
-            ob['path'] = this.source.res.strings[idx][source_lang].paths;
-            ob['original_exp'] = this.source.res.strings[idx][source_lang].original;
-            ob['id_exp'] = this.source.res.strings[idx][source_lang].id_exp;
-            ob[prop] = this.source.res.strings[idx][prop].translations_po;
-          }
-          res.push(ob);
-        })
-        return res
+          });
+        }
+        return res;
       }
     },
     components:{
@@ -244,6 +263,8 @@
         props: ['source'],
         data(){
           return {
+            /** v-model of multiselect when project === options */
+            to_hide_col:[],
             hide_source_language: false
           }
         },
@@ -257,9 +278,46 @@
           },
           remake_cache(){
             return this_tab.remake_cache();
-          }
+          },
         },
         watch: {
+          to_hide_col(val){
+
+            let res = [],
+                index = $.inArray(val, res);
+            /** declaring a function to make the diff between 2 arrays */
+            Array.prototype.diff = function (a) {
+              return this.filter(function (i) {
+                return a.indexOf(i) === -1;
+              });
+            };
+            val.forEach((v, i) => {
+              var idx = bbn.fn.search(this_tab.columns, 'field', v);
+              if ( $.inArray(v, res) > -1 ){
+                res.splice(index, 1, res);
+              }
+              else {
+                res.push(v)
+                if ( res.length ){
+                  res.forEach((r, n) => {
+                    this.$nextTick( () => {
+                      this_tab.columns[idx].hidden = true;
+                    })
+                  })
+                }
+              }
+            });
+            var result = this.languages.diff(res);
+            if ( result.length ){
+              bbn.fn.log(result)
+              result.forEach( (re, nu) => {
+                var indice = bbn.fn.search(this_tab.columns, 'field', re);
+                this.$nextTick(()=>{
+                  this_tab.columns[indice].hidden = false;
+                })
+              } )
+            }
+          },
           /** v-model of bbn-switch used to hide the column of original language */
           hide_source_language(val, oldVal){
             //get the index of the column of source language
@@ -274,6 +332,15 @@
             }
           }
         },
+        computed: {
+          languages(){
+            return this_tab.source.res.languages
+          },
+          id_project(){
+            return this_tab.source.id_project
+          },
+
+        }
 
       },
       /** expander of the table, shows the path of the files containing the string */

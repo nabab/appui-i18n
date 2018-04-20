@@ -14,6 +14,7 @@ if ( !empty($model->data['row']['id_exp'])){
   $row = $model->data['row'];
   /** @var (array) $langs sent by strings table*/
   $langs = $model->data['langs'];
+  $deleted = false;
   foreach( $langs as $l ){
     if ( !empty($row[$l]) ){
       /** @var $expression the string */
@@ -43,6 +44,21 @@ if ( !empty($model->data['row']['id_exp'])){
         ]);
       }
     }
+    else if ( $row[$l] === '' ){
+      if ( $id = $model->db->get_val('bbn_i18n_exp', 'id', [
+        'id_exp' => $row['id_exp'],
+        'lang' => $l
+      ]) ) {
+        /** if in a cell of the table the string is deleted it deletes the string from db */
+        if ( $model->db->delete('bbn_i18n_exp',[
+          'id_exp' => $row['id_exp'],
+          'lang' => $l
+        ]) ){
+          $success = true;
+          $deleted = true;
+        }
+      }
+    }
   }
   /** @todo if from I could update the widget after the insert I need to remake the cached model of the widget */
   //$model->get_cached_model(APPUI_I18N_ROOT.'page/data/widgets', ['id_option'=> $model->data['id_option']], true);
@@ -53,6 +69,7 @@ if ( !empty($model->data['row']['id_exp'])){
   $model->get_model(APPUI_I18N_ROOT.'actions/generate', ['id_option' => $model->data['id_option']]);
 }
 return [
+  'deleted' => $deleted,
   'row' => $model->data['row'],
   'success' => $success
 ];

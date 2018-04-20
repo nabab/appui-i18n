@@ -1,7 +1,9 @@
 <div class="k-header bbn-w-100"
      ref="toolbar-strings-table"
      style="min-height: 60px;">
-  <div style="padding: 6px;">
+  <div style="padding: 6px;"
+       v-if="id_project !=='options'"
+  >
 
 
 
@@ -44,5 +46,21 @@
     </div>
 
   </div>
-  <div style="font-size:9px; text-align: right; padding-right: 6px;padding-bottom:3px"><?=_("If the column with ")?><i class="fa fa-asterisk"></i> <?=_("is empty be sure to force translation files update and then update the table")?></div>
+  <div style="font-size:9px; text-align: right; padding-right: 6px;padding-bottom:3px"
+       v-if="id_project !=='options'"
+  ><?=_("If the column with ")?><i class="fa fa-asterisk"></i> <?=_("is empty be sure to force translation files update and then update the table")?></div>
+
+  <div v-if="id_project ==='options'"
+       class="bbn-padded bbn-c"
+
+  >
+    <div><?=_("Select column you want to hide from the table")?></div>
+    <bbn-multiselect :placeholder="_('')"
+                     :source="languages"
+                     v-model="to_hide_col"
+
+
+    ></bbn-multiselect>
+  </div>
+
 </div>

@@ -53,17 +53,22 @@
         //only if the the language of the path is set
         //internationalization/page/path_translations/ will return the cached_model in its data, if a
         // cached_model doesn't exist for this id_option it will be created
-        if ( this.configured_langs !== undefined ){
+        if ( ( this.configured_langs !== undefined ) && ( this.id_project !== 'options')){
           bbn.fn.link('internationalization/page/path_translations/' + this.id_option);
         }
-        else {
+        else if ( (this.configured_langs === undefined) && ( this.id_project !== 'options')){
           bbn.vue.closest(this, 'bbn-tab').popup().alert(bbn._('You have to configure at least a language of translation using the button') +' <i class="fa fa-flag"></i> ' + bbn._('of the widget before to open the strings table') );
-
+        }
+        else if ( ( this.configured_langs !== undefined ) && ( this.id_project === 'options') ){
+          bbn.fn.link('internationalization/page/path_translations/options/' + this.id_option );
         }
       },
       remake_cache(){
         if ( this.language != null ){
-          bbn.fn.post('internationalization/actions/reload_widget_cache', { id_option: this.id_option }, (d) => {
+          bbn.fn.post('internationalization/actions/reload_widget_cache', {
+            id_option: this.id_option,
+            if_project: this.id_project
+          }, (d) => {
             if ( d.success ){
               appui.success(bbn._('Widget updated'));
               bbn.vue.closest(this, 'bbn-tab').getComponent().source.data[this.widget_idx].data_widget = d.data_widget;
@@ -93,6 +98,24 @@
         });
 
       },
+      /** method to find strings and translation for the option -works with db- only for the id_project === 'option' */
+      find_options(){
+        let url = bbn.vue.closest(this, 'bbn-tab').getComponent().source.root + 'options/find_options';
+        bbn.fn.post(url, {
+          id_option : this.id_option,
+          language: this.language
+        }, (d) => {
+          if (d.success){
+            if ( d.new > 0 ){
+              appui.success(d.new + ' new options found in this category');
+            }
+            else {
+              appui.warning('No new options found in this category')
+            }
+
+          }
+        })
+      },
       generate(){
         if ( this.language !== null ){
           bbn.vue.closest(this, 'bbn-tab').popup().open({
@@ -107,6 +130,7 @@
                 languages: this.locale_dirs
               },
               data: {
+                id_project: this.id_project,
                 language: this.language,
                 widget_idx : this.widget_idx,
                 //langs configured for the project
@@ -124,6 +148,9 @@
       },
     },
     computed: {
+      id_project(){
+        return bbn.vue.closest(this, 'bbn-tab').getComponent().id_project
+      },
       widget_idx(){
         //return the real index of this widget in the array of data of dashboard it works also after drag and drop
         let data = bbn.vue.closest(this, 'bbn-tab').getComponent().source.data;
@@ -149,7 +176,7 @@
               else if ( ( result[r].val > 70 ) && ( result[r].val <= 100 ) ){
                 result[r].class = 'high'
               }
-             
+
             }
           }
 
@@ -189,8 +216,6 @@
     },
     watch: {
       /** define the css class for the progressbar*/
-     
-      
       locale_dirs(val, oldVal){
         if(val){
           this.$forceUpdate();
@@ -221,13 +246,12 @@
           //change the languages of locale dirs
           change_languages(val, obj) {
             let dashboard = bbn.vue.closest(this, 'bbn-tab').getComponent(),
-                widgets = bbn.vue.findAll(dashboard, 'bbn-widget'),
-                this_widget = dashboard.source.data[this.source.data.widget_idx],
-                idx = $.inArray(obj.value, dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs );
+              widgets = bbn.vue.findAll(dashboard, 'bbn-widget'),
+              this_widget = dashboard.source.data[this.source.data.widget_idx],
+              idx = $.inArray(obj.value, dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs );
             //if I want source language in locale dir as default can create error if the po file doesn't exists//
-            /*if ( $.inArray(this.source.data.language, dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs ) < 0 ){
-              dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs.push(this.source.data.language);
-            }*/
+
+            bbn.fn.log('----------', this_widget, idx)
             //case uncheck language
             if (idx > -1) {
               if (this_widget.data_widget.locale_dirs.length) {

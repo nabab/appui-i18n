@@ -12,6 +12,7 @@ $timer->start();
 /** @var (array) $projects from db*/
 $projects = $model->get_model(APPUI_I18N_ROOT.'page')['projects'];
 
+
 if ( !empty( $id_option = $model->data['id_option']) &&
   ($o = $model->inc->options->option($id_option)) &&
   ($parent = $model->inc->options->parent($id_option)) &&
@@ -94,7 +95,7 @@ if ( !empty( $id_option = $model->data['id_option']) &&
   }
 
   return [
-    //'po' => $po_file,
+
     'path_source_lang' => $path_source_lang,
     'path' => $o['text'],
     'success' => $success,

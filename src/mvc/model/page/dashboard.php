@@ -22,15 +22,15 @@ $translation = new \bbn\appui\i18n($model->db);
 $configured_langs = [];
 foreach ( $projects as $i => $p ){
 
-
-
   if ( !empty($model->data['id_project']) && ( $model->data['id_project'] === $projects[$i]['id'] )){
     $timer->start('2');
     /** takes the current project from projects array */
     $project = $projects[$i];
     /** @var  $project_class instantiate the class of project */
     $project_class = new \bbn\appui\project($model->db, $projects[$i]['id']);
-
+    /*if ( $model->data['id_project'] === 'options'){
+      die(var_dump($model->data['id_project']));
+    }*/
 
     /** takes the langs configured in db for the project translation */
     foreach ( $project_class->get_langs() as $p ){

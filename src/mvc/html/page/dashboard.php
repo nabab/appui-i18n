@@ -17,11 +17,12 @@
                         @change="load_widgets"
           ></bbn-dropdown>
 
-          <span class="bbn-r">The source language for this project is:</span>
-          <span v-text="get_field(source.primary, 'code', get_field(source.projects, 'id', id_project, 'lang'), 'text')"></span>
+          <span class="bbn-r" v-if="id_project !== 'options'"><?=_("The source language for this project is:")?></span>
+          <span v-if="id_project !== 'options'"
+                v-text="get_field(source.primary, 'code', get_field(source.projects, 'id', id_project, 'lang'), 'text')"></span>
 
 
-          <span class="bbn-r">Configure languages for this project</span>
+          <span class="bbn-r"><?=_("Configure languages for this project")?></span>
           <div style="max-height: 25px;">
             <bbn-button icon="fa fa-flag"
                         :noText="true"
@@ -29,7 +30,7 @@
             ></bbn-button>
           </div>
 
-          <span class="bbn-r">Languages configured for translation of this project:</span>
+          <span class="bbn-r"><?=_("Languages configured for translation of this project:")?></span>
           <div v-if="source.configured_langs">
             <div v-for="c in source.configured_langs"
                  class="bbn-b bbn-i"

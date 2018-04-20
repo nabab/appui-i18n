@@ -7,5 +7,6 @@
  */
 
 if ( $ctrl->post['id_project']){
+
   $ctrl->cached_action();
 }
