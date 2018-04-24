@@ -1,7 +1,7 @@
 <bbn-form class="bbn-full-screen"
           :source="source.row"
           ref="form-locale"
-          action="internationalization/options/find_options"
+          :action="( source.data.id_project === 'options' ) ? 'internationalization/options/find_options' : 'internationalization/actions/generate'"
           confirm-leave="<?=_("Are you sure you want to exit without saving changes?")?>"
           :prefilled="true"
           @success="success"

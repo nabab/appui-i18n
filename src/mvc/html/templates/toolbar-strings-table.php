@@ -51,16 +51,23 @@
   ><?=_("If the column with ")?><i class="fa fa-asterisk"></i> <?=_("is empty be sure to force translation files update and then update the table")?></div>
 
   <div v-if="id_project ==='options'"
-       class="bbn-padded bbn-c"
+       class="bbn-padded bbn-grid-fields"
 
   >
-    <div><?=_("Select column you want to hide from the table")?></div>
-    <bbn-multiselect :placeholder="_('')"
-                     :source="languages"
-                     v-model="to_hide_col"
+    <div class="bbn-r"><?=_("Select languages you want to hide from the table")?></div>
+    <div class="bbn-r">
+      <div v-for="l in  languages"
+           style="display: inline;"
+      >
+        <label v-text="l"></label>
+        <bbn-checkbox :key="l"
+                      style="padding-right: 3px"
+                      @change="hide_col"
+                      :value="l"
+        ></bbn-checkbox>
+      </div>
 
-
-    ></bbn-multiselect>
+    </div>
   </div>
 
 </div>

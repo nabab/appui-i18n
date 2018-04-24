@@ -21,7 +21,7 @@
         /* the data coming from the post change the source of the dashboard at the index of this specific widget*/
         bbn.fn.post('internationalization/actions/define_path_lang', {
           'language': this.language,
-          'id_option': bbn.vue.closest(bbn.vue.closest(this, 'bbn-widget'), 'bbn-tab').getComponent().widgets[this.widget_idx].key
+          'id_option': this.id_option
         }, (d) => {
           if ( d.success ){
             delete d.success;
@@ -35,8 +35,20 @@
           }
         })
       },
+      set_cfg(){
+        bbn.fn.post('options/set_lang', {
+          'id_option': this.id_option,
+          'id_project': this.id_project,
+          'language': this.language
+        }, (d) => {
+          if ( d.success ){
+            this.language = null
+            appui.success(bbn._('Source language resetted'));
+          }
+        })
+      },
+      /** removes the property language of the path */
       remove_language(){
-        //removes the property language of the path
         bbn.fn.post('internationalization/actions/delete_path_lang', {
           'id_option': bbn.vue.closest(this.$parent, 'bbn-tab').getComponent().widgets[bbn.vue.closest(this, 'bbn-widget').index].key,
           'language': this.language
@@ -44,6 +56,17 @@
           if ( d.success ){
             this.language = null
             appui.success(bbn._('Source language resetted'));
+          }
+        })
+      },
+      /** removes the property language of the option from its cfg */
+      remove_cfg(){
+        bbn.fn.post('internationalization/options/remove_lang', {
+          id_option: this.id_option
+        }, (d) => {
+          if ( d.success ){
+            this.language = null
+            appui.success(bbn._('Source language resetted for this option'));
           }
         })
       },
@@ -67,13 +90,14 @@
         if ( this.language != null ){
           bbn.fn.post('internationalization/actions/reload_widget_cache', {
             id_option: this.id_option,
-            if_project: this.id_project
+            id_project: this.id_project
           }, (d) => {
             if ( d.success ){
               appui.success(bbn._('Widget updated'));
-              bbn.vue.closest(this, 'bbn-tab').getComponent().source.data[this.widget_idx].data_widget = d.data_widget;
+              //if ( this.id_project !== 'options' ){
+                bbn.vue.closest(this, 'bbn-tab').getComponent().source.data[this.widget_idx].data_widget = d.data_widget;
+              //}
               this.$forceUpdate();
-
             }
           })
         }
@@ -100,21 +124,23 @@
       },
       /** method to find strings and translation for the option -works with db- only for the id_project === 'option' */
       find_options(){
-        let url = bbn.vue.closest(this, 'bbn-tab').getComponent().source.root + 'options/find_options';
-        bbn.fn.post(url, {
-          id_option : this.id_option,
-          language: this.language
-        }, (d) => {
-          if (d.success){
-            if ( d.new > 0 ){
-              appui.success(d.new + ' new options found in this category');
-            }
-            else {
-              appui.warning('No new options found in this category')
-            }
+        if ( this.id_project === 'options' ){
+          let url = bbn.vue.closest(this, 'bbn-tab').getComponent().source.root + 'options/find_options';
+          bbn.fn.post(url, {
+            id_option : this.id_option,
+            language: this.language
+          }, (d) => {
+            if (d.success){
+              if ( d.new > 0 ){
+                appui.success(d.new + ' new options found in this category');
+              }
+              else {
+                appui.warning('No new options found in this category')
+              }
 
-          }
-        })
+            }
+          })
+        }
       },
       generate(){
         if ( this.language !== null ){
@@ -251,7 +277,6 @@
               idx = $.inArray(obj.value, dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs );
             //if I want source language in locale dir as default can create error if the po file doesn't exists//
 
-            bbn.fn.log('----------', this_widget, idx)
             //case uncheck language
             if (idx > -1) {
               if (this_widget.data_widget.locale_dirs.length) {

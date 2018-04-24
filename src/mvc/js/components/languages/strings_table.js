@@ -8,6 +8,7 @@
       return {
         primary: this.languages.source.primary,
         column_length: true,
+        hidden_cols: []
       }
     },
     methods: {
@@ -136,7 +137,7 @@
     },
     props: ['source'],
     computed: {
-      /** the source language of this id_option */ 
+      /** the source language of this id_option */
       source_lang(){
         return bbn.fn.get_field(this.primary, 'code' , this.source.res.path_source_lang, 'text')
       },
@@ -154,28 +155,29 @@
             editable: true
           };
           /**render for the columns when the  project is not options */
-          if ( this.source.id_project !== 'options'){
+          if ( ( this.source.id_project !== 'options' )  ){
             obj.render = (row) => {
+              var columns = bbn.vue.find(vm, 'bbn-table').columns,
+                this_field;
+
+              columns.forEach( (v, i) => {
+                if ( v.field === this.source.res.languages[n] ){
+                  this_field = columns[i].field;
+                }
+              });
               var idx = bbn.fn.search(vm.translations_db, 'id_exp', row.id_exp ),
-                translation_db = vm.translations_db[idx][this.field];
-              //why this is the column??
-              if ( ( translation_db !== false ) && ( translation_db === row[this.field] ) ){
-                return row[this.field] + '<i class="fa fa-check bbn-large bbn-green" title="Expression found in translation file" style="float:right"><i/>'
+                  translation_db = vm.translations_db[idx][this_field];
+              if ( ( translation_db !== false ) && ( translation_db === row[this_field] ) ){
+                return row[this_field] + '<i class="fa fa-check bbn-large bbn-green" title="Expression found in translation file" style="float:right"><i/>'
               }
-              else if ( ( row[this.field] !== "" ) && ( translation_db !== row[this.field] ) ){
-                return row[this.field] + '<i style="float:right" class="fa fa-thumbs-up bbn-large bbn-green" title="Translation files updated"><i/>'
+              else if ( ( row[this_field ] !== "" ) && ( translation_db !== row[this_field ] ) &&  ( this.source.id_project !== 'options') ){
+                return row[this_field] + '<i style="float:right" class="fa fa-thumbs-up bbn-large bbn-green" title="Translation files updated"><i/>'
               }
               else {
-                return row[this.field]
+                return row[this_field ]
               }
             }
           }
-          /** render for the options table (project options)*/
-         /* else if ( this.source.id_project === 'options'){
-            obj.render = (row) => {
-               return row[this.field]
-            }
-          }*/
           r.push(obj);
           if ( n === this.source.res.source_lang ){
             def = i;
@@ -256,6 +258,39 @@
         return res;
       }
     },
+    watch: {
+      hidden_cols(val){
+        /** function to make the difference between two arrays */
+        Array.prototype.diff = function (a) {
+          return this.filter(function (i) {
+            return a.indexOf(i) === -1;
+          });
+        };
+        /** creates the array not hidden making the diff between checked and unchecked langs */
+        var not_hidden = this.source.res.languages.diff(val);
+        /** val is the array of checked langs */
+        val.forEach( (v, i) => {
+          /** the index of the column to hide */
+          let col_idx = bbn.fn.search(this.columns, 'field', v),
+            /** the column to hide */
+              col = this.columns[col_idx],
+              idx = $.inArray(v, this.hidden_cols);
+          if ( idx > -1 ){
+            col.hidden = true;
+          }
+        });
+        /** loop on the array of not to hide langs */
+        if ( not_hidden.length ){
+          not_hidden.forEach( (v, i) => {
+            let col_idx = bbn.fn.search(this.columns, 'field', v),
+                col = this.columns[col_idx];
+            col.hidden = false;
+
+          } )
+        }
+
+      },
+    },
     components:{
       /** the toolbar of the table, the template is on html/template folder */
       'toolbar-strings-table': {
@@ -279,49 +314,24 @@
           remake_cache(){
             return this_tab.remake_cache();
           },
-        },
-        watch: {
-          to_hide_col(val){
-
-            let res = [],
-                index = $.inArray(val, res);
-            /** declaring a function to make the diff between 2 arrays */
-            Array.prototype.diff = function (a) {
-              return this.filter(function (i) {
-                return a.indexOf(i) === -1;
-              });
-            };
-            val.forEach((v, i) => {
-              var idx = bbn.fn.search(this_tab.columns, 'field', v);
-              if ( $.inArray(v, res) > -1 ){
-                res.splice(index, 1, res);
+          hide_col(val){
+            if ( val ){
+              let idx = $.inArray(val, this_tab.hidden_cols);
+              if ( idx > -1 ){
+                this_tab.hidden_cols.splice(idx, 1);
               }
               else {
-                res.push(v)
-                if ( res.length ){
-                  res.forEach((r, n) => {
-                    this.$nextTick( () => {
-                      this_tab.columns[idx].hidden = true;
-                    })
-                  })
-                }
+                this_tab.hidden_cols.push(val);
               }
-            });
-            var result = this.languages.diff(res);
-            if ( result.length ){
-              bbn.fn.log(result)
-              result.forEach( (re, nu) => {
-                var indice = bbn.fn.search(this_tab.columns, 'field', re);
-                this.$nextTick(()=>{
-                  this_tab.columns[indice].hidden = false;
-                })
-              } )
             }
-          },
-          /** v-model of bbn-switch used to hide the column of original language */
+
+          }
+        },
+        watch: {
+           /** v-model of bbn-switch used to hide the column of original language */
           hide_source_language(val, oldVal){
-            //get the index of the column of source language
-            var idx = bbn.fn.search(this_tab.columns, 'field', this_tab.source.res.path_source_lang);
+            /** get the index of the column of source language */
+            var idx = bbn.fn.search(this_tab.columns, 'field', this_tab.source.res.path_source_lang );
             if ( ( val === true ) && ( idx > -1) ){
               this_tab.columns[idx].hidden = true;
               this_tab.$forceUpdate()
@@ -330,7 +340,8 @@
               this_tab.columns[idx].hidden = false;
               this_tab.$forceUpdate()
             }
-          }
+          },
+
         },
         computed: {
           languages(){

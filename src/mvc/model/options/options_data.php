@@ -17,13 +17,15 @@ if ( !empty($model->data['id_project']) && ( $model->data['id_project'] === 'opt
   foreach ($primaries as $p ){
     $configured_langs[] = $p['id'];
   }
+  $success = true;
 
   return [
     'data' => $translation->get_num_options(),
-    'success' => true,
+    'success' => $success,
     'configured_langs' => $configured_langs
   ];
 }
+
 return [
   'success' => false
 ];

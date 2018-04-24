@@ -23,6 +23,10 @@
           }
           else {
             buttons = [{
+              text: bbn._('Update widget data'),
+              icon: 'fa fa-retweet',
+              action: 'remake_cache'
+            },{
               text: bbn._('Find new options or translations for this category'),
               icon: 'icon-database',
               action: 'find_options'
