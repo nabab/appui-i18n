@@ -13,7 +13,7 @@
              :multifilter="true"
              ref="strings_table"
              :order="[{field: 'expression', dir: 'ASC'}]"
-             :expander="$options.components['file_linker']"
+             :expander="$options.components['file_linker'] "
              :toolbar="$options.components['toolbar-strings-table']"
              @change="insert_translation"
   >

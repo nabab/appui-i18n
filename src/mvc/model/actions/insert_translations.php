@@ -67,7 +67,9 @@ if ( !empty($model->data['row']['id_exp'])){
       'id_option' => $model->data['id_option'],
       'routes' => $model->data['routes']
     ], true);
+
     $model->get_model(APPUI_I18N_ROOT.'actions/generate', ['id_option' => $model->data['id_option']]);
+
   }
 }
 return [

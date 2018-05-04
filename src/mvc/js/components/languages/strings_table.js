@@ -356,6 +356,11 @@
       },
       /** expander of the table, shows the path of the files containing the string */
       'file_linker': {
+        data(){
+          return {
+            id_project : bbn.vue.closest(this, 'bbn-tab').source.id_project
+          }
+        },
         methods: {
           link_ide(path){
             let idx = path.lastIndexOf('/'),
@@ -374,7 +379,7 @@
           }
         },
         template:
-          '<ul style="width:100%; list-style-type:none; padding-left:0">' +
+          '<ul v-if="id_project!== \'options\' " style="width:100%; list-style-type:none; padding-left:0">' +
           '<li class="bbn-vspadded bbn-grid-fields" :source="source" v-for="s in source.path">' +
           '<span class="bbn-lg">File:</span>' +
           '<a v-text="s" @click="link_ide(s)" style="width:100%;cursor:pointer" title="Open the file in i.d.e"></a>' +
