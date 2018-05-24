@@ -24,6 +24,7 @@ if (
 
   /** @var (array)$data creates a cached model of the strings found in the files using the action find_strings */
   $data = $model->get_cached_model(APPUI_I18N_ROOT.'actions/find_strings', ['id_option'=> $model->data['id_option'], 'language'=> $model->data['language']], true);
+  /*$data = $model->get_model(APPUI_I18N_ROOT.'actions/find_strings', ['id_option'=> $model->data['id_option'], 'language'=> $model->data['language']]);*/
 
   /** @var (boolean) $no_strings case of empty($data['res']), there are no strings in this path . Return true if there are no strings from find_strings*/
   $no_strings = false;
@@ -78,11 +79,15 @@ if (
       $mo = $locale_dir.'/'.$lang.'/LC_MESSAGES/'.$domain.'.mo';
       /** checks if the file po exist for this lang */
       if ( is_file($po) ){
+        //die(var_dump($po));
         /** $translations[$lang] takes the content from the existing file */
         $translations[$lang] = Translations::fromPoFile($po);
         /** deletes po and mo files */
-        @unlink($po);
-        @unlink($mo);
+        if ( \bbn\file\dir::delete($po) ){
+          $translations[$lang] = new Gettext\Translations();
+        }
+        //@unlink($po);
+        //@unlink($mo);
       }
       else{
         /** if the po files doesn't exist instantiate the object $translations[$lang] to the class Gettext\Translations()*/
@@ -103,7 +108,7 @@ if (
       $translations[$lang]->setLanguage($lang);
       /** @var takes all strings from the cached model of find_strings */
       foreach ( $data['res'] as $r ){
-
+        //die(var_dump($data['res']));
         if ( !($t = $translations[$lang]->find('', $r['original_exp'])) ){
           /** @var $t if the original expression doesn't exist in the po file it creates $t  */
           $t = new Gettext\Translation(null, $r['original_exp']);

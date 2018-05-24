@@ -68,6 +68,12 @@ if ( !empty( $id_option = $model->data['id_option']) &&
           $po_file[$i][$lng]['original'] = $original;
           /** the translation of the string found in the po file */
           $po_file[$i][$lng]['translations_po'] = $t->getTranslation();
+/*          die(var_dump('fe',$original,$id = $model->db->select_one('bbn_i18n',
+            'id',
+            [
+              'exp' => $original,
+              'lang' => $path_source_lang
+            ]), $model->db->get_rows('SELECT * FROM bbn_i18n WHERE exp LIKE "bbn-vue makes creating reactive apps controls with VueJS easy as a breeze!"'),  count($model->db->get_rows('SELECT * FROM bbn_i18n WHERE actif = 0')),  count($model->db->get_rows('SELECT * FROM bbn_i18n'))));*/
           /** @var  $id takes the id of the original expression in db */
           if ( $id = $model->db->select_one('bbn_i18n',
             'id',
@@ -85,6 +91,7 @@ if ( !empty( $id_option = $model->data['id_option']) &&
             foreach ( $paths as $p ){
               $po_file[$i][$lng]['paths'][] = $ide->real_to_url($p[0]);
             }
+
             /** the number of times the strings is found in the files of the path  */
             $po_file[$i][$lng]['occurrence'] = !empty($po_file[$i][$path_source_lang]) ? count($po_file[$i][$path_source_lang]['paths']) : 0;
           };

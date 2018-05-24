@@ -37,19 +37,31 @@
                  v-text="get_field(source.primary, 'id', c, 'text')"
                  style="display:inline;padding-right:6px"></div>
           </div>
+          <div v-if="id_project !== 'options'"
+               class="bbn-grid-full"
+               style="position:absolute; right: 7px; top: 7px;">
+            <bbn-button icon="fa fa-table"
+                        :noText="true"
+                        @click="link_projects_table"
+                        title="Open table view of projects"
+            ></bbn-button>
+          </div>
+          <div v-else
+               class="bbn-grid-full bbn-large bbn-c"
+          >
+            <a href="options/tree"
+               title="<?=_("Go to options' tree, choice the option you want to translate")?>"
+            ><?=_("Follow the link to configure other options for translation")?></a>
+          </div>
         </div>
-        <div style="position:absolute; right: 7px; top: 7px;">
-          <bbn-button icon="fa fa-table"
-                      :noText="true"
-                      @click="link_projects_table"
-                      title="Open table view of projects"
-          ></bbn-button>
-        </div>
+
       </div>
+
     </bbn-pane>
 
 
     <bbn-pane v-if="widgets.length">
+
       <bbn-dashboard :source="widgets"
       >
       </bbn-dashboard>

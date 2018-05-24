@@ -18,7 +18,7 @@
          style="float:right; margin-left:6px; cursor: pointer; margin-top: 4px"
       ></i>
 
-      <span class="bbn-l"
+     <span class="bbn-l"
             v-text="get_field(primary, 'code', language, 'text')"
             style="float:right"
       ></span>
