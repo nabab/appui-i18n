@@ -61,11 +61,11 @@
               //d.done is the number of new strings inserted in the db
               //the empty string passed to bbn.fn.alert is for the title of the alert
               if( d.done > 0 ){
-                bbn.fn.alert( d.done + ' strings successfully updated for '+ row.text + '<i class="fa' +
+                appui.alert( d.done + ' strings successfully updated for '+ row.text + '<i class="fa' +
                   ' fa-smile-o"></i>!', ' ');
               }
               else {
-                bbn.fn.alert('There are no new strings to update <i class="fa fa-smile-o" aria-hidden="true"></i>', ' ');
+                appui.alert('There are no new strings to update <i class="fa fa-smile-o" aria-hidden="true"></i>', ' ');
               }
             });
           },

@@ -26,7 +26,7 @@
           });
         }
         else {
-          bbn.fn.alert('You have to configure at least a language using the button <i class="fa fa-flag"></i> of the widget in the dashboard')
+          appui.alert('You have to configure at least a language using the button <i class="fa fa-flag"></i> of the widget in the dashboard')
         }
       },
       /** checks if there are new strings in the files of the path */
@@ -61,7 +61,7 @@
         let id_exp = row.id_exp,
           data = this.mapData,
           idx = bbn.fn.search(data, { id_exp: id_exp });
-        bbn.fn.confirm('Did you remove the expression from code before to delete the row?', () => {
+        appui.confirm('Did you remove the expression from code before to delete the row?', () => {
           bbn.fn.post(this.source.root + 'actions/delete_expression', { id_exp: row.id_exp, exp: row.original_exp },  (d) => {
             if ( d.success ){
               data.splice(idx, 1);
