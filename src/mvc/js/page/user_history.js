@@ -39,7 +39,7 @@
       render_status(row){
         let st = '';
         if ( row.opr === 'DELETE'){
-          st += '<i title="Expression deleted from database" class="fa fa-close bbn-bg-red bbn-xl"></i>'
+          st += '<i title="Expression deleted from database" class="fas fa-times bbn-bg-red bbn-xl"></i>'
         }
         else if ( ( row.original_lang === row.translation_lang ) && ( row.expression === row.original_expression ) ){
           st += '<i class="fa fa-check bbn-bg-purple bbn-xl" style="color:white" title="Expressions are identical"></i>'
@@ -50,10 +50,10 @@
             ' </i>'
         }
         else if ( ( row.original_lang !== row.translation_lang ) && ( row.expression !== row.original_expression ) ){
-          st += '<i class="fa fa-smile-o bbn-bg-green bbn-xl" title="Expression translated"></i>'
+          st += '<i class="far fa-smile bbn-bg-green bbn-xl" title="Expression translated"></i>'
         }
         else if ( ( row.original_lang !== row.translation_lang ) && ( row.expression === row.original_expression ) ){
-          st += '<i title="Translated! Expression is the same in the two languages" class="fa fa-smile-o bbn-green bbn-xl"></i>'
+          st += '<i title="Translated! Expression is the same in the two languages" class="far fa-smile bbn-green bbn-xl"></i>'
         }
 
         return st;

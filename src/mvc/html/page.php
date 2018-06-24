@@ -3,27 +3,27 @@
   >
    
       
-    <bbn-tab url="dashboard"
+    <bbns-tab url="dashboard"
              title="<i class='fa fa-edit bbn-lg' title='Dashboard'></i>Projects Dashboard"
              :load="true"
              :source="source"
              :static="false"
              :pinned="true"
-    ></bbn-tab>
+    ></bbns-tab>
   
     
-  <!--  <bbn-tab url="home"
+  <!--  <bbns-tab url="home"
              title="<i class='fa fa-tasks bbn-lg' title='Projects'></i>Projects table"
              :load="true"
              :source="source"
-    ></bbn-tab>
+    ></bbns-tab>
 -->
-    <bbn-tab url="history"
+    <bbns-tab url="history"
              title="<i class='fa fa-flag bbn-lg' title='Translations'></i>Translations"
              :static="true"
              :load="true"
              :source="source"
-    ></bbn-tab>
+    ></bbns-tab>
 
   </bbn-tabnav>
 </div>

@@ -16,7 +16,7 @@
         let res = [];
         res.push({
           command: this.delete_expression,
-          icon: 'fa fa-close',
+          icon: 'fas fa-times',
           title :'Delete original expression'
         })
         return res;
@@ -53,11 +53,11 @@
             ' language" ></i>')
         }
         else if ( ( row.translation !== null ) && ( row.original_expression !== row.translation ) && ( this.source.source_lang !== this.source.translation_lang ) ) {
-          res = ('<i class="fa fa-smile-o bbn-xl bbn-bg-green bbn-xl" title="Expression translated" ></i>')
+          res = ('<i class="far fa-smile bbn-xl bbn-bg-green bbn-xl" title="Expression translated" ></i>')
 
         }
         else {
-          res = '<i class="fa fa-frown-o bbn-xl bbn-bg-red" title="Expression not translated."' +
+          res = '<i class="far fa-frown bbn-xl bbn-bg-red" title="Expression not translated."' +
             ' ></i>'
         }
         return res;
@@ -66,7 +66,7 @@
     },
     components:{
       'delete_button': {
-        template: '<bbn-button icon="fa fa-frown-o"></bbn-button>',
+        template: '<bbn-button icon="far fa-frown"></bbn-button>',
         props: ['source']
       }
     }

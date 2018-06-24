@@ -50,10 +50,10 @@
             ' </i>'
         }
         else if ( ( row.original_lang !== row.translation_lang ) && ( row.expression !== row.original_exp ) ){
-          st += '<i class="fa fa-smile-o bbn-bg-green bbn-xl" title="Expression translated"></i>'
+          st += '<i class="far fa-smile bbn-bg-green bbn-xl" title="Expression translated"></i>'
         }
         else if ( ( row.original_lang !== row.translation_lang ) && ( row.expression === row.original_exp ) ){
-          st += '<i title="Translated! Expression is the same in the two languages" class="fa fa-smile-o bbn-green bbn-xl"></i>'
+          st += '<i title="Translated! Expression is the same in the two languages" class="far fa-smile bbn-green bbn-xl"></i>'
         }
         return st;
       },
@@ -102,14 +102,14 @@
         data(){
           return {
             langs: bbn.vue.closest(this, 'bbn-tabnav').$parent.source.langs_in_db,
-            primary: bbn.vue.closest(this, 'bbn-tab').getComponent().primary
+            primary: bbn.vue.closest(this, 'bbns-tab').getComponent().primary
           }
         },
         methods: {
           config_translations(){
             //open a component popup to select source language and translation language for the table glossary
-            var tab = bbn.vue.closest(this, 'bbn-tab').getComponent();
-            bbn.vue.closest(this, 'bbn-tab').popup().open({
+            var tab = bbn.vue.closest(this, 'bbns-tab').getComponent();
+            this.getPopup().open({
               width:350,
               height:250,
               source: {

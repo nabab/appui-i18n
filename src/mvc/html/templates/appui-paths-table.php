@@ -1,20 +1,20 @@
 <div style="min-height: 500px">
   <bbn-table :source="source.path"
   >
-    <bbn-column field="text"
+    <bbns-column field="text"
                 title="Path"
                 ftitle="<?=_('All different paths of this project')?>"
                 ref="paths_table"
                 width="80%"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column field="language"
+    <bbns-column field="language"
                 title="<?=_('Language')?>"
                 ftitle="<?=_('Original language of the path')?>"
                 width="10%"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column field="code"
+    <bbns-column field="code"
                 title=" "
                 cls="bbn-c"
                 :buttons="[{
@@ -30,7 +30,7 @@
                   text: '<?=_('Go to the table of strings of this path')?>',
                   title: '<?=_('Go to the table of strings of this path')?>'
            	  	 }]"
-    ></bbn-column>
+    ></bbns-column>
 
   </bbn-table>
 </div>

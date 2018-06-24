@@ -59,8 +59,8 @@ if (
       /** if the string $r is not in 'bbn_i18n' inserts the string */
       $model->db->insert('bbn_i18n', [
         'exp' => $r,
-        'last_modified' => date('Y-m-d H:i:s'),
-        'id_user' => $model->inc->user->get_id(),
+        //'last_modified' => date('Y-m-d H:i:s'),
+        //'id_user' => $model->inc->user->get_id(),
         'lang' => $source_language,
       ]);
       $id = $model->db->last_id();

@@ -12,33 +12,33 @@
              :info="false"
 
   >
-    <bbn-column field="name"
+    <bbns-column field="name"
                 width="35%"
                 class="bbn-xl bbn-b"
                 title="<?=_('Projects')?>"
                 :render="render_projects"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column title="<?=_('Language(s)')?>"
+    <bbns-column title="<?=_('Language(s)')?>"
                 field="langs"
                 :render="render_langs"
                 class="bbn-xl"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column title="<?=_('Source language')?>"
+    <bbns-column title="<?=_('Source language')?>"
                 field="lang"
                 :render="render_lang_name"
                 class="bbn-xl"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column :buttons="[{
+    <bbns-column :buttons="[{
                     command: cfg_languages,
                     icon: 'fa fa-flag',
                     title: 'Configure languages of translation for this project'
                   }]"
                 width="80"
                 cls="bbn-c"
-    ></bbn-column>
+    ></bbns-column>
 
   </bbn-table>
 </div>

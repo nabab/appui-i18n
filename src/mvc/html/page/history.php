@@ -13,57 +13,57 @@
              :toolbar="$options.components['toolbar']"
              @change="insert_translation"
   >
-    <bbn-column field="last_modification"
+    <bbns-column field="last_modification"
                 title="<?=_('Date')?>"
                 type="date"
                 ftitle="<?=_('Date of last modification')?>"
                 :editable="false"
                 width="8%"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column field="user"
+    <bbns-column field="user"
                 title="<?=_('User')?>"
                 ftitle="<?=_('Translator\'s name')?>"
                 :editable="false"
                 width="12%"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column field="original_exp"
+    <bbns-column field="original_exp"
                 title="<?=_('Original Expression')?>"
                 ftitle="<?=_('Expression in the source language')?>"
                 :editable="false"
                 cls="bbn-i"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column field="original_lang"
+    <bbns-column field="original_lang"
                 title="<?=_('Source Language')?>"
                 ftitle="<?=_('The source language of the expression')?>"
                 width="50"
                 :editable="false"
                 :render="render_original_lang"
                 cls="bbn-c"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column field="expression"
+    <bbns-column field="expression"
                 title="<?=_('Translation')?>"
                 ftitle="<?=_('The expression translated by the user')?>"
-    ></bbn-column>
+    ></bbns-column>
 
 
-    <bbn-column field="translation_lang"
+    <bbns-column field="translation_lang"
                 title="<?=_('Language')?>"
                 ftitle="<?=_('The language of translation')?>"
                 width="50"
                 :render="render_lang"
                 cls="bbn-c"
                 :editable="false"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column ftitle="<?=_('Status')?>"
+    <bbns-column ftitle="<?=_('Status')?>"
                 :render="render_status"
                 width="40"
                 cls="bbn-c"
-    ></bbn-column>
+    ></bbns-column>
 
   </bbn-table>
 </div>

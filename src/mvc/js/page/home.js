@@ -65,7 +65,7 @@
                   ' fa-smile-o"></i>!', ' ');
               }
               else {
-                appui.alert('There are no new strings to update <i class="fa fa-smile-o" aria-hidden="true"></i>', ' ');
+                appui.alert('There are no new strings to update <i class="far fa-smile" aria-hidden="true"></i>', ' ');
               }
             });
           },
@@ -88,7 +88,7 @@
             }
             else {
               this.source.row.langs.push(obj.id);
-              //bbn.vue.closest(this, 'bbn-tab').getComponent().$forceUpdate();
+              //bbn.vue.closest(this, 'bbns-tab').getComponent().$forceUpdate();
             }
           }
         },

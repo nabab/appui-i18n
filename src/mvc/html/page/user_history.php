@@ -13,55 +13,55 @@
              @change="insert_translation"
   >
 
-    <bbn-column field="original_exp"
+    <bbns-column field="original_exp"
                 title="<?=_('Original Expression')?>"
                 ftitle="<?=_('Expression in the source language')?>"
                 cls="bbn-i"
                 :editable="false"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column field="original_lang"
+    <bbns-column field="original_lang"
                 title="<?=_('Source Language')?>"
                 ftitle="<?=_('The source language of the expression')?>"
                 width="50"
                 :render="render_original_lang"
                 cls="bbn-c"
                 :editable="false"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column field="expression"
+    <bbns-column field="expression"
                 title="<?=_('Translation')?>"
                 ftitle="<?=_('The expression you translated')?>"
                 :editable="true"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column field="lang"
+    <bbns-column field="lang"
                 title="<?=_('Language')?>"
                 ftitle="<?=_('The language of your translation')?>"
                 width="50"
                 :render="render_lang"
                 cls="bbn-c"
                 :editable="false"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column field="last_modification"
+    <bbns-column field="last_modification"
                 title="<?=_('Last modification')?>"
                 ftitle="<?=_('Date of last modification')?>"
                 type="date"
                 :editable="false"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column field="operation"
+    <bbns-column field="operation"
                 title=" "
                 :editable="false"
                 width="80"
                 cls="bbn-c"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column ftitle="<?=_('Status')?>"
+    <bbns-column ftitle="<?=_('Status')?>"
                 :render="render_status"
                 width="40"
-    ></bbn-column>
+    ></bbns-column>
 
   </bbn-table>
 </div>

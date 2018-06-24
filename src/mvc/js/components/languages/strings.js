@@ -1,9 +1,6 @@
 (() => {
-  var this_tab;
   return {
-    created(){
-      this_tab = this;
-    },
+    props: ['source'],
     data(){
       return {
         primary: this.languages.source.primary,
@@ -11,131 +8,6 @@
         hidden_cols: []
       }
     },
-    methods: {
-      /** generate po files for all columns of the table */
-      generate(){
-        if ( this.source.res.languages.length ){
-          bbn.fn.post(this.source.root + 'actions/generate', {id_option: this.source.id_option, languages: this.source.res.languages}, (d) => {
-            if ( d.success ){
-              d.languages = d.languages.map( (v) => {
-                return bbn.fn.get_field(this.primary, 'code', v, 'text');
-              })
-              appui.success('Files of translation successfully updated for '+ d.languages.join(' and ') );
-              this.remake_cache();
-            }
-          });
-        }
-        else {
-          appui.alert('You have to configure at least a language using the button <i class="fa fa-flag"></i> of the widget in the dashboard')
-        }
-      },
-      /** checks if there are new strings in the files of the path */
-      find_strings(){
-        bbn.fn.post(this.source.root + 'actions/find_strings', {
-          id_option: this.source.id_option,
-          language: this.source.res.path_source_lang
-        }, (d) => {
-          if ( d.success ){
-            if ( d.done > 0 ){
-              this.remake_cache();
-              appui.success(d.done + ' new strings found')
-            }
-            else {
-              appui.warning('No new strings found')
-            }
-          }
-        } );
-      },
-      /** button delete row of table */
-      buttons(){
-        let res = [];
-        res.push({
-          command: this.delete_expression,
-          icon: 'fa fa-close',
-          title: 'Delete original expression'
-        });
-        return res;
-      },
-      /** deletes the original expression from db, if the expression is not deleted before from the file (using the link of the expander to the code) it will be again in the table when the table is reloaded or updated */
-      delete_expression(row){
-        let id_exp = row.id_exp,
-          data = this.mapData,
-          idx = bbn.fn.search(data, { id_exp: id_exp });
-        appui.confirm('Did you remove the expression from code before to delete the row?', () => {
-          bbn.fn.post(this.source.root + 'actions/delete_expression', { id_exp: row.id_exp, exp: row.original_exp },  (d) => {
-            if ( d.success ){
-              data.splice(idx, 1);
-              this.$refs.strings_table.updateData();
-              appui.success('Expression deleted');
-            }
-            else{
-              appui.error('An error occurred while deleting the expression');
-            }
-          } );
-        })
-      },
-      /** called at @change of the table (when the idx of the row focused changes), insert translation in db and remake the po file */
-      insert_translation(row,idx){
-        bbn.fn.post(this.source.root + 'actions/insert_translations', {
-          row: row,
-          langs: this.source.res.languages,
-          id_option: this.source.id_option
-        }, (d) => {
-          if (d.success && !d.deleted){
-            appui.success('Translation saved');
-            row = d.row;
-            let table = bbn.vue.find(this, 'bbn-table');
-            //wanted to update the widget from the table
-            /*tab = bbn.vue.closest(this, 'bbn-tab'),
-            tabnav = bbn.vue.closest(tab, 'bbn-tabnav'),
-            dashboard = bbn.vue.find(tabnav, 'bbn-dashboard'),
-            widgets = bbn.vue.findAll(dashboard, 'bbn-widget')
-          ;*/
-            this.mapData[idx] = d.row
-            table.updateData();
-
-          }
-          else if ( !d.success && !d.deleted ){
-            appui.error('An error occurred while saving translation');
-          }
-          else if ( d.success && d.deleted ){
-            appui.warning('Translation deleted from db');
-          }
-        });
-      },
-      /** remakes the model of table in cache */
-      remake_cache(){
-        this.column_length = false;
-        bbn.fn.post('internationalization/actions/reload_table_cache', {
-          id_option: this.source.id_option
-        }, (d) => {
-          if ( d.success ){
-            let diff = ( d.res.total - this.source.res.total );
-            this.source.res.languages = d.res.languages;
-            this.source.res.strings = d.res.strings;
-            //bbn.vue.find(this, 'bbn-table').updateData();
-            if ( diff > 0 ){
-              appui.warning(diff + ' new string(s) found in ' + this.source.res.path);
-              this.source.res.strings = d.res.strings;
-              this.source.res.total = d.res.total;
-              //bbn.vue.find(this, 'bbn-table').updateData();
-            }
-            else if ( diff < 0 ){
-              appui.warning(Math.abs(diff) + ' string(s) deleted from ' + this.source.res.path + ' files');
-              this.source.res.strings = d.res.strings;
-              this.source.res.total = d.res.total;
-              //bbn.vue.find(this, 'bbn-table').updateData();
-            }
-            else if ( diff = 0 ){
-              appui.warning('There are no changes in data')
-            }
-            this.column_length = true
-          }
-        })
-      },
-
-    },
-    props: ['source'],
     computed: {
       /** the source language of this id_option */
       source_lang(){
@@ -258,6 +130,130 @@
         return res;
       }
     },
+    methods: {
+      /** generate po files for all columns of the table */
+      generate(){
+        if ( this.source.res.languages.length ){
+          bbn.fn.post(this.source.root + 'actions/generate', {id_option: this.source.id_option, languages: this.source.res.languages}, (d) => {
+            if ( d.success ){
+              d.languages = d.languages.map( (v) => {
+                return bbn.fn.get_field(this.primary, 'code', v, 'text');
+              })
+              appui.success('Files of translation successfully updated for '+ d.languages.join(' and ') );
+              this.remake_cache();
+            }
+          });
+        }
+        else {
+          appui.alert('You have to configure at least a language using the button <i class="fa fa-flag"></i> of the widget in the dashboard')
+        }
+      },
+      /** checks if there are new strings in the files of the path */
+      find_strings(){
+        bbn.fn.log('id_option',this.source.id_option);
+        bbn.fn.post(this.source.root + 'actions/find_strings', {
+          id_option: this.source.id_option,
+          language: this.source.res.path_source_lang
+        }, (d) => {
+          if ( d.success ){
+            if ( d.done > 0 ){
+              this.remake_cache();
+              appui.success(d.done + ' new strings found')
+            }
+            else {
+              appui.warning('No new strings found')
+            }
+          }
+        } );
+      },
+      /** button delete row of table */
+      buttons(){
+        let res = [];
+        res.push({
+          command: this.delete_expression,
+          icon: 'fas fa-times',
+          title: 'Delete original expression'
+        });
+        return res;
+      },
+      /** deletes the original expression from db, if the expression is not deleted before from the file (using the link of the expander to the code) it will be again in the table when the table is reloaded or updated */
+      delete_expression(row){
+        let id_exp = row.id_exp,
+          data = this.mapData,
+          idx = bbn.fn.search(data, { id_exp: id_exp });
+        appui.confirm('Did you remove the expression from code before to delete the row?', () => {
+          bbn.fn.post(this.source.root + 'actions/delete_expression', { id_exp: row.id_exp, exp: row.original_exp },  (d) => {
+            if ( d.success ){
+              data.splice(idx, 1);
+              this.$refs.strings_table.updateData();
+              appui.success('Expression deleted');
+            }
+            else{
+              appui.error('An error occurred while deleting the expression');
+            }
+          } );
+        })
+      },
+      /** called at @change of the table (when the idx of the row focused changes), insert translation in db and remake the po file */
+      insert_translation(row,idx){
+        bbn.fn.post(this.source.root + 'actions/insert_translations', {
+          row: row,
+          langs: this.source.res.languages,
+          id_option: this.source.id_option
+        }, (d) => {
+          if (d.success && !d.deleted){
+            appui.success('Translation saved');
+            row = d.row;
+            let table = bbn.vue.find(this, 'bbn-table');
+            //wanted to update the widget from the table
+            /*tab = bbn.vue.closest(this, 'bbns-tab'),
+            tabnav = bbn.vue.closest(tab, 'bbn-tabnav'),
+            dashboard = bbn.vue.find(tabnav, 'bbn-dashboard'),
+            widgets = bbn.vue.findAll(dashboard, 'bbns-widget')
+          ;*/
+            this.mapData[idx] = d.row
+            table.updateData();
+
+          }
+          else if ( !d.success && !d.deleted ){
+            appui.error('An error occurred while saving translation');
+          }
+          else if ( d.success && d.deleted ){
+            appui.warning('Translation deleted from db');
+          }
+        });
+      },
+      /** remakes the model of table in cache */
+      remake_cache(){
+        this.column_length = false;
+        bbn.fn.post('internationalization/actions/reload_table_cache', {
+          id_option: this.source.id_option
+        }, (d) => {
+          if ( d.success ){
+            let diff = ( d.res.total - this.source.res.total );
+            this.source.res.languages = d.res.languages;
+            this.source.res.strings = d.res.strings;
+            //bbn.vue.find(this, 'bbn-table').updateData();
+            if ( diff > 0 ){
+              appui.warning(diff + ' new string(s) found in ' + this.source.res.path);
+              this.source.res.strings = d.res.strings;
+              this.source.res.total = d.res.total;
+              //bbn.vue.find(this, 'bbn-table').updateData();
+            }
+            else if ( diff < 0 ){
+              appui.warning(Math.abs(diff) + ' string(s) deleted from ' + this.source.res.path + ' files');
+              this.source.res.strings = d.res.strings;
+              this.source.res.total = d.res.total;
+              //bbn.vue.find(this, 'bbn-table').updateData();
+            }
+            else if ( diff = 0 ){
+              appui.warning('There are no changes in data')
+            }
+            this.column_length = true
+          }
+        })
+      },
+    },
     watch: {
       hidden_cols(val){
         /** function to make the difference between two arrays */
@@ -300,55 +296,61 @@
           return {
             /** v-model of multiselect when project === options */
             to_hide_col:[],
-            hide_source_language: false
+            hide_source_language: false,
+            tab: null
           }
         },
         methods: {
-          /** takes the methods from the parent component using @var this_tab declared at created */
+          /** takes the methods from the parent component using @var this.tab declared at created */
           generate(){
-            return this_tab.generate();
+            return this.tab ? this.tab.generate() : null;
           },
           find_strings(){
-            return this_tab.find_strings();
+
+            return this.tab ? this.tab.find_strings() : null;
+
           },
           remake_cache(){
-            return this_tab.remake_cache();
+            return this.tab ? this.tab.remake_cache() : null;
           },
           hide_col(val){
-            if ( val ){
-              let idx = $.inArray(val, this_tab.hidden_cols);
+            if ( val && this.tab ){
+              let idx = $.inArray(val, this.tab.hidden_cols);
               if ( idx > -1 ){
-                this_tab.hidden_cols.splice(idx, 1);
+                this.tab.hidden_cols.splice(idx, 1);
               }
               else {
-                this_tab.hidden_cols.push(val);
+                this.tab.hidden_cols.push(val);
               }
             }
 
           }
         },
+        mounted(){
+          this.tab = bbn.vue.closest(this, 'appui-languages-strings')
+        },
         watch: {
            /** v-model of bbn-switch used to hide the column of original language */
           hide_source_language(val, oldVal){
-            /** get the index of the column of source language */
-            var idx = bbn.fn.search(this_tab.columns, 'field', this_tab.source.res.path_source_lang );
+            // get the index of the column of source language
+            var idx = bbn.fn.search(this.tab.columns, 'field', this.tab.source.res.path_source_lang );
             if ( ( val === true ) && ( idx > -1) ){
-              this_tab.columns[idx].hidden = true;
-              this_tab.$forceUpdate()
+              this.tab.columns[idx].hidden = true;
+              this.tab.$forceUpdate()
             }
             else if (( val === false )){
-              this_tab.columns[idx].hidden = false;
-              this_tab.$forceUpdate()
+              this.tab.columns[idx].hidden = false;
+              this.tab.$forceUpdate()
             }
           },
 
         },
         computed: {
           languages(){
-            return this_tab.source.res.languages
+            return this.tab ? this.tab.source.res.languages : []
           },
           id_project(){
-            return this_tab.source.id_project
+            return this.tab ? this.tab.source.id_project : null
           },
 
         }
@@ -356,9 +358,10 @@
       },
       /** expander of the table, shows the path of the files containing the string */
       'file_linker': {
+        props: ['source'],
         data(){
           return {
-            id_project : bbn.vue.closest(this, 'bbn-tab').source.id_project
+            id_project : null
           }
         },
         methods: {
@@ -378,14 +381,16 @@
             bbn.fn.link(st)
           }
         },
-        template:
-          '<ul v-if="id_project!== \'options\' " style="width:100%; list-style-type:none; padding-left:0">' +
-          '<li class="bbn-vspadded bbn-grid-fields" :source="source" v-for="s in source.path">' +
-          '<span class="bbn-lg">File:</span>' +
-          '<a v-text="s" @click="link_ide(s)" style="width:100%;cursor:pointer" title="Open the file in i.d.e"></a>' +
-          ' </li>' +
-          '</ul>',
-        props: ['source'],
+        template: `
+          <ul v-if="id_project!== 'options' " style="width:100%; list-style-type:none; padding-left:0">
+          	<li class="bbn-vspadded bbn-grid-fields" :source="source" v-for="s in source.path">
+          		<span class="bbn-lg">File:</span>
+          		<a v-text="s" @click="link_ide(s)" style="width:100%;cursor:pointer" title="Open the file in i.d.e"></a>
+            </li>
+          </ul>`,
+        mounted(){
+          this.id_project = bbn.vue.closest(this, 'appui-languages-strings').source.id_project
+        }
       },
     }
   }

@@ -13,33 +13,33 @@
              :data="{source_lang: source.source_lang, lang_name:source.lang_name, translation_lang: source.translation_lang}"
              @change="insert_translation"
   >
-    <bbn-column field="original_exp"
+    <bbns-column field="original_exp"
                 title="<?=_('Original Expression')?>"
                 :editable="false"
                 cls="bbn-i"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column field="translation"
+    <bbns-column field="translation"
                 title="<?=_('Translation')?>"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column field="id_user"
+    <bbns-column field="id_user"
                 :render="render_user"
                 title="<?=_('User')?>"
                 :editable="false"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column ftitle="<?=_('Status')?>"
+    <bbns-column ftitle="<?=_('Status')?>"
                 width="40"
                 cls="bbn-c"
                 :render="icons"
-    ></bbn-column>
+    ></bbns-column>
 
-    <bbn-column ftitle="<?=_('Actions')?>"
+    <bbns-column ftitle="<?=_('Actions')?>"
                 width="40"
                 cls="bbn-b"
                 :buttons="buttons"
-    ></bbn-column>
+    ></bbns-column>
 
 
 

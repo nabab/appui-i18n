@@ -30,8 +30,8 @@ if ( !empty($model->data['id_option']) ){
       if ( $model->db->insert('bbn_i18n', [
         'exp' => $i,
         'lang' =>  $model->data['language'],
-        'id_user'=> $model->inc->user->get_id(),
-        'last_modified' => date('H-m-d H:i:s')
+       // 'id_user'=> $model->inc->user->get_id(),
+       // 'last_modified' => date('H-m-d H:i:s')
       ])){
         $new ++;
         $id = $model->db->last_id();

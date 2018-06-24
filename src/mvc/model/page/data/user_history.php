@@ -18,6 +18,7 @@ if ( !empty($model->data['limit']) ){
     'operator' => 'isnull'
   ]];
   $id_user = $model->inc->user->get_id();
+
   $id_user = hex2bin($id_user);
 
   $count = "
@@ -30,6 +31,7 @@ if ( !empty($model->data['limit']) ){
         AND bbn_history2.tst > bbn_history.tst";
   $query = "
     SELECT 
+    
     bbn_history.usr,
     bbn_i18n.id AS id_exp,
      bbn_i18n_exp.lang AS translation_lang, 

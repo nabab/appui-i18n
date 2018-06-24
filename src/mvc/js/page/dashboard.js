@@ -66,7 +66,7 @@
       },
       cfg_project_languages(){
 
-        bbn.vue.closest(this, 'bbn-tab').popup().open({
+        this.getPopup().open({
           width: 600,
           height: 500,
           title: bbn._("Config translation languages for the project"),
@@ -121,12 +121,12 @@
               idx =  $.inArray(obj.id, this.source.row.configured_langs);
 
             if ( idx > -1 ){
-              bbn.vue.closest(this, 'bbn-tab').getComponent().source.configured_langs.splice(idx, 1);
-              bbn.vue.closest(this, 'bbn-tab').getComponent().$forceUpdate();
+              bbn.vue.closest(this, 'bbns-tab').getComponent().source.configured_langs.splice(idx, 1);
+              bbn.vue.closest(this, 'bbns-tab').getComponent().$forceUpdate();
             }
             else {
-              bbn.vue.closest(this, 'bbn-tab').getComponent().source.configured_langs.push(obj.id)
-              bbn.vue.closest(this, 'bbn-tab').getComponent().$forceUpdate();
+              bbn.vue.closest(this, 'bbns-tab').getComponent().source.configured_langs.push(obj.id)
+              bbn.vue.closest(this, 'bbns-tab').getComponent().$forceUpdate();
             }
           }
         },

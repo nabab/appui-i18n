@@ -62,6 +62,7 @@ if ( !empty( $id_option = $model->data['id_option']) &&
       if (file_exists($po)){
         $success = true;
         $translations = Gettext\Translations::fromPoFile($po);
+
         foreach ($translations as $i => $t ){
           /** @var  $original the original expression */
           $original = $t->getOriginal();

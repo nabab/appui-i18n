@@ -18,13 +18,13 @@
              @change="insert_translation"
   >
 
-   <bbn-column field="original_exp"
+   <bbns-column field="original_exp"
                :title="'<?=_('Original expression in ')?>' + source_lang "
                :index="1"
                width="20%"
                :editable="false"
                cls="bbn-i"
-    ></bbn-column>
+    ></bbns-column>
 
   </bbn-table>
 

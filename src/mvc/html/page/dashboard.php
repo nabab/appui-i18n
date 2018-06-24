@@ -22,8 +22,8 @@
                 v-text="get_field(source.primary, 'code', get_field(source.projects, 'id', id_project, 'lang'), 'text')"></span>
 
 
-          <span class="bbn-r"><?=_("Configure languages for this project")?></span>
-          <div style="max-height: 25px;">
+          <span v-if="id_project !== 'options'" class="bbn-r"><?=_("Configure languages for this project")?></span>
+          <div style="max-height: 25px;" v-if="id_project !== 'options'" >
             <bbn-button icon="fa fa-flag"
                         :noText="true"
                         @click="cfg_project_languages"
