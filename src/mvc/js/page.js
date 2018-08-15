@@ -27,6 +27,12 @@
         },
 
       }];
+    /*  bbn.vue.setComponentRule('internationalization/components/', 'appui');
+      bbn.vue.addComponent('languages/widget', mixins);
+
+      bbn.vue.addComponent('languages/strings', mixins);
+      bbn.vue.addComponent('languages/glossaries', mixins);
+      bbn.vue.unsetComponentRule();*/
     },
   };
 })();

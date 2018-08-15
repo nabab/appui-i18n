@@ -1,13 +1,12 @@
-<div class="appui-strings-table" style="min-height: 500px; width:100%">
-
-  <bbn-table v-if="source.res.languages.length && column_length"
+<div class="strings-table" style="min-height: 500px; width:100%">
+  <bbn-table v-if="source.res.languages.length "
              :source="mapData"
              :columns="columns"
              editable="inline"
              :pageable="true"
-             :sortable="true"
              :limit="25"
              :showable="true"
+             :server-filtering="false"
              :info="true"
              :filterable="true"
              :multifilter="true"
@@ -15,8 +14,7 @@
              :order="[{field: 'expression', dir: 'ASC'}]"
              :expander="$options.components['file_linker']"
              :toolbar="$options.components['toolbar-strings-table']"
-             @change="insert_translation"
-  >
+             @change="insert_translation">
 
    <bbns-column field="original_exp"
                :title="'<?=_('Original expression in ')?>' + source_lang "
@@ -24,6 +22,7 @@
                width="20%"
                :editable="false"
                cls="bbn-i"
+               :sortable="true"
     ></bbns-column>
 
   </bbn-table>

@@ -24,6 +24,7 @@ if (
   $to_explore = constant($parent['code']).$o['code'];
   /** @var $locale_dir the path to locale dir */
   $locale_dir = dirname($to_explore).'/locale';
+  $domain .= is_file($locale_dir.'/index.txt') ? file_get_contents($locale_dir.'/index.txt') : '';
 
   /** @var $dirs scans dirs existing in locale folder for this path */
   $dirs = scandir($locale_dir, 1);

@@ -5,7 +5,15 @@ $langs = ['fr', 'it', 'es'];
 $commands = [];
 foreach ( $dirs as $d ){
   if ( is_dir($d.'/src/mvc') ){
-    $lib = basename($d);
+    if ( !is_dir($d.'/src/locale') ){
+      if ( !mkdir($d.'/src/locale') || !is_dir($d.'/src/locale') ){
+        die("Impossible to create locale folder in $d");
+      }
+      else{
+        file_put_contents($d.'/src/locale/index.txt', '0');
+      }
+    }
+    $lib = basename($d).((int)@file_get_contents($d.'/src/locale/index.txt'));
     \bbn\x::hdump("Adding library $lib");
     foreach ( $langs as $lang ){
       \bbn\file\dir::create_path($d.'/src/locale/$lang/LC_MESSAGES');

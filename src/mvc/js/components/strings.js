@@ -3,10 +3,14 @@
     props: ['source'],
     data(){
       return {
-        primary: this.languages.source.primary,
+        primary: bbn.vue.closest(this,'bbn-tabnav').$parent.source.primary,
         column_length: true,
-        hidden_cols: []
+        hidden_cols: [],
+        showAlert: false
       }
+    },
+    mounted(){
+      //bbn.fn.log('this',this, this.mapData, this.hidden_cols, this.column_length)
     },
     computed: {
       /** the source language of this id_option */
@@ -38,13 +42,20 @@
                 }
               });
               var idx = bbn.fn.search(vm.translations_db, 'id_exp', row.id_exp ),
-                  translation_db = vm.translations_db[idx][this_field];
-              if ( ( translation_db !== false ) && ( translation_db === row[this_field] ) ){
-                return row[this_field] + '<i class="fa fa-check bbn-large bbn-green" title="Expression found in translation file" style="float:right"><i/>'
+                  translation_db = vm.translations_db[idx][this_field],
+                  translation_po = vm.mapData[idx][this_field];
+              if ( ( translation_db !== false )  && ( translation_db === translation_po ) ){
+                return row[this_field] + '<i class="fa fa-check bbn-large bbn-green" title="Expression correctly inserted in db and po file" style="float:right"><i/>'
               }
-              else if ( ( row[this_field ] !== "" ) && ( translation_db !== row[this_field ] ) &&  ( this.source.id_project !== 'options') ){
-                return row[this_field] + '<i style="float:right" class="fa fa-thumbs-up bbn-large bbn-green" title="Translation files updated"><i/>'
+
+              else if ( ( translation_db !== false ) && ( translation_db !== row[this_field ] ) &&  ( this.source.id_project !== 'options') ){
+                return translation_db + '<i style="float:right" class="fas fa-exclamation-triangle bbn-large bbn-red" title="Expression correctly inserted in db but not in po files, be sure to update translations files from the orange button"><i/>'
               }
+
+              else if ( ( translation_db !== translation_po ) && ( row[this_field ] !== '' ) &&  ( this.source.id_project !== 'options') ){
+                return  vm.mapData[idx][this_field] + '<i style="float:right" class="fas fa-exclamation-triangle bbn-large bbn-red" title="Expression correctly inserted in db but not in po files, be sure to update translations files from the orange button"><i/>'
+              }
+
               else {
                 return row[this_field ]
               }
@@ -97,7 +108,7 @@
       mapData(){
         let res = [],
             source_lang = this.source.res.path_source_lang;
-        if ( this.source.id_project !== 'options'){
+        if ( ( this.source.id_project !== 'options') && (this.source.res.strings)){
           this.source.res.strings.forEach( (obj, idx ) => {
             let ob = {};
             for (let prop in obj){
@@ -133,24 +144,31 @@
     methods: {
       /** generate po files for all columns of the table */
       generate(){
+        this.showAlert = true;
         if ( this.source.res.languages.length ){
           bbn.fn.post(this.source.root + 'actions/generate', {id_option: this.source.id_option, languages: this.source.res.languages}, (d) => {
             if ( d.success ){
               d.languages = d.languages.map( (v) => {
                 return bbn.fn.get_field(this.primary, 'code', v, 'text');
-              })
+              });
+              this.source.res.strings = d.strings;
               appui.success('Files of translation successfully updated for '+ d.languages.join(' and ') );
-              this.remake_cache();
+              //this.remake_cache();
+              this.$nextTick(() => {
+                bbn.vue.find(this, 'bbn-table').updateData();
+                this.showAlert = false;
+              });
             }
           });
         }
         else {
-          appui.alert('You have to configure at least a language using the button <i class="fa fa-flag"></i> of the widget in the dashboard')
+          appui.alert('You have to configure at least a language using the button <i class="fa fa-flag"></i> of the widget in the dashboard');
+          this.showAlert = false;
         }
       },
       /** checks if there are new strings in the files of the path */
       find_strings(){
-        bbn.fn.log('id_option',this.source.id_option);
+        //bbn.fn.log('id_option',this.source.id_option);
         bbn.fn.post(this.source.root + 'actions/find_strings', {
           id_option: this.source.id_option,
           language: this.source.res.path_source_lang
@@ -181,7 +199,7 @@
         let id_exp = row.id_exp,
           data = this.mapData,
           idx = bbn.fn.search(data, { id_exp: id_exp });
-        appui.confirm('Did you remove the expression from code before to delete the row?', () => {
+        this.getPopup().confirm('Did you remove the expression from code before to delete the row?', () => {
           bbn.fn.post(this.source.root + 'actions/delete_expression', { id_exp: row.id_exp, exp: row.original_exp },  (d) => {
             if ( d.success ){
               data.splice(idx, 1);
@@ -204,16 +222,19 @@
           if (d.success && !d.deleted){
             appui.success('Translation saved');
             row = d.row;
+            //this.mapData[idx] = d.row;
             let table = bbn.vue.find(this, 'bbn-table');
+
             //wanted to update the widget from the table
             /*tab = bbn.vue.closest(this, 'bbns-tab'),
             tabnav = bbn.vue.closest(tab, 'bbn-tabnav'),
             dashboard = bbn.vue.find(tabnav, 'bbn-dashboard'),
             widgets = bbn.vue.findAll(dashboard, 'bbns-widget')
           ;*/
-            this.mapData[idx] = d.row
+            //this.mapData[idx] = d.row;
+            // assign the new properties of d.row to the object in translations_db
+            //Object.assign(this.translations_db[idx], d.row);
             table.updateData();
-
           }
           else if ( !d.success && !d.deleted ){
             appui.error('An error occurred while saving translation');
@@ -226,6 +247,8 @@
       /** remakes the model of table in cache */
       remake_cache(){
         this.column_length = false;
+        //this.generate();
+        this.showAlert = true;
         bbn.fn.post('internationalization/actions/reload_table_cache', {
           id_option: this.source.id_option
         }, (d) => {
@@ -249,12 +272,25 @@
             else if ( diff = 0 ){
               appui.warning('There are no changes in data')
             }
-            this.column_length = true
+            this.$nextTick(() => {
+              bbn.vue.find(this, 'bbn-table').updateData();
+              this.column_length = true;
+              this.showAlert = false;
+            });
+
           }
         })
       },
     },
     watch: {
+      showAlert(val){
+        if ( val){
+          this.getPopup().alert(bbn._('Wait for the ending of the process before to make other actions in this tab') );
+        }
+        else{
+          this.getPopup().close()
+        }
+      },
       hidden_cols(val){
         /** function to make the difference between two arrays */
         Array.prototype.diff = function (a) {
@@ -327,7 +363,7 @@
           }
         },
         mounted(){
-          this.tab = bbn.vue.closest(this, 'appui-languages-strings')
+          this.tab = bbn.vue.closest(this, 'appui-i18n-strings');
         },
         watch: {
            /** v-model of bbn-switch used to hide the column of original language */
@@ -389,7 +425,7 @@
             </li>
           </ul>`,
         mounted(){
-          this.id_project = bbn.vue.closest(this, 'appui-languages-strings').source.id_project
+          this.id_project = bbn.vue.closest(this, 'appui-i18n-strings').source.id_project
         }
       },
     }

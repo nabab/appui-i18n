@@ -43,14 +43,16 @@ if ( $lang = $model->data['lang'] ){
       SELECT bbn_i18n.id FROM `bbn_i18n` 
         JOIN bbn_i18n_exp 
           ON bbn_i18n_exp.id_exp = bbn_i18n.id
+          AND bbn_i18n_exp.bbn_h = 1
          AND bbn_i18n_exp.lang LIKE ?
-         AND bbn_i18n_exp.actif = 1
+         AND bbn_i18n_exp.bbn_h = 1
        WHERE bbn_i18n.lang LIKE ? 
+       AND bbn_i18n.bbn_h = 1
        ", $lang, $source_lang));
 
     $translated_percentage = round($translated_nr / $source_total_strings * 100, 2).' %';
 
-    $langs_in_db = $model->db->get_col_array("SELECT DISTINCT lang FROM bbn_i18n_exp");
+    $langs_in_db = $model->db->get_col_array("SELECT DISTINCT lang FROM bbn_i18n_exp WHERE bbn_h = 1");
 
    /* array_map(function($v)use($source_lang){
 

@@ -19,17 +19,22 @@ if (
   $to_explore = constant($parent['code']).$o['code'];
   $locale_dir = dirname($to_explore).'/locale';
   $domain = $o['text'];
+  $num = (int)@file_get_contents($locale_dir.'/index.txt');
+  file_put_contents($locale_dir.'/index.txt', ++$num);
+  $domain .= $num;
   /** property language of the path */
   $model->data['language'] = $model->inc->options->get_prop($model->data['id_option'], 'language');
 
   /** @var (array)$data creates a cached model of the strings found in the files using the action find_strings */
   $data = $model->get_cached_model(APPUI_I18N_ROOT.'actions/find_strings', ['id_option'=> $model->data['id_option'], 'language'=> $model->data['language']], true);
+  //die(var_dump($data));
   /*$data = $model->get_model(APPUI_I18N_ROOT.'actions/find_strings', ['id_option'=> $model->data['id_option'], 'language'=> $model->data['language']]);*/
 
   /** @var (boolean) $no_strings case of empty($data['res']), there are no strings in this path . Return true if there are no strings from find_strings*/
   $no_strings = false;
   /** $data['res'] is the array of strings */
   if ( !empty($data['res'] )){
+
     /**  case generate called from strings table */
     if ( !isset($model->data['languages']) ){
       $languages = array_map(function($a){
@@ -75,24 +80,41 @@ if (
       /** creates the path of the dirs */
       \bbn\file\dir::create_path($dir);
       /** @var  $po & $mo files path */
-      $po = $locale_dir.'/'.$lang.'/LC_MESSAGES/'.$domain.'.po';
-      $mo = $locale_dir.'/'.$lang.'/LC_MESSAGES/'.$domain.'.mo';
+      $files = \bbn\file\dir::get_files($locale_dir.'/'.$lang.'/LC_MESSAGES');
+
+      $po = $mo = null;
+      foreach ( $files as $f ){
+
+        $ext = \bbn\str::file_ext($f);
+
+        if ( $ext === 'po' ){
+          $po = $f;
+        }
+        if ( $ext === 'mo' ){
+          $mo = $f;
+        }
+      }
+      $new_po = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.po';
+
+      $new_mo = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.mo';
       /** checks if the file po exist for this lang */
-      if ( is_file($po) ){
-        //die(var_dump($po));
+      if ( $po ){
         /** $translations[$lang] takes the content from the existing file */
         $translations[$lang] = Translations::fromPoFile($po);
         /** deletes po and mo files */
+        /*
         if ( \bbn\file\dir::delete($po) ){
           $translations[$lang] = new Gettext\Translations();
         }
-        //@unlink($po);
-        //@unlink($mo);
+        */
+        unlink($po);
+        unlink($mo);
+
       }
-      else{
+
         /** if the po files doesn't exist instantiate the object $translations[$lang] to the class Gettext\Translations()*/
         $translations[$lang] = new Gettext\Translations();
-      }
+
       /** configuration of po file */
       $translations[$lang]->setHeader('Project-Id-Version', 1);
       $translations[$lang]->setHeader('Last-Translator', 'BBN Solutions <support@bbn.solutions>');
@@ -103,18 +125,19 @@ if (
       $translations[$lang]->setHeader('MIME-Version', '1.0');
       $translations[$lang]->setHeader('Content-Type', 'text/plain; charset=UTF-8');
       //$translations[$lang]->setHeader('Content-Transfer-Encoding', '8bit');
-      $translations[$lang]->setDomain($o['text']);
+      $translations[$lang]->setDomain($domain);
       $translations[$lang]->setPluralForms(0, '');
       $translations[$lang]->setLanguage($lang);
       /** @var takes all strings from the cached model of find_strings */
       foreach ( $data['res'] as $r ){
-        //die(var_dump($data['res']));
+
         if ( !($t = $translations[$lang]->find('', $r['original_exp'])) ){
           /** @var $t if the original expression doesn't exist in the po file it creates $t  */
           $t = new Gettext\Translation(null, $r['original_exp']);
         }
         /** set the translation taking it from db $r[$lang] */
         $t->setTranslation($r[$lang]);
+
         /** @var set the path $p */
         foreach ( $r['path'] as $p ){
           $t->addReference($p, 1);
@@ -122,9 +145,9 @@ if (
         $translations[$lang][] = $t;
       }
       /** create the file po and mo with the content of  $translations[$lang]*/
-      Gettext\Generators\Po::toFile($translations[$lang], $po);
+      Gettext\Generators\Po::toFile($translations[$lang], $new_po);
       clearstatcache();
-      Gettext\Generators\Mo::toFile($translations[$lang], $mo);
+      Gettext\Generators\Mo::toFile($translations[$lang], $new_mo);
     }
 
     clearstatcache();
@@ -144,7 +167,7 @@ if (
     /** remakes the cached_model of the widget to show changes */
     $model->get_cached_model(APPUI_I18N_ROOT.'page/data/widgets', ['id_option'=> $model->data['id_option']], true);
     /** remakes the cached_model of the table to show changes */
-    $model->get_cached_model(APPUI_I18N_ROOT.'page/data/strings_table', [
+    $strings = $model->get_cached_model(APPUI_I18N_ROOT.'page/data/strings_table', [
       'id_option' => $model->data['id_option'],
       'routes' => $model->data['routes'],
       ], true);
@@ -162,6 +185,7 @@ if (
     'path' => $to_explore,
     'locale' => $locale_dir,
     'languages' => $languages,
-    'success' => $success
+    'success' => $success,
+    'strings' => $strings['strings']
   ];
 }

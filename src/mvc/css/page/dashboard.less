@@ -1,7 +1,9 @@
 /* LESS Document */
+/*
 
 .paths_table{
   .bbn-full-screen{
+
     .k-header{
       div{
         padding:0.4em
@@ -11,3 +13,39 @@
 }
 
 
+*/
+.config-container{
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+
+  .first{
+    grid-column-start: 1;
+     grid-column-end: 3;
+  }
+  .second{
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  .third{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    span{
+      display: inline-block;
+    }
+    .langs{
+      display: inline-block;
+      .bbn-i{
+        display: inline-block;
+        padding-left: 2px;
+        padding-right: 2px;
+      }
+    }
+  }
+  .fourth{
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+}

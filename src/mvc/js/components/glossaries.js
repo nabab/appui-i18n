@@ -5,12 +5,12 @@
 
     computed: {
       primary(){
-        return this.languages.$props.source['primary'];
+        return bbn.vue.closest(this,'bbn-tabnav').$parent.source.primary;
       }
     },
     methods: {
       render_user(row){
-        return appui.app.getUserName(row.id_user);
+        return appui.app.getUserName(row.id_user) || 'User not found';
       },
       buttons(){
         let res = [];
@@ -22,7 +22,7 @@
         return res;
       },
       delete_expression(row){
-        appui.confirm('Do you really want to delete the original expression and it\'s translation?', () => {
+        this.getPopup().confirm('Do you really want to delete the original expression and it\'s translation?', () => {
           bbn.fn.post('internationalization/actions/delete_expression', { id_exp: row.idExp, exp: row.original_exp },  (d) => {
             this.$refs.glossary_table.remove(row)
           } );

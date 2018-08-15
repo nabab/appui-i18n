@@ -1,4 +1,4 @@
-<div class="appui-strings-table" style="min-height: 500px">
+<div class="strings-table" style="min-height: 500px">
 
   <bbn-table source="internationalization/page/data/glossary"
              editable="inline"
@@ -23,23 +23,24 @@
                 title="<?=_('Translation')?>"
     ></bbns-column>
 
-    <bbns-column field="id_user"
+<!--    <bbns-column field="id_user"
                 :render="render_user"
-                title="<?=_('User')?>"
+                title="<?/*=_('User')*/?>"
                 :editable="false"
-    ></bbns-column>
+    ></bbns-column>-->
 
     <bbns-column ftitle="<?=_('Status')?>"
-                width="40"
-                cls="bbn-c"
-                :render="icons"
+                 width="40"
+                 cls="bbn-c"
+                 :editable="false"
+                 :render="icons"
     ></bbns-column>
-
-    <bbns-column ftitle="<?=_('Actions')?>"
+<!--
+    <bbns-column ftitle="<?/*=_('Actions')*/?>"
                 width="40"
                 cls="bbn-b"
                 :buttons="buttons"
-    ></bbns-column>
+    ></bbns-column>-->
 
 
 

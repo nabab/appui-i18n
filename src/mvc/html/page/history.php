@@ -10,7 +10,6 @@
              editable="inline"
              ref="history"
              :order="[{field: 'last_modification', dir: 'DESC'}]"
-             :toolbar="$options.components['toolbar']"
              @change="insert_translation"
   >
     <bbns-column field="last_modification"

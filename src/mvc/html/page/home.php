@@ -1,4 +1,4 @@
-<div class="appui-strings-table"
+<div class="strings-table"
      style="min-height: 500px">
   <bbn-table id="table_paths"
              class="paths_table bbn-flex-fill"
@@ -7,8 +7,8 @@
              :limit="25"
              ref="table1"
              :editable="true"
-             :editor="$options.components['appui-languages-form']"
-             :expander="$options.components['appui-paths-table']"
+             :editor="$options.components['languages-form']"
+             :expander="$options.components['paths-table']"
              :info="false"
 
   >

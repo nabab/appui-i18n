@@ -9,7 +9,7 @@
 
 $model->data['success'] = false;
 $id_user = $model->inc->user->get_id();
-$is_dev =  $model->db->val_by_id("bbn_users", "admin", $id_user);
+$is_dev =  $model->db->select_one("bbn_users", "admin", ['id' => $id_user]);
 if (!empty($id_user) ){
   if ( !empty($is_dev) ){
     //CASE admin
@@ -38,7 +38,7 @@ MYSQL;
       $best_translators = $model->db->get_rows($query);
       //take the name of the translator from bbn_users
       foreach ( $best_translators as $i => $b ){
-        $best_translators[$i]['name'] = $model->db->get_val('bbn_users', 'nom', 'id', $b['id_user']);
+        $best_translators[$i]['name'] = $model->db->select_one('bbn_users', 'nom', ['id' => $b['id_user']]);
         unset($best_translators[$i]['id_user']);
       }
       $model->data['success'] = true;

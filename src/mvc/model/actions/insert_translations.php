@@ -21,13 +21,13 @@ if ( !empty($model->data['row']['id_exp'])){
       $expression = $row[$l];
       /** @var $id if the $id of the string exists */
 
-      if ( $id = $model->db->get_val('bbn_i18n_exp', 'id', [
+      if ( $id = $model->db->select_one('bbn_i18n_exp', 'id', [
         'id_exp' => $row['id_exp'],
         'lang' => $l
       ]) ){
 
         /** UPDATE DB */
-        if ( $model->db->update('bbn_i18n_exp', ['expression' => $expression, 'actif' => 1 ], [
+        if ( $model->db->update('bbn_i18n_exp', ['expression' => $expression], [
           'id' => $id,
         ]) ){
           $success = true;
@@ -39,13 +39,12 @@ if ( !empty($model->data['row']['id_exp'])){
         $success = $model->db->insert_ignore('bbn_i18n_exp', [
           'expression' => $expression,
           'id_exp' => $row['id_exp'],
-          'lang' => $l,
-          'actif' => 1
+          'lang' => $l
         ]);
       }
     }
     else if ( $row[$l] === '' ){
-      if ( $id = $model->db->get_val('bbn_i18n_exp', 'id', [
+      if ( $id = $model->db->select_one('bbn_i18n_exp', 'id', [
         'id_exp' => $row['id_exp'],
         'lang' => $l
       ]) ) {
@@ -62,7 +61,7 @@ if ( !empty($model->data['row']['id_exp'])){
   }
   /** @todo if from I could update the widget after the insert I need to remake the cached model of the widget */
   //$model->get_cached_model(APPUI_I18N_ROOT.'page/data/widgets', ['id_option'=> $model->data['id_option']], true);
-  if ( !isset($model->data['ide']) ){
+  /*if ( !isset($model->data['ide']) ){
     $model->get_cached_model(APPUI_I18N_ROOT.'page/data/strings_table', [
       'id_option' => $model->data['id_option'],
       'routes' => $model->data['routes']
@@ -70,7 +69,7 @@ if ( !empty($model->data['row']['id_exp'])){
 
     $model->get_model(APPUI_I18N_ROOT.'actions/generate', ['id_option' => $model->data['id_option']]);
 
-  }
+  }*/
 }
 return [
   'deleted' => $deleted,

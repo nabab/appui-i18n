@@ -1,1 +1,1 @@
-<appui-languages-strings :source="source"></appui-languages-strings>
+<appui-i18n-strings :source="source"></appui-i18n-strings>

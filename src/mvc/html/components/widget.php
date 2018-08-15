@@ -1,3 +1,4 @@
+
 <div ref="widget" :key="id_option">
   <!--if the source language of the path is set -->
   <div v-if="language">

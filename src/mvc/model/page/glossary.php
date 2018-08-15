@@ -9,6 +9,6 @@
 if ( !empty($model->data['source_lang']) && !empty($model->data['source_lang']) ){
 
   return [
-    'pageTitle' => $model->data['lang_name'].' translations from '.$model->data['source_lang_name']
+    'pageTitle' => 'From '.$model->data['source_lang_name'].' to '.$model->data['lang_name']
   ];
 }

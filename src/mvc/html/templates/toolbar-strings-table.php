@@ -4,30 +4,34 @@
   <div style="padding: 6px;"
        v-if="id_project !=='options'"
   >
-
-
-
-    <bbn-button title="<?=_('Update table')?>"
-                class="k-button bbn-button bbn-events-component"
-                @click="remake_cache"
-                icon="fa fa-retweet"
-                text="<?=_('Update table')?>"
-    >
-    </bbn-button>
-
     <bbn-button title="<?=_('Force translation files update')?>"
                 class="k-button bbn-button bbn-events-component"
                 @click="generate"
-                icon="fa fa-exchange"
-                text="<?=_('Force translation files update')?>"
+                icon="fas fa-dumbbell"
+                :notext="true"
+                text="<?=_('Insert translations in po files')?>"
+                style="background-color: orange;"
     >
     </bbn-button>
 
-    <bbn-button title="<?=_('Check into the files for new strings')?>"
+
+
+    <bbn-button title="<?=_('Rebuild table data')?>"
+                class="k-button bbn-button bbn-events-component"
+                @click="remake_cache"
+                :notext="true"
+                icon="fa fa-retweet"
+                text="<?=_('Rebuild table data')?>"
+    >
+    </bbn-button>
+
+
+    <bbn-button title="<?=_('Check files for new strings')?>"
                 class="k-button bbn-button bbn-events-component"
                 @click="find_strings"
                 icon="fa fa-search"
-                text="<?=_('Check into the files for new strings')?>"
+                :notext="true"
+                text="<?=_('Parse files for new strings')?>"
     >
     </bbn-button>
     <div style="display:inline;" >

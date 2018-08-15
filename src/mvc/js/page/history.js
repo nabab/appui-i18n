@@ -8,25 +8,7 @@
       }
     },
     computed: {
-      //source to choose the source language using the popup
-      dd_source_lang(){
-        let res = [];
-        $.each(this.source.source_langs, (i, v) => {
-          res.push({
-            value: v.lang,
-            text: bbn.fn.get_field(this.primary, 'code', v.lang, 'text')
-          })
-        })
-        return res;
-      },
-      //source to choose the translation language using the popup
-      dd_translation_lang(){
-        let res = [];
-        $.each(this.primary, (i, v) => {
-          res.push({text: v.text, value: v.code })
-        })
-        return res;
-      }
+
     },
     methods: {
       insert_translation(row,idx){
@@ -93,67 +75,5 @@
         return st;*/
       },
     },
-
-    components : {
-      //the toolbar of the table
-      'toolbar': {
-        template:'#toolbar',
-        props:['source'],
-        data(){
-          return {
-            langs: bbn.vue.closest(this, 'bbn-tabnav').$parent.source.langs_in_db,
-            primary: bbn.vue.closest(this, 'bbns-tab').getComponent().primary
-          }
-        },
-        methods: {
-          config_translations(){
-            //open a component popup to select source language and translation language for the table glossary
-            var tab = bbn.vue.closest(this, 'bbns-tab').getComponent();
-            this.getPopup().open({
-              width:350,
-              height:250,
-              source: {
-                source_lang: false,
-                translation_lang: false,
-                primary: tab.primary,
-                dd_source_lang: tab.dd_source_lang,
-                dd_translation_lang: tab.dd_translation_lang,
-            	},
-              component: tab.$options.components.cfg_translations_form,
-              title: 'Config your translation tab'
-            })
-
-          },
-          open_user_history(){
-            bbn.fn.link('internationalization/page/user_history');
-          },
-
-          //for a button statistic list in the toolbar of history
-          /*open_statistic_list(){
-            bbn.fn.link('internationalization/page/statistic');
-          },*/
-        },
-      },
-      //popup to choise the languages for glossary table, IS NOT A FORM
-      'cfg_translations_form': {
-        template:'#cfg_translations_form',
-        props:['source'],
-        methods: {
-          link(){
-            bbn.fn.link('internationalization/page/glossary/' + this.source.source_lang + '/' + this.source.translation_lang);
-            bbn.vue.closest(this, 'bbn-popup').close();
-          },
-          cancel(){
-            bbn.vue.closest(this, 'bbn-popup').close();
-          },
-        }
-      	
-        }
-        }
-
-
-
-      
-    
   }
 })();

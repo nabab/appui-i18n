@@ -35,9 +35,9 @@
       },
     },
     components: {
-      'appui-paths-table':{
+      'paths-table':{
         //expand the rows of projects table using the template contained in the folder templates
-        template:'#appui-paths-table',
+        template:'#paths-table',
         props:['source'],
         data(){
           return{
@@ -73,8 +73,8 @@
 
       },
       //the component form to configure languages in which translate the project
-      'appui-languages-form': {
-        template: '#appui-languages-form',
+      'languages-form': {
+        template: '#languages-form',
         methods:{
           inArray: $.inArray,
           change_checked_langs(val, obj){

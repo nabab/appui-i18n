@@ -49,7 +49,7 @@ if ( !empty($model->data['id_option']) ){
       'original'=> $i
     ];
     foreach( $configured_langs as $lang ){
-      if ( $exp = $model->db->get_val('bbn_i18n_exp', 'expression', [
+      if ( $exp = $model->db->select_one('bbn_i18n_exp', 'expression', [
         'id_exp' => $row['id'],
         'lang' => $lang
       ]) ){
