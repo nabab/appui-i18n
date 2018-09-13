@@ -1,4 +1,0 @@
-<?php
-
-
-$ctrl->combo();

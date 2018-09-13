@@ -29,7 +29,7 @@ if ( $all = $model->db->get_column_values('bbn_projects', 'id') ){
   ];
 
   //create an array of all languages existing in the table of expressions 'bbn_i18n_exp '
-  $langs_in_db = $model->db->get_col_array("SELECT DISTINCT lang FROM bbn_i18n_exp WHERE bbn_h = 1");
+  $langs_in_db = $model->db->get_col_array("SELECT DISTINCT lang FROM bbn_i18n_exp");
 
   return[
     'langs_in_db' => $langs_in_db,
