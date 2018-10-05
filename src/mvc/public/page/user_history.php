@@ -8,5 +8,7 @@
 
 $ctrl->obj->url = APPUI_I18N_ROOT.'languages/user_history';
 
-$ctrl->combo('User\'s translations');
+$id_user = $ctrl->inc->user->get_id();
+$userName = $ctrl->db->select_one('bbn_users', 'nom', ['id' => $id_user]);
 
+$ctrl->combo($userName.'\'s translations');

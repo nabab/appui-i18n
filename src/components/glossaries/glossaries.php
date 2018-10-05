@@ -1,7 +1,7 @@
 <div class="strings-table" style="min-height: 500px">
 
   <bbn-table source="internationalization/page/data/glossary"
-             editable="inline"
+             editable="nobuttons"
              :pageable="true"
              :sortable="true"
              :filterable="true"
@@ -20,7 +20,7 @@
     ></bbns-column>
 
     <bbns-column field="translation"
-                title="<?=_('Translation')?>"
+                 title="<?=_('Translation')?>"
     ></bbns-column>
 
 <!--    <bbns-column field="id_user"

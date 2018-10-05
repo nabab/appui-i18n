@@ -3,7 +3,7 @@
  * Describe what it does!
  *
  **/
-use Gettext\Translations;
+
 
 /** @var $this \bbn\mvc\model*/
 
@@ -11,65 +11,81 @@ if (
   isset($model->data['id_option']) &&
   ($o = $model->inc->options->option($model->data['id_option'])) &&
   ($parent = $model->inc->options->parent($o['id'])) &&
-  defined($parent['code'])
+  defined($parent['code']  )
 ){
+  //instantiate the class i18n
+  $translation = new \bbn\appui\i18n($model->db);
   $success = false;
 
   /** $to_explore is the directory to explore for strings */
   $to_explore = constant($parent['code']).$o['code'];
   $locale_dir = dirname($to_explore).'/locale';
+
   $domain = $o['text'];
-  $num = (int)@file_get_contents($locale_dir.'/index.txt');
+
+  $num = (int)file_get_contents($locale_dir.'/index.txt');
+
   file_put_contents($locale_dir.'/index.txt', ++$num);
   $domain .= $num;
-  /** property language of the path */
-  $model->data['language'] = $model->inc->options->get_prop($model->data['id_option'], 'language');
+  /** @var (array) $languages based on locale dirs found in the path*/
+  $old_langs = array_map(function($a){
+    return basename($a);
+  }, \bbn\file\dir::get_dirs($locale_dir)) ?: [];
 
-  /** @var (array)$data creates a cached model of the strings found in the files using the action find_strings */
-  $data = $model->get_cached_model(APPUI_I18N_ROOT.'actions/find_strings', ['id_option'=> $model->data['id_option'], 'language'=> $model->data['language']], true);
-  //die(var_dump($data));
-  /*$data = $model->get_model(APPUI_I18N_ROOT.'actions/find_strings', ['id_option'=> $model->data['id_option'], 'language'=> $model->data['language']]);*/
+  //creates the array languages
+  /**  case generate called from strings table */
+  if ( !isset($model->data['languages']) ){
+    $languages = array_map(function($a){
+      return basename($a);
+    }, \bbn\file\dir::get_dirs($locale_dir)) ?: [];
+  }
+  else {
+    /** case generate from widget */
+    $languages = $model->data['languages'];
+
+    /** @var  (array) $old_langs languages in locale folder before of this call */
+    //$old_langs = $data['languages'];
+
+    /** @var (array) $ex_dir languages unchecked in the form */
+    if ( !empty($ex_dir = array_diff($old_langs, $languages)) ){
+      foreach ( $ex_dir as $ex ){
+        /** index of ex lang in $languages */
+        $idx = array_search($ex, $old_langs);
+
+        /** removes the $ex (language unchecked) from the final array languages */
+        array_splice($old_langs, $idx);
+
+        /** @var $dir the path to delete*/
+        $dir = $locale_dir . '/' . $ex;
+        \bbn\file\dir::delete($dir);
+      }
+    }
+    $new_dir = [];
+    /** @var $new_dir new languages checked in the form */
+    if ( !empty( $new_dir = array_diff( $languages, $old_langs ) ) ){
+      foreach( $new_dir as $n ){
+
+        /** checks if the language already exists in the array languages */
+        if ( empty(in_array($n, $languages) ) ){
+          $languages[] = $n;
+        }
+      }
+    }
+  }
+
+  /** @var (array) takes all strings found in the files of  this option*/
+  if ( !empty($o['language']) ){
+    $data = $translation->get_translations_strings($model->data['id_option'],$o['language'], $languages);
+  }
+
+
 
   /** @var (boolean) $no_strings case of empty($data['res']), there are no strings in this path . Return true if there are no strings from find_strings*/
   $no_strings = false;
+
+
   /** $data['res'] is the array of strings */
   if ( !empty($data['res'] )){
-
-    /**  case generate called from strings table */
-    if ( !isset($model->data['languages']) ){
-      $languages = array_map(function($a){
-        return basename($a);
-      }, \bbn\file\dir::get_dirs($locale_dir)) ?: [];
-    }
-    else {
-      /** case generate from widget */
-      $languages = $model->data['languages'];
-      /** @var  (array) $old_langs languages in locale folder before of this call */
-      $old_langs = $data['languages'];
-
-      /** @var (array) $ex_dir languages unchecked in the form */
-      if ( !empty($ex_dir = array_diff($old_langs, $languages)) ){
-        foreach ( $ex_dir as $ex ){
-          /** index of ex lang in $languages */
-          $idx = array_search($ex, $languages);
-          /** removes the $ex (language unchecked) from the final array languages */
-          array_splice($languages, $idx);
-          /** @var $dir the path to delete*/
-          $dir = $locale_dir . '/' . $ex;
-          \bbn\file\dir::delete($dir);
-        }
-      }
-      $new_dir = [];
-      /** @var $new_dir new languages checked in the form */
-      if ( !empty($new_dir = array_diff($languages, $old_langs ) ) ){
-        foreach( $new_dir as $n ){
-          /** checks if the language already exists in the array languages */
-          if ( empty(in_array($n, $languages) ) ){
-            $languages[] = $n;
-          }
-        }
-      }
-    }
     $translations = [];
 
     clearstatcache();
@@ -77,6 +93,7 @@ if (
     foreach ( $languages as $lang ){
       /** @var $dir the path of locale dir for this id_option foreach lang */
       $dir = $locale_dir . '/' . $lang . '/LC_MESSAGES';
+
       /** creates the path of the dirs */
       \bbn\file\dir::create_path($dir);
       /** @var  $po & $mo files path */
@@ -84,101 +101,102 @@ if (
 
       $po = $mo = null;
       foreach ( $files as $f ){
-
         $ext = \bbn\str::file_ext($f);
-
-        if ( $ext === 'po' ){
+        if ( !empty($ext) && ($ext === 'po') ){
           $po = $f;
         }
-        if ( $ext === 'mo' ){
+        if ( !empty($ext) && ($ext === 'mo') ){
           $mo = $f;
         }
       }
+    /** checks if the file po exist for this lang and deletes it*/
+      if ( $po ){
+        unlink($po);
+      }
+      // the new file
       $new_po = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.po';
 
-      $new_mo = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.mo';
-      /** checks if the file po exist for this lang */
-      if ( $po ){
-        /** $translations[$lang] takes the content from the existing file */
-        $translations[$lang] = Translations::fromPoFile($po);
-        /** deletes po and mo files */
-        /*
-        if ( \bbn\file\dir::delete($po) ){
-          $translations[$lang] = new Gettext\Translations();
-        }
-        */
-        unlink($po);
-        unlink($mo);
+     //  $new_mo = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.mo';
+      //create the file at the given path
+      fopen($new_po,'x');
+
+      //instantiate the parser
+      $fileHandler = new Sepia\PoParser\SourceHandler\FileSystem($new_po);
+      $poParser = new Sepia\PoParser\Parser($fileHandler);
+      $Catalog  = Sepia\PoParser\Parser::parseFile($new_po);
+      $Compiler = new Sepia\PoParser\PoCompiler();
+      $headersClass = new Sepia\PoParser\Catalog\Header();
+
+      if( empty( $Catalog->getHeaders() ) ){
+        //headers for new po file
+        $headers = [
+          "Project-Id-Version: 1",
+          "Report-Msgid-Bugs-To: info@bbn.so",
+          "last-Translator: BBN Solutions <support@bbn.solutions>",
+          "Language-Team: ".strtoupper($lang).' <'.strtoupper($lang).'@li.org>',
+          "MIME-Version: 1.0",
+          "Content-Type: text/plain; charset=UTF-8",
+          "Content-Transfer-Encoding: 8bit",
+          "POT-Creation-Date: ".date('Y-m-d H:iO'),
+          "POT-Revision-Date: ".date('Y-m-d H:iO'),
+          "Language: ".$lang,
+          "X-Domain: ".$domain,
+          "Plural-Forms: nplurals=2; plural=n != 1;"
+        ];
+        //set the headers on the Catalog object
+        $headersClass->setHeaders($headers);
+        $Catalog->addHeaders($headersClass);
 
       }
 
-        /** if the po files doesn't exist instantiate the object $translations[$lang] to the class Gettext\Translations()*/
-        $translations[$lang] = new Gettext\Translations();
-
-      /** configuration of po file */
-      $translations[$lang]->setHeader('Project-Id-Version', 1);
-      $translations[$lang]->setHeader('Last-Translator', 'BBN Solutions <support@bbn.solutions>');
-//    $translations[$lang]->setHeader('Report-Msgid-Bugs-To', 'BBN Solutions <support@bbn.solutions>');
-      $translations[$lang]->setHeader('POT-Creation-Date', date('Y-m-d H:iO'));
-      $translations[$lang]->setHeader('PO-Revision-Date', date('Y-m-d H:iO'));
-      $translations[$lang]->setHeader('Language-Team', strtoupper($lang).' <'.strtoupper($lang).'@li.org>');
-      $translations[$lang]->setHeader('MIME-Version', '1.0');
-      $translations[$lang]->setHeader('Content-Type', 'text/plain; charset=UTF-8');
-      //$translations[$lang]->setHeader('Content-Transfer-Encoding', '8bit');
-      $translations[$lang]->setDomain($domain);
-      $translations[$lang]->setPluralForms(0, '');
-      $translations[$lang]->setLanguage($lang);
       /** @var takes all strings from the cached model of find_strings */
       foreach ( $data['res'] as $r ){
-
-        if ( !($t = $translations[$lang]->find('', $r['original_exp'])) ){
-          /** @var $t if the original expression doesn't exist in the po file it creates $t  */
-          $t = new Gettext\Translation(null, $r['original_exp']);
+        if ( empty($Catalog->getEntry($r['original_exp']) ) ){
+          //prepare the new entry for the Catalog
+          $entry = new  Sepia\PoParser\Catalog\Entry($r['original_exp'], $r[$lang]);
+          // set the reference for the entry
+          if ( !empty($r['path']) ){
+            $entry->setReference($r['path']);
+          }
+          //add the prepared entry to the catalog
+          $Catalog->addEntry($entry);
         }
-        /** set the translation taking it from db $r[$lang] */
-        $t->setTranslation($r[$lang]);
-
-        /** @var set the path $p */
-        foreach ( $r['path'] as $p ){
-          $t->addReference($p, 1);
-        }
-        $translations[$lang][] = $t;
       }
-      /** create the file po and mo with the content of  $translations[$lang]*/
-      Gettext\Generators\Po::toFile($translations[$lang], $new_po);
+      //compile the catalog
+      $file = $Compiler->compile($Catalog);
+      //save the catalog in the file
+      $fileHandler->save($file);
       clearstatcache();
-      Gettext\Generators\Mo::toFile($translations[$lang], $new_mo);
+
     }
 
     clearstatcache();
 
 
-    /*
-    $pp = $translation->get_parser();
-    foreach ( $languages as $lang ){
-      $path = $locale_dir.'/'.$lang.'/LC_MESSAGES';
-      if ( \bbn\file\dir::create_path($path) ){
-        Gettext\Generators\Po::toFile($pp, $path.'/zzzappui-styles.po');
-        Gettext\Generators\Mo::toFile($pp, $path.'/appui-styles.mo');
-      }
-    }
-    */
 
-    /** remakes the cached_model of the widget to show changes */
-    $model->get_cached_model(APPUI_I18N_ROOT.'page/data/widgets', ['id_option'=> $model->data['id_option']], true);
-    /** remakes the cached_model of the table to show changes */
-    $strings = $model->get_cached_model(APPUI_I18N_ROOT.'page/data/strings_table', [
-      'id_option' => $model->data['id_option'],
-      'routes' => $model->data['routes'],
-      ], true);
 
+    $tmp = $translation->get_translations_table($model->data['id_project'], $model->data['id_option']);
+
+    $tmp2 = $translation->cache_set($model->data['id_option'], 'get_translations_table',
+      $tmp
+    );
+    $strings = $translation->cache_get($model->data['id_option'], 'get_translations_table');
+
+    //remake the cache of the widget basing on new data
+    $translation->cache_set($model->data['id_option'], 'get_translations_widget',
+      $translation->get_translations_widget($model->data['id_project'],$model->data['id_option'])
+    );
+    $widget = $translation->cache_get($model->data['id_option'], 'get_translations_widget');
     $success = true;
   }
+
+
   else {
     $no_strings = true;
   }
 
   return [
+    'widget' => $widget,
     'no_strings' => $no_strings,
     'new_dir' => array_values($new_dir),
     'ex_dir'=> array_values($ex_dir),
@@ -186,6 +204,7 @@ if (
     'locale' => $locale_dir,
     'languages' => $languages,
     'success' => $success,
-    'strings' => $strings['strings']
+    'strings' => $strings['strings'],
+
   ];
 }

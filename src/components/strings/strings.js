@@ -42,18 +42,18 @@
                 }
               });
               var idx = bbn.fn.search(vm.translations_db, 'id_exp', row.id_exp ),
-                  translation_db = vm.translations_db[idx][this_field],
-                  translation_po = vm.mapData[idx][this_field];
+                translation_db = vm.translations_db[idx][this_field],
+                translation_po = vm.mapData[idx][this_field];
               if ( ( translation_db !== false )  && ( translation_db === translation_po ) ){
-                return row[this_field] + '<i class="fa fa-check bbn-large bbn-green" title="Expression correctly inserted in db and po file" style="float:right"><i/>'
+                return row[this_field] + '<i class="fas fa-check bbn-large bbn-green" title="Expression correctly inserted in db and po file" style="float:right"><i/>'
               }
 
               else if ( ( translation_db !== false ) && ( translation_db !== row[this_field ] ) &&  ( this.source.id_project !== 'options') ){
-                return translation_db + '<i style="float:right" class="fas fa-exclamation-triangle bbn-large bbn-red" title="Expression correctly inserted in db but not in po files, be sure to update translations files from the orange button"><i/>'
+                return translation_db + '<i style="float:right" class="fas fa-exclamation-triangle bbn-large bbn-red" title="Expression correctly inserted in db but not in po files, be sure to update translations files from the orange button of the toolbar"><i/>'
               }
 
               else if ( ( translation_db !== translation_po ) && ( row[this_field ] !== '' ) &&  ( this.source.id_project !== 'options') ){
-                return  vm.mapData[idx][this_field] + '<i style="float:right" class="fas fa-exclamation-triangle bbn-large bbn-red" title="Expression correctly inserted in db but not in po files, be sure to update translations files from the orange button"><i/>'
+                return  vm.mapData[idx][this_field] + '<i style="float:right" class="fas fa-exclamation-triangle bbn-large bbn-red" title="Expression correctly inserted in db but not in po files, be sure to update translations files from the orange button of the toolbar"><i/>'
               }
 
               else {
@@ -96,6 +96,7 @@
         this.source.res.strings.forEach( (obj, idx ) => {
           let ob = {};
           for (let prop in obj){
+            //bbn.fn.log('translation_db', idx, source_lang,'prop', prop)
             ob['original_exp'] = this.source.res.strings[idx][source_lang].original;
             ob['id_exp'] = this.source.res.strings[idx][source_lang].id_exp;
             ob[prop] = this.source.res.strings[idx][prop].translations_db;
@@ -107,7 +108,7 @@
       /** the source of the table */
       mapData(){
         let res = [],
-            source_lang = this.source.res.path_source_lang;
+          source_lang = this.source.res.path_source_lang;
         if ( ( this.source.id_project !== 'options') && (this.source.res.strings)){
           this.source.res.strings.forEach( (obj, idx ) => {
             let ob = {};
@@ -115,15 +116,15 @@
               //number of occurrence of the strings in files of the path
               //   ob['occurrence'] = this.source.res.strings[idx][source_lang].paths.length || 0;
               //takes the path of the string from file po
-              if ( this.source.res.strings[idx][source_lang].occurrence ){
+              if (this.source.res.strings[idx][source_lang] && this.source.res.strings[idx][source_lang].occurrence ){
                 ob['occurrence'] =  this.source.res.strings[idx][source_lang].occurrence;
               }
               else {
                 ob['occurrence'] = 0;
               }
-              ob['path'] = this.source.res.strings[idx][source_lang].paths;
-              ob['original_exp'] = this.source.res.strings[idx][source_lang].original;
-              ob['id_exp'] = this.source.res.strings[idx][source_lang].id_exp;
+              ob['path'] = this.source.res.strings[idx][source_lang] ? this.source.res.strings[idx][source_lang].paths : [];
+              ob['original_exp'] = this.source.res.strings[idx][source_lang] ? this.source.res.strings[idx][source_lang].original : false;
+              ob['id_exp'] = this.source.res.strings[idx][source_lang] ? this.source.res.strings[idx][source_lang].id_exp : false;
               ob[prop] = this.source.res.strings[idx][prop].translations_po;
             }
             res.push(ob);
@@ -146,13 +147,45 @@
       generate(){
         this.showAlert = true;
         if ( this.source.res.languages.length ){
-          bbn.fn.post(this.source.root + 'actions/generate', {id_option: this.source.id_option, languages: this.source.res.languages}, (d) => {
+          bbn.fn.post(this.source.root + 'actions/generate', {
+            id_option: this.source.id_option,
+            languages: this.source.res.languages,
+            id_project: this.source.id_project
+          }, (d) => {
             if ( d.success ){
               d.languages = d.languages.map( (v) => {
                 return bbn.fn.get_field(this.primary, 'code', v, 'text');
               });
+              let tabnav = bbn.vue.closest(this, 'bbn-tabnav');
+              if ( bbn.vue.find(tabnav, 'bbn-dashboard') !== undefined ){
+
+                let dashboard = bbn.vue.find(tabnav, 'bbn-dashboard'),
+                  widgets = bbn.vue.findAll(dashboard, 'bbns-widget');
+                if ( widgets !== undefined ){
+                  widgets.forEach((v, i) => {
+                    if ( v.uid === this.source.id_option ){
+                      let widget = v;
+                      bbn.vue.find(v, 'appui-i18n-widget').remake_cache()
+
+                    }
+                  });
+                }
+
+              }
               this.source.res.strings = d.strings;
+              if ( this.closest('bbn-tabnav') ) {
+                bbn.fn.log('before table update', this.closest('bbn-tabnav'))
+                //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
+                if (bbn.vue.find(this.closest('bbn-tabnav'), 'bbn-dashboard') !== undefined) {
+                  let dashboard = bbn.vue.find(this.closest('bbn-tabnav'), 'bbn-dashboard'),
+                    widgets = bbn.vue.findAll(dashboard, 'bbns-widget'),
+                    idx = bbn.fn.search(widgets, 'uid', this.source.id_option),
+                    cp = bbn.vue.closest(dashboard, 'bbns-tab').getComponent();
+                   cp.source.data[idx].data_widget = d.widget;
+                }
+              }
               appui.success('Files of translation successfully updated for '+ d.languages.join(' and ') );
+
               //this.remake_cache();
               this.$nextTick(() => {
                 bbn.vue.find(this, 'bbn-table').updateData();
@@ -162,7 +195,7 @@
           });
         }
         else {
-          appui.alert('You have to configure at least a language using the button <i class="fa fa-flag"></i> of the widget in the dashboard');
+          this.alert('You have to configure at least a language using the button <i class="fa fa-flag"></i> of the widget in the dashboard');
           this.showAlert = false;
         }
       },
@@ -171,12 +204,15 @@
         //bbn.fn.log('id_option',this.source.id_option);
         bbn.fn.post(this.source.root + 'actions/find_strings', {
           id_option: this.source.id_option,
-          language: this.source.res.path_source_lang
+          language: this.source.res.path_source_lang,
+          languages: this.source.res.languages
         }, (d) => {
           if ( d.success ){
-            if ( d.done > 0 ){
-              this.remake_cache();
+            if ( ( d.done > 0 ) && ( d.news.length ) ){
+              //devo fare generate per poterle avere in tabella...
               appui.success(d.done + ' new strings found')
+              this.generate();
+
             }
             else {
               appui.warning('No new strings found')
@@ -214,33 +250,51 @@
       },
       /** called at @change of the table (when the idx of the row focused changes), insert translation in db and remake the po file */
       insert_translation(row,idx){
+        var to_delete = [];
+        //creates an array of languages to delete
+        this.source.res.languages.forEach((v, i) => {
+          if ( row[v] === '' ){
+            to_delete.push(v)
+          }
+        })
         bbn.fn.post(this.source.root + 'actions/insert_translations', {
+          to_delete : to_delete,
           row: row,
           langs: this.source.res.languages,
-          id_option: this.source.id_option
+          id_option: this.source.id_option,
+          id_project: this.source.id_project,
+          row_idx: idx
         }, (d) => {
-          if (d.success && !d.deleted){
-            appui.success('Translation saved');
-            row = d.row;
-            //this.mapData[idx] = d.row;
+          if (d.success && !d.deleted.length && d.modified_langs.length ){
+            d.modified_langs.forEach((v, i) => {
+              this.source.res.strings[idx][v]['translations_db'] = d.row[v];
+              //I have a bug, after the update of the table this.mapData, the source of the table is wrong for the row if i don't force it to be correct
+              this.mapData[idx][v] = this.source.res.strings[idx][v]['translations_po'];
+            } )
             let table = bbn.vue.find(this, 'bbn-table');
-
-            //wanted to update the widget from the table
-            /*tab = bbn.vue.closest(this, 'bbns-tab'),
-            tabnav = bbn.vue.closest(tab, 'bbn-tabnav'),
-            dashboard = bbn.vue.find(tabnav, 'bbn-dashboard'),
-            widgets = bbn.vue.findAll(dashboard, 'bbns-widget')
-          ;*/
-            //this.mapData[idx] = d.row;
-            // assign the new properties of d.row to the object in translations_db
-            //Object.assign(this.translations_db[idx], d.row);
             table.updateData();
+            appui.success('Translation saved');
           }
-          else if ( !d.success && !d.deleted ){
+          else if ( !d.success && !d.deleted.length ){
             appui.error('An error occurred while saving translation');
           }
-          else if ( d.success && d.deleted ){
-            appui.warning('Translation deleted from db');
+          else if ( d.success && d.deleted.length ){
+            d.deleted.forEach((v, i) => {
+              this.source.res.strings[idx][v]['translations_db'] = d.row[v];
+              this.mapData[idx][v] = this.source.res.strings[idx][v]['translations_po'];
+              appui.warning('Translation deleted from db');
+            })
+          }
+          if ( this.closest('bbn-tabnav') ) {
+            bbn.fn.log('before table update', this.closest('bbn-tabnav'))
+            //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
+            if (bbn.vue.find(this.closest('bbn-tabnav'), 'bbn-dashboard') !== undefined) {
+              let dashboard = bbn.vue.find(this.closest('bbn-tabnav'), 'bbn-dashboard'),
+                widgets = bbn.vue.findAll(dashboard, 'bbns-widget'),
+                idx = bbn.fn.search(widgets, 'uid', this.source.id_option),
+                cp = bbn.vue.closest(dashboard, 'bbns-tab').getComponent();
+               cp.source.data[idx].data_widget = d.widget;
+            }
           }
         });
       },
@@ -250,7 +304,9 @@
         //this.generate();
         this.showAlert = true;
         bbn.fn.post('internationalization/actions/reload_table_cache', {
-          id_option: this.source.id_option
+          id_option: this.source.id_option,
+          id_project: this.source.id_project,
+          routes: this.source.root
         }, (d) => {
           if ( d.success ){
             let diff = ( d.res.total - this.source.res.total );
@@ -267,7 +323,6 @@
               appui.warning(Math.abs(diff) + ' string(s) deleted from ' + this.source.res.path + ' files');
               this.source.res.strings = d.res.strings;
               this.source.res.total = d.res.total;
-              //bbn.vue.find(this, 'bbn-table').updateData();
             }
             else if ( diff = 0 ){
               appui.warning('There are no changes in data')
@@ -277,7 +332,14 @@
               this.column_length = true;
               this.showAlert = false;
             });
-
+            let tabnav = bbn.vue.closest(this, 'bbn-tabnav');
+            /*if( bbn.vue.find(tabnav, 'bbn-dashboard') !== undefined ){
+              let dashboard = bbn.vue.find(tabnav, 'bbn-dashboard'),
+                tab = bbn.vue.closest(dashboard, 'bbns-tab'),
+                cp = tab.getComponent(),
+                data = cp.source.data,
+                widget_idx = bbn.fn.search(data, 'id', this.source.id_option);
+            }*/
           }
         })
       },
@@ -285,10 +347,10 @@
     watch: {
       showAlert(val){
         if ( val){
-          this.getPopup().alert(bbn._('Wait for the ending of the process before to make other actions in this tab') );
+          this.alert(bbn._('Wait for the ending of the process before to make other actions in this tab') );
         }
         else{
-          this.getPopup().close()
+          this.alert().close()
         }
       },
       hidden_cols(val){
@@ -305,8 +367,8 @@
           /** the index of the column to hide */
           let col_idx = bbn.fn.search(this.columns, 'field', v),
             /** the column to hide */
-              col = this.columns[col_idx],
-              idx = $.inArray(v, this.hidden_cols);
+            col = this.columns[col_idx],
+            idx = $.inArray(v, this.hidden_cols);
           if ( idx > -1 ){
             col.hidden = true;
           }
@@ -315,7 +377,7 @@
         if ( not_hidden.length ){
           not_hidden.forEach( (v, i) => {
             let col_idx = bbn.fn.search(this.columns, 'field', v),
-                col = this.columns[col_idx];
+              col = this.columns[col_idx];
             col.hidden = false;
 
           } )
@@ -347,6 +409,7 @@
 
           },
           remake_cache(){
+
             return this.tab ? this.tab.remake_cache() : null;
           },
           hide_col(val){
@@ -366,7 +429,7 @@
           this.tab = bbn.vue.closest(this, 'appui-i18n-strings');
         },
         watch: {
-           /** v-model of bbn-switch used to hide the column of original language */
+          /** v-model of bbn-switch used to hide the column of original language */
           hide_source_language(val, oldVal){
             // get the index of the column of source language
             var idx = bbn.fn.search(this.tab.columns, 'field', this.tab.source.res.path_source_lang );

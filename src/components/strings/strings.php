@@ -1,8 +1,9 @@
 <div class="strings-table" style="min-height: 500px; width:100%">
   <bbn-table v-if="source.res.languages.length "
+             v-show="showAlert === false"
              :source="mapData"
              :columns="columns"
-             editable="inline"
+             editable="nobuttons"
              :pageable="true"
              :limit="25"
              :showable="true"
@@ -12,7 +13,7 @@
              :multifilter="true"
              ref="strings_table"
              :order="[{field: 'expression', dir: 'ASC'}]"
-             :expander="$options.components['file_linker']"
+             :expander="(source.id_project !== 'options') ? $options.components['file_linker'] : ''"
              :toolbar="$options.components['toolbar-strings-table']"
              @change="insert_translation">
 
@@ -28,9 +29,9 @@
   </bbn-table>
 
   <div v-else-if="!source.res.languages.length && column_length">
-    <h5 class="bbn-c"><?=_('Close this tab and configure translation files from the widget')?> <i class="fa fa-flag"></i> <?=_('button before to open the table of strings')?>.</h5>
+    <h5 class="bbn-c"><?=_('Close this tab and configure translation files from the widget')?> <i class="fas fa-flag"></i> <?=_('button before to open the table of strings')?>.</h5>
     <br>
-    <h5 class="bbn-c"><?=_('If the widget seems to have translation files configured but you see this message, try to reload the widget from')?> <i class="fa fa-retweet"></i> <?=_('button and then configure files')?></h5>
+    <h5 class="bbn-c"><?=_('If the widget seems to have translation files configured but you see this message, try to reload the widget from')?> <i class="fas fa-tasksfa-retweet"></i> <?=_('button and then configure files')?></h5>
   </div>
 
   <div v-else-if="source.res.languages.length && !column_length">

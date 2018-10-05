@@ -11,9 +11,13 @@ $source_langs = $ctrl->db->get_rows("
   SELECT DISTINCT (lang) FROM bbn_i18n
 ");
 
+if ( !empty($ctrl->post['id_project'])){
 
-$ctrl->add_data([
-  'id_project' => $ctrl->post['id_project'],
-  'source_langs' => $source_langs
-])
-->combo('', true);
+  $ctrl->add_data([
+    'id_project' => $ctrl->post['id_project'],
+    'source_langs' => $source_langs
+  ]);
+}
+
+
+$ctrl->combo('', true);

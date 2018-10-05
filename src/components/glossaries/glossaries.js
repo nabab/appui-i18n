@@ -46,7 +46,7 @@
       icons(row){
         let res = '';
         if ( ( row.original_expression === row.translation ) && ( this.source.source_lang === this.source.translation_lang ) ){
-          res = ('<i class="fa fa-check bbn-bg-purple bbn-xl" title="Expressions are identical" ></i>')
+          res = ('<i class="fas fa-check bbn-bg-purple bbn-xl" title="Expressions are identical" ></i>')
         }
         else if ( ( row.translation !== null ) && ( row.translation !== row.original_expression ) && ( this.source.source_lang === this.source.translation_lang ) ){
           res= ('<i class="zmdi zmdi-alert-triangle bbn-xl bbn-bg-orange" title="Expression changed in its original' +

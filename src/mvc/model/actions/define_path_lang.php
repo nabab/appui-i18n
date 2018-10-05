@@ -3,7 +3,8 @@
  * Describe what it does!
  *
  **/
-use Gettext\Translations;
+
+$translation = new \bbn\appui\i18n($model->db);
 
 /** @var $this \bbn\mvc\model*/
 
@@ -13,15 +14,16 @@ if ( isset( $model->data['language'] ) && $model->data['id_option'] ) {
 
   $model->inc->options->set_prop($model->data['id_option'], ['language' => $model->data['language']]);
 
-  $data_widget = $model->get_cached_model(APPUI_I18N_ROOT.'page/data/widgets',
-    ['id_option' => $model->data['id_option'] ], true );
+  $data_widget = $translation->get_translations_widget($projects[$i]['id'],$res[$idx]['id']);
 
-  //delete_cached_model doesn't work
-  $model->get_cached_model(APPUI_I18N_ROOT.'page/data/strings_table',
-    [
-      'id_option' => $model->data['id_option'],
-      'routes'=> $model->data['routes']
-    ], true);
+
+  $tmp = $translation->get_translations_table($model->data['id_project'], $model->data['id_option']);
+
+  $tmp2 = $translation->cache_set($model->data['id_option'], 'get_translations_table',
+    $tmp
+  );
+  $strings = $translation->cache_get($model->data['id_option'], 'get_translations_table');
+
 	return [
     'data_widget' => $data_widget,
     'success' => true

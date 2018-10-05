@@ -42,7 +42,7 @@
           st += '<i title="Expression deleted from database" class="fas fa-times bbn-bg-red bbn-xl"></i>'
         }
         else if ( ( row.original_lang === row.translation_lang ) && ( row.expression === row.original_expression ) ){
-          st += '<i class="fa fa-check bbn-bg-purple bbn-xl" style="color:white" title="Expressions are identical"></i>'
+          st += '<i class="fas fa-check bbn-bg-purple bbn-xl" style="color:white" title="Expressions are identical"></i>'
         }
         else if ( ( row.original_lang === row.translation_lang ) && ( row.expression !== row.original_expression ) ){
           st += '<i class="zmdi zmdi-alert-triangle bbn-xl bbn-bg-orange" title="Expression changed in its' +

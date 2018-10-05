@@ -1,7 +1,7 @@
 <div class="languages bbn-full-screen">
   <bbn-tabnav :autoload="true">
     <bbns-tab url="dashboard"
-              icon="fa fa-edit"
+              icon="fas fa-edit"
              	title="Projects Dashboard"
               :load="true"
               :source="source"
@@ -10,14 +10,14 @@
     ></bbns-tab>
     <!--
 		<bbns-tab url="home"
-							icon="fa fa-tasks"
+							icon="fas fa-tasks"
               title="Projects table"
               :load="true"
               :source="source">
 		</bbns-tab>
 		-->
    <!-- <bbns-tab url="history"
-              icon="fa fa-flag"
+              icon="fas fa-flag"
               title="Translations"
               :static="true"
               :load="true"

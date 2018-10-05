@@ -9,7 +9,7 @@
  */
 
 if ( !empty($ctrl->arguments[0]) ){
-
+  //$ctrl->obj->url = APPUI_I18N_ROOT.'page/path_translation';
   if( \bbn\str::is_uid($ctrl->arguments[0]) ){
     $id_option = $ctrl->arguments[0];
   }
@@ -20,7 +20,7 @@ if ( !empty($ctrl->arguments[0]) ){
   }
   /** add id_option to data and routes needed to instantiate the class ide */
   $ctrl->add_data([
-    'id_project'=> $id_project,
+    'id_project'=> $id_project ?? false,
     'id_option' => $id_option,
     'routes' => $ctrl->get_routes()
   ])->combo('$pageTitle', true);

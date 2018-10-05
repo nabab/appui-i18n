@@ -20,7 +20,7 @@
     computed: {
       //Icon for statistic table
       trophy_icon(){
-        return  '<i class="fa fa-trophy" style="color:rgba(255, 215, 0, 1.0)"></i>'
+        return  '<i class="fas fa-trophy" style="color:rgba(255, 215, 0, 1.0)"></i>'
       },
       //source of the second dropdown in statistic's tab
       dropdown_source(){

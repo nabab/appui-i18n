@@ -13,7 +13,7 @@
       <bbn-button title="<?=_('Go to the table of your translations')?>"
                   class="k-button bbn-button bbn-events-component"
                   @click="open_user_history"
-                  icon="fa fa-user"
+                  icon="fas fa-user"
                   text="<?=_('User\'s translation')?>"
       >
       </bbn-button>

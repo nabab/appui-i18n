@@ -11,6 +11,9 @@
 
     },
     methods: {
+      renderUser(row){
+        return appui.app.getUserName(row.user)
+      },
       insert_translation(row,idx){
         bbn.fn.post('internationalization/actions/insert_translation', row, (success) => {
           if (success){
@@ -24,7 +27,7 @@
       render_status(row){
         let st = '';
         if ( ( row.original_lang === row.translation_lang ) && ( row.expression === row.original_exp ) ){
-          st += '<i class="fa fa-check bbn-bg-purple bbn-xl" style="color:white" title="Expressions are identical"></i>'
+          st += '<i class="fas fa-check bbn-bg-purple bbn-xl" style="color:white" title="Expressions are identical"></i>'
         }
         else if ( ( row.original_lang === row.translation_lang ) && ( row.expression !== row.original_exp ) ){
           st += '<i class="zmdi zmdi-alert-triangle bbn-xl bbn-bg-orange" title="Expression changed in its' +

@@ -9,50 +9,42 @@ if ( !empty($model->data['limit']) &&  !empty($model->data['data']['translation_
 
   $trans_lang_code = $model->data['data']['translation_lang'];
   $source_code = $model->data['data']['source_lang'];
-  $filters = [
-    'bbn_i18n.lang' => $source_code
-  ];
 
-  $query = "
-    SELECT bbn_i18n.exp AS original_exp, bbn_i18n.id AS idExp, bbn_history.usr AS id_user,
-      (SELECT bbn_i18n_exp.expression 
-       FROM bbn_i18n_exp 
-       WHERE bbn_i18n_exp.id_exp = idExp
-        AND bbn_i18n_exp.lang = '$trans_lang_code'
-      ) AS translation
-    FROM bbn_i18n
-    JOIN bbn_i18n_exp 
-    	ON bbn_i18n_exp.id_exp = bbn_i18n.id
-    LEFT JOIN bbn_history
-      ON bbn_history.uid = bbn_i18n_exp.id";
 
-  $count = "
-    SELECT COUNT(bbn_i18n.id) 
-    FROM bbn_i18n
-    ";
-
-  //if I give to $grid 'table' => 'bbn_i18n' I don't have data
   $grid = new \bbn\appui\grid($model->db, $model->data, [
-    'query'=> $query,
-    'count' => $count,
+    'tables' => ['bbn_i18n'],
+    'fields' => [
+      'original_exp' => 'exp',
+      'idExp' => 'bbn_i18n.id',
+      'translation' => 'expression'
+      
+    ],
+    'join' => [[
+      'type' => 'left',
+      'table' => 'bbn_i18n_exp',
+      'on' => [
+        'logic' => 'AND',
+        'conditions' => [[
+          'field' => 'bbn_i18n_exp.id_exp',
+          'operator' => 'eq',
+          'exp' => 'bbn_i18n.id'
+        ],[
+          'field' => 'bbn_i18n_exp.lang',
+          'operator' => 'eq',
+          'value' => $trans_lang_code
+        ]]
+      ],
+    ]],
+    'filters' => [[
+      'field' => 'bbn_i18n.lang',
+      'operator' => '=',
+      'value' => $source_code
+    ]],
     'group_by' => 'bbn_i18n.id',
-    'filters'=> $filters
+
   ]);
 
   if ( $grid->check() ){
     return $grid->get_datatable();
   }
 }
-
-/* QUERY FUNZIONANTE DI MIRKO
- * $query = "
-    SELECT bbn_i18n.exp AS original_expression, bbn_i18n.id AS idExp, bbn_history.usr AS id_user,
-      (SELECT bbn_i18n_exp.expression
-       FROM bbn_i18n_exp
-       WHERE bbn_i18n_exp.id_exp = idExp
-        AND bbn_i18n_exp.lang = '$trans_lang_code'
-      ) AS translation
-    FROM bbn_i18n
-    JOIN bbn_history
-      ON bbn_history.uid = bbn_i18n.id";
- */

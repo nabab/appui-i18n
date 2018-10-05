@@ -1,4 +1,5 @@
 (() => {
+
   return {
     props:['source'],
     data(){
@@ -16,22 +17,22 @@
           if (this.id_project !== 'options'){
             buttons = [{
               text: bbn._('Update widget data'),
-              icon: 'fa fa-retweet',
+              icon: 'fas fa-retweet',
               action: 'remake_cache'
             },{
               text: bbn._('Setup languages'),
-              icon: 'fa fa-flag',
+              icon: 'fas fa-flag',
               action: 'generate'
             },{
               text: bbn._('Open the table of strings'),
-              icon: 'fa fa-book',
+              icon: 'fas fa-book',
               action: 'open_strings_table',
             }]
           }
           else {
             buttons = [{
               text: bbn._('Update widget data'),
-              icon: 'fa fa-retweet',
+              icon: 'fas fa-retweet',
               action: 'remake_cache'
             },{
               text: bbn._('Find new options or translations for this category'),
@@ -39,7 +40,7 @@
               action: 'find_options'
             },{
               text: bbn._('Open the table of strings of this path'),
-              icon: 'fa fa-book',
+              icon: 'fas fa-book',
               action: 'open_strings_table',
             }]
           }
@@ -57,16 +58,16 @@
 
       },
       //source to choose the source language using the popup
-      dd_source_lang(){
+      /*dd_source_lang(){
         let res = [];
-        $.each(this.source.source_langs, (i, v) => {
+        $.each(this.primary, (i, v) => {
           res.push({
             value: v.lang,
             text: bbn.fn.get_field(this.primary, 'code', v.lang, 'text')
           })
         })
         return res;
-      },
+      },*/
       //source to choose the translation language using the popup
       dd_translation_lang(){
         let res = [];

@@ -26,7 +26,7 @@
                   },{
                   notext: true,
                   command: open_strings_table,
-                  icon: 'fa fa-book',
+                  icon: 'fas fa-book',
                   text: '<?=_('Go to the table of strings of this path')?>',
                   title: '<?=_('Go to the table of strings of this path')?>'
            	  	 }]"

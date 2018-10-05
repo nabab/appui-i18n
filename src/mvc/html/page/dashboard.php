@@ -12,7 +12,8 @@
 
           <div class="first">
             <span>Select a project</span>
-            <bbn-dropdown :source="dd_projects"
+            <bbn-dropdown :url="source.root + 'page/dashboard'"
+                          :source="dd_projects"
                           v-model="id_project"
                           @change="load_widgets"
             ></bbn-dropdown>

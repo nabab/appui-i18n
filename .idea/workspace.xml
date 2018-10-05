@@ -1,154 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/mvc/js/components/languages/strings_table.js" line="0" />
     <bookmark url="file://$PROJECT_DIR$/src/mvc/public/actions/define_path_lang.php" line="9" />
-    <bookmark url="file://$PROJECT_DIR$/src/mvc/html/components/languages/widget.php" line="13" />
     <bookmark url="file://$PROJECT_DIR$/src/mvc/model/actions/generate.php" line="138" />
-    <bookmark url="file://$PROJECT_DIR$/src/mvc/js/components/languages/widget.js" line="30" />
-    <bookmark url="file://$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php" line="44" />
-    <bookmark url="file://$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php" line="28" />
+    <bookmark url="file://$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php" line="36" />
+    <bookmark url="file://$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php" line="27" />
     <bookmark url="file://$PROJECT_DIR$/src/mvc/model/actions/find_strings.php" line="105" />
     <bookmark url="file://$PROJECT_DIR$/src/mvc/model/actions/generate.php" line="119" />
     <bookmark url="file://$PROJECT_DIR$/src/mvc/model/actions/find_strings.php" />
-    <bookmark url="file://$PROJECT_DIR$/src/mvc/html/components/languages/strings_table.php" line="16" />
     <bookmark url="file://$PROJECT_DIR$/src/mvc/model/actions/generate.php" line="159" />
     <bookmark url="file://$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php" line="19" />
-    <bookmark url="file://$PROJECT_DIR$/src/mvc/js/components/languages/widget.js" line="33" />
     <bookmark url="file://$PROJECT_DIR$/src/mvc/model/actions/generate.php" line="118" />
     <bookmark url="file://$PROJECT_DIR$/src/mvc/model/options/options_data.php" line="12" />
-    <bookmark url="file://$PROJECT_DIR$/src/mvc/js/components/languages/strings_table.js" line="300" />
-    <bookmark url="file://$PROJECT_DIR$/src/mvc/js/components/languages/strings_table.js" line="179" />
-    <bookmark url="file://$PROJECT_DIR$/src/mvc/js/components/languages/widget.js" line="126" />
-    <bookmark url="file://$PROJECT_DIR$/src/mvc/html/components/languages/widget.php" line="15" />
     <bookmark url="file://$PROJECT_DIR$/../appui-ide/src/mvc/js/editor.js" />
-    <bookmark url="file://$PROJECT_DIR$/../appui-ide/src/mvc/html/components/i18n.php" line="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa7275c0-f582-49e2-8ddb-478d27d57d9a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/.idea/appui-i18n.iml" afterPath="$PROJECT_DIR$/.idea/appui-i18n.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Mirko.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Mirko.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/vagrant.xml" afterPath="$PROJECT_DIR$/.idea/vagrant.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" afterPath="$PROJECT_DIR$/LICENSE" />
-      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change beforePath="$PROJECT_DIR$/src/locale/en/LC_MESSAGES/appui-i18n.mo" afterPath="$PROJECT_DIR$/src/locale/en/LC_MESSAGES/appui-i18n.mo" />
-      <change beforePath="$PROJECT_DIR$/src/locale/en/LC_MESSAGES/appui-i18n.po" afterPath="$PROJECT_DIR$/src/locale/en/LC_MESSAGES/appui-i18n.po" />
-      <change beforePath="$PROJECT_DIR$/src/locale/fr/LC_MESSAGES/appui-i18n.mo" afterPath="$PROJECT_DIR$/src/locale/fr/LC_MESSAGES/appui-i18n.mo" />
-      <change beforePath="$PROJECT_DIR$/src/locale/fr/LC_MESSAGES/appui-i18n.po" afterPath="$PROJECT_DIR$/src/locale/fr/LC_MESSAGES/appui-i18n.po" />
-      <change beforePath="$PROJECT_DIR$/src/locale/it/LC_MESSAGES/appui-i18n.mo" afterPath="$PROJECT_DIR$/src/locale/it/LC_MESSAGES/appui-i18n.mo" />
-      <change beforePath="$PROJECT_DIR$/src/locale/it/LC_MESSAGES/appui-i18n.po" afterPath="$PROJECT_DIR$/src/locale/it/LC_MESSAGES/appui-i18n.po" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/css/components/languages/widget.less" afterPath="$PROJECT_DIR$/src/mvc/css/components/languages/widget.less" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/css/page.less" afterPath="$PROJECT_DIR$/src/mvc/css/page.less" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/css/page/dashboard.less" afterPath="$PROJECT_DIR$/src/mvc/css/page/dashboard.less" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/css/page/home.less" afterPath="$PROJECT_DIR$/src/mvc/css/page/home.less" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/components/languages/glossaries.php" afterPath="$PROJECT_DIR$/src/mvc/html/components/languages/glossaries.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/components/languages/strings_table.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/components/languages/strings_table.php" afterPath="$PROJECT_DIR$/src/mvc/html/components/languages/strings_table.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/components/languages/widget.php" afterPath="$PROJECT_DIR$/src/mvc/html/components/languages/widget.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/page.php" afterPath="$PROJECT_DIR$/src/mvc/html/page.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/page/dashboard.php" afterPath="$PROJECT_DIR$/src/mvc/html/page/dashboard.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/page/glossary.php" afterPath="$PROJECT_DIR$/src/mvc/html/page/glossary.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/page/history.php" afterPath="$PROJECT_DIR$/src/mvc/html/page/history.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/page/home.php" afterPath="$PROJECT_DIR$/src/mvc/html/page/home.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/page/path_translations.php" afterPath="$PROJECT_DIR$/src/mvc/html/page/path_translations.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/page/statistic.php" afterPath="$PROJECT_DIR$/src/mvc/html/page/statistic.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/page/user_history.php" afterPath="$PROJECT_DIR$/src/mvc/html/page/user_history.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form-locale.php" afterPath="$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form-locale.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form.php" afterPath="$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/templates/appui-paths-table.php" afterPath="$PROJECT_DIR$/src/mvc/html/templates/appui-paths-table.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/templates/cfg_translations_form.php" afterPath="$PROJECT_DIR$/src/mvc/html/templates/cfg_translations_form.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/templates/toolbar-strings-table.php" afterPath="$PROJECT_DIR$/src/mvc/html/templates/toolbar-strings-table.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/html/templates/toolbar.php" afterPath="$PROJECT_DIR$/src/mvc/html/templates/toolbar.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/js/components/languages/glossaries.js" afterPath="$PROJECT_DIR$/src/mvc/js/components/languages/glossaries.js" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/js/components/languages/paths.js" afterPath="$PROJECT_DIR$/src/mvc/js/components/languages/paths.js" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/js/components/languages/strings_table.js" afterPath="$PROJECT_DIR$/src/mvc/js/components/languages/strings_table.js" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/js/components/languages/widget.js" afterPath="$PROJECT_DIR$/src/mvc/js/components/languages/widget.js" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/js/page.js" afterPath="$PROJECT_DIR$/src/mvc/js/page.js" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/js/page/dashboard.js" afterPath="$PROJECT_DIR$/src/mvc/js/page/dashboard.js" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/js/page/glossary.js" afterPath="$PROJECT_DIR$/src/mvc/js/page/glossary.js" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/js/page/history.js" afterPath="$PROJECT_DIR$/src/mvc/js/page/history.js" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/js/page/home.js" afterPath="$PROJECT_DIR$/src/mvc/js/page/home.js" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/js/page/path_translations.js" afterPath="$PROJECT_DIR$/src/mvc/js/page/path_translations.js" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/js/page/statistic.js" afterPath="$PROJECT_DIR$/src/mvc/js/page/statistic.js" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/js/page/user_history.js" afterPath="$PROJECT_DIR$/src/mvc/js/page/user_history.js" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/define_path_lang.php" afterPath="$PROJECT_DIR$/src/mvc/model/actions/define_path_lang.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/delete_expression.php" afterPath="$PROJECT_DIR$/src/mvc/model/actions/delete_expression.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/delete_path_lang.php" afterPath="$PROJECT_DIR$/src/mvc/model/actions/delete_path_lang.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/find_strings.php" afterPath="$PROJECT_DIR$/src/mvc/model/actions/find_strings.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/generate.php" afterPath="$PROJECT_DIR$/src/mvc/model/actions/generate.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/insert_translation.php" afterPath="$PROJECT_DIR$/src/mvc/model/actions/insert_translation.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php" afterPath="$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/languages_form.php" afterPath="$PROJECT_DIR$/src/mvc/model/actions/languages_form.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/reload_table_cache.php" afterPath="$PROJECT_DIR$/src/mvc/model/actions/reload_table_cache.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/reload_widget_cache.php" afterPath="$PROJECT_DIR$/src/mvc/model/actions/reload_widget_cache.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/options/find_options.php" afterPath="$PROJECT_DIR$/src/mvc/model/options/find_options.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/options/options_data.php" afterPath="$PROJECT_DIR$/src/mvc/model/options/options_data.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/options/remove_lang.php" afterPath="$PROJECT_DIR$/src/mvc/model/options/remove_lang.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/options/set_lang.php" afterPath="$PROJECT_DIR$/src/mvc/model/options/set_lang.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/page.php" afterPath="$PROJECT_DIR$/src/mvc/model/page.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/dashboard.php" afterPath="$PROJECT_DIR$/src/mvc/model/page/dashboard.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/data/glossary.php" afterPath="$PROJECT_DIR$/src/mvc/model/page/data/glossary.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/data/history.php" afterPath="$PROJECT_DIR$/src/mvc/model/page/data/history.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/data/strings_table.php" afterPath="$PROJECT_DIR$/src/mvc/model/page/data/strings_table.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/data/user_history.php" afterPath="$PROJECT_DIR$/src/mvc/model/page/data/user_history.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/data/widgets.php" afterPath="$PROJECT_DIR$/src/mvc/model/page/data/widgets.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/data/widgets.php.bak" afterPath="$PROJECT_DIR$/src/mvc/model/page/data/widgets.php.bak" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/glossary.php" afterPath="$PROJECT_DIR$/src/mvc/model/page/glossary.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/history.php" afterPath="$PROJECT_DIR$/src/mvc/model/page/history.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/home.php" afterPath="$PROJECT_DIR$/src/mvc/model/page/home.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/lang.php" afterPath="$PROJECT_DIR$/src/mvc/model/page/lang.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/path_translations.php" afterPath="$PROJECT_DIR$/src/mvc/model/page/path_translations.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/statistic.php" afterPath="$PROJECT_DIR$/src/mvc/model/page/statistic.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/_ctrl.php" afterPath="$PROJECT_DIR$/src/mvc/public/_ctrl.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/define_path_lang.php" afterPath="$PROJECT_DIR$/src/mvc/public/actions/define_path_lang.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/delete_cache.php" afterPath="$PROJECT_DIR$/src/mvc/public/actions/delete_cache.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/delete_expression.php" afterPath="$PROJECT_DIR$/src/mvc/public/actions/delete_expression.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/delete_path_lang.php" afterPath="$PROJECT_DIR$/src/mvc/public/actions/delete_path_lang.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/find_strings.php" afterPath="$PROJECT_DIR$/src/mvc/public/actions/find_strings.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/generate.php" afterPath="$PROJECT_DIR$/src/mvc/public/actions/generate.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/insert_translation.php" afterPath="$PROJECT_DIR$/src/mvc/public/actions/insert_translation.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/insert_translations.php" afterPath="$PROJECT_DIR$/src/mvc/public/actions/insert_translations.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/languages_form.php" afterPath="$PROJECT_DIR$/src/mvc/public/actions/languages_form.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/reload_table_cache.php" afterPath="$PROJECT_DIR$/src/mvc/public/actions/reload_table_cache.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/reload_widget_cache.php" afterPath="$PROJECT_DIR$/src/mvc/public/actions/reload_widget_cache.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/bbn.php" afterPath="$PROJECT_DIR$/src/mvc/public/bbn.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/components/languages/glossaries.php" afterPath="$PROJECT_DIR$/src/mvc/public/components/languages/glossaries.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/components/languages/strings_table.php" afterPath="$PROJECT_DIR$/src/mvc/public/components/languages/strings_table.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/components/languages/widget.php" afterPath="$PROJECT_DIR$/src/mvc/public/components/languages/widget.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/generate_po.php" afterPath="$PROJECT_DIR$/src/mvc/public/generate_po.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/generate_po2.php" afterPath="$PROJECT_DIR$/src/mvc/public/generate_po2.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/options/find_options.php" afterPath="$PROJECT_DIR$/src/mvc/public/options/find_options.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/options/options_data.php" afterPath="$PROJECT_DIR$/src/mvc/public/options/options_data.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/options/remove_lang.php" afterPath="$PROJECT_DIR$/src/mvc/public/options/remove_lang.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/options/set_lang.php" afterPath="$PROJECT_DIR$/src/mvc/public/options/set_lang.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/page.php" afterPath="$PROJECT_DIR$/src/mvc/public/page.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/dashboard.php" afterPath="$PROJECT_DIR$/src/mvc/public/page/dashboard.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/data/glossary.php" afterPath="$PROJECT_DIR$/src/mvc/public/page/data/glossary.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/data/history.php" afterPath="$PROJECT_DIR$/src/mvc/public/page/data/history.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/data/strings_table.php" afterPath="$PROJECT_DIR$/src/mvc/public/page/data/strings_table.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/data/user_history.php" afterPath="$PROJECT_DIR$/src/mvc/public/page/data/user_history.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/data/widgets.php" afterPath="$PROJECT_DIR$/src/mvc/public/page/data/widgets.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/glossary.php" afterPath="$PROJECT_DIR$/src/mvc/public/page/glossary.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/history.php" afterPath="$PROJECT_DIR$/src/mvc/public/page/history.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/home.php" afterPath="$PROJECT_DIR$/src/mvc/public/page/home.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/lang.php" afterPath="$PROJECT_DIR$/src/mvc/public/page/lang.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/path_translations.php" afterPath="$PROJECT_DIR$/src/mvc/public/page/path_translations.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/statistic.php" afterPath="$PROJECT_DIR$/src/mvc/public/page/statistic.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/user_history.php" afterPath="$PROJECT_DIR$/src/mvc/public/page/user_history.php" />
-      <change beforePath="$PROJECT_DIR$/src/mvc/public/update.php" afterPath="$PROJECT_DIR$/src/mvc/public/update.php" />
+      <change afterPath="$PROJECT_DIR$/src/components/strings/options.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/appui-i18n.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/appui-i18n.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Mirko.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Mirko.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vagrant.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vagrant.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/glossaries/glossaries.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/glossaries/glossaries.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/glossaries/glossaries.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/glossaries/glossaries.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/strings/strings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/strings/strings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/strings/strings.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/strings/strings.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/widget/widget.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/widget/widget.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/widget/widget.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/widget/widget.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/locale/index.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/locale/index.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/css/page.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/css/page.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/css/page/dashboard.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/css/page/dashboard.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/css/page/home.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/css/page/home.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/html/page.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/html/page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/html/page/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/html/page/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/html/page/glossary.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/html/page/glossary.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/html/page/history.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/html/page/history.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/html/page/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/html/page/home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/html/page/path_translations.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/html/page/path_translations.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/html/page/statistic.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/html/page/statistic.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/html/page/user_history.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/html/page/user_history.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/html/templates/cfg_translations_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/html/templates/cfg_translations_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/html/templates/languages-form-locale.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/html/templates/languages-form-locale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/html/templates/languages-form.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/html/templates/languages-form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/html/templates/paths-table.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/html/templates/paths-table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/html/templates/toolbar-strings-table.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/html/templates/toolbar-strings-table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/html/templates/toolbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/html/templates/toolbar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/js/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/js/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/js/page/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/js/page/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/js/page/glossary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/js/page/glossary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/js/page/history.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/js/page/history.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/js/page/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/js/page/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/js/page/path_translations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/js/page/path_translations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/js/page/statistic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/js/page/statistic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/js/page/user_history.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/js/page/user_history.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/define_path_lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/actions/define_path_lang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/delete_expression.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/actions/delete_expression.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/delete_path_lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/actions/delete_path_lang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/find_strings.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/actions/find_strings.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/generate.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/actions/generate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/insert_translation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/actions/insert_translation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/languages_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/actions/languages_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/reload_table_cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/actions/reload_table_cache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/actions/reload_widget_cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/actions/reload_widget_cache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/options/find_options.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/options/find_options.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/options/options_data.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/options/options_data.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/options/remove_lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/options/remove_lang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/options/set_lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/options/set_lang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/page.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/page/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/data/glossary.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/page/data/glossary.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/data/history.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/page/data/history.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/data/project.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/page/data/project.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/data/strings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/page/data/strings_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/data/user_history.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/page/data/user_history.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/data/widgets.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/page/data/widgets.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/data/widgets.php.bak" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/page/data/widgets.php.bak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/glossary.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/page/glossary.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/page/home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/page/lang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/path_translations.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/page/path_translations.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/model/page/statistic.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/model/page/statistic.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/_ctrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/_ctrl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/define_path_lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/actions/define_path_lang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/delete_cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/actions/delete_cache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/delete_expression.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/actions/delete_expression.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/delete_path_lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/actions/delete_path_lang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/find_strings.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/actions/find_strings.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/generate.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/actions/generate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/insert_translation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/actions/insert_translation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/insert_translations.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/actions/insert_translations.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/languages_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/actions/languages_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/reload_table_cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/actions/reload_table_cache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/actions/reload_widget_cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/actions/reload_widget_cache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/bbn.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/bbn.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/generate_po.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/generate_po.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/generate_po2.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/generate_po2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/options/find_options.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/options/find_options.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/options/options_data.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/options/options_data.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/options/remove_lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/options/remove_lang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/options/set_lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/options/set_lang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/page.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/page/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/data/glossary.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/page/data/glossary.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/data/history.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/page/data/history.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/data/user_history.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/page/data/user_history.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/data/widgets.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/page/data/widgets.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/glossary.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/page/glossary.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/history.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/page/history.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/page/home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/page/lang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/path_translations.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/page/path_translations.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/statistic.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/page/statistic.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/page/user_history.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/page/user_history.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/public/update.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvc/public/update.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -157,115 +135,137 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1944336999">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.29" value="1" />
+          <entry key="project.open.time.34" value="1" />
+          <entry key="project.open.time.55" value="1" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="cache" value="1" />
+          <entry key="js" value="1" />
+          <entry key="log" value="3" />
+          <entry key="php" value="7" />
+          <entry key="po" value="8" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="ANSI Aware" value="3" />
+          <entry key="JavaScript" value="1" />
+          <entry key="Locale" value="8" />
+          <entry key="PHP" value="7" />
+          <entry key="PLAIN_TEXT" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="js" value="1232" />
+          <entry key="php" value="1741" />
+          <entry key="po" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JavaScript" value="1232" />
+          <entry key="Locale" value="1" />
+          <entry key="PHP" value="1741" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4609836">
+    <splitter split-orientation="horizontal" split-proportion="0.1361186">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="i18n.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/js/components/i18n.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="263">
-                  <caret line="62" column="30" lean-forward="false" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="strings_table.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mvc/html/components/languages/strings_table.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="323">
-                  <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="dashboard.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mvc/html/page/dashboard.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="680">
-                  <caret line="52" column="88" lean-forward="false" selection-start-line="52" selection-start-column="88" selection-end-line="52" selection-end-column="88" />
-                  <folding>
-                    <element signature="n#bbn-dropdown#0;n#div#0;n#div#0;n#bbn-pane#0;n#bbn-splitter#0;n#div#0;n#!!top" expanded="false" />
-                    <element signature="n#span#2;n#div#0;n#div#0;n#bbn-pane#0;n#bbn-splitter#0;n#div#0;n#!!top" expanded="false" />
-                    <element signature="e#887#890#0#PHP" expanded="false" />
-                    <element signature="n#div#0;n#div#0;n#div#0;n#bbn-pane#0;n#bbn-splitter#0;n#div#0;n#!!top" expanded="false" />
-                    <element signature="n#bbn-button#0;n#div#0;n#div#0;n#div#0;n#bbn-pane#0;n#bbn-splitter#0;n#div#0;n#!!top" expanded="false" />
-                    <element signature="e#1194#1197#0#PHP" expanded="false" />
-                    <element signature="n#div#1;n#div#0;n#div#0;n#bbn-pane#0;n#bbn-splitter#0;n#div#0;n#!!top" expanded="false" />
-                    <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#bbn-pane#0;n#bbn-splitter#0;n#div#0;n#!!top" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="strings_table.php" pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/mvc/model/page/data/strings_table.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-                  <folding />
+                <state relative-caret-position="867">
+                  <caret line="56" selection-start-line="56" selection-end-line="56" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="cfg_server.php" pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/mvc/model/page/dashboard.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="782">
+                  <caret line="49" selection-start-line="49" selection-end-line="49" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/../../../current/config/cfg_server.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="140" column="23" lean-forward="false" selection-start-line="140" selection-start-column="23" selection-end-line="140" selection-end-column="23" />
-                  <folding />
+                <state relative-caret-position="697">
+                  <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="tree.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../appui-options/src/mvc/html/components/popup/tree.php">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/mvc/model/page/data/widgets.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
-                  <caret line="26" column="27" lean-forward="false" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="27" />
-                  <folding />
+                <state relative-caret-position="289">
+                  <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="tree.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../appui-options/src/mvc/js/components/popup/tree.js">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/../../../current/mvc/html/admin/champs_fiscaux.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
+                <state relative-caret-position="1013">
+                  <caret line="44" column="38" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="options_data.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mvc/model/options/options_data.php">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../../../current/mvc/public/actions/champs_fiscaux/update.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-                  <folding />
+                <state relative-caret-position="34">
+                  <caret line="2" selection-start-line="2" selection-end-line="2" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="options.php" pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../../../current/mvc/model/actions/champs_fiscaux/update.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret column="5" selection-start-column="5" selection-end-column="5" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/appui/options.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="201">
-                  <caret line="2761" column="54" lean-forward="false" selection-start-line="2761" selection-start-column="54" selection-end-line="2761" selection-end-column="54" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="show_used_option.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../appui-options/src/mvc/model/actions/show_used_option.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="592">
-                  <caret line="46" column="46" lean-forward="false" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
-                  <folding />
+                <state relative-caret-position="418">
+                  <caret line="1922" column="31" selection-start-line="1922" selection-start-column="31" selection-end-line="1922" selection-end-column="31" />
                 </state>
               </provider>
             </entry>
@@ -274,143 +274,84 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="strings_table.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/mvc/js/components/languages/strings_table.js">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/appui/i18n.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="322">
-                  <caret line="195" column="14" lean-forward="false" selection-start-line="193" selection-start-column="12" selection-end-line="195" selection-end-column="14" />
+                <state relative-caret-position="163">
+                  <caret line="608" column="21" lean-forward="true" selection-start-line="608" selection-start-column="21" selection-end-line="608" selection-end-column="21" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/appui/project.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../../../../APST_DATA/logs/_php_error.log">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="707">
+                  <caret line="1462" column="183" lean-forward="true" selection-start-line="1462" selection-start-column="183" selection-end-line="1462" selection-end-column="183" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/generate.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="469">
+                  <caret line="198" column="4" selection-start-line="198" selection-start-column="4" selection-end-line="198" selection-end-column="4" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/strings/strings.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="302">
+                  <caret line="249" column="42" selection-start-line="249" selection-start-column="42" selection-end-line="249" selection-end-column="42" />
                   <folding>
-                    <element signature="e#237#5297#0" expanded="false" />
-                    <element signature="e#245#298#0" expanded="false" />
-                    <element signature="e#315#1040#0" expanded="false" />
-                    <element signature="e#364#864#0" expanded="false" />
-                    <element signature="e#508#852#0" expanded="false" />
-                    <element signature="e#538#840#0" expanded="false" />
-                    <element signature="e#592#683#0" expanded="false" />
-                    <element signature="e#878#1032#0" expanded="false" />
-                    <element signature="e#1048#1111#0" expanded="false" />
-                    <element signature="e#1132#1600#0" expanded="false" />
-                    <element signature="e#1197#1305#0" expanded="false" />
-                    <element signature="e#1314#1589#0" expanded="false" />
-                    <element signature="e#1342#1579#0" expanded="false" />
-                    <element signature="e#1373#1482#0" expanded="false" />
-                    <element signature="e#1500#1567#0" expanded="false" />
-                    <element signature="e#1608#1641#0" expanded="false" />
-                    <element signature="e#1657#1859#0" expanded="false" />
-                    <element signature="e#1698#1829#0" expanded="false" />
-                    <element signature="e#1867#2081#0" expanded="false" />
-                    <element signature="e#2110#2786#0" expanded="false" />
-                    <element signature="e#2331#2777#0" expanded="false" />
-                    <element signature="e#2458#2764#0" expanded="false" />
-                    <element signature="e#2488#2642#0" expanded="false" />
-                    <element signature="e#2659#2752#0" expanded="false" />
-                    <element signature="e#2794#2922#0" expanded="false" />
-                    <element signature="e#2956#3984#0" expanded="false" />
-                    <element signature="e#3028#3146#0" expanded="false" />
-                    <element signature="e#3155#3974#0" expanded="false" />
-                    <element signature="e#3195#3717#0" expanded="false" />
-                    <element signature="e#3396#3634#0" expanded="false" />
-                    <element signature="e#3764#3848#0" expanded="false" />
-                    <element signature="e#3893#3964#0" expanded="false" />
-                    <element signature="e#3992#4034#0" expanded="false" />
-                    <element signature="e#5344#5388#0" expanded="false" />
-                    <element signature="e#5408#5514#0" expanded="false" />
-                    <element signature="e#5522#5557#0" expanded="false" />
-                    <element signature="e#8281#8424#0" expanded="false" />
-                    <element signature="e#8448#8955#0" expanded="false" />
-                    <element signature="e#8586#8926#0" expanded="false" />
-                    <element signature="e#8642#8892#0" expanded="false" />
-                    <element signature="e#8963#8993#0" expanded="false" />
-                    <element signature="e#9009#10397#0" expanded="false" />
-                    <element signature="e#9143#10132#0" expanded="false" />
-                    <element signature="e#9203#10121#0" expanded="false" />
-                    <element signature="e#9263#10083#0" expanded="false" />
-                    <element signature="e#9279#9337#0" expanded="false" />
-                    <element signature="e#9568#9675#0" expanded="false" />
-                    <element signature="e#9695#9750#0" expanded="false" />
-                    <element signature="e#10146#10369#0" expanded="false" />
-                    <element signature="e#10199#10357#0" expanded="false" />
-                    <element signature="e#10230#10345#0" expanded="false" />
-                    <element signature="e#10450#10507#0" expanded="false" />
-                    <element signature="e#10552#10661#0" expanded="false" />
-                    <element signature="e#10596#10649#0" expanded="false" />
-                    <element signature="e#10671#10758#0" expanded="false" />
-                    <element signature="e#10829#10869#0" expanded="false" />
-                    <element signature="e#10901#11229#0" expanded="false" />
-                    <element signature="e#10913#10951#0" expanded="false" />
-                    <element signature="e#11029#11054#0" expanded="false" />
-                    <element signature="e#11175#11219#0" expanded="false" />
-                    <element signature="e#11240#11285#0" expanded="false" />
-                    <element signature="e#11318#11530#0" expanded="false" />
-                    <element signature="e#11360#11518#0" expanded="false" />
-                    <element signature="e#11571#11643#0" expanded="false" />
-                    <element signature="e#11794#11848#0" expanded="false" />
-                    <element signature="e#11969#12059#0" expanded="false" />
-                    <element signature="e#12080#12133#0" expanded="false" />
-                    <element signature="e#12159#12216#0" expanded="false" />
-                    <element signature="e#12324#12623#0" expanded="false" />
-                    <element signature="e#12348#12610#0" expanded="false" />
-                    <element signature="e#12441#12511#0" expanded="false" />
-                    <element signature="e#12780#13262#0" expanded="false" />
-                    <element signature="e#13317#13379#0" expanded="false" />
-                    <element signature="e#13491#13570#0" expanded="false" />
-                    <element signature="e#13592#14626#0" expanded="false" />
-                    <element signature="e#13771#14147#0" expanded="false" />
-                    <element signature="e#14007#14049#0" expanded="false" />
-                    <element signature="e#14066#14106#0" expanded="false" />
-                    <marker date="1525709387000" expanded="true" signature="7026:7037" ph="..." />
-                    <marker date="1525709387000" expanded="true" signature="7255:7266" ph="..." />
+                    <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#ul#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#a#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="widget.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mvc/html/components/languages/widget.php">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/strings/strings.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="22" column="31" lean-forward="false" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
-                  <folding />
+                <state relative-caret-position="204">
+                  <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+                  <folding>
+                    <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="appui-ide.po" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../appui-ide/src/locale/en/LC_MESSAGES/appui-ide.po">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1175">
-                  <caret line="600" column="0" lean-forward="false" selection-start-line="600" selection-start-column="0" selection-end-line="600" selection-end-column="0" />
-                  <folding />
+                <state relative-caret-position="268">
+                  <caret line="83" column="34" lean-forward="true" selection-start-line="83" selection-start-column="34" selection-end-line="83" selection-end-column="34" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="i18n.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/appui/i18n.php">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/db.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="220">
-                  <caret line="190" column="37" lean-forward="false" selection-start-line="190" selection-start-column="37" selection-end-line="190" selection-end-column="37" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="_php_error.log" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../../../../APST_DATA/logs/_php_error.log">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-877">
-                  <caret line="35" column="136" lean-forward="false" selection-start-line="35" selection-start-column="136" selection-end-line="35" selection-end-column="136" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="generate.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/generate.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="220">
-                  <caret line="78" column="18" lean-forward="false" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
-                  <folding />
+                <state relative-caret-position="27">
+                  <caret line="875" column="72" lean-forward="true" selection-start-line="875" selection-start-column="72" selection-end-line="875" selection-end-column="72" />
                 </state>
               </provider>
             </entry>
@@ -429,36 +370,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>@change</find>
-      <find>hide</find>
-      <find>&lt;bbn-slideshow</find>
-      <find>columns</find>
+      <find>get_cfg</find>
+      <find>function get_cfg</find>
+      <find>ordre vert</find>
+      <find>is_orderable</find>
+      <find>components</find>
+      <find>get_translations_table</find>
+      <find>mapdata(</find>
+      <find>num</find>
+      <find>insert_transla</find>
       <find>render</find>
-      <find>source language</find>
-      <find>.italy</find>
-      <find>history</find>
-      <find>show usage</find>
-      <find>button</find>
-      <find>showUsageOpt</find>
-      <find>totalReferences</find>
-      <find>$res</find>
-      <find>data_widget</find>
-      <find>find_i18n</find>
-      <find>$id</find>
-      <find>$result</find>
-      <find>brazil</find>
-      <find>$tab</find>
-      <find>splitter</find>
-      <find>$data</find>
-      <find>cache</find>
-      <find>data</find>
-      <find>Source language of this path:</find>
-      <find>cache man</find>
-      <find>po</find>
+      <find>translations_db</find>
+      <find>insert_tra</find>
+      <find>insert_tran</find>
+      <find>select_one</find>
+      <find>mapdata()</find>
+      <find>id_project</find>
+      <find>'transkla</find>
+      <find>rich te</find>
+      <find>last edit</find>
+      <find>making a test</find>
+      <find>test4</find>
+      <find>&gt;db</find>
+      <find>buttons</find>
+      <find>rrrrrr</find>
+      <find>test22</find>
+      <find>insert_trabn</find>
+      <find>245e4c1d070b11e89b35005056014c9f</find>
       <find>die</find>
-      <find>file</find>
-      <find>bbn/file</find>
-      <find>occurrence</find>
+      <find>die(</find>
+      <find>cache</find>
     </findStrings>
     <replaceStrings>
       <replace>bbn-lg</replace>
@@ -496,17 +437,17 @@
       <dir>$PROJECT_DIR$/../../../current</dir>
       <dir>$PROJECT_DIR$/../../../current/mvc/html/components</dir>
       <dir>$PROJECT_DIR$/../../../current/mvc/html/components/adherent/tab</dir>
-      <dir>$PROJECT_DIR$/../../../current/mvc/model</dir>
       <dir>$PROJECT_DIR$/../../../current/mvc/model/adherent/data</dir>
       <dir>$PROJECT_DIR$/../../../current/mvc/html</dir>
       <dir>$PROJECT_DIR$/../appui-ide/src</dir>
       <dir>$PROJECT_DIR$/../appui-ide/src/mvc/js</dir>
       <dir>$PROJECT_DIR$/../appui-ide</dir>
-      <dir>$PROJECT_DIR$</dir>
       <dir>$PROJECT_DIR$/../appui-options/src/mvc/js</dir>
       <dir>$PROJECT_DIR$/../appui-options/src/mvc</dir>
       <dir>$PROJECT_DIR$/../appui-options</dir>
       <dir>$PROJECT_DIR$/src/mvc/model</dir>
+      <dir>$PROJECT_DIR$/../../../current/mvc/model</dir>
+      <dir>$PROJECT_DIR$</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -515,19 +456,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../../../current/mvc/public/test/loredana/test_i18n.php" />
-        <option value="$PROJECT_DIR$/../../../current/mvc/model/test/loredana/test_i18n.php" />
-        <option value="$PROJECT_DIR$/src/mvc/public/page/dashboard.php" />
-        <option value="$PROJECT_DIR$/src/mvc/public/page/data/options.php" />
-        <option value="$PROJECT_DIR$/src/mvc/model/page/data/options.php" />
-        <option value="$PROJECT_DIR$/src/mvc/model/page.php" />
-        <option value="$PROJECT_DIR$/src/mvc/public/page/path_translations.php" />
-        <option value="$PROJECT_DIR$/../bbn/src/bbn/appui/options.php" />
-        <option value="$PROJECT_DIR$/src/mvc/model/page/path_translations.php" />
-        <option value="$PROJECT_DIR$/src/mvc/model/page/data/strings_table.php" />
-        <option value="$PROJECT_DIR$/src/mvc/model/page/dashboard.php" />
-        <option value="$PROJECT_DIR$/src/mvc/public/options/find_options.php" />
-        <option value="$PROJECT_DIR$/src/mvc/model/options/find_options.php" />
         <option value="$PROJECT_DIR$/src/mvc/html/templates/appui-languages-form-locale.php" />
         <option value="$USER_HOME$/Documents/apst-mail/23_04/23_04.html" />
         <option value="$PROJECT_DIR$/src/mvc/public/options/remove_lang.php" />
@@ -549,11 +477,9 @@
         <option value="$PROJECT_DIR$/../appui-ide/src/mvc/public/components/i18n.php" />
         <option value="$PROJECT_DIR$/../appui-ide/src/mvc/public/i18n/data/table.php" />
         <option value="$PROJECT_DIR$/../appui-ide/src/mvc/js/editor.js" />
-        <option value="$PROJECT_DIR$/../../../../APST_DATA/logs/_php_error.log" />
         <option value="$PROJECT_DIR$/../appui-ide/src/mvc/model/i18n/data/table.php" />
         <option value="$PROJECT_DIR$/../appui-ide/src/mvc/html/components/i18n.php" />
         <option value="$PROJECT_DIR$/src/mvc/html/templates/toolbar-strings-table.php" />
-        <option value="$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php" />
         <option value="$PROJECT_DIR$/../appui-core/src/mvc/html/index.php" />
         <option value="$PROJECT_DIR$/../../../../../cdn.thomas.lan/public_html/lib/css-flags-master/1.0.0/css/style.css" />
         <option value="$PROJECT_DIR$/src/mvc/html/components/languages/strings_table.html" />
@@ -561,11 +487,26 @@
         <option value="$PROJECT_DIR$/../appui-ide/src/mvc/js/components/i18n.js" />
         <option value="$PROJECT_DIR$/src/mvc/model/options/options_data.php" />
         <option value="$PROJECT_DIR$/../appui-options/src/mvc/model/actions/show_used_option.php" />
-        <option value="$PROJECT_DIR$/../bbn/src/bbn/appui/i18n.php" />
         <option value="$PROJECT_DIR$/src/mvc/html/page/dashboard.php" />
         <option value="$PROJECT_DIR$/src/mvc/html/components/languages/widget.php" />
-        <option value="$PROJECT_DIR$/src/mvc/model/actions/generate.php" />
         <option value="$PROJECT_DIR$/src/mvc/js/components/languages/strings_table.js" />
+        <option value="$PROJECT_DIR$/src/mvc/model/page/data/widgets.php" />
+        <option value="$PROJECT_DIR$/src/mvc/model/page/dashboard.php" />
+        <option value="$PROJECT_DIR$/../bbn/src/bbn/appui/project.php" />
+        <option value="$PROJECT_DIR$/../../../current/mvc/js/admin/champs_fiscaux.js" />
+        <option value="$PROJECT_DIR$/../../../current/mvc/model/admin/champs_fiscaux.php" />
+        <option value="$PROJECT_DIR$/../../../current/mvc/model/actions/champs_fiscaux/update.php" />
+        <option value="$PROJECT_DIR$/../bbn/src/bbn/appui/options.php" />
+        <option value="$PROJECT_DIR$/../../../../APST_DATA/logs/_php_error.log" />
+        <option value="$PROJECT_DIR$/src/components/widget/widget.js" />
+        <option value="$PROJECT_DIR$/src/mvc/html/templates/languages-form-locale.php" />
+        <option value="$PROJECT_DIR$/../../../current/mvc/html/admin/champs_fiscaux.php" />
+        <option value="$PROJECT_DIR$/../bbn/src/bbn/appui/i18n.php" />
+        <option value="$PROJECT_DIR$/../appui-notes/src/locale/en/LC_MESSAGES/appui-notes47.po" />
+        <option value="$PROJECT_DIR$/src/components/strings/strings.js" />
+        <option value="$PROJECT_DIR$/src/components/strings/options.php" />
+        <option value="$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php" />
+        <option value="$PROJECT_DIR$/src/mvc/model/actions/generate.php" />
       </list>
     </option>
   </component>
@@ -594,7 +535,263 @@
     <handled-path value="$PROJECT_DIR$/../../../../public_html/static/lib/vuejs/1.0.20/examples/todomvc/node_modules" />
     <handled-path value="$PROJECT_DIR$/../../../../public_html/static/lib/wey/v0.1.0/Contents/MacOS/res/node_modules" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/Sortable/1.4.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/Trumbowyg/v2.5.1/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/accessibilityjs/v1.1.1/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/acorn/v0.1/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/axios/v0.17.1/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/bbn-vue/2.0.2/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/bbnjs/1.0.1/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/bulma/0.6.2/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/c3/v0.4.18/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/carbon/2.0.0/Contents_v4/Resources/app/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/chartist/0.11.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/chartkick.js/v2.2.4/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/codemirror/5.32.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/codemirror/5.40.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/colorbox/1.6.4/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/cookie.js/v1.2.2/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/css-flags-master/1.0.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/csslint/v1.0.3/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/dejavu/1.4.1/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/dejavu/1.6.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/devicon/2.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/driver.js/0.2.2/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/easy-vue/v0.7.1/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/enyo/2.5.1/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/enyo/2.5.1/tools/minifier/node_modules/less/node_modules/ycssmin/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/enyo/2.5.1/tools/minifier/node_modules/less/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/enyo/2.5.1/tools/minifier/node_modules/uglify-js/node_modules/optimist/node_modules/wordwrap/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/enyo/2.5.1/tools/minifier/node_modules/uglify-js/node_modules/optimist/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/enyo/2.5.1/tools/minifier/node_modules/uglify-js/node_modules/source-map/node_modules/amdefine/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/enyo/2.5.1/tools/minifier/node_modules/uglify-js/node_modules/source-map/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/enyo/2.5.1/tools/minifier/node_modules/uglify-js/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/enyo/2.5.1/tools/node_modules/nopt/node_modules/abbrev/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/enyo/2.5.1/tools/node_modules/nopt/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/enyo/2.5.1/tools/node_modules/shelljs/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/fancytree/v2.21.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/fkill-cli/v4.1.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.0.13/advanced-options/use-with-node-js/fontawesome-common-types/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.0.13/advanced-options/use-with-node-js/fontawesome-free-brands/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.0.13/advanced-options/use-with-node-js/fontawesome-free-regular/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.0.13/advanced-options/use-with-node-js/fontawesome-free-solid/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.0.13/advanced-options/use-with-node-js/fontawesome-free-webfonts/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.0.13/advanced-options/use-with-node-js/fontawesome/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.1.0/advanced-options/use-with-node-js/fontawesome-common-types/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.1.0/advanced-options/use-with-node-js/fontawesome-free-brands/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.1.0/advanced-options/use-with-node-js/fontawesome-free-regular/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.1.0/advanced-options/use-with-node-js/fontawesome-free-solid/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.1.0/advanced-options/use-with-node-js/fontawesome-free-webfonts/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.1.0/advanced-options/use-with-node-js/fontawesome-free/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.1.0/advanced-options/use-with-node-js/fontawesome-svg-core/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.1.0/advanced-options/use-with-node-js/fontawesome/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.1.0/advanced-options/use-with-node-js/free-brands-svg-icons/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.1.0/advanced-options/use-with-node-js/free-regular-svg-icons/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/font-awesome/5.1.0/advanced-options/use-with-node-js/free-solid-svg-icons/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/fullPage/2.8.1/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/grapesjs-blocks-basic/v0.1.8/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/grapesjs/v0.14.17/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/history.js/1.8.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/history.js/1.8.0/vendor/qunit/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/hyper/1.4.8/lib/net45/resources/app.asar.unpacked/node_modules/node-pty/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/initialjs/0.2.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/jquery-ui/1.12.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/jsPDF/v1.4.1/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/jshint/2.9.5/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/jsoneditor/4.2.1/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/jsoneditor/v5.9.3/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/jsonlint/v1.6.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/jstree/3.3.2/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/kendo-ui-core/2018.1.117/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/lightGallery/1.2.21/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/lodash/4.0.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/mathjs/v3.17.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/md5/1.0.1/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/node-github-download/v0.2.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/opentip/2.4.1/downloads/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/opentip/2.4.1/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/opentip/2.4.1/test/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/parse-comments/v0.3.2/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/pell/v1.0.3/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/pell/v1.0.4/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/prettier/1.11.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/prettier/1.11.0/tests_integration/cli/config/package/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/prettier/1.11.0/tests_integration/plugins/automatic/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/prettier/1.11.0/website/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/rough/v2.0.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/semantic-ui/2.0.7/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/simplemde-markdown-editor/1.11.2/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/spectrum/1.8.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/store.js/v2.0.12/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/addons/a11y/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/addons/actions/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/addons/background/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/addons/centered/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/addons/events/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/addons/graphql/demo/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/addons/graphql/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/addons/info/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/addons/jest/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/addons/knobs/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/addons/links/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/addons/notes/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/addons/options/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/addons/storyshots/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/addons/viewport/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/app/angular/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/app/react-native/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/app/react/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/app/vue/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/docs/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/examples/angular-cli/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/examples/cra-kitchen-sink/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/examples/crna-kitchen-sink/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/examples/official-storybook/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/examples/react-native-vanilla/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/examples/vue-kitchen-sink/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/addons/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/channel-postmessage/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/channel-websocket/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/channels/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/fixtures/already_has_storybook/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/fixtures/angular-cli/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/fixtures/meteor/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/fixtures/react/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/fixtures/react_native/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/fixtures/react_native_scripts/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/fixtures/react_project/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/fixtures/react_scripts/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/fixtures/sfc_vue/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/fixtures/update_package_organisations/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/fixtures/vue/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/fixtures/webpack_react/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/snapshots/already_has_storybook/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/snapshots/angular-cli/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/snapshots/meteor/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/snapshots/react/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/snapshots/react_native/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/snapshots/react_native_scripts/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/snapshots/react_project/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/snapshots/react_scripts/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/snapshots/sfc_vue/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/snapshots/update_package_organisations/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/snapshots/vue/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/cli/test/snapshots/webpack_react/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/client-logger/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/codemod/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/components/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/node-logger/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/ui/example/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/lib/ui/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.3.15/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/addons/a11y/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/addons/actions/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/addons/background/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/addons/centered/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/addons/events/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/addons/graphql/demo/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/addons/graphql/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/addons/info/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/addons/jest/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/addons/knobs/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/addons/links/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/addons/notes/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/addons/options/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/addons/storyshots/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/addons/storysource/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/addons/viewport/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/app/angular/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/app/polymer/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/app/react-native/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/app/react/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/app/vue/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/docs/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/examples/angular-cli/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/examples/cra-kitchen-sink/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/examples/crna-kitchen-sink/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/examples/official-storybook/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/examples/polymer-cli/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/examples/react-native-vanilla/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/examples/vue-kitchen-sink/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/addons/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/channel-postmessage/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/channel-websocket/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/channels/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/fixtures/already_has_storybook/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/fixtures/angular-cli/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/fixtures/meteor/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/fixtures/polymer/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/fixtures/react/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/fixtures/react_native/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/fixtures/react_native_scripts/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/fixtures/react_project/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/fixtures/react_scripts/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/fixtures/sfc_vue/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/fixtures/update_package_organisations/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/fixtures/vue/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/fixtures/webpack_react/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/snapshots/already_has_storybook/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/snapshots/angular-cli/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/snapshots/meteor/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/snapshots/polymer/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/snapshots/react/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/snapshots/react_native/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/snapshots/react_native_scripts/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/snapshots/react_project/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/snapshots/react_scripts/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/snapshots/sfc_vue/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/snapshots/update_package_organisations/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/snapshots/vue/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/cli/test/snapshots/webpack_react/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/client-logger/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/codemod/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/components/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/core/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/node-logger/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/ui/example/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/lib/ui/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/storybook/v3.4.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/stylelint/8.2.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/tern/0.21.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/tern/0.21.0/test/cases/node_modules/mod1/node_modules/subdep1/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/tern/0.21.0/test/cases/node_modules/mod1/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/tern/0.21.0/test/cases/webpack/node_modules/esnext/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/tern/0.21.0/test/cases/webpack/node_modules/foo/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/tern/0.21.0/test/cases/webpack/node_modules/modu/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/tern/0.21.0/test/cases/webpack/node_modules/xyz/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/tui.chart/v2.17.0/tui.chart-2.17.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/turbo-ws/v0.0.6/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/twemoji/v11.0.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/uikit/2.26.2/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/validation/1.11.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vitotest/1.0.4/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vitotest/2.0.0/Contents_v4/Resources/app/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vue-apollo/v3.0.0-beta.2/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vue-awesome-swiper/v3.1.3/vue-awesome-swiper-3.1.3/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vue-sortable/v0.1.3/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vue-video-player/v2.4.4/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vuejs/1.0.20/examples/todomvc/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vuejs/1.0.20/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vuejs/v2.5.13/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vuejs/v2.5.13/packages/vue-server-renderer/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vuejs/v2.5.13/packages/vue-template-compiler/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vuejs/v2.5.13/packages/weex-template-compiler/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vuejs/v2.5.13/packages/weex-vue-framework/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vuejs/v2.5.9/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vuejs/v2.5.9/packages/vue-server-renderer/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vuejs/v2.5.9/packages/vue-template-compiler/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vuejs/v2.5.9/packages/weex-template-compiler/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vuejs/v2.5.9/packages/weex-vue-framework/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/vuex/2.2.1/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/lib/workly/v1.0.0/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/test/jsdoc-3.5.5/package.json" />
+      <path value="$PROJECT_DIR$/../../../../public_html/static/test/vue-docgen-api-2.3.7/package.json" />
+    </packageJsonPaths>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1024" />
     <option name="y" value="34" />
@@ -619,20 +816,11 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -649,102 +837,223 @@
               <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
               <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
               <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
               <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
               <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="_appui" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
               <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
               <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="_appui" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
               <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
               <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="_appui" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
               <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
               <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="appui-styles" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="_appui" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+              <item name="appui-i18n" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
               <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
               <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="appui-styles" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="_appui" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+              <item name="appui-i18n" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
               <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
               <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="appui-styles" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="mvc" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="_appui" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+              <item name="appui-i18n" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="mvc" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
               <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
               <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="apstapp2.thomas.lan" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="_appui" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="bbn" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="appui-styles" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="mvc" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="_appui" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+              <item name="appui-i18n" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="mvc" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="_appui" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+              <item name="appui-i18n" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="mvc" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="actions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="_appui" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+              <item name="appui-notes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="_appui" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+              <item name="appui-notes" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="_appui" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+              <item name="appui-notes" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="locale" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="_appui" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+              <item name="appui-notes" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="locale" type="462c0819:PsiDirectoryNode" />
+              <item name="en" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="_appui" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+              <item name="appui-notes" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="locale" type="462c0819:PsiDirectoryNode" />
+              <item name="en" type="462c0819:PsiDirectoryNode" />
+              <item name="LC_MESSAGES" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="_appui" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="_appui" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="_appui" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="bbn" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="APST_DATA" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apstapp.thomas" type="9c53a853:ProjectViewModuleGroupNode" />
+              <item name="apstapp.thomas.lan" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="apstapp2.thomas.lan" type="462c0819:PsiDirectoryNode" />
+              <item name="APST_DATA" type="462c0819:PsiDirectoryNode" />
+              <item name="logs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appui-i18n" type="b2602c69:ProjectViewProjectNode" />
+              <item name="appui" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="DatabaseDriversLRU" value="sqlserver" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -772,9 +1081,6 @@
         </RuleState>
       </list>
     </option>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SshConsoleOptionsProvider">
     <option name="myEncoding" value="UTF-8" />
@@ -834,55 +1140,61 @@
       <workItem from="1525336308761" duration="800000" />
       <workItem from="1525342740225" duration="6941000" />
       <workItem from="1525685551975" duration="18834000" />
+      <workItem from="1537801709108" duration="6401000" />
+      <workItem from="1538121814976" duration="85000" />
+      <workItem from="1538121957565" duration="25044000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="617910000" />
+    <option name="totallyTimeSpent" value="649440000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1024" y="34" width="2048" height="1118" extended-state="6" />
+    <frame x="0" y="34" width="2048" height="1118" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2553711" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26021934" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3291536" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Remote Host" order="3" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32951146" />
     </layout>
     <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2553711" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25772682" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.3291536" />
+      <window_info anchor="bottom" id="Run" order="3" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Remote Host" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -897,11 +1209,6 @@
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/mvc/public/actions/delete_cache.php</url>
           <line>8</line>
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/src/mvc/model/actions/generate.php</url>
-          <line>46</line>
-          <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/../../../../../cdn.thomas.lan/public_html/lib/bbnjs/1.0.1/src/fn/object.js</url>
@@ -918,269 +1225,32 @@
           <line>79</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/../../../current/mvc/js/admin/champs_fiscaux.js</url>
+          <line>67</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="25" />
     </breakpoint-manager>
-    <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/js/editor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/js/components/history.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="108" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/js/components/mvc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="66" lean-forward="false" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/html/components/history.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="38" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/appui/options.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26384">
-          <caret line="1552" column="24" lean-forward="false" selection-start-line="1552" selection-start-column="24" selection-end-line="1552" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/html/components/i18n.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/js/components/i18n.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/js/components/mvc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="66" lean-forward="false" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/public/i18n/i18n.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../current/mvc/html/components/adherent/tab/succursales.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../current/mvc/html/components/adherent/tab/pad.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../current/mvc/public/demandes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/file/dir.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="520" column="19" lean-forward="false" selection-start-line="520" selection-start-column="14" selection-end-line="520" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/str.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13141">
-          <caret line="773" column="27" lean-forward="false" selection-start-line="773" selection-start-column="17" selection-end-line="773" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/html/components/history.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="38" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/html/editor.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="85" column="47" lean-forward="false" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/html/components/mvc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="26" lean-forward="false" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/js/components/history.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="53" column="16" lean-forward="true" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/public/actions/insert_translations.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/public/i18n/data/table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/templates/toolbar.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="6" lean-forward="true" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/templates/appui-paths-table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="15" lean-forward="false" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/insert_translation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/js/editor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="1410" column="6" lean-forward="true" selection-start-line="1410" selection-start-column="6" selection-end-line="1410" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="58" column="9" lean-forward="false" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/templates/toolbar-strings-table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="56" column="62" lean-forward="false" selection-start-line="56" selection-start-column="58" selection-end-line="56" selection-end-column="62" />
-          <folding>
-            <marker date="1524561992000" expanded="true" signature="1918:1966" ph="Select langu... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/model/i18n/data/table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1887">
-          <caret line="116" column="13" lean-forward="false" selection-start-line="116" selection-start-column="13" selection-end-line="116" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/public/components/i18n.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../../../cdn.thomas.lan/public_html/lib/css-flags-master/1.0.0/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="271">
-          <caret line="492" column="3" lean-forward="false" selection-start-line="492" selection-start-column="3" selection-end-line="492" selection-end-column="3" />
-          <folding />
+          <caret line="492" column="3" selection-start-line="492" selection-start-column="3" selection-end-line="492" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/components/languages/strings_table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-options/src/mvc/html/components/popup/tree.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="27" lean-forward="false" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/html/components/languages/strings_table.html" />
+    <entry file="file://$PROJECT_DIR$/../appui-options/src/mvc/html/components/popup/tree.php" />
     <entry file="file://$PROJECT_DIR$/../appui-options/src/mvc/public/actions/show_used_option.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-options/src/mvc/js/components/popup/tree.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../appui-options/src/mvc/js/components/popup/tree.js" />
     <entry file="file://$PROJECT_DIR$/../../../current/mvc/html/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="671">
           <caret line="142" column="6" lean-forward="true" selection-start-line="142" selection-start-column="6" selection-end-line="142" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1188,225 +1258,390 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
           <caret line="42" column="15" lean-forward="true" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/js/components/i18n.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="62" column="30" lean-forward="false" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/js/components/i18n.js" />
     <entry file="file://$PROJECT_DIR$/src/mvc/public/options/options_data.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/html/components/i18n.php">
+    <entry file="file://$PROJECT_DIR$/../appui-ide/src/mvc/html/components/i18n.php" />
+    <entry file="file://$PROJECT_DIR$/src/mvc/html/components/languages/strings_table.php" />
+    <entry file="file://$PROJECT_DIR$/src/mvc/html/components/languages/widget.php" />
+    <entry file="file://$PROJECT_DIR$/src/mvc/js/components/languages/strings_table.js" />
+    <entry file="file://$PROJECT_DIR$/src/mvc/model/options/options_data.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/appui/options.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="2761" column="54" lean-forward="false" selection-start-line="2761" selection-start-column="54" selection-end-line="2761" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../APST_DATA/logs/_php_error.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-877">
-          <caret line="35" column="136" lean-forward="false" selection-start-line="35" selection-start-column="136" selection-end-line="35" selection-end-column="136" />
-          <folding />
+        <state relative-caret-position="187">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../appui-options/src/mvc/model/actions/show_used_option.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="46" column="46" lean-forward="false" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
-          <folding />
+        <state relative-caret-position="782">
+          <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/model/options/options_data.php">
+    <entry file="file://$PROJECT_DIR$/../appui-ide/src/locale/en/LC_MESSAGES/appui-ide.po">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/components/languages/strings_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="61">
+          <caret line="560" lean-forward="true" selection-start-line="560" selection-end-line="560" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mvc/html/page/dashboard.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
-          <caret line="52" column="88" lean-forward="false" selection-start-line="52" selection-start-column="88" selection-end-line="52" selection-end-column="88" />
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../current/mvc/model/admin/champs_fiscaux.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../current/mvc/js/admin/champs_fiscaux.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="196" column="11" selection-start-line="196" selection-start-column="11" selection-end-line="196" selection-end-column="11" />
           <folding>
-            <element signature="n#bbn-dropdown#0;n#div#0;n#div#0;n#bbn-pane#0;n#bbn-splitter#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#span#2;n#div#0;n#div#0;n#bbn-pane#0;n#bbn-splitter#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="e#887#890#0#PHP" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#bbn-pane#0;n#bbn-splitter#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#bbn-button#0;n#div#0;n#div#0;n#div#0;n#bbn-pane#0;n#bbn-splitter#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="e#1194#1197#0#PHP" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#bbn-pane#0;n#bbn-splitter#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#bbn-pane#0;n#bbn-splitter#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="e#71#95#0" />
+            <element signature="e#107#219#0" />
+            <element signature="e#122#213#0" />
+            <element signature="e#235#272#0" />
+            <element signature="e#287#1882#0" />
+            <element signature="e#303#523#0" />
+            <element signature="e#343#513#0" />
+            <element signature="e#543#1133#0" />
+            <element signature="e#638#1123#0" />
+            <element signature="e#709#1111#0" />
+            <element signature="e#739#1037#0" />
+            <element signature="e#843#1023#0" />
+            <element signature="e#1055#1099#0" />
+            <element signature="e#1160#1309#0" />
+            <element signature="e#1197#1294#0" />
+            <element signature="e#1330#1465#0" />
+            <element signature="e#1489#1820#0" />
+            <element signature="e#1584#1812#0" />
+            <element signature="e#1641#1769#0" />
+            <element signature="e#1847#1875#0" />
+            <element signature="e#1922#4194#0" />
+            <element signature="e#2012#3972#0" />
+            <element signature="e#2036#3217#0" />
+            <element signature="e#2212#3203#0" />
+            <element signature="e#2332#2786#0" />
+            <element signature="e#2851#3033#0" />
+            <element signature="e#3105#3187#0" />
+            <element signature="e#3246#3711#0" />
+            <element signature="e#3396#3699#0" />
+            <element signature="e#3601#3683#0" />
+            <element signature="e#3731#3776#0" />
+            <element signature="e#3797#3869#0" />
+            <element signature="e#3891#3962#0" />
+            <element signature="e#3988#4185#0" />
+            <element signature="e#4007#4175#0" />
+            <element signature="e#4298#4958#0" />
+            <element signature="e#4317#4948#0" />
+            <element signature="e#4406#4935#0" />
+            <element signature="e#4407#4487#0" />
+            <element signature="e#4489#4578#0" />
+            <element signature="e#4580#4666#0" />
+            <element signature="e#4668#4756#0" />
+            <element signature="e#4758#4848#0" />
+            <element signature="e#4850#4934#0" />
+            <element signature="e#4977#5291#0" />
+            <element signature="e#5003#5281#0" />
+            <element signature="e#5050#5194#0" />
+            <element signature="e#5212#5269#0" />
+            <element signature="e#5311#5943#0" />
+            <element signature="e#5324#5354#0" />
+            <element signature="e#5473#5933#0" />
+            <element signature="e#5546#5732#0" />
+            <element signature="e#5599#5715#0" />
+            <element signature="e#5644#5698#0" />
+            <element signature="e#5780#5897#0" />
+            <element signature="e#5831#5881#0" />
+            <element signature="e#6715#6967#0" />
+            <element signature="e#7167#7240#0" />
+            <element signature="e#7286#12873#0" />
+            <element signature="e#7435#10547#0" />
+            <element signature="e#7564#8402#0" />
+            <element signature="e#7586#7602#0" />
+            <element signature="e#7736#7872#0" />
+            <element signature="e#7760#7815#0" />
+            <element signature="e#7991#8049#0" />
+            <element signature="e#8190#8266#0" />
+            <element signature="e#8345#8391#0" />
+            <element signature="e#8542#8948#0" />
+            <element signature="e#8571#8623#0" />
+            <element signature="e#8754#8937#0" />
+            <element signature="e#9069#10437#0" />
+            <element signature="e#9219#9279#0" />
+            <element signature="e#9505#9701#0" />
+            <element signature="e#9519#9630#0" />
+            <element signature="e#9837#10126#0" />
+            <element signature="e#9964#10101#0" />
+            <element signature="e#10201#10368#0" />
+            <element signature="e#10451#10514#0" />
+            <element signature="e#10593#10786#0" />
+            <element signature="e#10933#11187#0" />
+            <element signature="e#11229#11512#0" />
+            <element signature="e#11563#12017#0" />
+            <element signature="e#12060#12329#0" />
+            <element signature="e#12367#12598#0" />
+            <element signature="e#12807#12857#0" />
+            <element signature="e#12904#12946#0" />
+            <element signature="e#12980#13861#0" />
+            <element signature="e#13010#13787#0" />
+            <element signature="e#13172#13344#0" />
+            <element signature="e#13389#13730#0" />
+            <element signature="e#13507#13652#0" />
+            <element signature="e#13561#13632#0" />
+            <element signature="e#13805#13849#0" />
+            <element signature="e#13896#17373#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mvc/model/page/data/strings_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="867">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/appui/i18n.php">
+    <entry file="file://$PROJECT_DIR$/src/mvc/model/page/dashboard.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="190" column="37" lean-forward="false" selection-start-line="190" selection-start-column="37" selection-end-line="190" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/html/components/languages/widget.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="22" column="31" lean-forward="false" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../appui-ide/src/locale/en/LC_MESSAGES/appui-ide.po">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1175">
-          <caret line="600" column="0" lean-forward="false" selection-start-line="600" selection-start-column="0" selection-end-line="600" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="782">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../current/config/cfg_server.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="140" column="23" lean-forward="false" selection-start-line="140" selection-start-column="23" selection-end-line="140" selection-end-column="23" />
-          <folding />
+        <state relative-caret-position="697">
+          <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../current/mvc/public/actions/champs_fiscaux/update.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../current/mvc/model/actions/champs_fiscaux/update.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/appui/options.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="1922" column="31" selection-start-line="1922" selection-start-column="31" selection-end-line="1922" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/public/actions/generate.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/widget/widget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="574">
+          <caret line="261" column="19" selection-start-line="261" selection-start-column="19" selection-end-line="261" selection-end-column="19" />
+          <folding>
+            <element signature="e#9885#10157#0" />
+            <element signature="e#10176#14428#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/html/templates/languages-form-locale.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="54" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../appui-notes/src/locale/en/LC_MESSAGES/appui-notes7.po">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="124" column="14" lean-forward="true" selection-start-line="124" selection-start-column="14" selection-end-line="124" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/model/page/data/widgets.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../APST_DATA/logs/db.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14052">
+          <caret line="767" selection-start-line="767" selection-end-line="767" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../current/mvc/html/admin/champs_fiscaux.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1013">
+          <caret line="44" column="38" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../APST_DATA/logs/.__php_error.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret column="3948" selection-start-column="3948" selection-end-column="3948" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../APST_DATA/logs/_php_error.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="707">
+          <caret line="1462" column="183" lean-forward="true" selection-start-line="1462" selection-start-column="183" selection-end-line="1462" selection-end-column="183" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/appui/project.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/appui/history.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="936" column="10" selection-start-line="936" selection-start-column="6" selection-end-line="936" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../appui-notes/src/locale/en/LC_MESSAGES/appui-notes47.po">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="63" column="18" lean-forward="true" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../appui-notes/src/locale/fr/LC_MESSAGES/appui-notes47.po">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="83" column="15" lean-forward="true" selection-start-line="83" selection-start-column="15" selection-end-line="83" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../appui-notes/src/locale/en/LC_MESSAGES/appui-notes48.po">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="78" column="104" lean-forward="true" selection-start-line="78" selection-start-column="104" selection-end-line="78" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/appui/i18n.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="608" column="21" lean-forward="true" selection-start-line="608" selection-start-column="21" selection-end-line="608" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../APST_DATA/bbn_cache/bbn/appui/i18n/08598116025011e8beb3005056014c9f-get_translations_widget.bbn.cache">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret column="438" lean-forward="true" selection-start-column="438" selection-end-column="438" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../appui-notes/src/locale/en/LC_MESSAGES/appui-notes49.po">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../appui-notes/src/locale/en/LC_MESSAGES/appui-notes51.po">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="128" column="13" selection-start-line="128" selection-start-column="8" selection-end-line="128" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/strings/strings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../appui-notes/src/locale/en/LC_MESSAGES/appui-notes52.po">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="129" lean-forward="true" selection-start-line="129" selection-end-line="129" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../appui-notes/src/locale/en/LC_MESSAGES/appui-notes53.po">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="129" lean-forward="true" selection-start-line="129" selection-end-line="129" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/strings/strings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="249" column="42" selection-start-line="249" selection-start-column="42" selection-end-line="249" selection-end-column="42" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/strings/options.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="37" lean-forward="true" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bbn/src/bbn/db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="875" column="72" lean-forward="true" selection-start-line="875" selection-start-column="72" selection-end-line="875" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/insert_translations.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="83" column="34" lean-forward="true" selection-start-line="83" selection-start-column="34" selection-end-line="83" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mvc/model/actions/generate.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="78" column="18" lean-forward="false" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mvc/js/components/languages/strings_table.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="195" column="14" lean-forward="false" selection-start-line="193" selection-start-column="12" selection-end-line="195" selection-end-column="14" />
-          <folding>
-            <element signature="e#237#5297#0" expanded="false" />
-            <element signature="e#245#298#0" expanded="false" />
-            <element signature="e#315#1040#0" expanded="false" />
-            <element signature="e#364#864#0" expanded="false" />
-            <element signature="e#508#852#0" expanded="false" />
-            <element signature="e#538#840#0" expanded="false" />
-            <element signature="e#592#683#0" expanded="false" />
-            <element signature="e#878#1032#0" expanded="false" />
-            <element signature="e#1048#1111#0" expanded="false" />
-            <element signature="e#1132#1600#0" expanded="false" />
-            <element signature="e#1197#1305#0" expanded="false" />
-            <element signature="e#1314#1589#0" expanded="false" />
-            <element signature="e#1342#1579#0" expanded="false" />
-            <element signature="e#1373#1482#0" expanded="false" />
-            <element signature="e#1500#1567#0" expanded="false" />
-            <element signature="e#1608#1641#0" expanded="false" />
-            <element signature="e#1657#1859#0" expanded="false" />
-            <element signature="e#1698#1829#0" expanded="false" />
-            <element signature="e#1867#2081#0" expanded="false" />
-            <element signature="e#2110#2786#0" expanded="false" />
-            <element signature="e#2331#2777#0" expanded="false" />
-            <element signature="e#2458#2764#0" expanded="false" />
-            <element signature="e#2488#2642#0" expanded="false" />
-            <element signature="e#2659#2752#0" expanded="false" />
-            <element signature="e#2794#2922#0" expanded="false" />
-            <element signature="e#2956#3984#0" expanded="false" />
-            <element signature="e#3028#3146#0" expanded="false" />
-            <element signature="e#3155#3974#0" expanded="false" />
-            <element signature="e#3195#3717#0" expanded="false" />
-            <element signature="e#3396#3634#0" expanded="false" />
-            <element signature="e#3764#3848#0" expanded="false" />
-            <element signature="e#3893#3964#0" expanded="false" />
-            <element signature="e#3992#4034#0" expanded="false" />
-            <element signature="e#5344#5388#0" expanded="false" />
-            <element signature="e#5408#5514#0" expanded="false" />
-            <element signature="e#5522#5557#0" expanded="false" />
-            <element signature="e#8281#8424#0" expanded="false" />
-            <element signature="e#8448#8955#0" expanded="false" />
-            <element signature="e#8586#8926#0" expanded="false" />
-            <element signature="e#8642#8892#0" expanded="false" />
-            <element signature="e#8963#8993#0" expanded="false" />
-            <element signature="e#9009#10397#0" expanded="false" />
-            <element signature="e#9143#10132#0" expanded="false" />
-            <element signature="e#9203#10121#0" expanded="false" />
-            <element signature="e#9263#10083#0" expanded="false" />
-            <element signature="e#9279#9337#0" expanded="false" />
-            <element signature="e#9568#9675#0" expanded="false" />
-            <element signature="e#9695#9750#0" expanded="false" />
-            <element signature="e#10146#10369#0" expanded="false" />
-            <element signature="e#10199#10357#0" expanded="false" />
-            <element signature="e#10230#10345#0" expanded="false" />
-            <element signature="e#10450#10507#0" expanded="false" />
-            <element signature="e#10552#10661#0" expanded="false" />
-            <element signature="e#10596#10649#0" expanded="false" />
-            <element signature="e#10671#10758#0" expanded="false" />
-            <element signature="e#10829#10869#0" expanded="false" />
-            <element signature="e#10901#11229#0" expanded="false" />
-            <element signature="e#10913#10951#0" expanded="false" />
-            <element signature="e#11029#11054#0" expanded="false" />
-            <element signature="e#11175#11219#0" expanded="false" />
-            <element signature="e#11240#11285#0" expanded="false" />
-            <element signature="e#11318#11530#0" expanded="false" />
-            <element signature="e#11360#11518#0" expanded="false" />
-            <element signature="e#11571#11643#0" expanded="false" />
-            <element signature="e#11794#11848#0" expanded="false" />
-            <element signature="e#11969#12059#0" expanded="false" />
-            <element signature="e#12080#12133#0" expanded="false" />
-            <element signature="e#12159#12216#0" expanded="false" />
-            <element signature="e#12324#12623#0" expanded="false" />
-            <element signature="e#12348#12610#0" expanded="false" />
-            <element signature="e#12441#12511#0" expanded="false" />
-            <element signature="e#12780#13262#0" expanded="false" />
-            <element signature="e#13317#13379#0" expanded="false" />
-            <element signature="e#13491#13570#0" expanded="false" />
-            <element signature="e#13592#14626#0" expanded="false" />
-            <element signature="e#13771#14147#0" expanded="false" />
-            <element signature="e#14007#14049#0" expanded="false" />
-            <element signature="e#14066#14106#0" expanded="false" />
-            <marker date="1525709387000" expanded="true" signature="7026:7037" ph="..." />
-            <marker date="1525709387000" expanded="true" signature="7255:7266" ph="..." />
-          </folding>
+        <state relative-caret-position="469">
+          <caret line="198" column="4" selection-start-line="198" selection-start-column="4" selection-end-line="198" selection-end-column="4" />
         </state>
       </provider>
     </entry>

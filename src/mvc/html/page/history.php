@@ -21,10 +21,11 @@
     ></bbns-column>
 
     <bbns-column field="user"
-                title="<?=_('User')?>"
-                ftitle="<?=_('Translator\'s name')?>"
-                :editable="false"
-                width="12%"
+                 title="<?=_('User')?>"
+                 ftitle="<?=_('Translator\'s name')?>"
+                 :editable="false"
+                 width="12%"
+                 :render="renderUser"
     ></bbns-column>
 
     <bbns-column field="original_exp"
@@ -35,7 +36,7 @@
     ></bbns-column>
 
     <bbns-column field="original_lang"
-                title="<?=_('Source Language')?>"
+                title=" "
                 ftitle="<?=_('The source language of the expression')?>"
                 width="50"
                 :editable="false"
@@ -50,7 +51,7 @@
 
 
     <bbns-column field="translation_lang"
-                title="<?=_('Language')?>"
+                title=" "
                 ftitle="<?=_('The language of translation')?>"
                 width="50"
                 :render="render_lang"

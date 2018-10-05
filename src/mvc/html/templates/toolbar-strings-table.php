@@ -20,7 +20,7 @@
                 class="k-button bbn-button bbn-events-component"
                 @click="remake_cache"
                 :notext="true"
-                icon="fa fa-retweet"
+                icon="fas fa-retweet"
                 text="<?=_('Rebuild table data')?>"
     >
     </bbn-button>
@@ -29,7 +29,7 @@
     <bbn-button title="<?=_('Check files for new strings')?>"
                 class="k-button bbn-button bbn-events-component"
                 @click="find_strings"
-                icon="fa fa-search"
+                icon="fas fa-search"
                 :notext="true"
                 text="<?=_('Parse files for new strings')?>"
     >
@@ -52,7 +52,7 @@
   </div>
   <div style="font-size:9px; text-align: right; padding-right: 6px;padding-bottom:3px"
        v-if="id_project !=='options'"
-  ><?=_("If the column with ")?><i class="fa fa-asterisk"></i> <?=_("is empty be sure to force translation files update and then update the table")?></div>
+  ><?=_("If the column with ")?><i class="fas fa-asterisk"></i> <?=_("is empty be sure to force translation files update and then update the table")?></div>
 
   <div v-if="id_project ==='options'"
        class="bbn-padded bbn-grid-fields"
