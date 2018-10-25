@@ -7,9 +7,7 @@
  */
 
 //transfer to $model
-$source_langs = $ctrl->db->get_rows("
-  SELECT DISTINCT (lang) FROM bbn_i18n
-");
+$source_langs = $ctrl->db->get_column_values('bbn_i18n', 'lang');
 
 if ( !empty($ctrl->post['id_project'])){
 

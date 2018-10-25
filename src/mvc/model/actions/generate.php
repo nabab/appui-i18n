@@ -5,93 +5,89 @@
  **/
 
 
-/** @var $this \bbn\mvc\model*/
+/**
+ * @var \bbn\mvc\model $model
+ * @var array $o The option for the repository to explore
+ * @var array $parent The root of the repo where the code is the root constant
+ */
 
 if (
   isset($model->data['id_option']) &&
   ($o = $model->inc->options->option($model->data['id_option'])) &&
   ($parent = $model->inc->options->parent($o['id'])) &&
-  defined($parent['code']  )
+  defined($parent['code'])
 ){
+  /** @var bool $json Will be true if some translations are put into a JSON file */
+  $json = false;
+  /** @var array $js_files An array with files as index and an array expressions to put into the JSON file */
+  $js_files = [];
   //instantiate the class i18n
   $translation = new \bbn\appui\i18n($model->db);
   $success = false;
 
-  /** $to_explore is the directory to explore for strings */
-  $to_explore = constant($parent['code']).$o['code'];
-  $locale_dir = dirname($to_explore).'/locale';
+  /** @var string $to_explore The directory to explore for strings */
+  $to_explore = constant($parent['code']);
 
+  /** @var string $locale_dir Directory containing the locale files */
+  if( $parent['code'] !== 'BBN_LIB_PATH'){
+		$locale_dir = $to_explore.'locale';
+	}
+	else{
+		$locale_dir = mb_substr(constant($parent['code']).$o['code'], 0, -4).'locale';
+	}
+
+  /** @var string $domain The domain on which will be bound gettext */
   $domain = $o['text'];
-
-  $num = (int)file_get_contents($locale_dir.'/index.txt');
-
+  $num = is_file($locale_dir.'/index.txt') ? (int)file_get_contents($locale_dir.'/index.txt') : 0;
   file_put_contents($locale_dir.'/index.txt', ++$num);
   $domain .= $num;
-  /** @var (array) $languages based on locale dirs found in the path*/
-  $old_langs = array_map(function($a){
-    return basename($a);
-  }, \bbn\file\dir::get_dirs($locale_dir)) ?: [];
+
+  /** @var (array) $languages based on locale dirs found in the path */
+  $old_langs = array_map('basename', \bbn\file\dir::get_dirs($locale_dir));
 
   //creates the array languages
-  /**  case generate called from strings table */
+  // case when generation is called from the strings table
   if ( !isset($model->data['languages']) ){
-    $languages = array_map(function($a){
-      return basename($a);
-    }, \bbn\file\dir::get_dirs($locale_dir)) ?: [];
+    $languages = $old_langs;
   }
   else {
-    /** case generate from widget */
+    /** @var array $languages Is set in the case the generation comes from a widget */
     $languages = $model->data['languages'];
-
-    /** @var  (array) $old_langs languages in locale folder before of this call */
-    //$old_langs = $data['languages'];
-
-    /** @var (array) $ex_dir languages unchecked in the form */
+    /** @var array $ex_dir Languages unchecked in the form */
     if ( !empty($ex_dir = array_diff($old_langs, $languages)) ){
       foreach ( $ex_dir as $ex ){
-        /** index of ex lang in $languages */
-        $idx = array_search($ex, $old_langs);
+        // index of ex lang in $languages
+        $idx = array_search($ex, $old_langs, true);
 
-        /** removes the $ex (language unchecked) from the final array languages */
-        array_splice($old_langs, $idx);
-
-        /** @var $dir the path to delete*/
-        $dir = $locale_dir . '/' . $ex;
-        \bbn\file\dir::delete($dir);
+        // removes the $ex (language unchecked) from the final array languages
+        array_splice($old_langs, $idx, 1);
+        \bbn\file\dir::delete($locale_dir . '/' . $ex);
       }
     }
-    $new_dir = [];
-    /** @var $new_dir new languages checked in the form */
+    /** @var array $new_dir New languages checked in the form */
     if ( !empty( $new_dir = array_diff( $languages, $old_langs ) ) ){
       foreach( $new_dir as $n ){
-
-        /** checks if the language already exists in the array languages */
-        if ( empty(in_array($n, $languages) ) ){
+        // checks if the language already exists in the array languages
+        if ( !in_array($n, $languages, true) ){
           $languages[] = $n;
         }
       }
     }
   }
 
-  /** @var (array) takes all strings found in the files of  this option*/
-  if ( !empty($o['language']) ){
-    $data = $translation->get_translations_strings($model->data['id_option'],$o['language'], $languages);
-  }
+  /** @var array $data Takes all strings found in the files of  this option*/
+  $data = empty($o['language']) ? [] : $translation->get_translations_strings($model->data['id_option'], $o['language'], $languages);
 
-
-
-  /** @var (boolean) $no_strings case of empty($data['res']), there are no strings in this path . Return true if there are no strings from find_strings*/
+  /** @var bool $no_strings Will be true if $data[res] is empty, i.e. if find_strings returns no result. */
   $no_strings = false;
 
-
-  /** $data['res'] is the array of strings */
+  // $data['res'] is the array of strings
   if ( !empty($data['res'] )){
-    $translations = [];
 
-    clearstatcache();
+		clearstatcache();
     $dir = '';
     foreach ( $languages as $lang ){
-      /** @var $dir the path of locale dir for this id_option foreach lang */
+      /** @var string $dir The path of locale dir for this id_option foreach lang */
       $dir = $locale_dir . '/' . $lang . '/LC_MESSAGES';
 
       /** creates the path of the dirs */
@@ -116,7 +112,7 @@ if (
       // the new file
       $new_po = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.po';
 
-     //  $new_mo = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.mo';
+      // $new_mo = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.mo';
       //create the file at the given path
       fopen($new_po,'x');
 
@@ -124,6 +120,7 @@ if (
       $fileHandler = new Sepia\PoParser\SourceHandler\FileSystem($new_po);
       $poParser = new Sepia\PoParser\Parser($fileHandler);
       $Catalog  = Sepia\PoParser\Parser::parseFile($new_po);
+
       $Compiler = new Sepia\PoParser\PoCompiler();
       $headersClass = new Sepia\PoParser\Catalog\Header();
 
@@ -150,13 +147,68 @@ if (
       }
 
       /** @var takes all strings from the cached model of find_strings */
-      foreach ( $data['res'] as $r ){
+      foreach ( $data['res'] as $index => $r ){
+
         if ( empty($Catalog->getEntry($r['original_exp']) ) ){
+
           //prepare the new entry for the Catalog
           $entry = new  Sepia\PoParser\Catalog\Entry($r['original_exp'], $r[$lang]);
+          \bbn\x::log($r['original_exp'] ,'sunday_p');
           // set the reference for the entry
           if ( !empty($r['path']) ){
             $entry->setReference($r['path']);
+            foreach( $r['path'] as $idx => $path ){
+
+              $ext = pathinfo($path, PATHINFO_EXTENSION);
+
+              if( $ext === 'js' ){
+                $tmp = substr($r['path'][$idx], strlen(constant($parent['code'])), -3);
+
+                if ( strpos($tmp, 'components') === 0 ){
+                  $name = dirname($tmp);
+
+                }
+                else if ( strpos($tmp, 'mvc') === 0 ){
+
+                  if ( !empty($idx = strpos($tmp, 'js/')) ){
+                    $name = str_replace('js/', '', $tmp);
+
+                  }
+
+
+                  \bbn\x::log(['name', $name], 'sunday');
+
+                }
+                //case of plugins inside current (apst-app), temporary we decided to don't take it inside the json file of apst-app
+                else if ( ( strpos($tmp, 'plugins') === 0 ) && ($parent['code'] === 'BBN_APP_PATH') ) {
+                  continue;
+                }
+
+                else if ( strpos($tmp, 'bbn/') === 0 ){
+                  //removing mvc from $o['code'] of appui plugins
+                  $code = str_replace(substr($o['code'], -4), '', $o['code']);
+                  $tmp = str_replace($code, '', $tmp);
+
+                  if ( strpos($tmp, 'components') === 0 ){
+                    $name = dirname($tmp);
+                  }
+
+                  else if ( strpos($tmp, 'mvc') === 0 ){
+                    $name = str_replace('js/', '', $tmp);
+                  }
+                }
+
+                if ( empty($js_files[$lang][$name]) ){
+                  $js_files[$lang][$name] = [];
+                }
+
+                //array of all js files found in po file
+                $js_files[$lang][$name][$data['res'][$index]['original_exp']] = $data['res'][$index][$lang];
+
+                //die(var_dump($name, dirname($name),  substr($path, strlen(constant($parent['code'])), -3)));
+              }
+
+            }
           }
           //add the prepared entry to the catalog
           $Catalog->addEntry($entry);
@@ -164,10 +216,16 @@ if (
       }
       //compile the catalog
       $file = $Compiler->compile($Catalog);
+
       //save the catalog in the file
       $fileHandler->save($file);
       clearstatcache();
 
+      if( !empty($js_files[$lang]) ){
+				$file_name = $locale_dir.'/'.$lang.'/'.$lang.'.json';
+        \bbn\file\dir::create_path(dirname($file_name));
+        $json = (boolean)file_put_contents($file_name, json_encode($js_files[$lang]));
+      }
     }
 
     clearstatcache();
@@ -188,6 +246,8 @@ if (
     );
     $widget = $translation->cache_get($model->data['id_option'], 'get_translations_widget');
     $success = true;
+
+
   }
 
 
@@ -196,7 +256,8 @@ if (
   }
 
   return [
-    'widget' => $widget,
+    'json' => $json,
+    'widget' => $widget ?? null,
     'no_strings' => $no_strings,
     'new_dir' => array_values($new_dir),
     'ex_dir'=> array_values($ex_dir),
@@ -204,7 +265,6 @@ if (
     'locale' => $locale_dir,
     'languages' => $languages,
     'success' => $success,
-    'strings' => $strings['strings'],
-
+    'strings' => empty($strings) ? [] : $strings['strings']
   ];
 }

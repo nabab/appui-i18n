@@ -143,6 +143,7 @@
       }
     },
     methods: {
+
       /** generate po files for all columns of the table */
       generate(){
         this.showAlert = true;
@@ -350,7 +351,7 @@
           this.alert(bbn._('Wait for the ending of the process before to make other actions in this tab') );
         }
         else{
-          this.alert().close()
+          this.getPopup().close()
         }
       },
       hidden_cols(val){
@@ -386,30 +387,41 @@
       },
     },
     components:{
-      /** the toolbar of the table, the template is on html/template folder */
+      // the toolbar of the table, the template is on html/template folder 
       'toolbar-strings-table': {
         template:'#toolbar-strings-table',
         props: ['source'],
         data(){
           return {
-            /** v-model of multiselect when project === options */
+            // v-model of multiselect when project === options 
             to_hide_col:[],
             hide_source_language: false,
-            tab: null
+            tab: null,
+            valueToFind: ''
           }
         },
         methods: {
-          /** takes the methods from the parent component using @var this.tab declared at created */
+          search(){
+            //search the string in the input field of toolbar
+            if ( this.valueToFind !== '' ){
+              this.closest('bbn-table').currentFilters.conditions.push({
+                field: 'original_exp',
+                operator: 'contains',
+                value: this.valueToFind
+              });
+            }
+            else if ( (this.valueToFind === '') && (this.closest('bbn-table').currentFilters.conditions.length) ) {
+              this.closest('bbn-table').currentFilters.conditions = [];
+            }
+          },
+          // takes the methods from the parent component using @var this.tab declared at created 
           generate(){
             return this.tab ? this.tab.generate() : null;
           },
           find_strings(){
-
             return this.tab ? this.tab.find_strings() : null;
-
           },
           remake_cache(){
-
             return this.tab ? this.tab.remake_cache() : null;
           },
           hide_col(val){

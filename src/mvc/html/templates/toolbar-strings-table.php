@@ -34,7 +34,12 @@
                 text="<?=_('Parse files for new strings')?>"
     >
     </bbn-button>
-    <div style="display:inline;" >
+    <div style="display:inline"> 
+      <bbn-input placeholder="<?=_("Search the string")?>" 
+                 @change="search"
+                 v-model="valueToFind"
+      ></bbn-input></div>
+    <div style="display:inline">
 
       <bbn-switch v-model="hide_source_language"
                   :value="true"

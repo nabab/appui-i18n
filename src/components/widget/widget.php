@@ -40,7 +40,7 @@
 
     <div v-if="no_strings" class="bbn-grid-full bbn-orange bbn-c"><?=_("There are no strings in this path")?></div>
 
-    <div v-if="data_widget && data_widget[language]" class="bbn-grid-fields" style="padding-top:8px; width:100%">
+    <div v-if="data_widget && data_widget[language]" class="bbn-grid-fields" style="padding-top:8px;">
 
       <span v-if="data_widget[language] && (data_widget[language].num > 0)">
         Total number of strings:

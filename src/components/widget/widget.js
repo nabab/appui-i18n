@@ -322,9 +322,10 @@
             this.send_no_strings = false;
             if ( d.success ){
               var st = '';
+              this.source.data.widget.remake_cache();
               if ( d.ex_dir.length ){
                 d.ex_dir.forEach( (v, i) => {
-                  this.source.data.widget.remake_cache();
+                  //this.source.data.widget.remake_cache();
 
                   this.$nextTick( () => {
                     appui.success( bbn.fn.get_field(this.source.data.primary, 'code', v, 'text') + ' translation files successfully files deleted')
@@ -333,7 +334,7 @@
               }
               if ( d.new_dir.length){
                 d.new_dir.forEach((v, i) => {
-                  this.source.data.widget.remake_cache();
+                  //this.source.data.widget.remake_cache();
                   appui.success(  bbn.fn.get_field(this.source.data.primary, 'code', v, 'text') + ' translation files successfully created')
                 } )
               }
@@ -353,6 +354,8 @@
                 });
 
               }
+
+
             }
             else if (d.no_strings === true){
               /** change the property no_strings of the widget to render html */
