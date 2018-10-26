@@ -10,7 +10,7 @@
  * @var array $o The option for the repository to explore
  * @var array $parent The root of the repo where the code is the root constant
  */
-
+use Gettext\Translations;
 if (
   isset($model->data['id_option']) &&
   ($o = $model->inc->options->option($model->data['id_option'])) &&
@@ -109,9 +109,13 @@ if (
       if ( $po ){
         unlink($po);
       }
-      // the new file
+      if ( $mo ){
+        unlink($mo);
+      }
+      // the new files 
       $new_po = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.po';
-
+      $new_mo = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.mo';
+      
       // $new_mo = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.mo';
       //create the file at the given path
       fopen($new_po,'x');
@@ -221,9 +225,10 @@ if (
       $fileHandler->save($file);
       clearstatcache();
 
-      if( !empty($js_files[$lang]) ){
+      if ( !empty($js_files[$lang]) ){
 				$file_name = $locale_dir.'/'.$lang.'/'.$lang.'.json';
         \bbn\file\dir::create_path(dirname($file_name));
+        // put the content of the array js_files in a json file
         $json = (boolean)file_put_contents($file_name, json_encode($js_files[$lang]));
       }
     }
@@ -232,18 +237,21 @@ if (
 
 
 
-
+    /** @var array The data for the strings table */
     $tmp = $translation->get_translations_table($model->data['id_project'], $model->data['id_option']);
 
-    $tmp2 = $translation->cache_set($model->data['id_option'], 'get_translations_table',
+    //Set the cache of the table
+    $translation->cache_set($model->data['id_option'], 'get_translations_table',
       $tmp
     );
+    /** @var array The data of the table in cache */
     $strings = $translation->cache_get($model->data['id_option'], 'get_translations_table');
 
-    //remake the cache of the widget basing on new data
+    //set the cache of the widget
     $translation->cache_set($model->data['id_option'], 'get_translations_widget',
       $translation->get_translations_widget($model->data['id_project'],$model->data['id_option'])
     );
+    /** @var array The data of the widget in the cache*/
     $widget = $translation->cache_get($model->data['id_option'], 'get_translations_widget');
     $success = true;
 

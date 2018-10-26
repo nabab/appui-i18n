@@ -5,7 +5,7 @@
 
 
     <div>
-      <span v-text="(id_project === 'options') ? '<?=_("Source language of this option:")?>' : '<?=_("Source language of this path:")?>'"></span>
+      <span v-text="(id_project === 'options') ? ('<?=_("Source language of this option")?>' + ': ') : ('<?=_("Source language of this path")?>' + ': ')"></span>
       <i class="fas fa-times"
          v-if="id_project === 'options'"
          @click="remove_cfg"
@@ -28,8 +28,8 @@
 
 
     <div class="bbn-grid-fields" v-if="data_widget && locale_dirs.length && !no_strings" style="padding-top: 8px">
-      <span v-if="id_project !== 'options'"><?=_("Files of translations found: ")?></span>
-      <span v-else><?=_("Languages of translation allowed for this option: ")?></span>
+      <span v-if="id_project !== 'options'"><?=_("Files of translations found")?>: </span>
+      <span v-else><?=_("Languages of translation allowed for this option")?>: </span>
       <div>
         <div v-for="w in locale_dirs"
              v-text="w" style="display: inline; padding-left: 6px; float: right;"
@@ -76,7 +76,7 @@
              v-if="w.num_translations_db && ( w.num !== 0 ) && ( w.num_translations_db !== w.num_translations ) && ( i !== language )"
         >
           <i class="fas fa-exclamation-triangle bbn-large bbn-red"
-             :title="'<?=_("Number of translations in db: ")?>' + w.num_translations_db"
+             :title="'<?=_("Number of translations in db")?>' + ': ' + w.num_translations_db"
           ></i><?=_("The number of translations in po file and the number of translations in db are different, please remake the po file")?>
         </div>
 
@@ -90,7 +90,7 @@
     <div v-else-if="!locale_dirs.length"
          style="padding-top:10px"
          class="bbn-c bbn-full-grid">
-      <?=_("No translation files found for this path, to start translation configure at least one language using the  ")?> <i class="fas fa-flag bbn-large"></i> <?=_("button")?>
+      <?=_("No translation files found for this path, to start translation configure at least one language using the")?> <i class="fas fa-flag bbn-large"></i> <?=_("button")?>
     </div>
 
 

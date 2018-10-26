@@ -5,6 +5,8 @@
  * Date: 27/02/18
  * Time: 12.08
  */
+
+//Deletes the expression from db 
 $success = false;
 if ( $model->data['id_exp'] ){
   if ( !empty($model->db->select_one('bbn_i18n_exp', 'id_exp', ['id_exp' => $model->data['id_exp'] ]) ) ){

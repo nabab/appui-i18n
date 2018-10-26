@@ -6,6 +6,7 @@
 * Time: 16.57
 */
 
+//data for history table
 
 if ( !empty($model->data['limit']) ){
 

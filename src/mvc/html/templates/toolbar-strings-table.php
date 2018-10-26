@@ -14,8 +14,6 @@
     >
     </bbn-button>
 
-
-
     <bbn-button title="<?=_('Rebuild table data')?>"
                 class="k-button bbn-button bbn-events-component"
                 @click="remake_cache"

@@ -6,6 +6,7 @@
  * Time: 11.54
  */
 
+//Deletes the property language for the given option
 if ( $model->data['id_option'] && $model->data['language']){
   $success = false;
   $translation = new \bbn\appui\i18n($model->db);
@@ -15,9 +16,7 @@ if ( $model->data['id_option'] && $model->data['language']){
     //unset the property
     $model->inc->options->unset_prop($model->data['id_option'], 'language');
     //remake the cached of the widget
-    /*$data_widget = $model->get_cached_model(APPUI_I18N_ROOT.'page/data/widgets',
-      ['id_option' => $model->data['id_option'] ], true );*/
-      $data_widget = $translation->get_translations_widget($projects[$i]['id'],$res[$idx]['id']);
+    $data_widget = $translation->get_translations_widget($projects[$i]['id'],$res[$idx]['id']);
     $success = true;
   }
   return [

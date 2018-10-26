@@ -1,16 +1,20 @@
 <?php
-// the folder of components templates
+if ( strpos($ctrl->baseURL, APPUI_I18N_ROOT.'page/') !== 0 ){
 
-$templates = \bbn\file\dir::get_files($ctrl->plugin_path().'mvc/html/templates');
-$ctrl->data['templates'] = [];
-$ctrl->obj->url = APPUI_I18N_ROOT.'page';
+  // the folder of components templates
+  $templates = \bbn\file\dir::get_files($ctrl->plugin_path().'mvc/html/templates');
+  $ctrl->data['templates'] = [];
+  $ctrl->obj->url = APPUI_I18N_ROOT.'page';
 
-if ( !empty($templates) ){
-  $ctrl->data['templates'] = array_map(function($t)use($ctrl){
-    return [
-      'id' => basename($t, '.php'),
-      'html' =>$ctrl->get_view('./templates/'.basename($t, '.php'))
-    ];
-  }, $templates);
+  if ( !empty($templates) ){
+    $ctrl->data['templates'] = array_map(function ($t) use ($ctrl){
+      return [
+        'id' => basename($t, '.php'),
+        'html' => $ctrl->get_view('./templates/'.basename($t, '.php'))
+      ];
+    }, $templates);
+  }
+  $ctrl->set_icon('fas fa-flag')
+       ->set_color('#ff9900', '#FFF')
+       ->combo('i18n', true);
 }
-$ctrl->set_icon('fas fa-flag')->set_color('#ff9900', '#FFF')->combo('i18n', true);

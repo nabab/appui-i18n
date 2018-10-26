@@ -93,16 +93,36 @@
       translations_db(){
         let res = [],
           source_lang = this.source.res.path_source_lang;
-        this.source.res.strings.forEach( (obj, idx ) => {
-          let ob = {};
-          for (let prop in obj){
-            //bbn.fn.log('translation_db', idx, source_lang,'prop', prop)
-            ob['original_exp'] = this.source.res.strings[idx][source_lang].original;
-            ob['id_exp'] = this.source.res.strings[idx][source_lang].id_exp;
-            ob[prop] = this.source.res.strings[idx][prop].translations_db;
-          }
-          res.push(ob);
-        });
+        if (this.source.res.id_project !== 'options') {
+          this.source.res.strings.forEach((obj, idx) => {
+            let ob = {};
+
+            for (let prop in obj) {
+              //bbn.fn.log('translation_db', idx, source_lang,'prop', prop)
+              ob['original_exp'] = this.source.res.strings[idx][source_lang].original;
+              ob['id_exp'] = this.source.res.strings[idx][source_lang].id_exp;
+              ob[prop] = this.source.res.strings[idx][prop].translations_db;
+            }
+
+            res.push(ob);
+          });
+        }
+        else if (this.source.res.id_project === 'options') {
+          bbn.fn.log('here')
+          this.source.res.strings.forEach((obj, idx) => {
+            bbn.fn.log(this.source.res.id_project, obj, idx)
+            let ob = {};
+
+            for (let prop in obj) {
+              //bbn.fn.log('translation_db', idx, source_lang,'prop', prop)
+              ob['original_exp'] = this.source.res.strings[idx][source_lang].original;
+              ob['id_exp'] = this.source.res.strings[idx][source_lang].id_exp;
+              ob[prop] = this.source.res.strings[idx][prop].translations_db;
+            }
+
+            res.push(ob);
+          });
+        }
         return res
       },
       /** the source of the table */
@@ -143,7 +163,15 @@
       }
     },
     methods: {
-
+      generate_mo(){
+        bbn.fn.post(this.source.root + 'actions/generate_mo', {
+          id_option : this.source.id_option
+        }, (d) => {
+          if ( d.success === true ){
+            appui.success('Mo files correctly generated');
+          }
+        })
+      },
       /** generate po files for all columns of the table */
       generate(){
         this.showAlert = true;
@@ -193,6 +221,7 @@
                 this.showAlert = false;
               });
             }
+            this.generate_mo();
           });
         }
         else {
@@ -267,11 +296,13 @@
           row_idx: idx
         }, (d) => {
           if (d.success && !d.deleted.length && d.modified_langs.length ){
-            d.modified_langs.forEach((v, i) => {
+            if ( this.source.id_project !== 'options'){
+              d.modified_langs.forEach((v, i) => {
               this.source.res.strings[idx][v]['translations_db'] = d.row[v];
               //I have a bug, after the update of the table this.mapData, the source of the table is wrong for the row if i don't force it to be correct
-              this.mapData[idx][v] = this.source.res.strings[idx][v]['translations_po'];
-            } )
+              this.mapData[idx][v] = this.source.res.strings[idx][v]['translations_po']})
+            }
+            
             let table = bbn.vue.find(this, 'bbn-table');
             table.updateData();
             appui.success('Translation saved');
@@ -417,6 +448,9 @@
           // takes the methods from the parent component using @var this.tab declared at created 
           generate(){
             return this.tab ? this.tab.generate() : null;
+          },
+          generate_mo() {
+            return this.tab ? this.tab.generate_mo() : null;
           },
           find_strings(){
             return this.tab ? this.tab.find_strings() : null;

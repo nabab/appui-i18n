@@ -183,10 +183,10 @@
             this.source.res = d.res;
             let diff = ( d.total - this.source.total );
             if ( diff > 0 ){
-              appui.warning(diff + bbn._(' new string(s) found in ') + this.source.path);
+              appui.warning(diff + ' ' + bbn._('new string(s) found in') + ' ' + this.source.path);
             }
             else if ( diff < 0 ){
-              appui.warning(Math.abs(diff) + bbn._(' string(s) deleted from ') + this.source.path + bbn._(' files'));
+              appui.warning(Math.abs(diff) + ' ' + bbn._('string(s) deleted from') + ' ' + this.source.path + ' ' + bbn._('files'));
             }
             this.source.total = d.total;
           }
@@ -203,7 +203,7 @@
           }, (d) => {
             if (d.success){
               if ( d.new > 0 ){
-                appui.success(d.new + ' new options found in this category');
+                appui.success(d.new + ' ' +'new options found in this category');
               }
               else {
                 appui.warning('No new options found in this category')
@@ -270,7 +270,7 @@
         },
         computed: {
           message(){
-            return bbn._( 'If the language for which you want to create the translation file is not in this list, you have to configure it for the whole project using the form ( <i class="fas fa-cogs"></i> ) in the dashboard')
+            return bbn._('If the language for which you want to create the translation file is not in this list, you have to configure it for the whole project using the form') + ' ( <i class="fas fa-cogs"></i> ) ' + bbn._('in the dashboard')
           },
         },
         methods: {
@@ -339,7 +339,7 @@
                 } )
               }
               if ( d.done > 0 ){
-                appui.success(d.done + bbn._(' new strings found in this path') )
+                appui.success(d.done + ' ' + bbn._('new strings found in this path') )
               }
               if ( bbn.vue.closest(this, 'bbn-tabnav') ){
                 let tabs = bbn.vue.findAll(bbn.vue.closest(this, 'bbn-tabnav') , 'bbns-tab');

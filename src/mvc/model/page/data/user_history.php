@@ -6,7 +6,7 @@
  * Time: 16.57
  */
 
-
+//data for user history table
 if ( !empty($model->data['limit']) ){
 
   $id_user = $model->inc->user->get_id();

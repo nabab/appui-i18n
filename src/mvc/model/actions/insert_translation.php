@@ -32,6 +32,5 @@ if ( !empty($model->data['id_exp']) && !empty($model->data['expression'])){
   }
 
   $id = $model->db->select_one('bbn_i18n_exp', 'id', ['id_exp' => $model->data['id_exp']]);
-  //die(var_dump($id));
   return [ 'success' => $success ];
 }

@@ -5,6 +5,8 @@
  * Date: 17/01/18
  * Time: 12.35
  */
+
+ // data for glossary table
 if ( !empty($model->data['limit']) &&  !empty($model->data['data']['translation_lang']) && !empty($model->data['data']['source_lang']) ){
 
   $trans_lang_code = $model->data['data']['translation_lang'];

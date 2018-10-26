@@ -19,7 +19,7 @@
             ></bbn-dropdown>
           </div>
           <div class="second" v-if="id_project !== 'options'">
-            <span><?=_("The source language for this project is:")?></span>
+            <span><?=_("The source language for this project is")?>:</span>
             <span v-text="get_field(source.primary, 'code', get_field(source.projects, 'id', id_project, 'lang'), 'text')"></span>
           </div>
           <div v-else
@@ -31,8 +31,8 @@
           </div>
 
           <div class="third" v-show="source.configured_langs">
-            <span v-if="id_project !== 'options'"><?=_("Languages configured for translation of this project:")?></span>
-            <span v-else><?=_("Languages configured for options translation:")?></span>
+            <span v-if="id_project !== 'options'"><?=_("Languages configured for translation of this project")?>:</span>
+            <span v-else><?=_("Languages configured for options translation")?>:</span>
             <div class="langs ">
               <div v-for="c in source.configured_langs"
                    class="bbn-b bbn-i"
