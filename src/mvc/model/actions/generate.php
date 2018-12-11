@@ -75,7 +75,7 @@ if (
     }
   }
 
-  /** @var array $data Takes all strings found in the files of  this option*/
+  /** @var array $data Takes all strings found in the files of  this option */
   $data = empty($o['language']) ? [] : $translation->get_translations_strings($model->data['id_option'], $o['language'], $languages);
 
   /** @var bool $no_strings Will be true if $data[res] is empty, i.e. if find_strings returns no result. */
@@ -180,7 +180,7 @@ if (
                   }
 
 
-                  \bbn\x::log(['name', $name], 'sunday');
+                
 
                 }
                 //case of plugins inside current (apst-app), temporary we decided to don't take it inside the json file of apst-app

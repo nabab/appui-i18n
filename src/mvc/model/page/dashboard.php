@@ -72,8 +72,8 @@ foreach ( $projects as $i => $p ){
   }
   /** unset langs and path because don't needed */
   unset( $projects[$i]['langs'], $projects[$i]['path'] );
-  
 }
+
 
 return [
   'time' => $timer->results(),

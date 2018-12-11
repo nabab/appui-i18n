@@ -176,6 +176,7 @@
           this.alert(bbn._('Select a source language for the path before to update the widget'))
         }
       },
+      /*
       find_strings(){
         let url = this.parentSource.root + 'actions/reload_widget_cache';
         bbn.fn.post(url, { id_option: this.source.id_option },  (d) => {
@@ -192,7 +193,7 @@
           }
         });
 
-      },
+      },*/
       /** method to find strings and translation for the option -works with db- only for the id_project === 'option' */
       find_options(){
         if ( this.id_project === 'options' ){

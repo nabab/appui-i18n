@@ -16,7 +16,7 @@ if ( $model->data['id_option'] && $model->data['language']){
     //unset the property
     $model->inc->options->unset_prop($model->data['id_option'], 'language');
     //remake the cached of the widget
-    $data_widget = $translation->get_translations_widget($projects[$i]['id'],$res[$idx]['id']);
+    //$data_widget = $translation->get_translations_widget($projects[$i]['id'],$res[$idx]['id']);
     $success = true;
   }
   return [

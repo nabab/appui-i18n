@@ -17,9 +17,8 @@ if (
   ($id_option = $model->data['id_option']) &&
   ($o = $model->inc->options->option($id_option)) &&
   !empty($o['language']) &&
-  ($parent = $model->inc->options->parent($id_option)) &&
-  defined($parent['code']) &&
-  ($source_language = $model->data['language'])
+  ($source_language = $model->data['language']) &&
+  !empty($model->data['languages'])
 ){
   /** @var array instantiate $i18n to the class appui\i18n*/
   $i18n = new \bbn\appui\i18n($model->db);
