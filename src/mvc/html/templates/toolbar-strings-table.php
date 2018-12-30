@@ -8,8 +8,7 @@
                 class="k-button bbn-button bbn-events-component"
                 @click="generate"
                 icon="fas fa-dumbbell"
-                :notext="true"
-                text="<?=_('Insert translations in po files')?>"
+                text="<?=_('Create translation files')?>"
                 style="background-color: orange;"
     >
     </bbn-button>
@@ -17,7 +16,6 @@
     <bbn-button title="<?=_('Rebuild table data')?>"
                 class="k-button bbn-button bbn-events-component"
                 @click="remake_cache"
-                :notext="true"
                 icon="fas fa-retweet"
                 text="<?=_('Rebuild table data')?>"
     >
@@ -28,7 +26,6 @@
                 class="k-button bbn-button bbn-events-component"
                 @click="find_strings"
                 icon="fas fa-search"
-                :notext="true"
                 text="<?=_('Parse files for new strings')?>"
     >
     </bbn-button>

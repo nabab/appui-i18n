@@ -129,7 +129,7 @@
       mapData(){
         let res = [],
           source_lang = this.source.res.path_source_lang;
-        if ( ( this.source.id_project !== 'options') && (this.source.res.strings)){
+        if ( ( this.source.id_project !== 'options') && (this.source.res.strings) ){
           this.source.res.strings.forEach( (obj, idx ) => {
             let ob = {};
             for (let prop in obj){
@@ -207,10 +207,15 @@
                 //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
                 if (bbn.vue.find(this.closest('bbn-tabnav'), 'bbn-dashboard') !== undefined) {
                   let dashboard = bbn.vue.find(this.closest('bbn-tabnav'), 'bbn-dashboard'),
-                    widgets = bbn.vue.findAll(dashboard, 'bbns-widget'),
-                    idx = bbn.fn.search(widgets, 'uid', this.source.id_option),
-                    cp = bbn.vue.closest(dashboard, 'bbns-tab').getComponent();
-                   cp.source.data[idx].data_widget = d.widget;
+                    widgets = bbn.vue.findAll(dashboard, 'bbns-widget');
+                    if ( widgets.length ){
+                      let idx = bbn.fn.search(widgets, 'uid', this.source.id_option),
+                      cp = bbn.vue.closest(dashboard, 'bbns-tab').getComponent();
+                      if ( idx > -1 ){
+                        cp.source.data[idx].data_widget = d.widget;
+                      }
+                    }
+                    
                 }
               }
               appui.success('Files of translation successfully updated for '+ d.languages.join(' and ') );

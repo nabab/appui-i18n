@@ -13,7 +13,7 @@
              :data="{source_lang: source.source_lang, lang_name:source.lang_name, translation_lang: source.translation_lang}"
              @change="insert_translation"
   >
-    <bbns-column field="original_exp"
+    <bbns-column field="exp"
                 title="<?=_('Original Expression')?>"
                 :editable="false"
                 cls="bbn-i"

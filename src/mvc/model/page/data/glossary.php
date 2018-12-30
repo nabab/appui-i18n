@@ -6,6 +6,7 @@
  * Time: 12.35
  */
 
+ 
  // data for glossary table
 if ( !empty($model->data['limit']) &&  !empty($model->data['data']['translation_lang']) && !empty($model->data['data']['source_lang']) ){
 
@@ -16,7 +17,7 @@ if ( !empty($model->data['limit']) &&  !empty($model->data['data']['translation_
   $grid = new \bbn\appui\grid($model->db, $model->data, [
     'tables' => ['bbn_i18n'],
     'fields' => [
-      'original_exp' => 'exp',
+      'bbn_i18n.exp',
       'idExp' => 'bbn_i18n.id',
       'translation' => 'expression'
       
@@ -43,10 +44,10 @@ if ( !empty($model->data['limit']) &&  !empty($model->data['data']['translation_
       'value' => $source_code
     ]],
     'group_by' => 'bbn_i18n.id',
-
   ]);
 
   if ( $grid->check() ){
+  
     return $grid->get_datatable();
   }
 }

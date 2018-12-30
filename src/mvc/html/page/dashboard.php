@@ -45,26 +45,26 @@
           <div class="fourth">
             <div style="max-height: 25px;" class="bbn-grid-full bbn-c" >
               <bbn-button icon="fas fa-cogs"
-                          :noText="true"
+                          text="<?=_("Config project languges")?>"
                           @click="cfg_project_languages"
                           title="<?=_("Configure languages for this project")?>"
                           v-if="id_project !== 'options'"
               ></bbn-button>
 
               <bbn-button icon="fas fa-user"
-                          :noText="true"
+                          text="<?=_("User Activity")?>"
                           @click="open_user_activity"
                           title="<?=_("User activity")?>"
               ></bbn-button>
 
               <bbn-button icon="fas fa-users"
-                          :noText="true"
+                          text="<?=_("Users Activity")?>"
                           @click="open_users_activity"
                           title="<?=_("Users activity")?>"
               ></bbn-button>
 
               <bbn-button icon="fab fa-font-awesome-flag"
-                          :noText="true"
+                          text="<?=_("Glossary table")?>"
                           @click="open_glossary_table"
                           title="<?=_("Glossary tables")?>"
               ></bbn-button>

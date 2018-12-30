@@ -29,17 +29,32 @@ if (
   $to_explore = constant($parent['code']);
 
   /** @var string $locale_dir Directory containing the locale files */
-  if( $parent['code'] !== 'BBN_LIB_PATH'){
-		$locale_dir = $to_explore.'locale';
+  /*if( $parent['code'] !== 'BBN_LIB_PATH'){
+    //$locale_dir = $to_explore.'locale';
+    $locale_dir = $to_explore.$o['code'].'locale';
+    
 	}
 	else{
-		$locale_dir = mb_substr(constant($parent['code']).$o['code'], 0, -4).'locale';
-	}
+		//$locale_dir = mb_substr(constant($parent['code']).$o['code'], 0, -4).'locale';
+		$locale_dir = mb_substr(constant($parent['code']).$o['code']).'locale';
+  }*/
+  if( (constant($parent['code']) === BBN_APP_PATH) && (strrpos('mvc/', $o['code'],0) === 0) ) {
+    $locale_dir = $to_explore.'locale';
+  }
+  else{
+    $locale_dir = $to_explore.$o['code'].'locale';
+  }
+
 
   /** @var string $domain The domain on which will be bound gettext */
   $domain = $o['text'];
+
   $num = is_file($locale_dir.'/index.txt') ? (int)file_get_contents($locale_dir.'/index.txt') : 0;
+  if( !is_file($locale_dir.'/index.txt') || !is_dir($locale_dir) ){
+    \bbn\file\dir::create_path($locale_dir);
+  }
   file_put_contents($locale_dir.'/index.txt', ++$num);
+  
   $domain .= $num;
 
   /** @var (array) $languages based on locale dirs found in the path */
@@ -53,6 +68,7 @@ if (
   else {
     /** @var array $languages Is set in the case the generation comes from a widget */
     $languages = $model->data['languages'];
+    $ex_dir = [];
     /** @var array $ex_dir Languages unchecked in the form */
     if ( !empty($ex_dir = array_diff($old_langs, $languages)) ){
       foreach ( $ex_dir as $ex ){
@@ -65,6 +81,8 @@ if (
       }
     }
     /** @var array $new_dir New languages checked in the form */
+    $new_dir = [];
+  //  / die(var_dump($languages,$old_langs));
     if ( !empty( $new_dir = array_diff( $languages, $old_langs ) ) ){
       foreach( $new_dir as $n ){
         // checks if the language already exists in the array languages
@@ -115,7 +133,7 @@ if (
       // the new files 
       $new_po = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.po';
       $new_mo = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.mo';
-      
+    //  die(var_dump($new_mo));
       // $new_mo = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.mo';
       //create the file at the given path
       fopen($new_po,'x');
@@ -157,31 +175,26 @@ if (
 
           //prepare the new entry for the Catalog
           $entry = new  Sepia\PoParser\Catalog\Entry($r['original_exp'], $r[$lang]);
-          \bbn\x::log($r['original_exp'] ,'sunday_p');
+          
           // set the reference for the entry
           if ( !empty($r['path']) ){
             $entry->setReference($r['path']);
+            
             foreach( $r['path'] as $idx => $path ){
+              $name = '';
 
               $ext = pathinfo($path, PATHINFO_EXTENSION);
-
+              
               if( $ext === 'js' ){
                 $tmp = substr($r['path'][$idx], strlen(constant($parent['code'])), -3);
-
+                //\bbn\x::log($tmp ,'sunday_p');
                 if ( strpos($tmp, 'components') === 0 ){
                   $name = dirname($tmp);
-
                 }
                 else if ( strpos($tmp, 'mvc') === 0 ){
-
                   if ( !empty($idx = strpos($tmp, 'js/')) ){
                     $name = str_replace('js/', '', $tmp);
-
                   }
-
-
-                
-
                 }
                 //case of plugins inside current (apst-app), temporary we decided to don't take it inside the json file of apst-app
                 else if ( ( strpos($tmp, 'plugins') === 0 ) && ($parent['code'] === 'BBN_APP_PATH') ) {
@@ -190,25 +203,37 @@ if (
 
                 else if ( strpos($tmp, 'bbn/') === 0 ){
                   //removing mvc from $o['code'] of appui plugins
+					
                   $code = str_replace(substr($o['code'], -4), '', $o['code']);
+									
                   $tmp = str_replace($code, '', $tmp);
-
-                  if ( strpos($tmp, 'components') === 0 ){
-                    $name = dirname($tmp);
+									
+                  \bbn\x::log($tmp ,'sunday_p');
+                  if ( strpos($tmp, 'components') === 4 ){
+                    
+										
+										$final = str_replace(substr($tmp, 0,4),'',$tmp);
+										$name = dirname($final);
                   }
 
-                  else if ( strpos($tmp, 'mvc') === 0 ){
-                    $name = str_replace('js/', '', $tmp);
+                  else if ( strpos($tmp, 'mvc') === 4 ){
+										$final = str_replace(substr($tmp, 0,4),'',$tmp);
+										$name = str_replace('js/','',$final);
+									
+										
+                  // $name = str_replace('js/', '', $tmp);
+									
                   }
                 }
-
+              //  die(var_dump($js_files[$lang]));
                 if ( empty($js_files[$lang][$name]) ){
+                 // die(var_dump($name, $ext, $lang, $js_file));
                   $js_files[$lang][$name] = [];
                 }
 
                 //array of all js files found in po file
                 $js_files[$lang][$name][$data['res'][$index]['original_exp']] = $data['res'][$index][$lang];
-
+//die(var_dump($js_files[$lang], $data['res'][$index][$lang],$name));
                 //die(var_dump($name, dirname($name),  substr($path, strlen(constant($parent['code'])), -3)));
               }
 
@@ -226,6 +251,7 @@ if (
       clearstatcache();
 
       if ( !empty($js_files[$lang]) ){
+        
 				$file_name = $locale_dir.'/'.$lang.'/'.$lang.'.json';
         \bbn\file\dir::create_path(dirname($file_name));
         // put the content of the array js_files in a json file
@@ -251,6 +277,7 @@ if (
     $translation->cache_set($model->data['id_option'], 'get_translations_widget',
       $translation->get_translations_widget($model->data['id_project'],$model->data['id_option'])
     );
+    
     /** @var array The data of the widget in the cache*/
     $widget = $translation->cache_get($model->data['id_option'], 'get_translations_widget');
     $success = true;
@@ -267,8 +294,8 @@ if (
     'json' => $json,
     'widget' => $widget ?? null,
     'no_strings' => $no_strings,
-    'new_dir' => array_values($new_dir),
-    'ex_dir'=> array_values($ex_dir),
+    'new_dir' => $new_dir,
+    'ex_dir'=>  $ex_dir,
     'path' => $to_explore,
     'locale' => $locale_dir,
     'languages' => $languages,

@@ -15,13 +15,13 @@ if ( $parent =  $model->inc->options->option($o['id_parent']) ){
   $to_explore = constant($parent['code']);
 
   /** @var string $locale_dir Directory containing the locale files */
-  if( $parent['code'] !== 'BBN_LIB_PATH'){
+  /*if( $parent['code'] !== 'BBN_LIB_PATH'){
     $locale_dir = $to_explore.'locale';
   }
-  else{
-    $locale_dir = mb_substr(constant($parent['code']).$o['code'], 0, -4).'locale';
-  }
-  
+  else{*/
+    $locale_dir = constant($parent['code']).$o['code'].'locale';
+  //}
+//die(var_dump( constant($parent['code']).$o['code'].'locale'));  
   if ( !empty($locale_dir) ){
     /** @var array The dirs contained in locale_dir */
     $tmp = scandir($locale_dir);

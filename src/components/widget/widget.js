@@ -101,7 +101,7 @@
             delete d.time;
             this.$nextTick( () => {
               this.parentSource.data[this.widget_idx].data_widget = d.data_widget;
-
+              this.remake_cache();
               appui.success(bbn._('Source language setted'));
               this.$forceUpdate();
             });
@@ -141,6 +141,21 @@
             this.language = null
             appui.success(bbn._('Source language resetted for this option'));
           }
+        })
+      },
+      delete_locale_folder(){
+        this.confirm('Are you sure you want to delete the folder locale for this path?',()=>{
+          bbn.fn.post(this.parentSource.root + 'actions/delete_locale_folder', {
+            id_option: this.id_option
+          }, (d) => {
+            if ( d.success ){
+              this.remake_cache()
+              appui.success('Folder locale successfully deleted');
+            }
+            else{
+              appui.error('Something went wrong while deleting locale folder')
+            }
+          });
         })
       },
       open_strings_table(){
@@ -239,10 +254,10 @@
               }
             }
           })
+          
         }
         else {
           this.alert(bbn._('Set a source language using the dropdown before to create translation file(s)'))
-
         }
       },
     },
@@ -319,26 +334,47 @@
           update(){
             this.source.data.widget.remake_cache();
           },
+          generate_mo() {
+            bbn.fn.log('-------------------------....................')
+            let root = this.source.data.widget.closest('bbns-tab').getComponent().source.root, 
+                id_option = this.source.data.widget.id_option;
+            bbn.fn.post(root + 'actions/generate_mo', {
+              id_option: id_option
+            }, (d) => {
+              if (d.success === true) {
+                appui.success('Mo files correctly generated');
+              }
+            })
+          },
           success(d){
             this.send_no_strings = false;
             if ( d.success ){
               var st = '';
               this.source.data.widget.remake_cache();
               if ( d.ex_dir.length ){
-                d.ex_dir.forEach( (v, i) => {
+                
+                d.ex_dir.forEach((v, i) => {
                   //this.source.data.widget.remake_cache();
 
-                  this.$nextTick( () => {
-                    appui.success( bbn.fn.get_field(this.source.data.primary, 'code', v, 'text') + ' translation files successfully files deleted')
+                  this.$nextTick(() => {
+                    appui.success(bbn.fn.get_field(this.source.data.primary, 'code', v, 'text') + ' translation files successfully files deleted')
                   })
                 });
+                
               }
-              if ( d.new_dir.length){
+              if ( d.new_dir.length ){
+                
                 d.new_dir.forEach((v, i) => {
-                  //this.source.data.widget.remake_cache();
-                  appui.success(  bbn.fn.get_field(this.source.data.primary, 'code', v, 'text') + ' translation files successfully created')
-                } )
+                //this.source.data.widget.remake_cache();
+                
+                appui.success(  bbn.fn.get_field(this.source.data.primary, 'code', v, 'text') + ' translation files successfully created')
+              } )
+              
+              
               }
+              
+              this.generate_mo();
+              
               if ( d.done > 0 ){
                 appui.success(d.done + ' ' + bbn._('new strings found in this path') )
               }

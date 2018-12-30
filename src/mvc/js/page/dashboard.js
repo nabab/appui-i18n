@@ -27,6 +27,10 @@
               text: bbn._('Open the table of strings'),
               icon: 'fas fa-book',
               action: 'open_strings_table',
+            }, {
+              text: bbn._('Delete locale folder'),
+              icon: 'fas fa-trash',
+              action: 'delete_locale_folder',
             }]
           }
           else {
