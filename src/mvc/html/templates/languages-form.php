@@ -13,7 +13,7 @@
     <bbn-dropdown :source="source.data.primary"
 		></bbn-dropdown-->
 		<div style="height:300px;" class="bbn-padded bbn-middle">
-    	<span>Check the box to activate translation in the language for this root</span>  
+    	<span><?=_("Check the box to activate translation in the language for this root")?></span>  
     </div>
     
     <div class="bbn-padded">
@@ -25,8 +25,9 @@
                       value="1"
                       :checked="inArray(l.id, source.row.configured_langs) > -1 || inArray(l.id, source.row.langs) > -1"
                       @change="change_checked_langs"
+                      :label="l.text"
         ></bbn-checkbox>
-        <label v-text="l.text"></label>
+        
 			</div>
     </div>  
   </div>
