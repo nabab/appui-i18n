@@ -17,26 +17,26 @@
           if (this.id_project !== 'options'){
             buttons = [{
               text: bbn._('Update widget data'),
-              icon: 'fas fa-retweet',
+              icon: 'nf nf-fa-retweet',
               action: 'remake_cache'
             },{
               text: bbn._('Setup languages'),
-              icon: 'fas fa-flag',
+              icon: 'nf nf-fa-flag',
               action: 'generate'
             },{
               text: bbn._('Open the table of strings'),
-              icon: 'fas fa-book',
+              icon: 'nf nf-fa-book',
               action: 'open_strings_table',
             }, {
               text: bbn._('Delete locale folder'),
-              icon: 'fas fa-trash',
+              icon: 'nf nf-fa-trash',
               action: 'delete_locale_folder',
             }]
           }
           else {
             buttons = [{
               text: bbn._('Update widget data'),
-              icon: 'fas fa-retweet',
+              icon: 'nf nf-fa-retweet',
               action: 'remake_cache'
             },{
               text: bbn._('Find new options or translations for this category'),
@@ -44,7 +44,7 @@
               action: 'find_options'
             },{
               text: bbn._('Open the table of strings of this path'),
-              icon: 'fas fa-book',
+              icon: 'nf nf-fa-book',
               action: 'open_strings_table',
             }]
           }
@@ -99,7 +99,7 @@
       },
       open_glossary_table(){
         //open a component popup to select source language and translation language for the table glossary
-          var tab = bbn.vue.closest(this, 'bbns-tab').getComponent();
+          var tab = bbn.vue.closest(this, 'bbn-container').getComponent();
           this.getPopup().open({
             width:350,
             height:250,
@@ -180,12 +180,12 @@
               idx =  $.inArray(obj.id, this.source.row.configured_langs);
 
             if ( idx > -1 ){
-              bbn.vue.closest(this, 'bbns-tab').getComponent().source.configured_langs.splice(idx, 1);
-              bbn.vue.closest(this, 'bbns-tab').getComponent().$forceUpdate();
+              bbn.vue.closest(this, 'bbn-container').getComponent().source.configured_langs.splice(idx, 1);
+              bbn.vue.closest(this, 'bbn-container').getComponent().$forceUpdate();
             }
             else {
-              bbn.vue.closest(this, 'bbns-tab').getComponent().source.configured_langs.push(obj.id)
-              bbn.vue.closest(this, 'bbns-tab').getComponent().$forceUpdate();
+              bbn.vue.closest(this, 'bbn-container').getComponent().source.configured_langs.push(obj.id)
+              bbn.vue.closest(this, 'bbn-container').getComponent().$forceUpdate();
             }
           }
         },

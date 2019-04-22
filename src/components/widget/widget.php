@@ -6,13 +6,13 @@
 
     <div>
       <span v-text="(id_project === 'options') ? ('<?=_("Source language of this option")?>' + ': ') : ('<?=_("Source language of this path")?>' + ': ')"></span>
-      <i class="fas fa-times"
+      <i class="nf nf-fa-times"
          v-if="id_project === 'options'"
          @click="remove_cfg"
          title="<?=_("Reset source language for this option")?>"
          style="float:right; margin-left:6px; cursor: pointer; margin-top: 4px"
       ></i>
-      <i class="fas fa-times"
+      <i class="nf nf-fa-times"
          v-else
          @click="remove_language"
          title="<?=_("Reset source language for this path")?>"
@@ -75,7 +75,7 @@
         <div class="bbn-grid-full bbn-c"
              v-if="w.num_translations_db && ( w.num !== 0 ) && ( w.num_translations_db !== w.num_translations ) && ( i !== language )"
         >
-          <i class="fas fa-exclamation-triangle bbn-large bbn-red"
+          <i class="nf nf-fa-exclamation_triangle bbn-large bbn-red"
              :title="'<?=_("Number of translations in db")?>' + ': ' + w.num_translations_db"
           ></i><?=_("The number of translations in po file and the number of translations in db are different, please remake the po file")?>
         </div>
@@ -90,7 +90,7 @@
     <div v-else-if="!locale_dirs.length"
          style="padding-top:10px"
          class="bbn-c bbn-full-grid">
-      <?=_("No translation files found for this path, to start translation configure at least one language using the")?> <i class="fas fa-flag bbn-large"></i> <?=_("button")?>
+      <?=_("No translation files found for this path, to start translation configure at least one language using the")?> <i class="nf nf-fa-flag bbn-large"></i> <?=_("button")?>
     </div>
 
 

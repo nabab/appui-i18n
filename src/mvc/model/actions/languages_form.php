@@ -10,7 +10,7 @@
 
 $model->data['success'] = false;
 if( $id_project = $model->data['id'] ){
-  $asset_type_lang = $model->inc->options->from_code('lang', 'assets','projects','appui');
+  $asset_type_lang = $model->inc->options->from_root_code('lang', 'assets','projects','appui');
 
 /** @var array The languages active for the project before changes */
   $initial_langs = $model->db->get_field_values('bbn_projects_assets', 'id_option', [

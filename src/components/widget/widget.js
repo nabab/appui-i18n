@@ -6,7 +6,7 @@
       return {
         /** @todo this property should be true after the success of the form in the case of return of d.no_strings = true*/
         no_strings : false,
-        id_option: bbn.vue.closest(this, 'bbns-widget').uid,
+        id_option: bbn.vue.closest(this, 'bbn-widget').uid,
         primary: bbn.vue.closest(this, 'bbn-tabnav').$parent.source.primary,
         //source language of the path
         language: null,
@@ -16,15 +16,20 @@
     },
     computed: {
       id_project(){
-        return this.closest('bbns-tab').getComponent().id_project
+        return this.closest('bbn-container').getComponent().id_project
       },
       widget_idx(){
         //return the real index of this widget in the array of data of dashboard it works also after drag and drop
         let data = this.parentSource.data;
         return bbn.fn.search(data, 'id', this.id_option);
       },
+      parentSource() {
+        return this.closest('bbn-container').getComponent().source;
+      },
       //used to render the widget, language of locale folder
       data_widget(){
+        //alert('fa')
+        
         //if the source language of the path is set takes the array result from dashboard source
         let result = this.parentSource.data[this.widget_idx].data_widget.result;
         if ( this.language && result){
@@ -57,10 +62,12 @@
       },
       locale_dirs(){
         //if the source language of the path is set takes the array result from dashboard source
-        let tab = bbn.vue.closest(this,'bbns-tab'),
+        let tab = bbn.vue.closest(this,'bbn-container'),
             cp = tab.getComponent(),
-            locale_dirs = cp.source.data[this.widget_idx].data_widget.locale_dirs;
-
+            locale_dirs = [];
+        if ( cp && cp.source.data && (this.widget_idx > -1) && cp.source.data[this.widget_idx].data_widget){
+           locale_dirs = cp.source.data[this.widget_idx].data_widget.locale_dirs
+        }
         if ( this.language && locale_dirs.length){
           return locale_dirs;
         }
@@ -81,9 +88,7 @@
         })
         return res;
       },
-      parentSource(){
-        return this.closest('bbns-tab').getComponent().source;
-      }
+     
     },
     methods: {
       search: bbn.fn.search,
@@ -123,7 +128,7 @@
       /** removes the property language of the path */
       remove_language(){
         bbn.fn.post('internationalization/actions/delete_path_lang', {
-          'id_option': bbn.vue.closest(this.$parent, 'bbns-tab').getComponent().widgets[bbn.vue.closest(this, 'bbns-widget').index].key,
+          'id_option': bbn.vue.closest(this.$parent, 'bbn-container').getComponent().widgets[bbn.vue.closest(this, 'bbn-widget').index].key,
           'language': this.language
         }, (d) => {
           if ( d.success ){
@@ -168,7 +173,7 @@
           bbn.fn.link('internationalization/page/path_translations/' + this.id_option);
         }
         else if ( (this.configured_langs === undefined) && ( this.id_project !== 'options')){
-          this.alert(bbn._('You have to configure at least a language of translation using the button') +' <i class="fas fa-flag"></i> ' + bbn._('of the widget before to open the strings table') );
+          this.alert(bbn._('You have to configure at least a language of translation using the button') +' <i class="nf nf-fa-flag"></i> ' + bbn._('of the widget before to open the strings table') );
         }
         else if ( ( this.configured_langs !== undefined ) && ( this.id_project === 'options') ){
           bbn.fn.link('internationalization/page/path_translations/options/' + this.id_option );
@@ -238,7 +243,7 @@
             component: this.$options.components['languages-form-locale'],
             source: {
               row: {
-                id_option: bbn.vue.closest(this, 'bbns-widget').uid,
+                id_option: bbn.vue.closest(this, 'bbn-widget').uid,
                 //locale dirs
                 languages: this.locale_dirs
               },
@@ -264,13 +269,16 @@
     beforeMount(){
       this.language = this.parentSource.data[this.$parent.index].language;
     },
+    mounted(){
+      
+    },
     watch: {
       /** define the css class for the progressbar*/
-      locale_dirs(val, oldVal){
-        if(val.length){
+      /*locale_dirs(val, oldVal){
+        if ( val.length ){
           this.$forceUpdate();
         }
-      }
+      }*/
     },
     components: {
       'languages-form-locale': {
@@ -286,7 +294,7 @@
         },
         computed: {
           message(){
-            return bbn._('If the language for which you want to create the translation file is not in this list, you have to configure it for the whole project using the form') + ' ( <i class="fas fa-cogs"></i> ) ' + bbn._('in the dashboard')
+            return bbn._('If the language for which you want to create the translation file is not in this list, you have to configure it for the whole project using the form') + ' ( <i class="nf nf-fa-cogs"></i> ) ' + bbn._('in the dashboard')
           },
         },
         methods: {
@@ -294,8 +302,8 @@
           inArray: $.inArray,
           //change the languages of locale dirs
           change_languages(val, obj) {
-            let dashboard = bbn.vue.closest(this, 'bbns-tab').getComponent(),
-              widgets = bbn.vue.findAll(dashboard, 'bbns-widget'),
+            let dashboard = bbn.vue.closest(this, 'bbn-container').getComponent(),
+              widgets = bbn.vue.findAll(dashboard, 'bbn-widget'),
               this_widget = dashboard.source.data[this.source.data.widget_idx],
               idx = $.inArray(obj.value, dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs );
             //if I want source language in locale dir as default can create error if the po file doesn't exists//
@@ -336,7 +344,7 @@
           },
           generate_mo() {
             bbn.fn.log('-------------------------....................')
-            let root = this.source.data.widget.closest('bbns-tab').getComponent().source.root, 
+            let root = this.source.data.widget.closest('bbn-container').getComponent().source.root, 
                 id_option = this.source.data.widget.id_option;
             bbn.fn.post(root + 'actions/generate_mo', {
               id_option: id_option
@@ -379,7 +387,7 @@
                 appui.success(d.done + ' ' + bbn._('new strings found in this path') )
               }
               if ( bbn.vue.closest(this, 'bbn-tabnav') ){
-                let tabs = bbn.vue.findAll(bbn.vue.closest(this, 'bbn-tabnav') , 'bbns-tab');
+                let tabs = bbn.vue.findAll(bbn.vue.closest(this, 'bbn-tabnav') , 'bbns-container');
                 bbn.fn.log('tabs', tabs, this.source.row.id_option)
                 tabs.forEach((v, i) => {
                   if ( v.url === 'path_translations/'+ this.source.row.id_option ){

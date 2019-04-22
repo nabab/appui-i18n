@@ -14,7 +14,7 @@ if ( strpos($ctrl->baseURL, APPUI_I18N_ROOT.'page/') !== 0 ){
       ];
     }, $templates);
   }
-  $ctrl->set_icon('fas fa-flag')
+  $ctrl->set_icon('nf nf-fa-flag')
        ->set_color('#ff9900', '#FFF')
        ->combo('i18n', true);
 }

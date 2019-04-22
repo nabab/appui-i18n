@@ -27,7 +27,7 @@
         for ( let n in this.source.res.languages ){
           var obj = {
             field: this.source.res.languages[n],
-            title:  ( this.source.res.languages[n] === this.source.res.path_source_lang) ? (bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text') + '  <i class="fa fa-asterisk" title="This is the original language of the expression"></i>') : bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text'),
+            title:  ( this.source.res.languages[n] === this.source.res.path_source_lang) ? (bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text') + '  <i class="nf nf-fa-asterisk" title="This is the original language of the expression"></i>') : bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text'),
             editable: true
           };
           /**render for the columns when the  project is not options */
@@ -45,15 +45,15 @@
                 translation_db = vm.translations_db[idx][this_field],
                 translation_po = vm.mapData[idx][this_field];
               if ( ( translation_db !== false )  && ( translation_db === translation_po ) ){
-                return row[this_field] + '<i class="fas fa-check bbn-large bbn-green" title="Expression correctly inserted in db and po file" style="float:right"><i/>'
+                return row[this_field] + '<i class="nf nf-fa-check bbn-large bbn-green" title="Expression correctly inserted in db and po file" style="float:right"><i/>'
               }
 
               else if ( ( translation_db !== false ) && ( translation_db !== row[this_field ] ) &&  ( this.source.id_project !== 'options') ){
-                return translation_db + '<i style="float:right" class="fas fa-exclamation-triangle bbn-large bbn-red" title="Expression correctly inserted in db but not in po files, be sure to update translations files from the orange button of the toolbar"><i/>'
+                return translation_db + '<i style="float:right" class="nf nf-fa-exclamation_triangle bbn-large bbn-red" title="Expression correctly inserted in db but not in po files, be sure to update translations files from the orange button of the toolbar"><i/>'
               }
 
               else if ( ( translation_db !== translation_po ) && ( row[this_field ] !== '' ) &&  ( this.source.id_project !== 'options') ){
-                return  vm.mapData[idx][this_field] + '<i style="float:right" class="fas fa-exclamation-triangle bbn-large bbn-red" title="Expression correctly inserted in db but not in po files, be sure to update translations files from the orange button of the toolbar"><i/>'
+                return  vm.mapData[idx][this_field] + '<i style="float:right" class="nf nf-fa-exclamation_triangle bbn-large bbn-red" title="Expression correctly inserted in db but not in po files, be sure to update translations files from the orange button of the toolbar"><i/>'
               }
 
               else {
@@ -189,7 +189,7 @@
               if ( bbn.vue.find(tabnav, 'bbn-dashboard') !== undefined ){
 
                 let dashboard = bbn.vue.find(tabnav, 'bbn-dashboard'),
-                  widgets = bbn.vue.findAll(dashboard, 'bbns-widget');
+                  widgets = bbn.vue.findAll(dashboard, 'bbn-widget');
                 if ( widgets !== undefined ){
                   widgets.forEach((v, i) => {
                     if ( v.uid === this.source.id_option ){
@@ -207,10 +207,10 @@
                 //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
                 if (bbn.vue.find(this.closest('bbn-tabnav'), 'bbn-dashboard') !== undefined) {
                   let dashboard = bbn.vue.find(this.closest('bbn-tabnav'), 'bbn-dashboard'),
-                    widgets = bbn.vue.findAll(dashboard, 'bbns-widget');
+                    widgets = bbn.vue.findAll(dashboard, 'bbn-widget');
                     if ( widgets.length ){
                       let idx = bbn.fn.search(widgets, 'uid', this.source.id_option),
-                      cp = bbn.vue.closest(dashboard, 'bbns-tab').getComponent();
+                      cp = bbn.vue.closest(dashboard, 'bbns-container').getComponent();
                       if ( idx > -1 ){
                         cp.source.data[idx].data_widget = d.widget;
                       }
@@ -230,7 +230,7 @@
           });
         }
         else {
-          this.alert('You have to configure at least a language using the button <i class="fa fa-flag"></i> of the widget in the dashboard');
+          this.alert('You have to configure at least a language using the button <i class="nf nf-fa-flag"></i> of the widget in the dashboard');
           this.showAlert = false;
         }
       },
@@ -260,7 +260,7 @@
         let res = [];
         res.push({
           command: this.delete_expression,
-          icon: 'fas fa-times',
+          icon: 'nf nf-fa-times',
           title: 'Delete original expression'
         });
         return res;
@@ -327,9 +327,9 @@
             //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
             if (bbn.vue.find(this.closest('bbn-tabnav'), 'bbn-dashboard') !== undefined) {
               let dashboard = bbn.vue.find(this.closest('bbn-tabnav'), 'bbn-dashboard'),
-                widgets = bbn.vue.findAll(dashboard, 'bbns-widget'),
+                widgets = bbn.vue.findAll(dashboard, 'bbn-widget'),
                 idx = bbn.fn.search(widgets, 'uid', this.source.id_option),
-                cp = bbn.vue.closest(dashboard, 'bbns-tab').getComponent();
+                cp = bbn.vue.closest(dashboard, 'bbns-container').getComponent();
                cp.source.data[idx].data_widget = d.widget;
             }
           }
@@ -372,7 +372,7 @@
             let tabnav = bbn.vue.closest(this, 'bbn-tabnav');
             /*if( bbn.vue.find(tabnav, 'bbn-dashboard') !== undefined ){
               let dashboard = bbn.vue.find(tabnav, 'bbn-dashboard'),
-                tab = bbn.vue.closest(dashboard, 'bbns-tab'),
+                tab = bbn.vue.closest(dashboard, 'bbns-container'),
                 cp = tab.getComponent(),
                 data = cp.source.data,
                 widget_idx = bbn.fn.search(data, 'id', this.source.id_option);
@@ -539,7 +539,7 @@
             </li>
           </ul>`,
         mounted(){
-          this.id_project = bbn.vue.closest(this, 'appui-i18n-strings').source.id_project
+          this.id_project = this.closest(this, 'appui-i18n-strings').source.id_project
         }
       },
     }

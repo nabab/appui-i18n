@@ -27,7 +27,7 @@
       render_status(row){
         let st = '';
         if ( ( row.original_lang === row.translation_lang ) && ( row.expression === row.original_exp ) ){
-          st += '<i class="fas fa-check bbn-bg-purple bbn-xl" style="color:white" title="Expressions are identical"></i>'
+          st += '<i class="nf nf-fa-check bbn-bg-purple bbn-xl" style="color:white" title="Expressions are identical"></i>'
         }
         else if ( ( row.original_lang === row.translation_lang ) && ( row.expression !== row.original_exp ) ){
           st += '<i class="zmdi zmdi-alert-triangle bbn-xl bbn-bg-orange" title="Expression changed in its' +
@@ -35,10 +35,10 @@
             ' </i>'
         }
         else if ( ( row.original_lang !== row.translation_lang ) && ( row.expression !== row.original_exp ) ){
-          st += '<i class="far fa-smile bbn-bg-green bbn-xl" title="Expression translated"></i>'
+          st += '<i class="nf nf-oct-smiley bbn-bg-green bbn-xl" title="Expression translated"></i>'
         }
         else if ( ( row.original_lang !== row.translation_lang ) && ( row.expression === row.original_exp ) ){
-          st += '<i title="Translated! Expression is the same in the two languages" class="far fa-smile bbn-green bbn-xl"></i>'
+          st += '<i title="Translated! Expression is the same in the two languages" class="nf nf-oct-smiley bbn-green bbn-xl"></i>'
         }
         return st;
       },

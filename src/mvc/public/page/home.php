@@ -8,4 +8,4 @@
 
 
 $ctrl->obj->url = APPUI_I18N_ROOT.'page/home';
-$ctrl->combo('<i class="fas fa-table"></i>Projects table', true);
+$ctrl->combo('<i class="nf nf-fa-table"></i>Projects table', true);

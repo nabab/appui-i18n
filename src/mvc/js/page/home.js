@@ -61,11 +61,10 @@
               //d.done is the number of new strings inserted in the db
               //the empty string passed to bbn.fn.alert is for the title of the alert
               if( d.done > 0 ){
-                appui.alert( d.done + ' strings successfully updated for '+ row.text + '<i class="fa' +
-                  ' fa-smile-o"></i>!', ' ');
+                appui.alert(d.done + ' strings successfully updated for ' + row.text + '<i class="nf nf-oct-smiley"></i>!', ' ');
               }
               else {
-                appui.alert('There are no new strings to update <i class="far fa-smile" aria-hidden="true"></i>', ' ');
+                appui.alert('There are no new strings to update <i class="nf nf-fa-smile" aria-hidden="true"></i>', ' ');
               }
             });
           },
@@ -88,7 +87,7 @@
             }
             else {
               this.source.row.langs.push(obj.id);
-              //bbn.vue.closest(this, 'bbns-tab').getComponent().$forceUpdate();
+              //bbn.vue.closest(this, 'bbns-container').getComponent().$forceUpdate();
             }
           }
         },
