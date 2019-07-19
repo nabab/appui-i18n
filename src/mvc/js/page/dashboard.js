@@ -9,6 +9,7 @@
 
       }
     },
+    
     computed: {
       widgets(){
         let res = [],
@@ -49,13 +50,15 @@
             }]
           }
           this.source.data.forEach( (v, i) => {
-            res.push({
-              title: v.text,
-              key: v.id,
-              component : 'appui-i18n-widget',
-              id_project: this.id_project,
-              buttonsRight: buttons
-            })
+            if ( v.id ){
+              res.push({
+                title: v.text,
+                key: v.id,
+                component : 'appui-i18n-widget',
+                id_project: this.id_project,
+                buttonsRight: buttons
+              })
+            }
           })
           return res;
         }
@@ -75,7 +78,7 @@
       //source to choose the translation language using the popup
       dd_translation_lang(){
         let res = [];
-        $.each(this.primary, (i, v) => {
+        bbn.fn.each(this.primary, (v, i) => {
           res.push({text: v.text, value: v.code })
         })
         return res;
@@ -84,7 +87,7 @@
       //the source of projects' dropdown
       dd_projects(){
         let res = [];
-        $.map(this.source.projects, (v, i) => {
+        bbn.fn.map(this.source.projects, (v, i) => {
           res.push({value: v.id, text: v.name})
         })
         return res;
@@ -174,10 +177,15 @@
       'languages-form': {
         template: '#languages-form',
         methods:{
-          inArray: $.inArray,
+          inArray(l, arr){
+            if ( bbn.fn.isArray(arr) ){
+              return arr.indexOf(l)
+            }
+          },
           change_checked_langs(val, obj){
             let form = bbn.vue.find(this, 'bbn-form'),
-              idx =  $.inArray(obj.id, this.source.row.configured_langs);
+              //idx =  $.inArray(obj.id, this.source.row.configured_langs);
+              idx = this.source.row.configured_langs.indexOf(obj.id);
 
             if ( idx > -1 ){
               bbn.vue.closest(this, 'bbn-container').getComponent().source.configured_langs.splice(idx, 1);

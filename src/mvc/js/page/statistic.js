@@ -27,7 +27,7 @@
         // don't want the language source in the source of this dropdown
         if( this.source.dropdown_langs && this.source_lang ){
           var res = [];
-          $.each(this.source.dropdown_langs, (i, v) => {
+          bbn.fn.each(this.source.dropdown_langs, (v, i) => {
             if ( v['code'] !== this.source_lang ){
               res.push({text: v['text'], value: v['code']})
             }
@@ -39,7 +39,7 @@
       source_langs(){
         if( this.source.source_dd_langs ){
           var res = [];
-          $.each(this.source.source_dd_langs, (i, v) => {
+          bbn.fn.each(this.source.source_dd_langs, (v, i) => {
             res.push({text: v['text'], value: v['code']})
           })
           return res;

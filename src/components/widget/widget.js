@@ -28,8 +28,6 @@
       },
       //used to render the widget, language of locale folder
       data_widget(){
-        //alert('fa')
-        
         //if the source language of the path is set takes the array result from dashboard source
         let result = this.parentSource.data[this.widget_idx].data_widget.result;
         if ( this.language && result){
@@ -91,6 +89,15 @@
      
     },
     methods: {
+      normalize(val){
+        if (val && (val > 0)){
+          return parseFloat(val.toFixed(2))
+        }
+        else{
+          return 0
+        }
+        
+      },
       search: bbn.fn.search,
       get_field: bbn.fn.get_field,
       /** set the property language in db for this path */
@@ -236,7 +243,7 @@
       },
       generate(){
         if ( this.language !== null ){
-          this.getPopup().open({
+          this.getPopup({
             width: 500,
             height: 600,
             title: bbn._("Define languages for the translation"),
@@ -255,7 +262,7 @@
                 //langs configured for the project
                 configured_langs: this.configured_langs,
                 /** widget is needed to make operations on the current widget*/
-                widget: this,
+                //widget: this,
               }
             }
           })
@@ -270,7 +277,7 @@
       this.language = this.parentSource.data[this.$parent.index].language;
     },
     mounted(){
-      
+      this.closest('bbn-dashboard').onResize();
     },
     watch: {
       /** define the css class for the progressbar*/
@@ -282,13 +289,58 @@
     },
     components: {
       'languages-form-locale': {
-        template: '#languages-form-locale',
+        template: `
+<bbn-form :source="source.row"
+          :data="{id_project: source.data.id_project}"
+          ref="form-locale"
+          :action="( source.data.id_project === 'options' ) ? 'internationalization/options/find_options' : 'internationalization/actions/generate'"
+          confirm-leave="`+ bbn._('Are you sure you want to exit without saving changes?') +`"
+          :prefilled="true"
+          @success="success"
+          @close="update"
+>
+
+  <div class="bbn-grid-fields">
+
+    <div style="height:300px;" class="bbn-padded bbn-middle">
+      <span>`+ bbn._('Check the box to create local folder of translation\'s files for the language in this path') +`</span>
+    </div>
+
+    <div class="bbn-padded">
+      <div v-for="l in source.data.configured_langs"
+            class="bbn-vlpadded"
+            ref="checkbox"
+      >
+        <bbn-checkbox :value="get_field(source.data.primary, 'id', l, 'code')"
+                      :checked="checked_lang(l)"
+                      @change="change_languages"
+                      :disabled="get_field(source.data.primary, 'id', l, 'code') === source.data.language"
+                      
+                      :label="get_field(source.data.primary, 'id', l, 'text')"
+        ></bbn-checkbox>
+        <div></div>
+      </div>
+    </div>
+
+   
+
+  </div>
+  <div class="bbn-s bbn-padded"
+       v-html="message"
+       style="position:absolute; bottom:0;left: 0;margin-bottom: 6px;margin-right:6px;"
+  ></div>
+
+
+</bbn-form>
+        `,
         data(){
           return {}
         },
         mounted(){
           //push the source language of the path in the array row.languages to have it as default language
-          if ( $.inArray(this.source.data.language, this.source.row.languages) <= -1 ){
+          //if ( $.inArray(this.source.data.language, this.source.row.languages) <= -1 ){
+          
+          if ( this.source.row.languages.indexOf(this.source.data.language) <= -1 ){  
             this.source.row.languages.push(this.source.data.language)
           }
         },
@@ -298,14 +350,15 @@
           },
         },
         methods: {
-          get_field: bbn.fn.get_field,
-          inArray: $.inArray,
+          get_field: bbn.fn.get_field,          
+          //inArray: $.inArray,
           //change the languages of locale dirs
           change_languages(val, obj) {
             let dashboard = bbn.vue.closest(this, 'bbn-container').getComponent(),
               widgets = bbn.vue.findAll(dashboard, 'bbn-widget'),
               this_widget = dashboard.source.data[this.source.data.widget_idx],
-              idx = $.inArray(obj.value, dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs );
+              //idx = $.inArray(obj.value, dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs );
+              idx = dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs.indexOf(obj.value);
             //if I want source language in locale dir as default can create error if the po file doesn't exists//
 
             //case uncheck language
@@ -320,7 +373,8 @@
             //case check language
             else {
               dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs.push(obj.value);
-              if ( $.inArray(obj.value, this.source.row.languages ) < 0 ){
+              //if ( $.inArray(obj.value, this.source.row.languages ) < 0 ){
+              if ( this.source.row.languages.indexOf(obj.value) < 0 ){ 
                 this.source.row.languages.push(obj.value);
               }
               dashboard.source.data[this.source.data.widget_idx].data_widget.result[obj.value] = {
@@ -332,20 +386,28 @@
           },
           checked_lang(l){
             let code = bbn.fn.get_field(this.source.data.primary, 'id', l, 'code');
-            if ( $.inArray(code, this.source.row.languages) > -1 ){
+            //if ( $.inArray(code, this.source.row.languages) > -1 ){
+            if ( this.source.row.languages.indexOf(code) > -1 ){
               return true;
             }
             else {
               return false;
             }
           },
+          get_widget(){
+            let widgets = this.closest('bbn-container').findAll('bbn-widget'),
+            widget = bbn.fn.filter(widgets, (a) => {
+              return a.uid === this.source.row.id_option
+            });
+            return widget[0].$children[0];
+          },
           update(){
-            this.source.data.widget.remake_cache();
+            this.get_widget().remake_cache();
           },
           generate_mo() {
-            bbn.fn.log('-------------------------....................')
-            let root = this.source.data.widget.closest('bbn-container').getComponent().source.root, 
-                id_option = this.source.data.widget.id_option;
+            
+            let root = this.get_widget().closest('bbn-container').getComponent().source.root, 
+                id_option = this.get_widget().id_option;
             bbn.fn.post(root + 'actions/generate_mo', {
               id_option: id_option
             }, (d) => {
@@ -358,7 +420,7 @@
             this.send_no_strings = false;
             if ( d.success ){
               var st = '';
-              this.source.data.widget.remake_cache();
+              this.get_widget().remake_cache();
               if ( d.ex_dir.length ){
                 
                 d.ex_dir.forEach((v, i) => {
@@ -404,7 +466,7 @@
             }
             else if (d.no_strings === true){
               /** change the property no_strings of the widget to render html */
-              this.source.data.widget.no_strings = true
+              this.get_widget().no_strings = true
               appui.warning(bbn._("There are no strings in this path"));
             }
           }

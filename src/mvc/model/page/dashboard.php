@@ -20,7 +20,11 @@ $success = null;
 $translation = new \bbn\appui\i18n($model->db);
 
 $configured_langs = [];
+
 foreach ( $projects as $i => $p ){
+  if ( empty($model->data['id_project']) ){
+    $model->data['id_project'] = $projects[0]['id'];
+  }
   if ( !empty($model->data['id_project']) && ( $model->data['id_project'] === $projects[$i]['id'] )){
     $timer->start('2');
     /** takes the current project from projects array */
@@ -39,6 +43,7 @@ foreach ( $projects as $i => $p ){
     $timer->stop('2');
     $timer->start('3');
     foreach ( $project['path'] as $idx => $pa ){
+      
       /** for every project takes the full option of each path */
       if ( !empty($model->inc->options->option($projects[$i]['path'][$idx]['id_option']))){
         $res[$idx] = $model->inc->options->option($projects[$i]['path'][$idx]['id_option']);

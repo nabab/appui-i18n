@@ -14,7 +14,7 @@
       render_langs(row){
         var st = '';
         if ( ( row.langs !== null ) && ( row.langs.length ) ){
-          $.each( row.langs, (i, v) => {
+          bbn.fn.each( row.langs, (v, i) => {
             st += bbn.fn.get_field(this.source.primary, 'id', v, 'text') + '<br>'});
           return st;
         }
@@ -24,8 +24,10 @@
       },
       //cfg language for the project
       cfg_languages(row, col, idx){
-        $.each( this.source.primary, (a, z) => {
-          if( $.inArray(z.id, row.langs) ){
+        bbn.fn.each( this.source.primary, (z, a) => {
+          //if( $.inArray(z.id, row.langs) ){
+            //da vedere 
+          if( row.langs.indexOf(z.id) !== 0 ){
             this.active = 1
           }
         });
@@ -75,11 +77,11 @@
       'languages-form': {
         template: '#languages-form',
         methods:{
-          inArray: $.inArray,
+          //inArray: $.inArray,
           change_checked_langs(val, obj){
             let form = bbn.vue.find(this, 'bbn-form'),
-              idx =  $.inArray(obj.id, this.source.row.langs);
-
+            //idx =  $.inArray(obj.id, this.source.row.langs);
+            idx = this.source.row.langs.indexOf(obj.id);
             bbn.fn.log('++++++++++++', obj.id, idx)
             if ( idx > -1 ){
               this.source.row.langs.splice(idx, 1);

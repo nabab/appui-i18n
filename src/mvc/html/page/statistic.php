@@ -2,7 +2,7 @@
 
 <div class="bbn-flex-width">
 
-  <div class="bbn-full-screen bbn-c bbn-middle">
+  <div class="bbn-overlay bbn-c bbn-middle">
     <bbn-loader loadingText="Cooming Soon..."></bbn-loader>
     <!--<bbn-scroll>
       <ul class="statistic_list">

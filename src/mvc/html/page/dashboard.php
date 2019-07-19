@@ -1,4 +1,4 @@
-<div class="bbn-full-screen dashboard-splitter-container">
+<div class="bbn-overlay dashboard-splitter-container">
   <bbn-splitter orientation="vertical"
                 :resizable="true"
   >
@@ -8,7 +8,7 @@
               size="17%"
 
     >
-      <div class="bbn-full-screen config-container">
+      <div class="bbn-overlay config-container">
 
           <div class="first">
             <span>Select a project</span>
@@ -63,7 +63,7 @@
                           title="<?=_("Users activity")?>"
               ></bbn-button>
 
-              <bbn-button icon="nf nf-fa-font_awesome_flag"
+              <bbn-button icon="nf nf-fa-flag"
                           text="<?=_("Glossary table")?>"
                           @click="open_glossary_table"
                           title="<?=_("Glossary tables")?>"

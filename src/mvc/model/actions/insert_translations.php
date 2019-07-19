@@ -84,7 +84,7 @@ if ( !empty($model->data['row']['id_exp'])){
     $tmp = $translation->cache_get($model->data['id_option'], 'get_translations_table');
 
     if ( !empty($tmp) && !empty($tmp['strings'][$model->data['row_idx']]) && !empty($modified_langs)){
-
+      $widget;  
       $tmp = $translation->cache_get($model->data['id_option'], 'get_translations_table');
       foreach($modified_langs as $mod){
 

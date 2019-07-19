@@ -3,7 +3,7 @@
     props: ['source'],
     data(){
       return {
-        primary: bbn.vue.closest(this,'bbn-tabnav').$parent.source.primary,
+        primary: this.closest('bbn-tabnav').$parent.source.primary,
         column_length: true,
         hidden_cols: [],
         showAlert: false
@@ -15,7 +15,7 @@
     computed: {
       /** the source language of this id_option */
       source_lang(){
-        return bbn.fn.get_field(this.primary, 'code' , this.source.res.path_source_lang, 'text')
+        return bbn.fn.get_field( this.primary, 'code' , this.source.res.path_source_lang, 'text')
       },
       /**array of columns for the table*/
       columns(){
@@ -24,40 +24,52 @@
           def = null;
         var field = '',
           vm = this;
+          
         for ( let n in this.source.res.languages ){
           var obj = {
             field: this.source.res.languages[n],
             title:  ( this.source.res.languages[n] === this.source.res.path_source_lang) ? (bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text') + '  <i class="nf nf-fa-asterisk" title="This is the original language of the expression"></i>') : bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text'),
             editable: true
           };
+          
           /**render for the columns when the  project is not options */
           if ( ( this.source.id_project !== 'options' )  ){
             obj.render = (row) => {
-              var columns = bbn.vue.find(vm, 'bbn-table').columns,
+              var columns = this.find('bbn-table').columns,
                 this_field;
-
+              
               columns.forEach( (v, i) => {
                 if ( v.field === this.source.res.languages[n] ){
                   this_field = columns[i].field;
                 }
               });
+              
+              
               var idx = bbn.fn.search(vm.translations_db, 'id_exp', row.id_exp ),
-                translation_db = vm.translations_db[idx][this_field],
-                translation_po = vm.mapData[idx][this_field];
-              if ( ( translation_db !== false )  && ( translation_db === translation_po ) ){
+                translation_db = (vm.translations_db[idx] && vm.translations_db[idx][this_field])  ? vm.translations_db[idx][this_field] : '',
+                translation_po = vm.source.res.strings[idx][this_field] ? vm.source.res.strings[idx][this_field]['translations_po'] : '';
+                //alert('here')
+              
+              if ( ( translation_db !== false ) && ( translation_db.length )  && ( translation_db === translation_po ) ){
+            
                 return row[this_field] + '<i class="nf nf-fa-check bbn-large bbn-green" title="Expression correctly inserted in db and po file" style="float:right"><i/>'
               }
 
-              else if ( ( translation_db !== false ) && ( translation_db !== row[this_field ] ) &&  ( this.source.id_project !== 'options') ){
+              else if ( translation_db.length && ( translation_db !== false ) && ( translation_db !== row[this_field ] ) &&  ( this.source.id_project !== 'options') ){
+                
                 return translation_db + '<i style="float:right" class="nf nf-fa-exclamation_triangle bbn-large bbn-red" title="Expression correctly inserted in db but not in po files, be sure to update translations files from the orange button of the toolbar"><i/>'
               }
 
-              else if ( ( translation_db !== translation_po ) && ( row[this_field ] !== '' ) &&  ( this.source.id_project !== 'options') ){
-                return  vm.mapData[idx][this_field] + '<i style="float:right" class="nf nf-fa-exclamation_triangle bbn-large bbn-red" title="Expression correctly inserted in db but not in po files, be sure to update translations files from the orange button of the toolbar"><i/>'
+              else if (  translation_db.length &&  ( translation_db !== translation_po ) && ( row[this_field ] !== '' ) &&  ( this.source.id_project !== 'options') ){
+                return  vm.source.res.strings[idx][this_field] + '<i style="float:right" class="nf nf-fa-exclamation_triangle bbn-large bbn-red" title="Expression correctly inserted in db but not in po files, be sure to update translations files from the orange button of the toolbar"><i/>'
+                
               }
-
-              else {
-                return row[this_field ]
+              /*else if(!translation_db.length && translation_po.length){
+                return translation_po + '<i style="float:right" class="nf nf-fa-exclamation_triangle bbn-large bbn-orange" title="Expression found in po_file but deleted from  db"><i/>'
+                
+              }*/
+              else{
+                return row[this_field]
               }
             }
           }
@@ -87,6 +99,7 @@
           width: 40,
           cls: 'bbn-c'
         });
+        
         return r;
       },
       /** contains original from po file and translations from db, used to render differences between the strings in the po file and the one in db */
@@ -108,13 +121,10 @@
           });
         }
         else if (this.source.res.id_project === 'options') {
-          bbn.fn.log('here')
           this.source.res.strings.forEach((obj, idx) => {
-            bbn.fn.log(this.source.res.id_project, obj, idx)
             let ob = {};
 
             for (let prop in obj) {
-              //bbn.fn.log('translation_db', idx, source_lang,'prop', prop)
               ob['original_exp'] = this.source.res.strings[idx][source_lang].original;
               ob['id_exp'] = this.source.res.strings[idx][source_lang].id_exp;
               ob[prop] = this.source.res.strings[idx][prop].translations_db;
@@ -125,44 +135,41 @@
         }
         return res
       },
-      /** the source of the table */
-      mapData(){
-        let res = [],
-          source_lang = this.source.res.path_source_lang;
-        if ( ( this.source.id_project !== 'options') && (this.source.res.strings) ){
-          this.source.res.strings.forEach( (obj, idx ) => {
-            let ob = {};
-            for (let prop in obj){
-              //number of occurrence of the strings in files of the path
-              //   ob['occurrence'] = this.source.res.strings[idx][source_lang].paths.length || 0;
-              //takes the path of the string from file po
-              if (this.source.res.strings[idx][source_lang] && this.source.res.strings[idx][source_lang].occurrence ){
-                ob['occurrence'] =  this.source.res.strings[idx][source_lang].occurrence;
-              }
-              else {
-                ob['occurrence'] = 0;
-              }
-              ob['path'] = this.source.res.strings[idx][source_lang] ? this.source.res.strings[idx][source_lang].paths : [];
-              ob['original_exp'] = this.source.res.strings[idx][source_lang] ? this.source.res.strings[idx][source_lang].original : false;
-              ob['id_exp'] = this.source.res.strings[idx][source_lang] ? this.source.res.strings[idx][source_lang].id_exp : false;
-              ob[prop] = this.source.res.strings[idx][prop].translations_po;
-            }
-            res.push(ob);
-          })
-        }
-        else {
-          res = this.source.res.strings.map((o) => {
-            if ( o.original ){
-              o.original_exp = o.original;
-              delete o.original;
-              return o;
-            }
-          });
-        }
-        return res;
-      }
     },
     methods: {
+      /** the source of the table */
+      mapData(obj){
+        let source_lang = this.source.res.path_source_lang;
+        let ob;
+        if (this.source.id_project === 'options'){
+          ob = bbn.fn.extend({}, obj);
+          ob.original_exp = obj.original;
+          delete ob.original;
+        }
+        else{
+          let ob = {
+            occurrence: obj[source_lang] && obj[source_lang].occurrence ? obj[source_lang].occurrence : 0,
+            path: obj[source_lang] ? obj[source_lang].paths : [],
+            original_exp: obj[source_lang] ? obj[source_lang].original : false,
+            id_exp: obj[source_lang] ? obj[source_lang].id_exp : false
+          };
+           
+          for (let prop in obj){
+          
+            //number of occurrence of the strings in files of the path
+            //   ob['occurrence'] = this.source.res.strings[idx][source_lang].paths.length || 0;
+            //takes the path of the string from file po
+           
+            if( obj[prop].translations_po ){
+           
+              ob[prop] = obj[prop].translations_po;
+            }
+            
+          }
+          return ob;
+        }
+        return ob;
+      },
       generate_mo(){
         bbn.fn.post(this.source.root + 'actions/generate_mo', {
           id_option : this.source.id_option
@@ -182,35 +189,40 @@
             id_project: this.source.id_project
           }, (d) => {
             if ( d.success ){
+             
               d.languages = d.languages.map( (v) => {
                 return bbn.fn.get_field(this.primary, 'code', v, 'text');
               });
-              let tabnav = bbn.vue.closest(this, 'bbn-tabnav');
-              if ( bbn.vue.find(tabnav, 'bbn-dashboard') !== undefined ){
+             
+              let tabnav = this.closest('bbn-tabnav');
+              if ( tabnav ){
 
-                let dashboard = bbn.vue.find(tabnav, 'bbn-dashboard'),
-                  widgets = bbn.vue.findAll(dashboard, 'bbn-widget');
-                if ( widgets !== undefined ){
-                  widgets.forEach((v, i) => {
-                    if ( v.uid === this.source.id_option ){
-                      let widget = v;
-                      bbn.vue.find(v, 'appui-i18n-widget').remake_cache()
+                let dashboard = tabnav.find('bbn-dashboard');
+                if ( dashboard ){
+                  let widgets = dashboard.findAll('bbn-widget');
+                  if ( widgets.length ){
+                    widgets.forEach((v, i) => {
+                      if ( v.uid === this.source.id_option ){
+                        let widget = v;
+                        v.find('appui-i18n-widget').remake_cache()
 
-                    }
-                  });
+                      }
+                    });
+                  }
                 }
+                
 
               }
               this.source.res.strings = d.strings;
               if ( this.closest('bbn-tabnav') ) {
-                bbn.fn.log('before table update', this.closest('bbn-tabnav'))
+                
+                let dashboard = this.closest('bbn-tabnav').find('bbn-dashboard');
                 //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
-                if (bbn.vue.find(this.closest('bbn-tabnav'), 'bbn-dashboard') !== undefined) {
-                  let dashboard = bbn.vue.find(this.closest('bbn-tabnav'), 'bbn-dashboard'),
-                    widgets = bbn.vue.findAll(dashboard, 'bbn-widget');
+                if ( dashboard ) {
+                  let widgets = dashboard.findAll('bbn-widget');
                     if ( widgets.length ){
                       let idx = bbn.fn.search(widgets, 'uid', this.source.id_option),
-                      cp = bbn.vue.closest(dashboard, 'bbns-container').getComponent();
+                      cp = dashboard.closest('bbn-container').getComponent();
                       if ( idx > -1 ){
                         cp.source.data[idx].data_widget = d.widget;
                       }
@@ -222,7 +234,7 @@
 
               //this.remake_cache();
               this.$nextTick(() => {
-                bbn.vue.find(this, 'bbn-table').updateData();
+                this.find('bbn-table').updateData();
                 this.showAlert = false;
               });
             }
@@ -236,7 +248,6 @@
       },
       /** checks if there are new strings in the files of the path */
       find_strings(){
-        //bbn.fn.log('id_option',this.source.id_option);
         bbn.fn.post(this.source.root + 'actions/find_strings', {
           id_option: this.source.id_option,
           language: this.source.res.path_source_lang,
@@ -266,16 +277,21 @@
         return res;
       },
       /** deletes the original expression from db, if the expression is not deleted before from the file (using the link of the expander to the code) it will be again in the table when the table is reloaded or updated */
-      delete_expression(row){
+      delete_expression(row, ob, idx){
+        bbn.fn.log('arguments',arguments)  
         let id_exp = row.id_exp,
-          data = this.mapData,
-          idx = bbn.fn.search(data, { id_exp: id_exp });
+            
+          data = this.find('bbn-table').currentData;
+          //idx = bbn.fn.search(data, { id_exp: id_exp });
         this.getPopup().confirm('Did you remove the expression from code before to delete the row?', () => {
           bbn.fn.post(this.source.root + 'actions/delete_expression', { id_exp: row.id_exp, exp: row.original_exp },  (d) => {
+            bbn.fn.log('succesws',d)
             if ( d.success ){
-              data.splice(idx, 1);
-              this.$refs.strings_table.updateData();
+              //this.$refs.strings_table.updateData();
               appui.success('Expression deleted');
+              this.$nextTick(()=>{
+                this.$refs.strings_table.currentData.splice(idx, 1);
+              })
             }
             else{
               appui.error('An error occurred while deleting the expression');
@@ -303,12 +319,13 @@
           if (d.success && !d.deleted.length && d.modified_langs.length ){
             if ( this.source.id_project !== 'options'){
               d.modified_langs.forEach((v, i) => {
-              this.source.res.strings[idx][v]['translations_db'] = d.row[v];
+                this.source.res.strings[idx][v]['translations_db'] = d.row[v];
               //I have a bug, after the update of the table this.mapData, the source of the table is wrong for the row if i don't force it to be correct
-              this.mapData[idx][v] = this.source.res.strings[idx][v]['translations_po']})
+              //this.source.res.strings[idx][v] = this.source.res.strings[idx][v]['translations_po']})
+              })
             }
             
-            let table = bbn.vue.find(this, 'bbn-table');
+            let table = this.find('bbn-table');
             table.updateData();
             appui.success('Translation saved');
           }
@@ -318,19 +335,21 @@
           else if ( d.success && d.deleted.length ){
             d.deleted.forEach((v, i) => {
               this.source.res.strings[idx][v]['translations_db'] = d.row[v];
-              this.mapData[idx][v] = this.source.res.strings[idx][v]['translations_po'];
+              this.source.res.strings[idx][v] = this.source.res.strings[idx][v]['translations_po'];
               appui.warning('Translation deleted from db');
             })
           }
           if ( this.closest('bbn-tabnav') ) {
             bbn.fn.log('before table update', this.closest('bbn-tabnav'))
             //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
-            if (bbn.vue.find(this.closest('bbn-tabnav'), 'bbn-dashboard') !== undefined) {
-              let dashboard = bbn.vue.find(this.closest('bbn-tabnav'), 'bbn-dashboard'),
-                widgets = bbn.vue.findAll(dashboard, 'bbn-widget'),
-                idx = bbn.fn.search(widgets, 'uid', this.source.id_option),
-                cp = bbn.vue.closest(dashboard, 'bbns-container').getComponent();
-               cp.source.data[idx].data_widget = d.widget;
+            if ((this.closest('bbn-tabnav').find('bbn-dashboard') !== undefined) || (this.closest('bbn-tabnav').find('bbn-dashboard') !== false)) {
+              let dashboard = this.closest('bbn-tabnav').find('bbn-dashboard');
+                if(dashboard){
+                 let  widgets = dashboard.findAll('bbn-widget'),
+                  idx = bbn.fn.search(widgets, 'uid', this.source.id_option),
+                  cp = dashboard.closest('bbn-container').getComponent();
+                  cp.source.data[idx].data_widget = d.widget;
+                }
             }
           }
         });
@@ -349,12 +368,12 @@
             let diff = ( d.res.total - this.source.res.total );
             this.source.res.languages = d.res.languages;
             this.source.res.strings = d.res.strings;
-            //bbn.vue.find(this, 'bbn-table').updateData();
+            //this.find(this, 'bbn-table').updateData();
             if ( diff > 0 ){
               appui.warning(diff + ' new string(s) found in ' + this.source.res.path);
               this.source.res.strings = d.res.strings;
               this.source.res.total = d.res.total;
-              //bbn.vue.find(this, 'bbn-table').updateData();
+              //this.find(this, 'bbn-table').updateData();
             }
             else if ( diff < 0 ){
               appui.warning(Math.abs(diff) + ' string(s) deleted from ' + this.source.res.path + ' files');
@@ -365,14 +384,14 @@
               appui.warning('There are no changes in data')
             }
             this.$nextTick(() => {
-              bbn.vue.find(this, 'bbn-table').updateData();
+              this.find('bbn-table').updateData();
               this.column_length = true;
               this.showAlert = false;
             });
-            let tabnav = bbn.vue.closest(this, 'bbn-tabnav');
-            /*if( bbn.vue.find(tabnav, 'bbn-dashboard') !== undefined ){
-              let dashboard = bbn.vue.find(tabnav, 'bbn-dashboard'),
-                tab = bbn.vue.closest(dashboard, 'bbns-container'),
+            let tabnav = this.closest('bbn-tabnav');
+            /*if( this.find(tabnav, 'bbn-dashboard') !== undefined ){
+              let dashboard = this.find(tabnav, 'bbn-dashboard'),
+                tab = this.closest(dashboard, 'bbns-container'),
                 cp = tab.getComponent(),
                 data = cp.source.data,
                 widget_idx = bbn.fn.search(data, 'id', this.source.id_option);
@@ -405,7 +424,8 @@
           let col_idx = bbn.fn.search(this.columns, 'field', v),
             /** the column to hide */
             col = this.columns[col_idx],
-            idx = $.inArray(v, this.hidden_cols);
+            //idx = $.inArray(v, this.hidden_cols);
+            idx = this.hidden_cols.indexOf(v);
           if ( idx > -1 ){
             col.hidden = true;
           }
@@ -465,7 +485,8 @@
           },
           hide_col(val){
             if ( val && this.tab ){
-              let idx = $.inArray(val, this.tab.hidden_cols);
+              //let idx = $.inArray(val, this.tab.hidden_cols);
+              let idx = this.tab.hidden_cols.indexOf(val);
               if ( idx > -1 ){
                 this.tab.hidden_cols.splice(idx, 1);
               }
@@ -477,7 +498,7 @@
           }
         },
         mounted(){
-          this.tab = bbn.vue.closest(this, 'appui-i18n-strings');
+          this.tab = this.closest('appui-i18n-strings');
         },
         watch: {
           /** v-model of bbn-switch used to hide the column of original language */
@@ -486,10 +507,12 @@
             var idx = bbn.fn.search(this.tab.columns, 'field', this.tab.source.res.path_source_lang );
             if ( ( val === true ) && ( idx > -1) ){
               this.tab.columns[idx].hidden = true;
+              this.tab.find('bbn-table').updateData();
               this.tab.$forceUpdate()
             }
             else if (( val === false )){
               this.tab.columns[idx].hidden = false;
+              this.tab.find('bbn-table').updateData();
               this.tab.$forceUpdate()
             }
           },
@@ -539,7 +562,7 @@
             </li>
           </ul>`,
         mounted(){
-          this.id_project = this.closest(this, 'appui-i18n-strings').source.id_project
+          this.id_project = this.closest('appui-i18n-strings').source.id_project
         }
       },
     }

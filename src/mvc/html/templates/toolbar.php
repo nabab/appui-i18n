@@ -1,4 +1,4 @@
-<div class="k-header bbn-w-100"
+<div class="bbn-header bbn-w-100"
      ref="toolbar"
      style="min-height: 30px;">
   <div class="bbn-spadded bbn-c">

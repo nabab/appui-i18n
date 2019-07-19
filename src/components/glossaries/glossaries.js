@@ -49,7 +49,7 @@
           res = ('<i class="nf nf-fa-check bbn-bg-purple bbn-xl" title="Expressions are identical" ></i>')
         }
         else if ( ( row.translation !== null ) && ( row.translation !== row.original_expression ) && ( this.source.source_lang === this.source.translation_lang ) ){
-          res= ('<i class="zmdi zmdi-alert-triangle bbn-xl bbn-bg-orange" title="Expression changed in its original' +
+          res= ('<i class="nf nf-fa-exclamation_triangle bbn-xl bbn-bg-orange" title="Expression changed in its original' +
             ' language" ></i>')
         }
         else if ( ( row.translation !== null ) && ( row.original_expression !== row.translation ) && ( this.source.source_lang !== this.source.translation_lang ) ) {

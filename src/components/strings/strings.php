@@ -1,8 +1,9 @@
 <div class="strings-table" style="min-height: 500px; width:100%">
   <bbn-table v-if="source.res.languages.length "
              v-show="showAlert === false"
-             :source="mapData"
+             :source="source.res.strings"
              :columns="columns"
+             :map="mapData"
              editable="nobuttons"
              :pageable="true"
              :limit="25"
@@ -27,7 +28,7 @@
     ></bbns-column>
 
   </bbn-table>
-
+  
   <div v-else-if="!source.res.languages.length && column_length">
     <h5 class="bbn-c"><?=_('Close this tab and configure translation files from the widget')?> <i class="nf nf-fa-flag"></i> <?=_('button before to open the table of strings')?>.</h5>
     <br>

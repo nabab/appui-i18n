@@ -1,5 +1,4 @@
-<bbn-form class="bbn-full-screen"
-          :source="source.row"
+<bbn-form :source="source.row"
           :data="{id_project: source.data.id_project}"
           ref="form-locale"
           :action="( source.data.id_project === 'options' ) ? 'internationalization/options/find_options' : 'internationalization/actions/generate'"

@@ -59,15 +59,15 @@
         ></span>
         <span v-text=" w.num_translations + ' / '+ w.num"
               v-if="i !== language"
-              style="padding-loeft:6px"
+              style="padding-left:6px"
         ></span>
 
 
-        <bbn-progressbar :value="w.val"
-                         style="padding-top:6px;"
+        <bbn-progressbar :value="normalize(w.val)"
                          type="percent"
                          :class="w.class"
                          v-if="i !== language"
+                         :width="250"
         ></bbn-progressbar>
 
 

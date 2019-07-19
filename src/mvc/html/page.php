@@ -1,12 +1,12 @@
-<div class="languages bbn-full-screen">
+<div class="languages bbn-overlay">
   <bbn-tabnav :autoload="true">
     <bbns-container url="dashboard"
-              icon="nf nf-fa-edit"
-             	title="Projects Dashboard"
-              :load="true"
-              :source="source"
-              :static="false"
-              :pinned="true"
+                    icon="nf nf-fa-edit"
+                    title="Projects Dashboard"
+                    :load="true"
+                    :source="source"
+                    :static="false"
+                    :pinned="true"
     ></bbns-container>
     <!--
 		<bbns-container url="home"

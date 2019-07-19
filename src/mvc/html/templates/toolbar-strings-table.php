@@ -1,20 +1,20 @@
-<div class="k-header bbn-w-100"
+<div class="bbn-header bbn-w-100"
      ref="toolbar-strings-table"
      style="min-height: 60px;">
   <div style="padding: 6px;"
        v-if="id_project !=='options'"
   >
     <bbn-button title="<?=_('Force translation files update')?>"
-                class="k-button bbn-button bbn-events-component"
+                class="bbn-button bbn-events-component"
                 @click="generate"
-                icon="nf nf-fa-dumbbell"
+                icon="nf nf-fa-files_o"
                 text="<?=_('Create translation files')?>"
                 style="background-color: orange;"
     >
     </bbn-button>
 
     <bbn-button title="<?=_('Rebuild table data')?>"
-                class="k-button bbn-button bbn-events-component"
+                class="bbn-button bbn-events-component"
                 @click="remake_cache"
                 icon="nf nf-fa-retweet"
                 text="<?=_('Rebuild table data')?>"
@@ -23,7 +23,7 @@
 
 
     <bbn-button title="<?=_('Check files for new strings')?>"
-                class="k-button bbn-button bbn-events-component"
+                class="bbn-button bbn-events-component"
                 @click="find_strings"
                 icon="nf nf-fa-search"
                 text="<?=_('Parse files for new strings')?>"
