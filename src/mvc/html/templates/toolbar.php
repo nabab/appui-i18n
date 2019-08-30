@@ -11,7 +11,7 @@
       ><?=_('Go to glossary')?></bbn-button>
 
       <bbn-button title="<?=_('Go to the table of your translations')?>"
-                  class="k-button bbn-button bbn-events-component"
+                  class="bbn-button bbn-events-component"
                   @click="open_user_history"
                   icon="nf nf-fa-user"
                   text="<?=_('User\'s translation')?>"
