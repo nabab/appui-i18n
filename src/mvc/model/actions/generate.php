@@ -38,7 +38,7 @@ if (
 		//$locale_dir = mb_substr(constant($parent['code']).$o['code'], 0, -4).'locale';
 		$locale_dir = mb_substr(constant($parent['code']).$o['code']).'locale';
   }*/
-  if( (constant($parent['code']) === BBN_APP_PATH) && (strrpos('mvc/', $o['code'],0) === 0) ) {
+  if( (constant($parent['code']) === $model->app_path()) && (strrpos('mvc/', $o['code'],0) === 0) ) {
     $locale_dir = $to_explore.'locale';
   }
   else{
@@ -207,12 +207,9 @@ if (
                   $code = str_replace(substr($o['code'], -4), '', $o['code']);
 									
                   $tmp = str_replace($code, '', $tmp);
-									
-                  \bbn\x::log($tmp ,'sunday_p');
+							               
                   if ( strpos($tmp, 'components') === 4 ){
-                    
-										
-										$final = str_replace(substr($tmp, 0,4),'',$tmp);
+              			$final = str_replace(substr($tmp, 0,4),'',$tmp);
 										$name = dirname($final);
                   }
 
@@ -225,7 +222,7 @@ if (
 									
                   }
                 }
-              //  die(var_dump($js_files[$lang]));
+              
                 if ( empty($js_files[$lang][$name]) ){
                  // die(var_dump($name, $ext, $lang, $js_file));
                   $js_files[$lang][$name] = [];

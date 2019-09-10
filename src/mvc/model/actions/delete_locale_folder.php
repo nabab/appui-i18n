@@ -18,7 +18,7 @@ if ( $o = $model->data['id_option'] ) {
   if ( constant($parent['code']) === BBN_LIB_PATH ){
     $locale = constant($parent['code']).$code.'locale';
   }
-  else if ( constant($parent['code']) === BBN_APP_PATH  ){
+  else if ( constant($parent['code']) === $model->app_path() ){
     if ( $code === 'mvc/' ){
       $locale = constant($parent['code']).'locale';
     }
