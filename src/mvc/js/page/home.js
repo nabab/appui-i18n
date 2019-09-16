@@ -59,7 +59,7 @@
           },
           find_new_strings(row){
             //check in the path for new strings
-            bbn.fn.post('internationalization/actions/find_strings', row, (d) => {
+            this.post('internationalization/actions/find_strings', row, (d) => {
               //d.done is the number of new strings inserted in the db
               //the empty string passed to bbn.fn.alert is for the title of the alert
               if( d.done > 0 ){

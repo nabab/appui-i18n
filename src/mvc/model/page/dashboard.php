@@ -53,6 +53,9 @@ foreach ( $projects as $i => $p ){
 
         //the id_option of the widget
         $id_option = $res[$idx]['id'];
+        
+        
+        
         //if the widget has not cache for this method creates the cache
         if ( empty($translation->cache_has($id_option, 'get_translations_widget')) ){
           //set data in cache $translation->cache_set($id_option, (string)method name, (array)data)
@@ -60,6 +63,7 @@ foreach ( $projects as $i => $p ){
             $translation->get_translations_widget($projects[$i]['id'],$res[$idx]['id'])
           );
         }
+        
         $res[$idx]['data_widget'] = $translation->cache_get($id_option, 'get_translations_widget');
 
 

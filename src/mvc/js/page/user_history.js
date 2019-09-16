@@ -27,7 +27,7 @@
 
     methods: {
       insert_translation(row,idx){
-        bbn.fn.post('internationalization/actions/insert_translation', row, (success) => {
+        this.post('internationalization/actions/insert_translation', row, (success) => {
           if (success){
             appui.success('Translation saved');
           }

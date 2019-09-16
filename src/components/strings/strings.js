@@ -171,7 +171,7 @@
         return ob;
       },
       generate_mo(){
-        bbn.fn.post(this.source.root + 'actions/generate_mo', {
+        this.post(this.source.root + 'actions/generate_mo', {
           id_option : this.source.id_option
         }, (d) => {
           if ( d.success === true ){
@@ -183,7 +183,7 @@
       generate(){
         this.showAlert = true;
         if ( this.source.res.languages.length ){
-          bbn.fn.post(this.source.root + 'actions/generate', {
+          this.post(this.source.root + 'actions/generate', {
             id_option: this.source.id_option,
             languages: this.source.res.languages,
             id_project: this.source.id_project
@@ -248,7 +248,7 @@
       },
       /** checks if there are new strings in the files of the path */
       find_strings(){
-        bbn.fn.post(this.source.root + 'actions/find_strings', {
+        this.post(this.source.root + 'actions/find_strings', {
           id_option: this.source.id_option,
           language: this.source.res.path_source_lang,
           languages: this.source.res.languages
@@ -284,7 +284,7 @@
           data = this.find('bbn-table').currentData;
           //idx = bbn.fn.search(data, { id_exp: id_exp });
         this.getPopup().confirm('Did you remove the expression from code before to delete the row?', () => {
-          bbn.fn.post(this.source.root + 'actions/delete_expression', { id_exp: row.id_exp, exp: row.original_exp },  (d) => {
+          this.post(this.source.root + 'actions/delete_expression', { id_exp: row.id_exp, exp: row.original_exp },  (d) => {
             bbn.fn.log('succesws',d)
             if ( d.success ){
               //this.$refs.strings_table.updateData();
@@ -308,7 +308,7 @@
             to_delete.push(v)
           }
         })
-        bbn.fn.post(this.source.root + 'actions/insert_translations', {
+        this.post(this.source.root + 'actions/insert_translations', {
           to_delete : to_delete,
           row: row,
           langs: this.source.res.languages,
@@ -359,7 +359,7 @@
         this.column_length = false;
         //this.generate();
         this.showAlert = true;
-        bbn.fn.post('internationalization/actions/reload_table_cache', {
+        this.post('internationalization/actions/reload_table_cache', {
           id_option: this.source.id_option,
           id_project: this.source.id_project,
           routes: this.source.root

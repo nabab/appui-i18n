@@ -23,13 +23,13 @@
       },
       delete_expression(row){
         this.getPopup().confirm('Do you really want to delete the original expression and it\'s translation?', () => {
-          bbn.fn.post('internationalization/actions/delete_expression', { id_exp: row.idExp, exp: row.original_exp },  (d) => {
+          this.post('internationalization/actions/delete_expression', { id_exp: row.idExp, exp: row.original_exp },  (d) => {
             this.$refs.glossary_table.remove(row)
           } );
         })
       },
       insert_translation(row,idx){
-        bbn.fn.post('internationalization/actions/insert_translation',
+        this.post('internationalization/actions/insert_translation',
           {
             'id_exp' : row.idExp,
             'expression': row.translation,

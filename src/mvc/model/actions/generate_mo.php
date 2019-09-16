@@ -3,25 +3,22 @@
 // Generates the mo files called from the method generate of the table
 
 use Gettext\Translations;
-/** @var string The id_option of the path */
-$id_option = $model->data['id_option'];
-/** @var array The full option */
-$o = $model->inc->options->option($id_option);
+
+
 $success = false;
 
-if ( $parent =  $model->inc->options->option($o['id_parent']) ){
+if ( !empty($model->data['id_option']) ){
 
+  $translation = new \bbn\appui\i18n($model->db);
   /** @var string $to_explore The directory to explore for strings */
-  $to_explore = constant($parent['code']);
+
+  $to_explore = $translation->get_path_to_explore($model->data['id_option']);
 
   /** @var string $locale_dir Directory containing the locale files */
-  /*if( $parent['code'] !== 'BBN_LIB_PATH'){
-    $locale_dir = $to_explore.'locale';
-  }
-  else{*/
-    $locale_dir = constant($parent['code']).$o['code'].'locale';
-  //}
-//die(var_dump( constant($parent['code']).$o['code'].'locale'));  
+  
+  $locale_dir = $translation->get_locale_dir_path($model->data['id_option']);
+  
+ 
   if ( !empty($locale_dir) ){
     /** @var array The dirs contained in locale_dir */
     $tmp = scandir($locale_dir);
@@ -51,7 +48,7 @@ if ( $parent =  $model->inc->options->option($o['id_parent']) ){
           }
         }
         
-        // if a po file exists it take the name of the file to generate the new mo file
+        // if a po file exists it takes the name of the file to generate the new mo file
         if ( $po ){
           $new_mo = str_replace('.po', '.mo', $po);
           /** @var array The content of po file */

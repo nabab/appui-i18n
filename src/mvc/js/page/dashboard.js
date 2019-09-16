@@ -89,7 +89,7 @@
         let res = [];
         bbn.fn.map(this.source.projects, (v, i) => {
           res.push({value: v.id, text: v.name})
-        })
+        });
         return res;
       },
     },
@@ -141,7 +141,7 @@
       load_widgets(){
         this.source.data = [];
         if ( this.id_project !== 'options' ){
-          bbn.fn.post('internationalization/page/dashboard', { id_project: this.id_project }, (d) => {
+          this.post('internationalization/page/dashboard', { id_project: this.id_project }, (d) => {
             if ( d.data.success ){
               this.source.data = d.data.data;
               this.source.configured_langs = d.data.configured_langs;
@@ -150,7 +150,7 @@
         }
         /** case of project options this controller will return only result of each language and locale dirs */
         else if ( this.id_project === 'options' ){
-          bbn.fn.post('internationalization/options/options_data', { id_project: this.id_project }, (d) => {
+          this.post('internationalization/options/options_data', { id_project: this.id_project }, (d) => {
             if ( d.success && d.data ){
               this.source.data = d.data.data;
               this.source.configured_langs = d.configured_langs
@@ -159,7 +159,6 @@
         }
       }
     },
-
     components: {
       'cfg_translations_form': {
         template:'#cfg_translations_form',
@@ -199,6 +198,9 @@
         },
         props: ['source'],
       }
+    },
+    mounted(){
+      this.id_project = this.source.projects[0].id
     }
   }
 

@@ -10,27 +10,15 @@
 
 
 
-if ( $o = $model->data['id_option'] ) {
+if ( $model->data['id_option'] ) {
   $success = false;
-  $parent = $model->inc->options->parent($o);
-  $code = $model->inc->options->code($o);
-  $locale = '';
-  if ( constant($parent['code']) === BBN_LIB_PATH ){
-    $locale = constant($parent['code']).$code.'locale';
-  }
-  else if ( constant($parent['code']) === $model->app_path() ){
-    if ( $code === 'mvc/' ){
-      $locale = constant($parent['code']).'locale';
-    }
-    else{
-      $locale = constant($parent['code']).$code.'locale';
-    }
-  }
+  /** @var  $translation instantiate the class i18n */
+  $translation = new \bbn\appui\i18n($model->db);
+  $locale = $translation->get_locale_dir_path($model->data['id_option']);
   if ( is_dir($locale) ){
     $success =  \bbn\file\dir::delete($locale, true);
   }
 	return [
     'success' => $success,
-    
   ];
 }

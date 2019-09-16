@@ -65,7 +65,7 @@
       //v-model of the first dropdown
       source_lang(val){
         if ( val ){
-          bbn.fn.post('internationalization/page/lang', {
+          this.post('internationalization/page/lang', {
             'source_lang': val,
             'lang' : this.search_for_lang
           }, (d) => {
@@ -81,7 +81,7 @@
         if ( val ){
           //an intermediate property used for the render of the statistic
           this.dd_ready = true;
-          bbn.fn.post('internationalization/languages/lang', {
+          this.post('internationalization/languages/lang', {
             'lang': val,
             'source_lang': this.source_lang
           }, (d) => {

@@ -23,37 +23,26 @@ if (
   $js_files = [];
   //instantiate the class i18n
   $translation = new \bbn\appui\i18n($model->db);
+  //die(var_dump($translation->get_po_files($model->data['id_option'])));
   $success = false;
 
-  /** @var string $to_explore The directory to explore for strings */
-  $to_explore = constant($parent['code']);
 
-  /** @var string $locale_dir Directory containing the locale files */
-  /*if( $parent['code'] !== 'BBN_LIB_PATH'){
-    //$locale_dir = $to_explore.'locale';
-    $locale_dir = $to_explore.$o['code'].'locale';
-    
-	}
-	else{
-		//$locale_dir = mb_substr(constant($parent['code']).$o['code'], 0, -4).'locale';
-		$locale_dir = mb_substr(constant($parent['code']).$o['code']).'locale';
-  }*/
-  if( (constant($parent['code']) === $model->app_path()) && (strrpos('mvc/', $o['code'],0) === 0) ) {
-    $locale_dir = $to_explore.'locale';
-  }
-  else{
-    $locale_dir = $to_explore.$o['code'].'locale';
-  }
+  /** @var string $to_explore The directory to explore for strings */
+  $to_explore = $translation->get_path_to_explore($model->data['id_option']);
+  
+  $locale_dir = $translation->get_locale_dir_path($model->data['id_option']);
 
 
   /** @var string $domain The domain on which will be bound gettext */
   $domain = $o['text'];
 
-  $num = is_file($locale_dir.'/index.txt') ? (int)file_get_contents($locale_dir.'/index.txt') : 0;
-  if( !is_file($locale_dir.'/index.txt') || !is_dir($locale_dir) ){
+
+  $num = is_file($translation->get_index_path($o['id'])) ? (int)file_get_contents($translation->get_index_path($o['id'])) : 0;
+
+  if( !is_file($translation->get_index_path($o['id'])) || !is_dir($locale_dir) ){
     \bbn\file\dir::create_path($locale_dir);
   }
-  file_put_contents($locale_dir.'/index.txt', ++$num);
+  file_put_contents($translation->get_index_path($o['id']), ++$num);
   
   $domain .= $num;
 
@@ -82,7 +71,7 @@ if (
     }
     /** @var array $new_dir New languages checked in the form */
     $new_dir = [];
-  //  / die(var_dump($languages,$old_langs));
+  
     if ( !empty( $new_dir = array_diff( $languages, $old_langs ) ) ){
       foreach( $new_dir as $n ){
         // checks if the language already exists in the array languages
@@ -123,6 +112,7 @@ if (
           $mo = $f;
         }
       }
+      
     /** checks if the file po exist for this lang and deletes it*/
       if ( $po ){
         unlink($po);
@@ -133,8 +123,7 @@ if (
       // the new files 
       $new_po = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.po';
       $new_mo = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.mo';
-    //  die(var_dump($new_mo));
-      // $new_mo = $locale_dir . '/' . $lang . '/LC_MESSAGES/'.$domain.'.mo';
+    
       //create the file at the given path
       fopen($new_po,'x');
 
@@ -187,7 +176,7 @@ if (
               
               if( $ext === 'js' ){
                 $tmp = substr($r['path'][$idx], strlen(constant($parent['code'])), -3);
-                //\bbn\x::log($tmp ,'sunday_p');
+                
                 if ( strpos($tmp, 'components') === 0 ){
                   $name = dirname($tmp);
                 }
@@ -205,35 +194,24 @@ if (
                   //removing mvc from $o['code'] of appui plugins
 					
                   $code = str_replace(substr($o['code'], -4), '', $o['code']);
-									
-                  $tmp = str_replace($code, '', $tmp);
-							               
-                  if ( strpos($tmp, 'components') === 4 ){
+									$tmp = str_replace($code, '', $tmp);
+							    if ( strpos($tmp, 'components') === 4 ){
               			$final = str_replace(substr($tmp, 0,4),'',$tmp);
 										$name = dirname($final);
                   }
-
                   else if ( strpos($tmp, 'mvc') === 4 ){
 										$final = str_replace(substr($tmp, 0,4),'',$tmp);
 										$name = str_replace('js/','',$final);
-									
-										
-                  // $name = str_replace('js/', '', $tmp);
-									
-                  }
+									}
                 }
               
                 if ( empty($js_files[$lang][$name]) ){
-                 // die(var_dump($name, $ext, $lang, $js_file));
                   $js_files[$lang][$name] = [];
                 }
 
                 //array of all js files found in po file
                 $js_files[$lang][$name][$data['res'][$index]['original_exp']] = $data['res'][$index][$lang];
-//die(var_dump($js_files[$lang], $data['res'][$index][$lang],$name));
-                //die(var_dump($name, dirname($name),  substr($path, strlen(constant($parent['code'])), -3)));
               }
-
             }
           }
           //add the prepared entry to the catalog
@@ -248,7 +226,6 @@ if (
       clearstatcache();
 
       if ( !empty($js_files[$lang]) ){
-        
 				$file_name = $locale_dir.'/'.$lang.'/'.$lang.'.json';
         \bbn\file\dir::create_path(dirname($file_name));
         // put the content of the array js_files in a json file
@@ -278,15 +255,10 @@ if (
     /** @var array The data of the widget in the cache*/
     $widget = $translation->cache_get($model->data['id_option'], 'get_translations_widget');
     $success = true;
-
-
   }
-
-
   else {
     $no_strings = true;
   }
-
   return [
     'json' => $json,
     'widget' => $widget ?? null,

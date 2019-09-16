@@ -30,7 +30,7 @@
       data_widget(){
         //if the source language of the path is set takes the array result from dashboard source
         let result = this.parentSource.data[this.widget_idx].data_widget.result;
-        if ( this.language && result){
+        if ( this.language && result ){
           for ( let r in result ){
             result[r].class = '';
             result[r].class_db = '';
@@ -103,7 +103,7 @@
       /** set the property language in db for this path */
       set_language(){
         /* the data coming from the post change the source of the dashboard at the index of this specific widget*/
-        bbn.fn.post('internationalization/actions/define_path_lang', {
+        this.post('internationalization/actions/define_path_lang', {
           'language': this.language,
           'id_option': this.id_option,
           'id_project': this.id_project,
@@ -121,7 +121,7 @@
         })
       },
       set_cfg(){
-        bbn.fn.post('options/set_lang', {
+        this.post('options/set_lang', {
           'id_option': this.id_option,
           'id_project': this.id_project,
           'language': this.language
@@ -134,7 +134,7 @@
       },
       /** removes the property language of the path */
       remove_language(){
-        bbn.fn.post('internationalization/actions/delete_path_lang', {
+        this.post('internationalization/actions/delete_path_lang', {
           'id_option': bbn.vue.closest(this.$parent, 'bbn-container').getComponent().widgets[bbn.vue.closest(this, 'bbn-widget').index].key,
           'language': this.language
         }, (d) => {
@@ -146,7 +146,7 @@
       },
       /** removes the property language of the option from its cfg */
       remove_cfg(){
-        bbn.fn.post('internationalization/options/remove_lang', {
+        this.post('internationalization/options/remove_lang', {
           id_option: this.id_option
         }, (d) => {
           if ( d.success ){
@@ -157,7 +157,7 @@
       },
       delete_locale_folder(){
         this.confirm('Are you sure you want to delete the folder locale for this path?',()=>{
-          bbn.fn.post(this.parentSource.root + 'actions/delete_locale_folder', {
+          this.post(this.parentSource.root + 'actions/delete_locale_folder', {
             id_option: this.id_option
           }, (d) => {
             if ( d.success ){
@@ -188,7 +188,7 @@
       },
       remake_cache(){
         if ( this.language != null ){
-          bbn.fn.post('internationalization/actions/reload_widget_cache', {
+          this.post('internationalization/actions/reload_widget_cache', {
             id_option: this.id_option,
             id_project: this.id_project
           }, (d) => {
@@ -206,7 +206,7 @@
       /*
       find_strings(){
         let url = this.parentSource.root + 'actions/reload_widget_cache';
-        bbn.fn.post(url, { id_option: this.source.id_option },  (d) => {
+        this.post(url, { id_option: this.source.id_option },  (d) => {
           if ( d.success ){
             this.source.res = d.res;
             let diff = ( d.total - this.source.total );
@@ -225,7 +225,7 @@
       find_options(){
         if ( this.id_project === 'options' ){
           let url = this.parentSource.root + 'options/find_options';
-          bbn.fn.post(url, {
+          this.post(url, {
             id_option : this.id_option,
             language: this.language
           }, (d) => {
@@ -274,7 +274,8 @@
       },
     },
     beforeMount(){
-      this.language = this.parentSource.data[this.$parent.index].language;
+      //this.language = this.parentSource.data[this.$parent.index].language;
+      this.language = this.parentSource.data[this.widget_idx].language;
     },
     mounted(){
       this.closest('bbn-dashboard').onResize();
@@ -408,7 +409,7 @@
             
             let root = this.get_widget().closest('bbn-container').getComponent().source.root, 
                 id_option = this.get_widget().id_option;
-            bbn.fn.post(root + 'actions/generate_mo', {
+            this.post(root + 'actions/generate_mo', {
               id_option: id_option
             }, (d) => {
               if (d.success === true) {

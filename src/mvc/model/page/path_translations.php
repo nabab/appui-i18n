@@ -13,7 +13,7 @@ if ( !empty($model->data['id_option']) ){
 
   /** @var  $translation instantiate the class appui\i18n*/
   $translation = new \bbn\appui\i18n($model->db);
-
+  
   $projects = $model->get_model('internationalization/page')['projects'];
 
   //return id_project from id_option
@@ -25,7 +25,7 @@ if ( !empty($model->data['id_option']) ){
     }
   }
 
-
+  
   //if the table has no cache it creates cache
   if ( empty($translation->cache_has($model->data['id_option'], 'get_translations_table')) && !empty($id_project) ){
     //set data in cache $translation->cache_set($id_option, (string)method name, (array)data)
