@@ -227,6 +227,7 @@ if (
 
       if ( !empty($js_files[$lang]) ){
 				$file_name = $locale_dir.'/'.$lang.'/'.$lang.'.json';
+        
         \bbn\file\dir::create_path(dirname($file_name));
         // put the content of the array js_files in a json file
         $json = (boolean)file_put_contents($file_name, json_encode($js_files[$lang]));

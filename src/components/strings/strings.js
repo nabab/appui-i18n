@@ -231,8 +231,6 @@
                 }
               }
               appui.success('Files of translation successfully updated for '+ d.languages.join(' and ') );
-
-              //this.remake_cache();
               this.$nextTick(() => {
                 this.find('bbn-table').updateData();
                 this.showAlert = false;
@@ -344,11 +342,13 @@
             //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
             if ((this.closest('bbn-tabnav').find('bbn-dashboard') !== undefined) || (this.closest('bbn-tabnav').find('bbn-dashboard') !== false)) {
               let dashboard = this.closest('bbn-tabnav').find('bbn-dashboard');
-                if(dashboard){
+                if ( dashboard ){
                  let  widgets = dashboard.findAll('bbn-widget'),
                   idx = bbn.fn.search(widgets, 'uid', this.source.id_option),
                   cp = dashboard.closest('bbn-container').getComponent();
-                  cp.source.data[idx].data_widget = d.widget;
+                  if ( idx > -1 ){
+                    cp.source.data[idx].data_widget = d.widget;
+                  }
                 }
             }
           }

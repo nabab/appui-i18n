@@ -14,3 +14,7 @@ composer.phar
 
 # PhpStorm
 /.idea
+
+[core]
+filemode = false
+*.* text eol=lf

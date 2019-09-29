@@ -18,4 +18,4 @@ if ( !empty($ctrl->post['id_project'])){
 }
 
 
-$ctrl->combo('', true);
+$ctrl->combo(_('Projects Dashboard'), true);

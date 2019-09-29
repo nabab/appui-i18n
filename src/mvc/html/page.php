@@ -2,7 +2,7 @@
   <bbn-tabnav :autoload="true">
     <bbns-container url="dashboard"
                     icon="nf nf-fa-edit"
-                    title="Projects Dashboard"
+                    :title="_('Projects Dashboard')"
                     :load="true"
                     :source="source"
                     :static="false"

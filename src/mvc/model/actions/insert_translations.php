@@ -19,6 +19,7 @@ if ( !empty($model->data['row']['id_exp'])){
   $langs = $model->data['langs'];
   $deleted = [];
   $modified_langs = [];
+  $widget;
 
 
   foreach( $langs as $l ){
