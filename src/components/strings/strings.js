@@ -24,10 +24,10 @@
           def = null;
         var field = '',
           vm = this;
-          
+       
         for ( let n in this.source.res.languages ){
           var obj = {
-            field: this.source.res.languages[n],
+            field: this.source.res.languages[n] + '_db',
             title:  ( this.source.res.languages[n] === this.source.res.path_source_lang) ? (bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text') + '  <i class="nf nf-fa-asterisk" title="This is the original language of the expression"></i>') : bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text'),
             editable: true
           };
@@ -36,40 +36,25 @@
           if ( ( this.source.id_project !== 'options' )  ){
             obj.render = (row) => {
               var columns = this.find('bbn-table').columns,
-                this_field;
-              
-              columns.forEach( (v, i) => {
-                if ( v.field === this.source.res.languages[n] ){
-                  this_field = columns[i].field;
-                }
-              });
-              
-              
-              var idx = bbn.fn.search(vm.translations_db, 'id_exp', row.id_exp ),
-                translation_db = (vm.translations_db[idx] && vm.translations_db[idx][this_field])  ? vm.translations_db[idx][this_field] : '',
-                translation_po = vm.source.res.strings[idx][this_field] ? vm.source.res.strings[idx][this_field]['translations_po'] : '';
-                //alert('here')
-              
+                this_field, 
+                translation_db = row[this.source.res.languages[n] + '_db'],
+                translation_po = row[this.source.res.languages[n] + '_po'];
               if ( ( translation_db !== false ) && ( translation_db.length )  && ( translation_db === translation_po ) ){
-            
-                return row[this_field] + '<i class="nf nf-fa-check bbn-large bbn-green" title="Expression correctly inserted in db and po file" style="float:right"><i/>'
+                return translation_db + '<i class="nf nf-fa-check bbn-large bbn-green" title="Expression correctly inserted in db and po file" style="float:right"><i/>'
               }
-
-              else if ( translation_db.length && ( translation_db !== false ) && ( translation_db !== row[this_field ] ) &&  ( this.source.id_project !== 'options') ){
-                
-                return translation_db + '<i style="float:right" class="nf nf-fa-exclamation_triangle bbn-large bbn-red" title="Expression correctly inserted in db but not in po files, be sure to update translations files from the orange button of the toolbar"><i/>'
+              else if ( translation_db.length &&  ( translation_db !== translation_po ) && ( this.source.id_project !== 'options') ){
+                return  '<span title="'+
+                (translation_po.length ? bbn._( 'The translation in the po file is different from the one in database') : '')
+                +'" class="' +
+                (translation_po.length ? ' bbn-orange' : ' bbn-red')
+                + '">' + translation_db + '</span><i style="float:right" class="'+
+                (translation_po.length ? ' nf nf-fa-exclamation' : ' nf nf-fa-exclamation_triangle')
+                +' bbn-large '+ 
+                (translation_po.length ? ' bbn-orange' : ' bbn-red')
+                +'" title="' + (translation_po ? translation_po : bbn._('Translation missing in po file')) + '"></i>'
               }
-
-              else if (  translation_db.length &&  ( translation_db !== translation_po ) && ( row[this_field ] !== '' ) &&  ( this.source.id_project !== 'options') ){
-                return  vm.source.res.strings[idx][this_field] + '<i style="float:right" class="nf nf-fa-exclamation_triangle bbn-large bbn-red" title="Expression correctly inserted in db but not in po files, be sure to update translations files from the orange button of the toolbar"><i/>'
-                
-              }
-              /*else if(!translation_db.length && translation_po.length){
-                return translation_po + '<i style="float:right" class="nf nf-fa-exclamation_triangle bbn-large bbn-orange" title="Expression found in po_file but deleted from  db"><i/>'
-                
-              }*/
-              else{
-                return row[this_field]
+              else if ( translation_db === false ){
+                return '';
               }
             }
           }
@@ -96,80 +81,14 @@
         r.push({
           ftitle: bbn._('Remove original expression'),
           buttons: this.buttons,
-          width: 40,
-          cls: 'bbn-c'
+          width: 90,
+          cls: 'bbn-c bbn-buttons-flex'
         });
         
         return r;
       },
-      /** contains original from po file and translations from db, used to render differences between the strings in the po file and the one in db */
-      translations_db(){
-        let res = [],
-          source_lang = this.source.res.path_source_lang;
-        if (this.source.res.id_project !== 'options') {
-          this.source.res.strings.forEach((obj, idx) => {
-            let ob = {};
-
-            for (let prop in obj) {
-              //bbn.fn.log('translation_db', idx, source_lang,'prop', prop)
-              ob['original_exp'] = this.source.res.strings[idx][source_lang].original;
-              ob['id_exp'] = this.source.res.strings[idx][source_lang].id_exp;
-              ob[prop] = this.source.res.strings[idx][prop].translations_db;
-            }
-
-            res.push(ob);
-          });
-        }
-        else if (this.source.res.id_project === 'options') {
-          this.source.res.strings.forEach((obj, idx) => {
-            let ob = {};
-
-            for (let prop in obj) {
-              ob['original_exp'] = this.source.res.strings[idx][source_lang].original;
-              ob['id_exp'] = this.source.res.strings[idx][source_lang].id_exp;
-              ob[prop] = this.source.res.strings[idx][prop].translations_db;
-            }
-
-            res.push(ob);
-          });
-        }
-        return res
-      },
     },
     methods: {
-      /** the source of the table */
-      mapData(obj){
-        let source_lang = this.source.res.path_source_lang;
-        let ob;
-        if (this.source.id_project === 'options'){
-          ob = bbn.fn.extend({}, obj);
-          ob.original_exp = obj.original;
-          delete ob.original;
-        }
-        else{
-          let ob = {
-            occurrence: obj[source_lang] && obj[source_lang].occurrence ? obj[source_lang].occurrence : 0,
-            path: obj[source_lang] ? obj[source_lang].paths : [],
-            original_exp: obj[source_lang] ? obj[source_lang].original : false,
-            id_exp: obj[source_lang] ? obj[source_lang].id_exp : false
-          };
-           
-          for (let prop in obj){
-          
-            //number of occurrence of the strings in files of the path
-            //   ob['occurrence'] = this.source.res.strings[idx][source_lang].paths.length || 0;
-            //takes the path of the string from file po
-           
-            if( obj[prop].translations_po ){
-           
-              ob[prop] = obj[prop].translations_po;
-            }
-            
-          }
-          return ob;
-        }
-        return ob;
-      },
       generate_mo(){
         this.post(this.source.root + 'actions/generate_mo', {
           id_option : this.source.id_option
@@ -270,9 +189,25 @@
         res.push({
           command: this.delete_expression,
           icon: 'nf nf-fa-times',
-          title: 'Delete original expression'
+          title: bbn._('Delete original expression'),
+          notext: true
+        },{
+          command: this.showPath,
+          icon: 'nf nf-mdi-sign_direction',
+          title: bbn._('Show files containing the string'),
+          notext: true
         });
         return res;
+      },
+      //opens the popup containing the link(s) to the file(s) containing the string
+      showPath(row){
+        this.getPopup().open({
+          title: bbn._('File(s) containing the string'),
+          source: row, 
+          component:this.$options.components['show-paths'],
+          height: '500px',
+          width: '400px'
+        })
       },
       /** deletes the original expression from db, if the expression is not deleted before from the file (using the link of the expander to the code) it will be again in the table when the table is reloaded or updated */
       delete_expression(row, ob, idx){
@@ -302,7 +237,7 @@
         var to_delete = [];
         //creates an array of languages to delete
         this.source.res.languages.forEach((v, i) => {
-          if ( row[v] === '' ){
+          if ( row[v + '_db'] === '' ){
             to_delete.push(v)
           }
         })
@@ -317,23 +252,21 @@
           if (d.success && !d.deleted.length && d.modified_langs.length ){
             if ( this.source.id_project !== 'options'){
               d.modified_langs.forEach((v, i) => {
-                this.source.res.strings[idx][v]['translations_db'] = d.row[v];
-              //I have a bug, after the update of the table this.mapData, the source of the table is wrong for the row if i don't force it to be correct
-              //this.source.res.strings[idx][v] = this.source.res.strings[idx][v]['translations_po']})
+                this.source.res.strings[idx][v+'_db']= d.row[v+'_db'];
               })
             }
             
             let table = this.find('bbn-table');
-            table.updateData();
-            appui.success('Translation saved');
+            //table.updateData();
+            //appui.success('Translation saved');
           }
           else if ( !d.success && !d.deleted.length ){
             appui.error('An error occurred while saving translation');
           }
           else if ( d.success && d.deleted.length ){
             d.deleted.forEach((v, i) => {
-              this.source.res.strings[idx][v]['translations_db'] = d.row[v];
-              this.source.res.strings[idx][v] = this.source.res.strings[idx][v]['translations_po'];
+              this.source.res.strings[idx][v + '_db'] = d.row[v+'_db'];
+              //this.source.res.strings[idx][+ '_db'] = this.source.res.strings[idx][v]['translations_po'];
               appui.warning('Translation deleted from db');
             })
           }
@@ -439,10 +372,34 @@
 
           } )
         }
-
       },
     },
     components:{
+      'show-paths': { 
+        template: `<div class="bbn-vpadded">
+          <span class="bbn-spadded bbn-w-100" v-for="p in source.paths">
+            <a v-text="p" @click="link_ide(p)" class="bbn-p"></a>
+          </span></div>`,
+        props:['source'], 
+        methods: {
+          link_ide(path){
+            let idx = path.lastIndexOf('/'),
+              st = 'ide/editor/file/',
+              ext = path.slice(idx, path.length);
+            st += path.slice(0, idx);
+            st += '/_end_';
+            if (ext === '/public'){
+              st += '/php'
+            }
+            else{
+              st += ext;
+            }
+
+            bbn.fn.link(st)
+          }
+        }
+
+      },
       // the toolbar of the table, the template is on html/template folder 
       'toolbar-strings-table': {
         template:'#toolbar-strings-table',
@@ -485,7 +442,6 @@
           },
           hide_col(val){
             if ( val && this.tab ){
-              //let idx = $.inArray(val, this.tab.hidden_cols);
               let idx = this.tab.hidden_cols.indexOf(val);
               if ( idx > -1 ){
                 this.tab.hidden_cols.splice(idx, 1);
@@ -494,8 +450,7 @@
                 this.tab.hidden_cols.push(val);
               }
             }
-
-          }
+            }
         },
         mounted(){
           this.tab = this.closest('appui-i18n-strings');
@@ -504,7 +459,7 @@
           /** v-model of bbn-switch used to hide the column of original language */
           hide_source_language(val, oldVal){
             // get the index of the column of source language
-            var idx = bbn.fn.search(this.tab.columns, 'field', this.tab.source.res.path_source_lang );
+            var idx = bbn.fn.search(this.tab.columns, 'field', this.tab.source.res.path_source_lang + '_db');
             if ( ( val === true ) && ( idx > -1) ){
               this.tab.columns[idx].hidden = true;
               this.tab.find('bbn-table').updateData();
@@ -528,42 +483,6 @@
 
         }
 
-      },
-      /** expander of the table, shows the path of the files containing the string */
-      'file_linker': {
-        props: ['source'],
-        data(){
-          return {
-            id_project : null
-          }
-        },
-        methods: {
-          link_ide(path){
-            let idx = path.lastIndexOf('/'),
-              st = 'ide/editor/file/',
-              ext = path.slice(idx, path.length);
-            st += path.slice(0, idx);
-            st += '/_end_';
-            if (ext === '/public'){
-              st += '/php'
-            }
-            else{
-              st += ext;
-            }
-
-            bbn.fn.link(st)
-          }
-        },
-        template: `
-          <ul v-if="id_project!== 'options' " style="width:100%; list-style-type:none; padding-left:0">
-          	<li class="bbn-vspadded bbn-grid-fields" :source="source" v-for="s in source.path">
-          		<span class="bbn-lg">File:</span>
-          		<a v-text="s" @click="link_ide(s)" style="width:100%;cursor:pointer" title="Open the file in i.d.e"></a>
-            </li>
-          </ul>`,
-        mounted(){
-          this.id_project = this.closest('appui-i18n-strings').source.id_project
-        }
       },
     }
   }

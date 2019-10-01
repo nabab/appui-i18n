@@ -22,6 +22,5 @@ if ( !empty($ctrl->arguments[0]) ){
   $ctrl->add_data([
     'id_project'=> $id_project ?? false,
     'id_option' => $id_option,
-    'routes' => $ctrl->get_routes()
   ])->combo('$pageTitle', true);
 }

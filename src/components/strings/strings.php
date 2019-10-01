@@ -3,7 +3,6 @@
              v-show="showAlert === false"
              :source="source.res.strings"
              :columns="columns"
-             :map="mapData"
              editable="nobuttons"
              :pageable="true"
              :limit="25"
@@ -14,11 +13,11 @@
              :multifilter="true"
              ref="strings_table"
              :order="[{field: 'expression', dir: 'ASC'}]"
-             :expander="(source.id_project !== 'options') ? $options.components['file_linker'] : ''"
+             
              :toolbar="$options.components['toolbar-strings-table']"
              @change="insert_translation">
 
-   <bbns-column field="original_exp"
+   <bbns-column field="exp"
                :title="'<?=_('Original expression in')?>' +' '+ source_lang "
                :index="1"
                width="20%"

@@ -10,7 +10,7 @@
 $success = false;
 /** at @change the table send row */
 if ( !empty($model->data['row']['id_exp'])){
-
+  
   /** @var  $translation instantiate the class appui\i18n*/
   $translation = new \bbn\appui\i18n($model->db);
   /** @var $row the row sent by strings table */
@@ -23,10 +23,10 @@ if ( !empty($model->data['row']['id_exp'])){
 
 
   foreach( $langs as $l ){
-    if ( !empty($row[$l]) ){
+    if ( !empty($row[$l.'_db']) ){
 
       /** @var $expression the string */
-      $expression = $row[$l];
+      $expression = $row[$l.'_db'];
       /** @var $id if the $id of the string exists */
 
       if ( $id = $model->db->select_one('bbn_i18n_exp', 'id', [
@@ -86,19 +86,19 @@ if ( !empty($model->data['row']['id_exp'])){
 
     if ( !empty($tmp) && !empty($tmp['strings'][$model->data['row_idx']]) && !empty($modified_langs)){
       $widget;  
-      $tmp = $translation->cache_get($model->data['id_option'], 'get_translations_table');
-      foreach($modified_langs as $mod){
+      //$tmp = $translation->cache_get($model->data['id_option'], 'get_translations_table');
+      foreach ( $modified_langs as $mod ){
 
         //change the updated string in the row of the cache
-        $exp_changed = $model->data['row'][$mod];
-        $tmp['strings'][$model->data['row_idx']][$mod]['translations_db'] = $exp_changed;
+        $exp_changed = $model->data['row'][$mod.'_db'];
+        $tmp['strings'][$model->data['row_idx']][$mod.'_db'] = $exp_changed;
 
       }
       if ( !empty($to_delete) ){
         foreach( $to_delete as $del ){
           //change the updated string in the row of the cache
-          $exp_changed = $model->data['row'][$del];
-          $tmp['strings'][$model->data['row_idx']][$del]['translations_db'] = $exp_changed;
+          $exp_changed = $model->data['row'][$del .'_db'];
+          $tmp['strings'][$model->data['row_idx']][$del .'_db'] = $exp_changed;
         }
       }
 

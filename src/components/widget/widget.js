@@ -420,7 +420,6 @@
           success(d){
             this.send_no_strings = false;
             if ( d.success ){
-              var st = '';
               this.get_widget().remake_cache();
               if ( d.ex_dir.length ){
                 
@@ -428,7 +427,8 @@
                   //this.source.data.widget.remake_cache();
 
                   this.$nextTick(() => {
-                    appui.success(bbn.fn.get_field(this.source.data.primary, 'code', v, 'text') + ' translation files successfully files deleted')
+                    let st = bbn.fn.get_field(this.source.data.primary, 'code', v, 'text') + ' translation files successfully files deleted';
+                    appui.success(st)
                   })
                 });
                 

@@ -27,10 +27,10 @@ if ( !empty($model->data['id_option']) ){
 
   
   //if the table has no cache it creates cache
-  if ( empty($translation->cache_has($model->data['id_option'], 'get_translations_table')) && !empty($id_project) ){
+  if ( !$translation->cache_has($model->data['id_option'], 'get_translations_table') && !empty($id_project) ){
     //set data in cache $translation->cache_set($id_option, (string)method name, (array)data)
     $translation->cache_set($model->data['id_option'], 'get_translations_table',
-      $translation->get_translations_table($id_project,$model->data['id_option'])
+      $translation->get_translations_table($id_project, $model->data['id_option'])
     );
   }
   $res = $translation->cache_get($model->data['id_option'], 'get_translations_table');
