@@ -217,7 +217,7 @@
           data = this.find('bbn-table').currentData;
           //idx = bbn.fn.search(data, { id_exp: id_exp });
         this.getPopup().confirm('Did you remove the expression from code before to delete the row?', () => {
-          this.post(this.source.root + 'actions/delete_expression', { id_exp: row.id_exp, exp: row.original_exp },  (d) => {
+          this.post(this.source.root + 'actions/delete_expression', { id_exp: row.id_exp, exp: row.exp },  (d) => {
             bbn.fn.log('succesws',d)
             if ( d.success ){
               //this.$refs.strings_table.updateData();
@@ -418,7 +418,7 @@
             //search the string in the input field of toolbar
             if ( this.valueToFind !== '' ){
               this.closest('bbn-table').currentFilters.conditions.push({
-                field: 'original_exp',
+                field: 'exp',
                 operator: 'contains',
                 value: this.valueToFind
               });

@@ -104,8 +104,9 @@
         //open a component popup to select source language and translation language for the table glossary
           var tab = bbn.vue.closest(this, 'bbn-container').getComponent();
           this.getPopup().open({
-            width:350,
-            height:250,
+            scrollable: false,
+            width: 400,
+            height: 250,
             source: {
               source_lang: false,
               translation_lang: false,

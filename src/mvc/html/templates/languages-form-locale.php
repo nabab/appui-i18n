@@ -11,7 +11,7 @@
   <div class="bbn-grid-fields">
 
     <div style="height:300px;" class="bbn-padded bbn-middle">
-      <span>Check the box to create local folder of translation's files for the language in this path</span>
+      <span><?=_('Check the box to create local folder of translation\'s files for the language in this path')?></span>
     </div>
 
     <div class="bbn-padded">

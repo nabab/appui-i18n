@@ -103,19 +103,21 @@
   <div v-else>
     <div class="bbn-padded bbn-grid-fields">
       <span v-text="(id_project === 'options') ? '<?=_("Select a source language for this option")?>' : '<?=_("Select a source language for this option")?>'"></span>
-      <bbn-dropdown :source="dd_primary"
-                    v-model="language"
-                    v-if="id_project !== 'options' "
-                    @change="set_language"
-                    placeholder="<?=_('Select a language')?>"
-      ></bbn-dropdown>
+      <div v-if="id_project !== 'options'">
+        <bbn-dropdown :source="dd_primary"
+                      v-model="language"
+                      @change="set_language"
+                      placeholder="<?=_('Select a language')?>"
+        ></bbn-dropdown>
+      </div>
 
-      <bbn-dropdown :source="dd_primary"
-                    v-model="language"
-                    v-else
-                    @change="set_cfg"
-                    placeholder="<?=_('Select a language')?>"
-      ></bbn-dropdown>
+      <div   v-else>
+        <bbn-dropdown :source="dd_primary"
+                      v-model="language"
+                      @change="set_cfg"
+                      placeholder="<?=_('Select a language')?>"
+        ></bbn-dropdown>
+      </div>
     </div>
   </div>
 

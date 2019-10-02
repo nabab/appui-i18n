@@ -2,15 +2,23 @@
           @submit="link"
           :prefilled="true"
           @cancel="cancel"
+          :scrollable="false"
 >
-  <div class="bbn-overlay bbn-flex-height"
-     style="margin-left: -16px">
+  <div class="bbn-flex-height">
   <div class="bbn-grid-fields bbn-flex-fill bbn-padded bbn-c">
-    <span>Select source language:</span>
-    <bbn-dropdown placeholder="Choose" :source="source.dd_translation_lang" v-model="source.source_lang"></bbn-dropdown>
+    <span>
+      <?=_('Select source language')?>:
+    </span>
+    <div>
+      <bbn-dropdown placeholder="Choose" :source="source.dd_translation_lang" v-model="source.source_lang"></bbn-dropdown>
+    </div>
 
-    <span>Select a language for the translation:</span>
-    <bbn-dropdown placeholder="Choose" :source="source.dd_translation_lang" v-model="source.translation_lang"></bbn-dropdown>
+    <span>
+      <?=_('Select a language for the translation')?>:
+    </span>
+    <div>
+      <bbn-dropdown placeholder="Choose" :source="source.dd_translation_lang" v-model="source.translation_lang"></bbn-dropdown>
+    </div>
 
   </div>
   <!--div-- v-show="source.source_lang && source.translation_lang" class="bbn-vspadded bbn-r">
