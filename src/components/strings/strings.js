@@ -51,7 +51,7 @@
                 (translation_po.length ? ' nf nf-fa-exclamation' : ' nf nf-fa-exclamation_triangle')
                 +' bbn-large '+ 
                 (translation_po.length ? ' bbn-orange' : ' bbn-red')
-                +'" title="' + (translation_po ? translation_po : bbn._('Translation missing in po file')) + '"></i>'
+                +'" title="' + (translation_po ? (bbn._('The translation in the po file is') + ': ' + translation_po ) : bbn._('Translation missing in po file')) + '"></i>'
               }
               else if ( translation_db === false ){
                 return '';
@@ -134,7 +134,6 @@
               }
               this.source.res.strings = d.strings;
               if ( this.closest('bbn-tabnav') ) {
-                
                 let dashboard = this.closest('bbn-tabnav').find('bbn-dashboard');
                 //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
                 if ( dashboard ) {
@@ -151,8 +150,8 @@
               }
               appui.success('Files of translation successfully updated for '+ d.languages.join(' and ') );
               this.$nextTick(() => {
-                this.find('bbn-table').updateData();
                 this.showAlert = false;
+                this.find('bbn-table').updateData();
               });
             }
             this.generate_mo();
@@ -221,7 +220,7 @@
             bbn.fn.log('succesws',d)
             if ( d.success ){
               //this.$refs.strings_table.updateData();
-              appui.success('Expression deleted');
+              appui.success('Expression deleted ');
               this.$nextTick(()=>{
                 this.$refs.strings_table.currentData.splice(idx, 1);
               })
@@ -267,7 +266,7 @@
             d.deleted.forEach((v, i) => {
               this.source.res.strings[idx][v + '_db'] = d.row[v+'_db'];
               //this.source.res.strings[idx][+ '_db'] = this.source.res.strings[idx][v]['translations_po'];
-              appui.warning('Translation deleted from db');
+              appui.warning('Translation deleted from db, please be sure to remake po files');
             })
           }
           if ( this.closest('bbn-tabnav') ) {
@@ -317,9 +316,9 @@
               appui.warning('There are no changes in data')
             }
             this.$nextTick(() => {
+              this.showAlert = false;
               this.find('bbn-table').updateData();
               this.column_length = true;
-              this.showAlert = false;
             });
             let tabnav = this.closest('bbn-tabnav');
             /*if( this.find(tabnav, 'bbn-dashboard') !== undefined ){
@@ -336,10 +335,10 @@
     watch: {
       showAlert(val){
         if ( val){
-          this.alert(bbn._('Wait for the ending of the process before to make other actions in this tab') );
+          //this.alert(bbn._('Wait for the ending of the process before to make other actions in this tab') );
         }
         else{
-          this.getPopup().close()
+          //this.getPopup().close()
         }
       },
       hidden_cols(val){
