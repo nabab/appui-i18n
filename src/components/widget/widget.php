@@ -43,11 +43,12 @@
     <div v-if="data_widget && data_widget[language]" class="bbn-grid-fields" style="padding-top:8px;">
 
       <span v-if="data_widget[language] && (data_widget[language].num > 0)">
-        Total number of strings:
+        <?=_('Total number of strings:')?>
       </span>
       <span v-if="data_widget[language]"
             v-text="(data_widget[language].num > 0) ? data_widget[language].num : (!no_strings) ? 'There are no strings in this path' : ''"
-            :class="(data_widget[language].num > 0) ? 'bbn-r' : 'bbn-grid-full bbn-orange bbn-c' "
+            :class="(data_widget[language].num > 0) ? '' : 'bbn-grid-full bbn-orange bbn-c'"
+            :style="(data_widget[language].num > 0) ? 'text-align:right!important' : ''"
       ></span>
       <div v-if="(data_widget[language]) && (data_widget[language].num > 0) "
            v-for="(w, i) in data_widget"
