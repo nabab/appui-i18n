@@ -19,13 +19,13 @@
                 cls="bbn-c"
                 :buttons="[{
                   notext: true,
-                  command: find_new_strings,
+                  action: find_new_strings,
                   icon: 'zmdi zmdi-flash',
                   title: '<?=_('Check for new strings in this path')?>',
                   text: '<?=_('Check for new strings in this path')?>',
                   },{
                   notext: true,
-                  command: open_strings_table,
+                  action: open_strings_table,
                   icon: 'nf nf-fa-book',
                   text: '<?=_('Go to the table of strings of this path')?>',
                   title: '<?=_('Go to the table of strings of this path')?>'

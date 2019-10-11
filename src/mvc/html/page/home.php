@@ -32,7 +32,7 @@
     ></bbns-column>
 
     <bbns-column :buttons="[{
-                    command: cfg_languages,
+                    action: cfg_languages,
                     icon: 'nf nf-fa-flag',
                     title: 'Configure languages of translation for this project'
                   }]"

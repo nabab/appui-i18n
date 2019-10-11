@@ -186,12 +186,12 @@
       buttons(){
         let res = [];
         res.push({
-          command: this.delete_expression,
+          action: this.delete_expression,
           icon: 'nf nf-fa-times',
           title: bbn._('Delete original expression'),
           notext: true
         },{
-          command: this.showPath,
+          action: this.showPath,
           icon: 'nf nf-mdi-sign_direction',
           title: bbn._('Show files containing the string'),
           notext: true

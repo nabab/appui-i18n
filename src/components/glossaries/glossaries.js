@@ -15,7 +15,7 @@
       buttons(){
         let res = [];
         res.push({
-          command: this.delete_expression,
+          action: this.delete_expression,
           icon: 'nf nf-fa-times',
           title :'Delete original expression'
         })
