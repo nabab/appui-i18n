@@ -20,8 +20,9 @@
       },
       widget_idx(){
         //return the real index of this widget in the array of data of dashboard it works also after drag and drop
-        let data = this.parentSource.data;
-        return bbn.fn.search(data, 'id', this.id_option);
+        //let data = this.parentsource.widgets;
+        //return bbn.fn.search(data, 'id', this.id_option);
+        return bbn.fn.search(this.closest('bbn-dashboard').widgets, 'uid', this.id_option);
       },
       parentSource() {
         return this.closest('bbn-container').getComponent().source;
@@ -29,7 +30,8 @@
       //used to render the widget, language of locale folder
       data_widget(){
         //if the source language of the path is set takes the array result from dashboard source
-        let result = this.parentSource.data[this.widget_idx].data_widget.result;
+        //let result = this.parentsource.widgets[this.widget_idx].data_widget.result;
+        let result = this.closest('appui-i18n-dashboard').source.data[this.widget_idx].data_widget.result;
         if ( this.language && result ){
           for ( let r in result ){
             result[r].class = '';
@@ -112,7 +114,7 @@
             delete d.success;
             delete d.time;
             this.$nextTick( () => {
-              this.parentSource.data[this.widget_idx].data_widget = d.data_widget;
+              this.parentsource.widgets[this.widget_idx].data_widget = d.data_widget;
               this.remake_cache();
               appui.success(bbn._('Source language setted'));
               this.$forceUpdate();
@@ -194,7 +196,7 @@
           }, (d) => {
             if ( d.success ){
               appui.success(bbn._('Widget updated'));
-              this.parentSource.data[this.widget_idx].data_widget = d.data_widget;
+              this.parentsource.widgets[this.widget_idx].data_widget = d.data_widget;
               this.$forceUpdate();
             }
           })
@@ -274,8 +276,8 @@
       },
     },
     beforeMount(){
-      //this.language = this.parentSource.data[this.$parent.index].language;
-      this.language = this.parentSource.data[this.widget_idx].language;
+      //this.language = this.parentsource.widgets[this.$parent.index].language;
+      this.language = this.closest('appui-i18n-dashboard').source.data[this.widget_idx].language;
     },
     mounted(){
       this.closest('bbn-dashboard').onResize();
