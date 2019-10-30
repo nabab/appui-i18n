@@ -20,9 +20,8 @@
       },
       widget_idx(){
         //return the real index of this widget in the array of data of dashboard it works also after drag and drop
-        //let data = this.parentsource.widgets;
-        //return bbn.fn.search(data, 'id', this.id_option);
-        return bbn.fn.search(this.closest('bbn-dashboard').widgets, 'uid', this.id_option);
+        let data = this.parentSource.data;
+        return bbn.fn.search(data, 'id', this.id_option);
       },
       parentSource() {
         return this.closest('bbn-container').getComponent().source;
@@ -30,8 +29,7 @@
       //used to render the widget, language of locale folder
       data_widget(){
         //if the source language of the path is set takes the array result from dashboard source
-        //let result = this.parentsource.widgets[this.widget_idx].data_widget.result;
-        let result = this.closest('appui-i18n-dashboard').source.data[this.widget_idx].data_widget.result;
+        let result = this.parentSource.data[this.widget_idx].data_widget.result;
         if ( this.language && result ){
           for ( let r in result ){
             result[r].class = '';
@@ -114,7 +112,7 @@
             delete d.success;
             delete d.time;
             this.$nextTick( () => {
-              this.parentsource.widgets[this.widget_idx].data_widget = d.data_widget;
+              this.parentSource.data[this.widget_idx].data_widget = d.data_widget;
               this.remake_cache();
               appui.success(bbn._('Source language setted'));
               this.$forceUpdate();
@@ -196,7 +194,7 @@
           }, (d) => {
             if ( d.success ){
               appui.success(bbn._('Widget updated'));
-              this.parentsource.widgets[this.widget_idx].data_widget = d.data_widget;
+              this.parentSource.data[this.widget_idx].data_widget = d.data_widget;
               this.$forceUpdate();
             }
           })
@@ -221,7 +219,6 @@
             this.source.total = d.total;
           }
         });
-
       },*/
       /** method to find strings and translation for the option -works with db- only for the id_project === 'option' */
       find_options(){
@@ -276,8 +273,8 @@
       },
     },
     beforeMount(){
-      //this.language = this.parentsource.widgets[this.$parent.index].language;
-      this.language = this.closest('appui-i18n-dashboard').source.data[this.widget_idx].language;
+      //this.language = this.parentSource.data[this.$parent.index].language;
+      this.language = this.parentSource.data[this.widget_idx].language;
     },
     mounted(){
       this.closest('bbn-dashboard').onResize();
@@ -302,13 +299,10 @@
           @success="success"
           @close="update"
 >
-
   <div class="bbn-grid-fields">
-
     <div style="height:300px;" class="bbn-padded bbn-middle">
       <span>`+ bbn._('Check the box to create local folder of translation\'s files for the language in this path') +`</span>
     </div>
-
     <div class="bbn-padded">
       <div v-for="l in source.data.configured_langs"
             class="bbn-vlpadded"
@@ -324,16 +318,12 @@
         <div></div>
       </div>
     </div>
-
    
-
   </div>
   <div class="bbn-s bbn-padded"
        v-html="message"
        style="position:absolute; bottom:0;left: 0;margin-bottom: 6px;margin-right:6px;"
   ></div>
-
-
 </bbn-form>
         `,
         data(){

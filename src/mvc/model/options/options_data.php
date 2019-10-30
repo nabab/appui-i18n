@@ -22,7 +22,7 @@ if ( !empty($model->data['id_project']) && ( $model->data['id_project'] === 'opt
 
 
   return [
-    'data' => $translation->get_num_options()['data'],
+    'data' => $translation->get_num_options(),
     'success' => $success,
     'configured_langs' => $configured_langs
   ];

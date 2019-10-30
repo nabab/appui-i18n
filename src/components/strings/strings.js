@@ -27,7 +27,7 @@
        
         for ( let n in this.source.res.languages ){
           var obj = {
-            field: (this.source.id_project !== 'options') ? (this.source.res.languages[n] + '_db') : this.source.res.languages[n],
+            field: this.source.res.languages[n] + '_db',
             title:  ( this.source.res.languages[n] === this.source.res.path_source_lang) ? (bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text') + '  <i class="nf nf-fa-asterisk" title="This is the original language of the expression"></i>') : bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text'),
             editable: true
           };

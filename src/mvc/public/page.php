@@ -5,6 +5,7 @@ if ( strpos($ctrl->baseURL, APPUI_I18N_ROOT.'page/') !== 0 ){
   $templates = \bbn\file\dir::get_files($ctrl->plugin_path().'mvc/html/templates');
   $ctrl->data['templates'] = [];
   $ctrl->obj->url = APPUI_I18N_ROOT.'page';
+
   if ( !empty($templates) ){
     $ctrl->data['templates'] = array_map(function ($t) use ($ctrl){
       return [

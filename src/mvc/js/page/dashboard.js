@@ -92,10 +92,8 @@
         });
         return res;
       },
-
     },
     methods: {
-      
       open_users_activity(){
         bbn.fn.link('internationalization/page/history/');
       },
@@ -144,13 +142,11 @@
       load_widgets(){
         this.source.data = [];
         if ( this.id_project !== 'options' ){
-          this.post('internationalization/page/dashboard/'+this.id_project, (d) => {
+          this.post('internationalization/page/dashboard', { id_project: this.id_project }, (d) => {
             if ( d.data.success ){
               this.source.data = d.data.data;
               this.source.configured_langs = d.data.configured_langs;
             }
-            this.closest('bbn-container').getComponent().url = 'dashboard/'+d.data.id_project;
-            bbn.fn.happy('dashboard/'+d.data.id_project)
           });
         }
         /** case of project options this controller will return only result of each language and locale dirs */
@@ -178,7 +174,7 @@
           },
         }
       },
-      /*'languages-form': {
+      'languages-form': {
         template: '#languages-form',
         methods:{
           inArray(l, arr){
@@ -202,18 +198,10 @@
           }
         },
         props: ['source'],
-      }*/
+      }
     },
     mounted(){
-     // this.id_project = this.source.projects[0].id
-      this.id_project = this.closest('bbn-tabnav').$parent.url.split('/')[1]
-    },
-    watch: {
-      /*id_project(val){
-        if (val){
-          this.closest('bbn-tabnav').$parent.url = 'dashboard/' + val
-        }
-      }*/
+      this.id_project = this.source.projects[0].id
     }
   }
 
