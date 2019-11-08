@@ -7,7 +7,8 @@ $success = false;
     $data_widget = $model->get_model(APPUI_I18N_ROOT.'options/options_data', [
       'root' => APPUI_I18N_ROOT,
       'res' => ['success' => true],
-      'id_project' => $model->data['id_project']
+      'id_project' => $model->data['id_project'],
+      'id_option' => $model->data['id_option'] ?? false
     ], true);
 
     $data_widget = $data_widget['data']['data'][0]['data_widget'];

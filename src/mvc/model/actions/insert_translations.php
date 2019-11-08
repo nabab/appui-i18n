@@ -48,7 +48,7 @@ if ( !empty($model->data['row']['id_exp'])){
       else {
         $modified_langs[] = $l;
         $success = $model->db->insert_ignore('bbn_i18n_exp', [
-          'expression' => $expression,
+          'expression' => stripslashes($expression),
           'id_exp' => $row['id_exp'],
           'lang' => $l
         ]);

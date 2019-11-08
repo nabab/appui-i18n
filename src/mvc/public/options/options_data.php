@@ -6,6 +6,6 @@
  * Time: 10.27 
  */
 
-if ( $ctrl->post['id_project']){
+if ( !empty($ctrl->post['id_project']) ){
   $ctrl->cached_action();
 }

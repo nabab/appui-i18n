@@ -18,11 +18,17 @@ if ( !empty($model->data['id_project']) && ( $model->data['id_project'] === 'opt
     $configured_langs[] = $p['id'];
   }
   $success = true;
+  $data = [];
+  if ( empty($model->data['id_option']) ){
+    $data = $translation->get_num_options();
+  }
+  else{
+    $data = $translation->get_num_option($model->data['id_option']);
+  }
   $options = $translation->get_num_options();
-
-
+  
   return [
-    'data' => $translation->get_num_options(),
+    'data' => $data,
     'success' => $success,
     'configured_langs' => $configured_langs
   ];

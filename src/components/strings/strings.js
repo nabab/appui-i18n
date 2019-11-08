@@ -151,7 +151,7 @@
               appui.success('Files of translation successfully updated for '+ d.languages.join(' and ') );
               this.$nextTick(() => {
                 this.showAlert = false;
-                this.find('bbn-table').updateData();
+                //this.find('bbn-table').updateData();
               });
             }
             this.generate_mo();
@@ -272,16 +272,19 @@
           if ( this.closest('bbn-tabnav') ) {
             bbn.fn.log('before table update', this.closest('bbn-tabnav'))
             //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
-            if ((this.closest('bbn-tabnav').find('bbn-dashboard') !== undefined) || (this.closest('bbn-tabnav').find('bbn-dashboard') !== false)) {
+            if ( this.closest('bbn-tabnav') ) {
               let dashboard = this.closest('bbn-tabnav').find('bbn-dashboard');
-                if ( dashboard ){
-                 let  widgets = dashboard.findAll('bbn-widget'),
-                  idx = bbn.fn.search(widgets, 'uid', this.source.id_option),
+              //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
+              if ( dashboard ) {
+                let widgets = dashboard.findAll('bbn-widget');
+                if ( widgets.length ){
+                  let idx = bbn.fn.search(widgets, 'uid', this.source.id_option),
                   cp = dashboard.closest('bbn-container').getComponent();
                   if ( idx > -1 ){
                     cp.source.data[idx].data_widget = d.widget;
                   }
                 }
+              }
             }
           }
         });
@@ -317,7 +320,6 @@
             }
             this.$nextTick(() => {
               this.showAlert = false;
-              this.find('bbn-table').updateData();
               this.column_length = true;
             });
             let tabnav = this.closest('bbn-tabnav');
@@ -353,7 +355,7 @@
         /** val is the array of checked langs */
         val.forEach( (v, i) => {
           /** the index of the column to hide */
-          let col_idx = bbn.fn.search(this.columns, 'field', v),
+          let col_idx = bbn.fn.search(this.columns, 'field', v + '_db'),
             /** the column to hide */
             col = this.columns[col_idx],
             //idx = $.inArray(v, this.hidden_cols);
@@ -365,12 +367,12 @@
         /** loop on the array of not to hide langs */
         if ( not_hidden.length ){
           not_hidden.forEach( (v, i) => {
-            let col_idx = bbn.fn.search(this.columns, 'field', v),
+            let col_idx = bbn.fn.search(this.columns, 'field', v + '_db'),
               col = this.columns[col_idx];
             col.hidden = false;
-
-          } )
+          })
         }
+        this.find('bbn-table').updateData();
       },
     },
     components:{
@@ -414,16 +416,26 @@
         },
         methods: {
           search(){
+            //apply currentfilters to the table on the field of original exp and in all languages
+            let table = this.closest('bbn-table');
             //search the string in the input field of toolbar
             if ( this.valueToFind !== '' ){
-              this.closest('bbn-table').currentFilters.conditions.push({
+              table.currentFilters.logic = 'OR'
+              table.currentFilters.conditions.push({
                 field: 'exp',
                 operator: 'contains',
                 value: this.valueToFind
               });
+              bbn.fn.each(this.tab.source.res.languages, (v, i) => {
+                table.currentFilters.conditions.push({
+                  field: v + '_db',
+                  operator: 'contains',
+                  value: this.valueToFind
+                }) 
+              })
             }
-            else if ( (this.valueToFind === '') && (this.closest('bbn-table').currentFilters.conditions.length) ) {
-              this.closest('bbn-table').currentFilters.conditions = [];
+            else if ( (this.valueToFind === '') && (table.currentFilters.conditions.length) ) {
+              table.currentFilters.conditions = [];
             }
           },
           // takes the methods from the parent component using @var this.tab declared at created 
@@ -449,12 +461,18 @@
                 this.tab.hidden_cols.push(val);
               }
             }
-            }
+          }
         },
         mounted(){
           this.tab = this.closest('appui-i18n-strings');
         },
         watch: {
+          valueToFind(val){
+            if ( !val.length ){
+              this.closest('bbn-table').currentFilters.logic = '';
+              this.closest('bbn-table').currentFilters.conditions = [];
+            }
+          },
           /** v-model of bbn-switch used to hide the column of original language */
           hide_source_language(val, oldVal){
             // get the index of the column of source language

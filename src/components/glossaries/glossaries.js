@@ -46,18 +46,18 @@
       icons(row){
         let res = '';
         if ( ( row.original_expression === row.translation ) && ( this.source.source_lang === this.source.translation_lang ) ){
-          res = ('<i class="nf nf-fa-check bbn-bg-purple bbn-xl" title="Expressions are identical" ></i>')
+          res = ('<i class="nf nf-fa-check bbn-purple bbn-xl" title="Expressions are identical" ></i>')
         }
         else if ( ( row.translation !== null ) && ( row.translation !== row.original_expression ) && ( this.source.source_lang === this.source.translation_lang ) ){
           res= ('<i class="nf nf-fa-exclamation_triangle bbn-xl bbn-bg-orange" title="Expression changed in its original' +
             ' language" ></i>')
         }
         else if ( ( row.translation !== null ) && ( row.original_expression !== row.translation ) && ( this.source.source_lang !== this.source.translation_lang ) ) {
-          res = ('<i class="nf nf-oct-smiley bbn-xl bbn-bg-green bbn-xl" title="Expression translated" ></i>')
+          res = ('<i class="nf nf-oct-smiley bbn-xl bbn-green bbn-xl" title="Expression translated" ></i>')
 
         }
         else {
-          res = '<i class="nf nf-fa-frown bbn-xl bbn-bg-red" title="Expression not translated."' +
+          res = '<i class="nf nf-fa-frown bbn-xl bbn-red" title="Expression not translated."' +
             ' ></i>'
         }
         return res;

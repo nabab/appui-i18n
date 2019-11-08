@@ -135,7 +135,7 @@ if (
       $Compiler = new Sepia\PoParser\PoCompiler();
       $headersClass = new Sepia\PoParser\Catalog\Header();
 
-      if( empty( $Catalog->getHeaders() ) ){
+      if ( empty( $Catalog->getHeaders() ) ){
         //headers for new po file
         $headers = [
           "Project-Id-Version: 1",

@@ -46,17 +46,17 @@ if ( !empty($model->data['id_option']) ){
     }
     $res[$idx] = [
       'id_exp' => $row['id'],
-      'original'=> $i
+      'exp'=> $i
     ];
     foreach( $configured_langs as $lang ){
       if ( $exp = $model->db->select_one('bbn_i18n_exp', 'expression', [
         'id_exp' => $row['id'],
         'lang' => $lang
       ]) ){
-        $res[$idx][$lang] = $exp;
+        $res[$idx][$lang.'_db'] = $exp;
       }
       else {
-        $res[$idx][$lang] = '';
+        $res[$idx][$lang.'_db'] = '';
       }
     }
   }
