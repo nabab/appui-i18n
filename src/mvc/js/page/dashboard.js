@@ -115,7 +115,7 @@
               dd_translation_lang: tab.dd_translation_lang,
             },
             component: tab.$options.components.cfg_translations_form,
-            title: 'Config your translation tab'
+            title: bbn._('Config your translation tab')
           })
 
         },
@@ -166,8 +166,9 @@
         props:['source'],
         methods: {
           link(){
+            
             bbn.fn.link('internationalization/page/glossary/' + this.source.source_lang + '/' + this.source.translation_lang);
-            this.getPopup().close();
+            
           },
           cancel(){
             this.getPopup().close();

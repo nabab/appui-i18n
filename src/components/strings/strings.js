@@ -190,12 +190,15 @@
           icon: 'nf nf-fa-times',
           title: bbn._('Delete original expression'),
           notext: true
-        },{
-          action: this.showPath,
-          icon: 'nf nf-mdi-sign_direction',
-          title: bbn._('Show files containing the string'),
-          notext: true
         });
+        if ( this.source.id_project !== 'options' ){
+          res.push({
+            action: this.showPath,
+            icon: 'nf nf-mdi-sign_direction',
+            title: bbn._('Show files containing the string'),
+            notext: true
+          });
+        }
         return res;
       },
       //opens the popup containing the link(s) to the file(s) containing the string

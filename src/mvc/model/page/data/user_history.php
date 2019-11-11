@@ -8,10 +8,7 @@
 
 //data for user history table
 if ( !empty($model->data['limit']) ){
-
   $id_user = $model->inc->user->get_id();
-  $usr = new \bbn\user($model->db);
-  
   $grid = new \bbn\appui\grid($model->db, $model->data, [
     'tables' => ['bbn_i18n_exp'],
     'fields' => [
@@ -53,8 +50,6 @@ if ( !empty($model->data['limit']) ){
     'group_by' => 'bbn_i18n_exp.id',
 
   ]);
-
-
   if ( $grid->check() ){
     return $grid->get_datatable();
   }
