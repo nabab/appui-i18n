@@ -166,9 +166,7 @@
         props:['source'],
         methods: {
           link(){
-            
             bbn.fn.link('internationalization/page/glossary/' + this.source.source_lang + '/' + this.source.translation_lang);
-            
           },
           cancel(){
             this.getPopup().close();

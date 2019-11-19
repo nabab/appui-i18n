@@ -14,6 +14,7 @@ if( !empty($ctrl->arguments[0]) && !empty($ctrl->arguments[1]) ){
   $primary = $ctrl->get_model('internationalization/page')['primary'];
 
   foreach ( $primary as $p => $val ){
+    $source_lang_name = '';
     if  ($primary[$p]['code'] === $ctrl->arguments[1]){
       $lang_name =  $primary[$p]['text'];
     }
