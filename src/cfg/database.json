@@ -1,0 +1,189 @@
+{
+    "bbn_i18n": {
+        "keys": {
+            "PRIMARY": {
+                "columns": [
+                    "id"
+                ],
+                "ref_db": "apst_app",
+                "ref_table": "bbn_history_uids",
+                "ref_column": "bbn_uid",
+                "constraint": "bbn_i18n_ibfk_2",
+                "update": "CASCADE",
+                "delete": "CASCADE",
+                "unique": 1
+            },
+            "exp": {
+                "columns": [
+                    "exp",
+                    "lang"
+                ],
+                "ref_db": null,
+                "ref_table": null,
+                "ref_column": null,
+                "constraint": null,
+                "update": null,
+                "delete": null,
+                "unique": 1
+            }
+        },
+        "cols": {
+            "id": [
+                "PRIMARY"
+            ],
+            "exp": [
+                "exp"
+            ],
+            "lang": [
+                "exp"
+            ]
+        },
+        "fields": {
+            "id": {
+                "position": 1,
+                "type": "binary",
+                "null": 0,
+                "key": "PRI",
+                "extra": "",
+                "signed": true,
+                "virtual": false,
+                "generation": "",
+                "maxlength": 16
+            },
+            "exp": {
+                "position": 2,
+                "type": "varchar",
+                "null": 0,
+                "key": "MUL",
+                "extra": "",
+                "signed": true,
+                "virtual": false,
+                "generation": "",
+                "maxlength": 255
+            },
+            "lang": {
+                "position": 3,
+                "type": "varchar",
+                "null": 0,
+                "key": null,
+                "extra": "",
+                "signed": true,
+                "virtual": false,
+                "generation": "",
+                "maxlength": 2
+            }
+        }
+    },
+    "bbn_i18n_exp": {
+        "keys": {
+            "PRIMARY": {
+                "columns": [
+                    "id"
+                ],
+                "ref_db": "apst_app",
+                "ref_table": "bbn_history_uids",
+                "ref_column": "bbn_uid",
+                "constraint": "bbn_i18n_exp_ibfk_2",
+                "update": "CASCADE",
+                "delete": "CASCADE",
+                "unique": 1
+            },
+            "id_exp_2": {
+                "columns": [
+                    "id_exp",
+                    "lang"
+                ],
+                "ref_db": null,
+                "ref_table": null,
+                "ref_column": null,
+                "constraint": "bbn_i18n_exp_ibfk_1",
+                "update": "CASCADE",
+                "delete": "CASCADE",
+                "unique": 1
+            },
+            "id_exp": {
+                "columns": [
+                    "id_exp"
+                ],
+                "ref_db": "apst_app",
+                "ref_table": "bbn_i18n",
+                "ref_column": "id",
+                "constraint": "bbn_i18n_exp_ibfk_1",
+                "update": "CASCADE",
+                "delete": "CASCADE",
+                "unique": 0
+            },
+            "lang": {
+                "columns": [
+                    "lang"
+                ],
+                "ref_db": null,
+                "ref_table": null,
+                "ref_column": null,
+                "constraint": null,
+                "update": null,
+                "delete": null,
+                "unique": 0
+            }
+        },
+        "cols": {
+            "id": [
+                "PRIMARY"
+            ],
+            "id_exp": [
+                "id_exp_2",
+                "id_exp"
+            ],
+            "lang": [
+                "id_exp_2",
+                "lang"
+            ]
+        },
+        "fields": {
+            "id": {
+                "position": 1,
+                "type": "binary",
+                "null": 0,
+                "key": "PRI",
+                "extra": "",
+                "signed": true,
+                "virtual": false,
+                "generation": "",
+                "maxlength": 16
+            },
+            "id_exp": {
+                "position": 2,
+                "type": "binary",
+                "null": 0,
+                "key": "MUL",
+                "extra": "",
+                "signed": true,
+                "virtual": false,
+                "generation": "",
+                "maxlength": 16
+            },
+            "lang": {
+                "position": 3,
+                "type": "varchar",
+                "null": 0,
+                "key": "MUL",
+                "extra": "",
+                "signed": true,
+                "virtual": false,
+                "generation": "",
+                "maxlength": 2
+            },
+            "expression": {
+                "position": 4,
+                "type": "varchar",
+                "null": 0,
+                "key": null,
+                "extra": "",
+                "signed": true,
+                "virtual": false,
+                "generation": "",
+                "maxlength": 1000
+            }
+        }
+    }
+}

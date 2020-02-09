@@ -24,6 +24,7 @@ if ( !empty($model->data['id_project']) && ( $model->data['id_project'] === 'opt
   }
   else{
     $data = $translation->get_num_option($model->data['id_option']);
+    //die(var_dump('hrere', $model->data));
   }
   $options = $translation->get_num_options();
   
