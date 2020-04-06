@@ -15,11 +15,12 @@ $success = false;
   }
   else {
     //remake the cache of the widget
-    $translation = new \bbn\appui\i18n($model->db);
+    $translation = new \bbn\appui\i18n($model->db, $model->data['id_project']);
 
     $translation->cache_set($id_option, 'get_translations_widget',
       $translation->get_translations_widget($model->data['id_project'],$id_option)
     );
+    
     //return the new cache of the widget
     $data_widget = $translation->cache_get($id_option, 'get_translations_widget');
 

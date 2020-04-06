@@ -5,7 +5,7 @@
 
     computed: {
       primary(){
-        return bbn.vue.closest(this,'bbn-tabnav').$parent.source.primary;
+        return this.closest('bbn-router').$parent.source.primary;
       }
     },
     methods: {

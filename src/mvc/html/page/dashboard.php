@@ -11,16 +11,37 @@
       <div class="bbn-overlay config-container">
 
           <div class="first">
-            <span>Select a project</span>
+            <span class="bbn-b bbn-medium"><?=_('Select a project')?></span>
             <bbn-dropdown :url="source.root + 'page/dashboard'"
                           :source="dd_projects"
                           v-model="id_project"
                           @change="load_widgets"
             ></bbn-dropdown>
           </div>
-          <div class="second" v-if="id_project !== 'options'">
-            <span><?=_("The source language for this project is")?>:</span>
-            <span v-text="get_field(source.primary, 'code', get_field(source.projects, 'id', id_project, 'lang'), 'text')"></span>
+
+          <div class="second bbn-b bbn-medium bbn-w-100" v-if="id_project !== 'options'">
+            <div class="bbn-w-50 bbn-right">
+              <span><?=_("The source language for this project is")?>:</span>
+            </div>
+            <div class="bbn-w-50 bbn-grid-fields" style="height:30px">
+              <div>
+                <span class="bbn-green bbn-medium bbn-hpadded" v-text="languageText"></span>
+                <i :class="['bbn-large', 'bbn-p' ,{
+                    'nf nf-fa-edit' : !changingProjectLang,
+                    'nf nf-fa-times': changingProjectLang
+                  }]" 
+                    @click="changingProjectLang = !changingProjectLang"
+                    :title="_('Change the project source lang')"
+                ></i>
+              </div>
+              <div v-show="changingProjectLang" >
+                <bbn-dropdown :source="dd_primary"
+                              v-model="language"
+                              @change="set_project_language"
+                              placeholder="<?=_('Select a language')?>"
+                ></bbn-dropdown>
+              </div>
+            </div>
           </div>
           <div v-else
                class="bbn-large second"
@@ -31,11 +52,16 @@
           </div>
 
           <div class="third" v-show="source.configured_langs">
-            <span v-if="id_project !== 'options'"><?=_("Languages configured for translation of this project")?>:</span>
-            <span v-else><?=_("Languages configured for options translation")?>:</span>
-            <div class="langs ">
+            <span v-if="(id_project !== 'options') && source.configured_langs.length"  class="bbn-b bbn-medium">
+              <?=_("Languages configured for translation of this project")?>:
+            </span>
+            <span  class="bbn-b bbn-medium" v-else-if="(id_project !== 'options') && !source.configured_langs.length">
+              <?=_("There are no languages configured for the translation of this project")?>
+            </span>
+            <span v-else class="bbn-b bbn-medium"><?=_("Languages configured for options translation")?>:</span>
+            <div class="langs">
               <div v-for="c in source.configured_langs"
-                   class="bbn-b bbn-i"
+                   class="bbn-i bbn-medium"
                    v-text="get_field(source.primary, 'id', c, 'text')"
               ></div>
             </div>

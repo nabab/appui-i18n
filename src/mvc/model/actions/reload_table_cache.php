@@ -1,7 +1,7 @@
 <?php
 $success = false;
 if ( ( $id_option = $model->data['id_option'] ) && ($id_project = $model->data['id_project']) ){
-  $translation = new \bbn\appui\i18n($model->db);
+  $translation = new \bbn\appui\i18n($model->db, $id_project);
 
   //overwrite the cache of the table
   $translation->cache_set($id_option, 'get_translations_table',

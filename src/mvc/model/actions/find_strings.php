@@ -21,7 +21,7 @@ if (
   !empty($model->data['languages'])
 ){
   /** @var array instantiate $i18n to the class appui\i18n*/
-  $i18n = new \bbn\appui\i18n($model->db);
+  $i18n = new \bbn\appui\i18n($model->db,  $model->data['id_project']);
 
   $strings = $i18n->get_translations_strings($model->data['id_option'],$model->data['language'], $model->data['languages']);
   

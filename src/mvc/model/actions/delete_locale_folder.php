@@ -7,10 +7,7 @@
 
 
 /** @var $this \bbn\mvc\model*/
-
-
-
-if ( $model->data['id_option'] ) {
+if ( !empty($model->data['id_option']) && !empty($model->data['id_project'] )) {
   $success = false;
   /** @var  $translation instantiate the class i18n */
   $translation = new \bbn\appui\i18n($model->db);

@@ -1,5 +1,5 @@
 <div class="languages bbn-overlay">
-  <bbn-tabnav :autoload="true">
+  <bbn-router :autoload="true" :nav="true">
     <bbns-container url="dashboard"
                     icon="nf nf-fa-edit"
                     :title="_('Projects Dashboard')"
@@ -23,6 +23,6 @@
               :load="true"
               :source="source"
     ></bbns-container>-->
-  </bbn-tabnav>
+  </bbn-router>
 </div>
 <script v-for="temp in source.templates" :id="temp.id" type="text/x-template" v-html="temp.html"></script>

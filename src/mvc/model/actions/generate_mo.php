@@ -9,7 +9,7 @@ $success = false;
 
 if ( !empty($model->data['id_option']) ){
 
-  $translation = new \bbn\appui\i18n($model->db);
+  $translation = new \bbn\appui\i18n($model->db, $model->data['id_project']);
   /** @var string $to_explore The directory to explore for strings */
 
   $to_explore = $translation->get_path_to_explore($model->data['id_option']);

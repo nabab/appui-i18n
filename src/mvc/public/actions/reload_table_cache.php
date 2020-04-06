@@ -7,6 +7,6 @@
  */
 
 
-if ( !empty($ctrl->post['id_option']) ){
+if ( !empty($ctrl->post['id_option']) && !empty($ctrl->post['id_project']) ){
   $ctrl->action();
 }

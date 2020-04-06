@@ -4,6 +4,7 @@
           action="internationalization/actions/languages_form"
           confirm-leave="<?=_('Are you sure you want to exit without saving changes').'?'?>"
           :prefilled="true"
+          @success="success"
 >
   <div class="bbn-grid-fields">
 

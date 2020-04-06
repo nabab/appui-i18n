@@ -4,7 +4,7 @@
     data(){
       return {
         //primary is used to render the name of languages in the table
-        primary : bbn.vue.closest(this, 'bbn-tabnav').$parent.source.primary,
+        primary : this.closest('bbn-router').$parent.source.primary,
       }
     },
     computed: {

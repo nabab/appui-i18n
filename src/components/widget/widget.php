@@ -46,7 +46,7 @@
         <?=_('Total number of strings:')?>
       </span>
       <span v-if="data_widget[language]"
-            v-text="(data_widget[language].num > 0) ? data_widget[language].num : (!no_strings) ? 'There are no strings in this path' : ''"
+            v-text="(data_widget[language].num > 0) ? data_widget[language].num : (!no_strings) ? _('Regenerate the translation files') : ''"
             :class="(data_widget[language].num > 0) ? '' : 'bbn-grid-full bbn-orange bbn-c'"
             :style="(data_widget[language].num > 0) ? 'text-align:right!important' : ''"
       ></span>

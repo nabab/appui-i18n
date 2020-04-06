@@ -5,12 +5,24 @@
     data(){
       return {
         id_project: null,
-        primary: bbn.vue.closest(this, 'bbn-tabnav').$parent.source.primary
-
+        project_name: '',
+        primary: this.closest('bbn-router').$parent.source.primary,
+        changingProjectLang: false,
+        language: ''
       }
     },
     
     computed: {
+      languageText(){
+        return bbn.fn.get_field(this.source.primary, 'code', this.language, 'text');
+      },
+      dd_primary(){
+        let res = []
+        this.primary.forEach( (v, i) => {
+          res.push({value: v.code, text: v.text})
+        })
+        return res;
+      },
       widgets(){
         let res = [],
           buttons;
@@ -52,7 +64,7 @@
           this.source.data.forEach( (v, i) => {
             if ( v.id ){
               res.push({
-                title: v.text,
+                title: v.title,
                 key: v.id,
                 component : 'appui-i18n-widget',
                 id_project: this.id_project,
@@ -94,6 +106,21 @@
       },
     },
     methods: {
+      set_project_language(){
+        this.post('internationalization/actions/project_lang', {
+          id_project: this.id_project,
+          language: this.language
+        }, (d) => {
+          if ( d.success ){
+            let idx = bbn.fn.search(this.source.projects, 'id', this.id_project);
+            if ( idx > -1 ){
+              this.source.projects[idx].lang = this.language;
+            }
+            this.changingProjectLang = false
+            appui.success(bbn._('Project source language successfully updated'))
+          }
+        })
+      },
       open_users_activity(){
         bbn.fn.link('internationalization/page/history/');
       },
@@ -129,7 +156,8 @@
           //send the configured langs for this id_project
           source: {
             data: {
-              primary: this.primary
+              primary: this.primary,
+              language: this.language
             },
             row: {
               configured_langs: this.source.configured_langs,
@@ -146,6 +174,7 @@
             if ( d.data.success ){
               this.source.data = d.data.data;
               this.source.configured_langs = d.data.configured_langs;
+              this.project_name = bbn.fn.get_field(this.source.projects, 'id', this.id_project, 'name')
             }
           });
         }
@@ -157,6 +186,13 @@
               this.source.configured_langs = d.configured_langs
             }
           })
+        }
+      }
+    },
+    watch : { 
+      id_project(val){
+        if (val){
+          this.language = bbn.fn.get_field(this.source.projects, 'id', val, 'lang')
         }
       }
     },
@@ -175,17 +211,25 @@
       },
       'languages-form': {
         template: '#languages-form',
+        mounted(){
+          bbn.fn.each(this.source.data.primary, (v, i)=>{
+            bbn.fn.log(v.id, this.source.data.language, (v.id === this.source.data.language))
+          })
+          
+        },
         methods:{
+          success(d){
+            if ( d.success ){
+              appui.success(bbn._('Languages successfully updated'))
+            }
+          },
           inArray(l, arr){
             if ( bbn.fn.isArray(arr) ){
               return arr.indexOf(l)
             }
           },
           change_checked_langs(val, obj){
-            let form = bbn.vue.find(this, 'bbn-form'),
-              //idx =  $.inArray(obj.id, this.source.row.configured_langs);
-              idx = this.source.row.configured_langs.indexOf(obj.id);
-
+            let idx = this.source.row.configured_langs.indexOf(obj.id);
             if ( idx > -1 ){
               bbn.vue.closest(this, 'bbn-container').getComponent().source.configured_langs.splice(idx, 1);
               bbn.vue.closest(this, 'bbn-container').getComponent().$forceUpdate();
@@ -200,7 +244,9 @@
       }
     },
     mounted(){
-      this.id_project = this.source.projects[0].id
+      this.id_project = this.source.projects[0].id;
+      this.project_name = this.source.projects[0].name;
+      this.language =  bbn.fn.get_field(this.source.projects,'id', this.id_project,'lang');
     }
   }
 

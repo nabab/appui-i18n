@@ -9,7 +9,7 @@ if ( !empty($model->data['id_project']) ){
   if ( $project->check() ){
    	return [
       'path' => $project->get_path(),
-      'langs' => $project->get_langs_id(),
+      'langs' => $project->get_langs_ids(),
       'id' => $model->data['id_project'],
       'lang' => $project->get_lang(),
       'name' => $project->get_name()

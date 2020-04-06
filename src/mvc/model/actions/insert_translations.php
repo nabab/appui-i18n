@@ -12,7 +12,7 @@ $success = false;
 if ( !empty($model->data['row']['id_exp'])){
   
   /** @var  $translation instantiate the class appui\i18n*/
-  $translation = new \bbn\appui\i18n($model->db);
+  $translation = new \bbn\appui\i18n($model->db, $model->data['id_project']);
   /** @var $row the row sent by strings table */
   $row = $model->data['row'];
   /** @var (array) $langs sent by strings table*/

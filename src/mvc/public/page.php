@@ -4,7 +4,7 @@ if ( strpos($ctrl->baseURL, APPUI_I18N_ROOT.'page/') !== 0 ){
   // the folder of components templates
   $templates = \bbn\file\dir::get_files($ctrl->plugin_path().'mvc/html/templates');
   $ctrl->data['templates'] = [];
-  $ctrl->obj->url = APPUI_I18N_ROOT.'page';
+  $ctrl->obj->url = 'internationalization/page';
 
   if ( !empty($templates) ){
     $ctrl->data['templates'] = array_map(function ($t) use ($ctrl){
@@ -15,6 +15,6 @@ if ( strpos($ctrl->baseURL, APPUI_I18N_ROOT.'page/') !== 0 ){
     }, $templates);
   }
   $ctrl->set_icon('nf nf-fa-flag')
-       ->set_color('#ff9900', '#FFF')
+       ->set_color('orange', '#FFF')
        ->combo('i18n', true);
 }

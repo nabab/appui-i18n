@@ -6,5 +6,5 @@ _path<?php
  * Time: 11.42
  */
 if ( $ctrl->post['id_option'] ){
- $ctrl->action();
+	$ctrl->action();
 }

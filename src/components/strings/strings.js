@@ -3,7 +3,7 @@
     props: ['source'],
     data(){
       return {
-        primary: this.closest('bbn-tabnav').$parent.source.primary,
+        primary: this.closest('bbn-router').$parent.source.primary,
         column_length: true,
         hidden_cols: [],
         showAlert: false
@@ -91,7 +91,8 @@
     methods: {
       generate_mo(){
         this.post(this.source.root + 'actions/generate_mo', {
-          id_option : this.source.id_option
+          id_option : this.source.id_option,
+          id_project: this.source.id_project,
         }, (d) => {
           if ( d.success === true ){
             appui.success('Mo files correctly generated');
@@ -105,7 +106,8 @@
           this.post(this.source.root + 'actions/generate', {
             id_option: this.source.id_option,
             languages: this.source.res.languages,
-            id_project: this.source.id_project
+            id_project: this.source.id_project,
+            language: this.source.res.path_source_lang
           }, (d) => {
             if ( d.success ){
              
@@ -113,10 +115,10 @@
                 return bbn.fn.get_field(this.primary, 'code', v, 'text');
               });
              
-              let tabnav = this.closest('bbn-tabnav');
-              if ( tabnav ){
+              let router = this.closest('bbn-router');
+              if ( router ){
 
-                let dashboard = tabnav.find('bbn-dashboard');
+                let dashboard = router.find('bbn-dashboard');
                 if ( dashboard ){
                   let widgets = dashboard.findAll('bbn-widget');
                   if ( widgets.length ){
@@ -133,8 +135,8 @@
 
               }
               this.source.res.strings = d.strings;
-              if ( this.closest('bbn-tabnav') ) {
-                let dashboard = this.closest('bbn-tabnav').find('bbn-dashboard');
+              if ( this.closest('bbn-router') ) {
+                let dashboard = this.closest('bbn-router').find('bbn-dashboard');
                 //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
                 if ( dashboard ) {
                   let widgets = dashboard.findAll('bbn-widget');
@@ -167,7 +169,8 @@
         this.post(this.source.root + 'actions/find_strings', {
           id_option: this.source.id_option,
           language: this.source.res.path_source_lang,
-          languages: this.source.res.languages
+          languages: this.source.res.languages,
+          id_project: this.source.id_project
         }, (d) => {
           if ( d.success ){
             if ( ( d.done > 0 ) && ( d.news.length ) ){
@@ -272,11 +275,11 @@
               appui.warning('Translation deleted from db, please be sure to remake po files');
             })
           }
-          if ( this.closest('bbn-tabnav') ) {
-            bbn.fn.log('before table update', this.closest('bbn-tabnav'))
+          if ( this.closest('bbn-router') ) {
+            bbn.fn.log('before table update', this.closest('bbn-router'))
             //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
-            if ( this.closest('bbn-tabnav') ) {
-              let dashboard = this.closest('bbn-tabnav').find('bbn-dashboard');
+            if ( this.closest('bbn-router') ) {
+              let dashboard = this.closest('bbn-router').find('bbn-dashboard');
               //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
               if ( dashboard ) {
                 let widgets = dashboard.findAll('bbn-widget');
@@ -325,9 +328,9 @@
               this.showAlert = false;
               this.column_length = true;
             });
-            let tabnav = this.closest('bbn-tabnav');
-            /*if( this.find(tabnav, 'bbn-dashboard') !== undefined ){
-              let dashboard = this.find(tabnav, 'bbn-dashboard'),
+            let router = this.closest('bbn-router');
+            /*if( this.find(router, 'bbn-dashboard') !== undefined ){
+              let dashboard = this.find(router, 'bbn-dashboard'),
                 tab = this.closest(dashboard, 'bbns-container'),
                 cp = tab.getComponent(),
                 data = cp.source.data,

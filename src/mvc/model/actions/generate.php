@@ -12,37 +12,38 @@
  */
 use Gettext\Translations;
 if (
-  isset($model->data['id_option']) &&
-  ($o = $model->inc->options->option($model->data['id_option'])) &&
-  ($parent = $model->inc->options->parent($o['id'])) &&
-  defined($parent['code'])
+  ( $o = $model->data['id_option'] ) &&
+  ( $id_project = $model->data['id_project'] ) &&
+  ( $language = $model->data['language'] )
 ){
+
+  
   /** @var bool $json Will be true if some translations are put into a JSON file */
   $json = false;
   /** @var array $js_files An array with files as index and an array expressions to put into the JSON file */
   $js_files = [];
   //instantiate the class i18n
-  $translation = new \bbn\appui\i18n($model->db);
+  $translation = new \bbn\appui\i18n($model->db, $id_project);
   //die(var_dump($translation->get_po_files($model->data['id_option'])));
   $success = false;
 
 
   /** @var string $to_explore The directory to explore for strings */
-  $to_explore = $translation->get_path_to_explore($model->data['id_option']);
-  
-  $locale_dir = $translation->get_locale_dir_path($model->data['id_option']);
-
+  $to_explore = $translation->get_path_to_explore($o);
+  //the position of locale dir 
+  $locale_dir = $translation->get_locale_dir_path($o);
 
   /** @var string $domain The domain on which will be bound gettext */
-  $domain = $o['text'];
+  $domain = $model->inc->options->text($o);
+  
+  //the number contained in the txt file inside the folder locale
+  $num = is_file($translation->get_index_path($o)) ? (int)file_get_contents($translation->get_index_path($o)) : 0;
 
-
-  $num = is_file($translation->get_index_path($o['id'])) ? (int)file_get_contents($translation->get_index_path($o['id'])) : 0;
-
-  if( !is_file($translation->get_index_path($o['id'])) || !is_dir($locale_dir) ){
+  //if the file txt does not exist it creates the file
+  if( !is_file($translation->get_index_path($o)) || !is_dir($locale_dir) ){
     \bbn\file\dir::create_path($locale_dir);
   }
-  file_put_contents($translation->get_index_path($o['id']), ++$num);
+  file_put_contents($translation->get_index_path($o), ++$num);
   
   $domain .= $num;
 
@@ -83,14 +84,13 @@ if (
   }
 
   /** @var array $data Takes all strings found in the files of  this option */
-  $data = empty($o['language']) ? [] : $translation->get_translations_strings($model->data['id_option'], $o['language'], $languages);
+  $data = empty($language) ? [] : $translation->get_translations_strings($model->data['id_option'], $language, $languages);
 
   /** @var bool $no_strings Will be true if $data[res] is empty, i.e. if find_strings returns no result. */
   $no_strings = false;
 
   // $data['res'] is the array of strings
   if ( !empty($data['res'] )){
-
 		clearstatcache();
     $dir = '';
     foreach ( $languages as $lang ){

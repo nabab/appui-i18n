@@ -8,23 +8,10 @@
 
 /* @var string ID of the path to analyze is expected */
 
-if ( !empty($model->data['id_option']) ){
+if ( !empty($model->data['id_option']) && ($id_project = $model->data['id_project']) ){
   //REMAKE THE CACHE OF THE WIDGETS
-
   /** @var  $translation instantiate the class appui\i18n*/
-  $translation = new \bbn\appui\i18n($model->db);
-  
-  $projects = $model->get_model('internationalization/page')['projects'];
-
-  //return id_project from id_option
-  foreach ( $projects as $i => $p){
-    foreach( $projects[$i]['path'] as $path ){
-      if ( $path['id_option'] === $model->data['id_option']){
-        $id_project = $projects[$i]['id'];
-      }
-    }
-  }
-
+  $translation = new \bbn\appui\i18n($model->db, $id_project);
   
   //if the table has no cache it creates cache
   if ( !$translation->cache_has($model->data['id_option'], 'get_translations_table') && !empty($id_project) ){
@@ -41,7 +28,7 @@ if ( !empty($model->data['id_option']) ){
 
 
   //case of project 'options'
-  if ( !empty($model->data['id_project'] ) && ( $model->data['id_project'] === 'options') ){
+  if ( !empty($id_project ) && ( $id_project === 'options') ){
     /**case project options*/
     /** @var  $cfg get the property i18n from option cfg to send it to the find_options*/
     if ( $cfg = $model->inc->options->get_cfg($model->data['id_option']) ){
@@ -58,7 +45,7 @@ if ( !empty($model->data['id_option']) ){
   }
 
   return [
-    'id_project' => $model->data['id_project'] ?: $id_project,
+    'id_project' => $id_project ?: $id_project,
     'res' => $res,
     'pageTitle' =>  $model->inc->options->text($model->data['id_option']),
   ];
