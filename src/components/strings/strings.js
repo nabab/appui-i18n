@@ -15,7 +15,7 @@
     computed: {
       /** the source language of this id_option */
       source_lang(){
-        return bbn.fn.get_field( this.primary, 'code' , this.source.res.path_source_lang, 'text')
+        return bbn.fn.getField( this.primary, 'text', 'code' , this.source.res.path_source_lang)
       },
       /**array of columns for the table*/
       columns(){
@@ -28,7 +28,7 @@
         for ( let n in this.source.res.languages ){
           var obj = {
             field: this.source.res.languages[n] + '_db',
-            title:  ( this.source.res.languages[n] === this.source.res.path_source_lang) ? (bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text') + '  <i class="nf nf-fa-asterisk" title="This is the original language of the expression"></i>') : bbn.fn.get_field(this.primary, 'code', this.source.res.languages[n], 'text'),
+            title:  ( this.source.res.languages[n] === this.source.res.path_source_lang) ? (bbn.fn.getField(this.primary, 'text', 'code', this.source.res.languages[n]) + '  <i class="nf nf-fa-asterisk" title="This is the original language of the expression"></i>') : bbn.fn.getField(this.primary, 'text', 'code', this.source.res.languages[n]),
             editable: true
           };
           
@@ -112,7 +112,7 @@
             if ( d.success ){
              
               d.languages = d.languages.map( (v) => {
-                return bbn.fn.get_field(this.primary, 'code', v, 'text');
+                return bbn.fn.getField(this.primary, 'text', 'code', v);
               });
              
               let router = this.closest('bbn-router');

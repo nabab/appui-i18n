@@ -20,7 +20,7 @@
           </div>
           <div class="second" v-if="id_project !== 'options'">
             <span><?=_("The source language for this project is")?>:</span>
-            <span v-text="get_field(source.primary, 'code', get_field(source.projects, 'id', id_project, 'lang'), 'text')"></span>
+            <span v-text=.getField(source.primary, 'id', id_project, 'lang', 'code', get_field(source.projects), 'text')"></span>
           </div>
           <div v-else
                class="bbn-large second"
@@ -36,7 +36,7 @@
             <div class="langs ">
               <div v-for="c in source.configured_langs"
                    class="bbn-b bbn-i"
-                   v-text="get_field(source.primary, 'id', c, 'text')"
+                   v-text=.getField(source.primary, 'text', 'id', c)"
               ></div>
             </div>
 

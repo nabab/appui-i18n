@@ -70,7 +70,7 @@
         $.each(this.primary, (i, v) => {
           res.push({
             value: v.lang,
-            text: bbn.fn.get_field(this.primary, 'code', v.lang, 'text')
+            text: bbn.fn.getField(this.primary, 'text', 'code', v.lang)
           })
         })
         return res;
@@ -138,7 +138,7 @@
           }
         })
       },
-      get_field: bbn.fn.get_field,
+      getField: bbn.fn.getField,
       load_widgets(){
         this.source.data = [];
         if ( this.id_project !== 'options' ){

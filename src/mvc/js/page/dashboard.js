@@ -14,7 +14,7 @@
     
     computed: {
       languageText(){
-        return bbn.fn.get_field(this.source.primary, 'code', this.language, 'text');
+        return bbn.fn.getField(this.source.primary, 'text', 'code', this.language);
       },
       dd_primary(){
         let res = []
@@ -82,7 +82,7 @@
         $.each(this.primary, (i, v) => {
           res.push({
             value: v.lang,
-            text: bbn.fn.get_field(this.primary, 'code', v.lang, 'text')
+            text: bbn.fn.getField(this.primary, 'text', 'code', v.lang)
           })
         })
         return res;
@@ -166,7 +166,7 @@
           }
         })
       },
-      get_field: bbn.fn.get_field,
+      getField: bbn.fn.getField,
       load_widgets(){
         this.source.data = [];
         if ( this.id_project !== 'options' ){
@@ -174,7 +174,7 @@
             if ( d.data.success ){
               this.source.data = d.data.data;
               this.source.configured_langs = d.data.configured_langs;
-              this.project_name = bbn.fn.get_field(this.source.projects, 'id', this.id_project, 'name')
+              this.project_name = bbn.fn.getField(this.source.projects, 'name', 'id', this.id_project)
             }
           });
         }
@@ -192,7 +192,7 @@
     watch : { 
       id_project(val){
         if (val){
-          this.language = bbn.fn.get_field(this.source.projects, 'id', val, 'lang')
+          this.language = bbn.fn.getField(this.source.projects, 'lang', 'id', val)
         }
       }
     },

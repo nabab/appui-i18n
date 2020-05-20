@@ -20,7 +20,7 @@
       ></i>
 
      <span class="bbn-l"
-            v-text="get_field(primary, 'code', language, 'text')"
+            v-text=.getField(primary, 'text', 'code', language)"
             style="float:right"
       ></span>
     </div>
@@ -54,7 +54,7 @@
            v-for="(w, i) in data_widget"
            class="bbn-grid-full">
 
-        <span v-text="get_field(primary, 'code', i, 'text')"
+        <span v-text=.getField(primary, 'text', 'code', i)"
               class="bbn-b bbn-i"
               v-if="i !== language"
         ></span>

@@ -77,7 +77,7 @@
         }
         return st;
         /*let st = '';
-        st += bbn.fn.get_field( this.primary, 'code', row.translation_lang , 'text')
+        st += bbn.fn.getField( this.primary, 'text', 'code', row.translation_lang )
         return st;*/
       },
       render_original_lang(row){

@@ -101,7 +101,7 @@
         
       },
       search: bbn.fn.search,
-      get_field: bbn.fn.get_field,
+      getField: bbn.fn.getField,
       /** set the property language in db for this path */
       set_language(){
         /* the data coming from the post change the source of the dashboard at the index of this specific widget*/
@@ -312,12 +312,12 @@
             class="bbn-vlpadded"
             ref="checkbox"
       >
-        <bbn-checkbox :value="get_field(source.data.primary, 'id', l, 'code')"
+        <bbn-checkbox :value=.getField(source.data.primary, 'code', 'id', l)"
                       :checked="checked_lang(l)"
                       @change="change_languages"
-                      :disabled="get_field(source.data.primary, 'id', l, 'code') === source.data.language"
+                      :disabled=.getField(source.data.primary, 'code', 'id', l) === source.data.language"
                       
-                      :label="get_field(source.data.primary, 'id', l, 'text')"
+                      :label=.getField(source.data.primary, 'text', 'id', l)"
         ></bbn-checkbox>
         <div></div>
       </div>
@@ -347,7 +347,7 @@
           },
         },
         methods: {
-          get_field: bbn.fn.get_field,          
+          getField: bbn.fn.getField,          
           //inArray: $.inArray,
           //change the languages of locale dirs
           change_languages(val, obj) {
@@ -382,7 +382,7 @@
             }
           },
           checked_lang(l){
-            let code = bbn.fn.get_field(this.source.data.primary, 'id', l, 'code');
+            let code = bbn.fn.getField(this.source.data.primary, 'code', 'id', l);
             //if ( $.inArray(code, this.source.row.languages) > -1 ){
             if ( this.source.row.languages.indexOf(code) > -1 ){
               return true;
@@ -424,7 +424,7 @@
                   //this.source.data.widget.remake_cache();
 
                   this.$nextTick(() => {
-                    let st = bbn.fn.get_field(this.source.data.primary, 'code', v, 'text') + ' translation files successfully files deleted';
+                    let st = bbn.fn.getField(this.source.data.primary, 'text', 'code', v) + ' translation files successfully files deleted';
                     appui.success(st)
                   })
                 });
@@ -435,7 +435,7 @@
                 d.new_dir.forEach((v, i) => {
                 //this.source.data.widget.remake_cache();
                 
-                appui.success(  bbn.fn.get_field(this.source.data.primary, 'code', v, 'text') + ' translation files successfully created')
+                appui.success(  bbn.fn.getField(this.source.data.primary, 'text', 'code', v) + ' translation files successfully created')
               } )
               
               

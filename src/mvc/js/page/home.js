@@ -4,7 +4,7 @@
     methods: {
       //render for the third column of the projects table
       render_lang_name(row){
-        return bbn.fn.get_field(this.source.primary, 'code', row.lang, 'text');
+        return bbn.fn.getField(this.source.primary, 'text', 'code', row.lang);
       },
       //render for the first column of the projects table
       render_projects(row){
@@ -15,7 +15,7 @@
         var st = '';
         if ( ( row.langs !== null ) && ( row.langs.length ) ){
           bbn.fn.each( row.langs, (v, i) => {
-            st += bbn.fn.get_field(this.source.primary, 'id', v, 'text') + '<br>'});
+            st += bbn.fn.getField(this.source.primary, 'text', 'id', v) + '<br>'});
           return st;
         }
         else {

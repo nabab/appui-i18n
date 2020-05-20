@@ -57,7 +57,7 @@
         return typeof (obj)
       },
      /* lang_name(val){
-        return bbn.fn.get_field(this.source.dropdown_langs, 'value', val, 'text'))
+        return bbn.fn.getField(this.source.dropdown_langs, 'text', 'value', val))
       }*/
     },
     watch: {
