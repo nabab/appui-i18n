@@ -35,10 +35,8 @@
           /**render for the columns when the  project is not options */
           if ( ( this.source.id_project !== 'options' )  ){
             obj.render = (row) => {
-              var columns = this.find('bbn-table').columns,
-                this_field, 
-                translation_db = row[this.source.res.languages[n] + '_db'],
-                translation_po = row[this.source.res.languages[n] + '_po'];
+              let translation_db = row[this.source.res.languages[n] + '_db'];
+              let translation_po = row[this.source.res.languages[n] + '_po'];
               if ( ( translation_db !== false ) && ( translation_db.length )  && ( translation_db === translation_po ) ){
                 return translation_db + '<i class="nf nf-fa-check bbn-large bbn-green" title="Expression correctly inserted in db and po file" style="float:right"><i/>'
               }
@@ -82,7 +80,7 @@
           ftitle: bbn._('Remove original expression'),
           buttons: this.buttons,
           width: 90,
-          cls: 'bbn-c bbn-buttons-flex'
+          cls: 'bbn-c'
         });
         
         return r;

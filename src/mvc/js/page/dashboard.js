@@ -230,14 +230,14 @@
           },
           change_checked_langs(val, obj){
             let idx = this.source.row.configured_langs.indexOf(obj.id);
+            let cp = this.closest('bbn-container').getComponent();
             if ( idx > -1 ){
-              bbn.vue.closest(this, 'bbn-container').getComponent().source.configured_langs.splice(idx, 1);
-              bbn.vue.closest(this, 'bbn-container').getComponent().$forceUpdate();
+              cp.source.configured_langs.splice(idx, 1);
             }
             else {
-              bbn.vue.closest(this, 'bbn-container').getComponent().source.configured_langs.push(obj.id)
-              bbn.vue.closest(this, 'bbn-container').getComponent().$forceUpdate();
+              cp.source.configured_langs.push(obj.id)
             }
+            cp.$forceUpdate();
           }
         },
         props: ['source'],
@@ -246,7 +246,7 @@
     mounted(){
       this.id_project = this.source.projects[0].id;
       this.project_name = this.source.projects[0].name;
-      this.language =  bbn.fn.get_field(this.source.projects,'id', this.id_project,'lang');
+      this.language =  bbn.fn.getField(this.source.projects, 'lang', {id: this.id_project});
     }
   }
 

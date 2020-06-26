@@ -1,5 +1,5 @@
 
-<div ref="widget" :key="id_option">
+<div ref="widget" :key="id_option" class="bbn-spadded">
   <!--if the source language of the path is set -->
   <div v-if="language">
 
@@ -20,7 +20,7 @@
       ></i>
 
      <span class="bbn-l"
-            v-text=.getField(primary, 'text', 'code', language)"
+            v-text="getField(primary, 'text', {code: language})"
             style="float:right"
       ></span>
     </div>
@@ -54,7 +54,7 @@
            v-for="(w, i) in data_widget"
            class="bbn-grid-full">
 
-        <span v-text=.getField(primary, 'text', 'code', i)"
+        <span v-text="getField(primary, 'text', {code: i})"
               class="bbn-b bbn-i"
               v-if="i !== language"
         ></span>

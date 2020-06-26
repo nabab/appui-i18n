@@ -312,12 +312,11 @@
             class="bbn-vlpadded"
             ref="checkbox"
       >
-        <bbn-checkbox :value=.getField(source.data.primary, 'code', 'id', l)"
+        <bbn-checkbox :value="getField(source.data.primary, 'code', {id: l})"
                       :checked="checked_lang(l)"
                       @change="change_languages"
-                      :disabled=.getField(source.data.primary, 'code', 'id', l) === source.data.language"
-                      
-                      :label=.getField(source.data.primary, 'text', 'id', l)"
+                      :disabled=:getField(source.data.primary, 'code', {id: l}) === source.data.language"
+                      :label="getField(source.data.primary, 'text', {id: l})"
         ></bbn-checkbox>
         <div></div>
       </div>

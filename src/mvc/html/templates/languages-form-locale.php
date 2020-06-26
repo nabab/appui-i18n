@@ -19,12 +19,12 @@
             class="bbn-vlpadded"
             ref="checkbox"
       >
-        <bbn-checkbox :value=.getField(source.data.primary, 'code', 'id', l)"
+        <bbn-checkbox :value="getField(source.data.primary, 'code', {id: l})"
                       :checked="checked_lang(l)"
                       @change="change_languages"
-                      :disabled=.getField(source.data.primary, 'code', 'id', l) === source.data.language"
-                      :title=.getField(source.data.primary, 'code', 'id', l) === source.data.language ? 'You cannot delete translation file in source language before to reset \'Source language of this path:\' from the widget' : 'Select to create or delete a translation file'"
-                      :label=.getField(source.data.primary, 'text', 'id', l)"
+                      :disabled="getField(source.data.primary, 'code', {id: l}) === source.data.language"
+                      :title="getField(source.data.primary, 'code', {id: l}) === source.data.language ? 'You cannot delete translation file in source language before to reset \'Source language of this path:\' from the widget' : 'Select to create or delete a translation file'"
+                      :label="getField(source.data.primary, 'text', {id: l})"
         ></bbn-checkbox>
         <div></div>
       </div>
