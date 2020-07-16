@@ -5,7 +5,7 @@
                 "columns": [
                     "id"
                 ],
-                "ref_db": "apst_app",
+                "ref_db": null,
                 "ref_table": "bbn_history_uids",
                 "ref_column": "bbn_uid",
                 "constraint": "bbn_i18n_ibfk_2",
@@ -80,7 +80,7 @@
                 "columns": [
                     "id"
                 ],
-                "ref_db": "apst_app",
+                "ref_db": null,
                 "ref_table": "bbn_history_uids",
                 "ref_column": "bbn_uid",
                 "constraint": "bbn_i18n_exp_ibfk_2",
@@ -105,7 +105,7 @@
                 "columns": [
                     "id_exp"
                 ],
-                "ref_db": "apst_app",
+                "ref_db": null,
                 "ref_table": "bbn_i18n",
                 "ref_column": "id",
                 "constraint": "bbn_i18n_exp_ibfk_1",
