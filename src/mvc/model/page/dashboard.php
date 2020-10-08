@@ -19,8 +19,6 @@ if ( $opt_projects = $model->inc->options->from_code('projects', 'appui') ){
     }
   }
 }
-$project_idx;
-
 if ( !empty($model->data['id_project']) ){
   $project_idx = \bbn\x::find($projects, ['id' => $model->data['id_project']]);
 }
