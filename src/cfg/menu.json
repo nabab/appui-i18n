@@ -1,9 +1,13 @@
 {
   "text": "Internationalization",
+  "num": 11,
   "icon": "nf nf-fa-flag",
-  "items": [{
-    "text": "Languages",
-    "icon": "nf nf-fa-flag_checkered",
-    "link": "page"
-  }]
+  "items": [
+    {
+      "text": "languages",
+      "num": 1,
+      "icon": "nf nf-fa-flag",
+      "link": "page"
+    }
+  ]
 }
