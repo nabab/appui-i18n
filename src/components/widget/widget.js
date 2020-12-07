@@ -116,7 +116,7 @@
             this.$nextTick( () => {
               this.parentSource.data[this.widget_idx].data_widget = d.data_widget;
               this.remake_cache();
-              appui.success(bbn._('Source language setted'));
+              appui.success(bbn._('Source language set'));
               this.$forceUpdate();
             });
           }
@@ -130,7 +130,7 @@
         }, (d) => {
           if ( d.success ){
             this.language = null
-            appui.success(bbn._('Source language resetted'));
+            appui.success(bbn._('Source language reset'));
           }
         })
       },
@@ -143,7 +143,7 @@
         }, (d) => {
           if ( d.success ){
             this.language = null
-            appui.success(bbn._('Source language resetted'));
+            appui.success(bbn._('Source language reset'));
           }
         })
       },
@@ -154,7 +154,7 @@
         }, (d) => {
           if ( d.success ){
             this.language = null
-            appui.success(bbn._('Source language resetted for this option'));
+            appui.success(bbn._('Source language reset for this option'));
           }
         })
       },
@@ -309,24 +309,21 @@
     </div>
     <div class="bbn-padded">
       <div v-for="l in source.data.configured_langs"
-            class="bbn-vlpadded"
-            ref="checkbox"
-      >
+           class="bbn-vlpadded"
+           :key="l"
+           ref="checkbox">
         <bbn-checkbox :value="getField(source.data.primary, 'code', {id: l})"
                       :checked="checked_lang(l)"
                       @change="change_languages"
-                      :disabled=:getField(source.data.primary, 'code', {id: l}) === source.data.language"
-                      :label="getField(source.data.primary, 'text', {id: l})"
-        ></bbn-checkbox>
-        <div></div>
+                      :disabled="getField(source.data.primary, 'code', {id: l}) === source.data.language"
+                      :label="getField(source.data.primary, 'text', {id: l})"/>
       </div>
     </div>
    
   </div>
   <div class="bbn-s bbn-padded"
        v-html="message"
-       style="position:absolute; bottom:0;left: 0;margin-bottom: 6px;margin-right:6px;"
-  ></div>
+       style="position:absolute; bottom:0;left: 0;margin-bottom: 6px;margin-right:6px;"/>
 </bbn-form>
         `,
         data(){

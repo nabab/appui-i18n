@@ -43,7 +43,7 @@
     <div v-if="data_widget && data_widget[language]" class="bbn-grid-fields" style="padding-top:8px;">
 
       <span v-if="data_widget[language] && (data_widget[language].num > 0)">
-        <?=_('Total number of strings:')?>
+        <?=_('Total number of expressions')?>:
       </span>
       <span v-if="data_widget[language]"
             v-text="(data_widget[language].num > 0) ? data_widget[language].num : (!no_strings) ? _('Regenerate the translation files') : ''"

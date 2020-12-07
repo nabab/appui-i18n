@@ -47,7 +47,7 @@
                class="bbn-large second"
           >
             <a href="options/tree"
-               title="<?=_("Go to options' tree, choice the option you want to translate")?>"
+               title="<?=_("Choose the option you want to translate from the options' tree")?>"
             ><?=_("Follow the link to configure other options for translation")?></a>
           </div>
 
@@ -78,21 +78,18 @@
               ></bbn-button>
 
               <bbn-button icon="nf nf-fa-user"
-                          text="<?=_("User Activity")?>"
+                          text="<?=_("User activity")?>"
                           @click="open_user_activity"
-                          title="<?=_("User activity")?>"
               ></bbn-button>
 
               <bbn-button icon="nf nf-fa-users"
-                          text="<?=_("Users Activity")?>"
+                          text="<?=_("Users activity")?>"
                           @click="open_users_activity"
-                          title="<?=_("Users activity")?>"
               ></bbn-button>
 
               <bbn-button icon="nf nf-fa-flag"
                           text="<?=_("Glossary table")?>"
                           @click="open_glossary_table"
-                          title="<?=_("Glossary tables")?>"
               ></bbn-button>
 
 
