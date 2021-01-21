@@ -8,7 +8,9 @@
         project_name: '',
         primary: this.closest('bbn-router').$parent.source.primary,
         changingProjectLang: false,
-        language: ''
+        language: '',
+        optionsRoot: appui.plugins['appui-option'] + '/',
+        root: appui.plugins['appui-i18n'] + '/'
       }
     },
     
@@ -107,7 +109,7 @@
     },
     methods: {
       set_project_language(){
-        this.post('internationalization/actions/project_lang', {
+        this.post(this.root + 'actions/project_lang', {
           id_project: this.id_project,
           language: this.language
         }, (d) => {
@@ -122,10 +124,10 @@
         })
       },
       open_users_activity(){
-        bbn.fn.link('internationalization/page/history/');
+        bbn.fn.link(this.root + 'page/history/');
       },
       open_user_activity(){
-        bbn.fn.link('internationalization/page/user_history');
+        bbn.fn.link(this.root + 'page/user_history');
       },
       open_glossary_table(){
         //open a component popup to select source language and translation language for the table glossary
@@ -170,7 +172,7 @@
       load_widgets(){
         this.source.data = [];
         if ( this.id_project !== 'options' ){
-          this.post('internationalization/page/dashboard', { id_project: this.id_project }, (d) => {
+          this.post(this.root + 'page/dashboard', { id_project: this.id_project }, (d) => {
             if ( d.data.success ){
               this.source.data = d.data.data;
               this.source.configured_langs = d.data.configured_langs;
@@ -180,7 +182,7 @@
         }
         /** case of project options this controller will return only result of each language and locale dirs */
         else if ( this.id_project === 'options' ){
-          this.post('internationalization/options/options_data', { id_project: this.id_project }, (d) => {
+          this.post(this.root + 'options/options_data', { id_project: this.id_project }, (d) => {
             if ( d.success && d.data ){
               this.source.data = d.data.data;
               this.source.configured_langs = d.configured_langs
@@ -202,7 +204,7 @@
         props:['source'],
         methods: {
           link(){
-            bbn.fn.link('internationalization/page/glossary/' + this.source.source_lang + '/' + this.source.translation_lang);
+            bbn.fn.link(this.root + 'page/glossary/' + this.source.source_lang + '/' + this.source.translation_lang);
           },
           cancel(){
             this.getPopup().close();

@@ -12,6 +12,7 @@
         language: null,
         /** the css class for progress bar the value is decided by the watch of progress_bar_val */
         progress_bar_class: '',
+        root: appui.plugins['appui-i18n'] + '/'
       }
     },
     computed: {
@@ -105,7 +106,7 @@
       /** set the property language in db for this path */
       set_language(){
         /* the data coming from the post change the source of the dashboard at the index of this specific widget*/
-        this.post('internationalization/actions/define_path_lang', {
+        this.post(this.root + 'actions/define_path_lang', {
           'language': this.language,
           'id_option': this.id_option,
           'id_project': this.id_project,
@@ -123,7 +124,7 @@
         })
       },
       set_cfg(){
-        this.post('options/set_lang', {
+        this.post(this.root + 'options/set_lang', {
           'id_option': this.id_option,
           'id_project': this.id_project,
           'language': this.language
@@ -136,7 +137,7 @@
       },
       /** removes the property language of the path */
       remove_language(){
-        this.post('internationalization/actions/delete_path_lang', {
+        this.post(this.root + '/actions/delete_path_lang', {
           'id_option': bbn.vue.closest(this.$parent, 'bbn-container').getComponent().widgets[bbn.vue.closest(this, 'bbn-widget').index].key,
           'language': this.language,
           'id_project': this.id_project
@@ -149,7 +150,7 @@
       },
       /** removes the property language of the option from its cfg */
       remove_cfg(){
-        this.post('internationalization/options/remove_lang', {
+        this.post(this.root + '/options/remove_lang', {
           id_option: this.id_option
         }, (d) => {
           if ( d.success ){
@@ -160,7 +161,7 @@
       },
       delete_locale_folder(){
         this.confirm('Are you sure you want to delete the folder locale for this path?',()=>{
-          this.post(this.parentSource.root + 'actions/delete_locale_folder', {
+          this.post(this.root + 'actions/delete_locale_folder', {
             id_option: this.id_option,
             id_project: this.id_project
           }, (d) => {
@@ -181,18 +182,18 @@
         //internationalization/page/path_translations/ will return the cached_model in its data, if a
         // cached_model doesn't exist for this id_option it will be created
         if ( ( this.configured_langs !== undefined ) && ( this.id_project !== 'options')){
-          bbn.fn.link('internationalization/page/path_translations/' +this.project_name +'/'+ this.id_option);
+          bbn.fn.link(this.root + 'page/path_translations/' +this.project_name +'/'+ this.id_option);
         }
         else if ( (this.configured_langs === undefined) && ( this.id_project !== 'options')){
           this.alert(bbn._('You have to configure at least a language of translation using the button') +' <i class="nf nf-fa-flag"></i> ' + bbn._('of the widget before to open the strings table') );
         }
         else if ( ( this.configured_langs !== undefined ) && ( this.id_project === 'options') ){
-          bbn.fn.link('internationalization/page/path_translations/options/' + this.id_option );
+          bbn.fn.link(this.root + 'page/path_translations/options/' + this.id_option );
         }
       },
       remake_cache(){
         if ( this.language != null ){
-          this.post('internationalization/actions/reload_widget_cache', {
+          this.post(this.root + 'actions/reload_widget_cache', {
             id_option: this.id_option,
             id_project: this.id_project
           }, (d) => {
@@ -209,7 +210,7 @@
       },
       /*
       find_strings(){
-        let url = this.parentSource.root + 'actions/reload_widget_cache';
+        let url = this.root + 'actions/reload_widget_cache';
         this.post(url, { id_option: this.source.id_option },  (d) => {
           if ( d.success ){
             this.source.res = d.res;
@@ -227,7 +228,7 @@
       /** method to find strings and translation for the option -works with db- only for the id_project === 'option' */
       find_options(){
         if ( this.id_project === 'options' ){
-          let url = this.parentSource.root + 'options/find_options';
+          let url = this.root + 'options/find_options';
           this.post(url, {
             id_option : this.id_option,
             language: this.language
@@ -399,9 +400,8 @@
           },
           generate_mo() {
             
-            let root = this.get_widget().closest('bbn-container').getComponent().source.root, 
-                id_option = this.get_widget().id_option;
-            this.post(root + 'actions/generate_mo', {
+            let id_option = this.get_widget().id_option;
+            this.post(this.root + 'actions/generate_mo', {
               id_option: id_option, 
               id_project: this.id_project
             }, (d) => {

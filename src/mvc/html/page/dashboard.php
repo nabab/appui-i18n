@@ -46,7 +46,7 @@
           <div v-else
                class="bbn-large second"
           >
-            <a href="options/tree"
+            <a :href="optionsRoot + 'tree'"
                title="<?=_("Choose the option you want to translate from the options' tree")?>"
             ><?=_("Follow the link to configure other options for translation")?></a>
           </div>

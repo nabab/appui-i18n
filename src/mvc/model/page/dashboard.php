@@ -8,8 +8,8 @@
 /** @var  $projects array of projects*/
 
 $projects = [];
-//$id_project = $model->data['id_project'] ?? $model->inc->options->from_code('apst-app', 'projects', 'appui');
-if ( $opt_projects = $model->inc->options->from_code('projects', 'appui') ){
+//$id_project = $model->data['id_project'] ?? $model->inc->options->from_code('apst-app', 'project', 'appui');
+if ( $opt_projects = $model->inc->options->from_code('project', 'appui') ){
   $ids = array_keys($model->inc->options->options($opt_projects));
   if ( !empty($ids) ){
     foreach($ids as $i => $id){
