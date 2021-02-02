@@ -10,7 +10,7 @@
 
 
 if ( empty($model->data['language']) ){
-  $model->data['language'] = $model->inc->options->get_prop($model->data['id_option'], 'language');
+  $model->data['language'] = $model->inc->options->getProp($model->data['id_option'], 'language');
 }
 
 if (
@@ -20,10 +20,10 @@ if (
   ($source_language = $model->data['language']) &&
   !empty($model->data['languages'])
 ){
-  /** @var array instantiate $i18n to the class appui\i18n*/
-  $i18n = new \bbn\appui\i18n($model->db,  $model->data['id_project']);
+  /** @var array instantiate $i18n to the class Appui\I18n*/
+  $i18n = new \bbn\Appui\I18n($model->db,  $model->data['id_project']);
 
-  $strings = $i18n->get_translations_strings($model->data['id_option'],$model->data['language'], $model->data['languages']);
+  $strings = $i18n->getTranslationsStrings($model->data['id_option'],$model->data['language'], $model->data['languages']);
   
   return $strings;
 }

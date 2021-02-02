@@ -9,7 +9,7 @@
              :limit="25"
              ref="glossary_table"
              :info="true"
-             :order="[{field: 'exp', dir: 'ASC'}]"
+             :order="[{field: 'exp', Dir: 'ASC'}]"
              :data="{source_lang: source.source_lang, lang_name:source.lang_name, translation_lang: source.translation_lang}"
              @change="insert_translation"
   >

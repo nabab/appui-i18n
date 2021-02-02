@@ -10,7 +10,7 @@
 
 if ( !empty($model->data['limit']) ){
 
-    $grid = new \bbn\appui\grid($model->db, $model->data, [
+    $grid = new \bbn\Appui\Grid($model->db, $model->data, [
       'tables' => ['bbn_i18n_exp'],
       'fields' => [
         'bbn_i18n_exp.id_exp', 'expression',
@@ -62,7 +62,7 @@ if ( !empty($model->data['limit']) ){
         ON bbn_i18n.id = bbn_i18n_exp.id_exp
         ";*/
 
-  /*$grid = new \bbn\appui\grid($model->db, $model->data, [
+  /*$grid = new \bbn\Appui\Grid($model->db, $model->data, [
     'extra_fields' => ['bbn_i18n.exp'],
     'group_by' => 'bbn_i18n_exp.id',
     'query'=> $query,
@@ -71,7 +71,7 @@ if ( !empty($model->data['limit']) ){
   ]);*/
 
   if ( $grid->check() ){
-    return $grid->get_datatable();
+    return $grid->getDatatable();
   }
 
 }

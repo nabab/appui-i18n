@@ -6,7 +6,7 @@
 
 
 /**
- * @var \bbn\mvc\model $model
+ * @var \bbn\Mvc\Model $model
  * @var array $o The option for the repository to explore
  * @var array $parent The root of the repo where the code is the root constant
  */
@@ -23,32 +23,32 @@ if (
   /** @var array $js_files An array with files as index and an array expressions to put into the JSON file */
   $js_files = [];
   //instantiate the class i18n
-  $translation = new \bbn\appui\i18n($model->db, $id_project);
-  //die(var_dump($translation->get_po_files($model->data['id_option'])));
+  $translation = new \bbn\Appui\I18n($model->db, $id_project);
+  //die(var_dump($translation->getPoFiles($model->data['id_option'])));
   $success = false;
 
 
   /** @var string $to_explore The directory to explore for strings */
-  $to_explore = $translation->get_path_to_explore($o);
+  $to_explore = $translation->getPathToExplore($o);
   //the position of locale dir 
-  $locale_dir = $translation->get_locale_dir_path($o);
+  $locale_dir = $translation->getLocaleDirPath($o);
 
   /** @var string $domain The domain on which will be bound gettext */
   $domain = $model->inc->options->text($o);
   
   //the number contained in the txt file inside the folder locale
-  $num = is_file($translation->get_index_path($o)) ? (int)file_get_contents($translation->get_index_path($o)) : 0;
+  $num = is_file($translation->getIndexPath($o)) ? (int)file_get_contents($translation->getIndexPath($o)) : 0;
 
   //if the file txt does not exist it creates the file
-  if( !is_file($translation->get_index_path($o)) || !is_dir($locale_dir) ){
-    \bbn\file\dir::create_path($locale_dir);
+  if( !is_file($translation->getIndexPath($o)) || !is_dir($locale_dir) ){
+    \bbn\File\Dir::createPath($locale_dir);
   }
-  file_put_contents($translation->get_index_path($o), ++$num);
+  file_put_contents($translation->getIndexPath($o), ++$num);
   
   $domain .= $num;
 
   /** @var (array) $languages based on locale dirs found in the path */
-  $old_langs = array_map('basename', \bbn\file\dir::get_dirs($locale_dir));
+  $old_langs = array_map('basename', \bbn\File\Dir::getDirs($locale_dir));
 
   //creates the array languages
   // case when generation is called from the strings table
@@ -67,7 +67,7 @@ if (
 
         // removes the $ex (language unchecked) from the final array languages
         array_splice($old_langs, $idx, 1);
-        \bbn\file\dir::delete($locale_dir . '/' . $ex);
+        \bbn\File\Dir::delete($locale_dir . '/' . $ex);
       }
     }
     /** @var array $new_dir New languages checked in the form */
@@ -84,7 +84,7 @@ if (
   }
 
   /** @var array $data Takes all strings found in the files of  this option */
-  $data = empty($language) ? [] : $translation->get_translations_strings($model->data['id_option'], $language, $languages);
+  $data = empty($language) ? [] : $translation->getTranslationsStrings($model->data['id_option'], $language, $languages);
 
   /** @var bool $no_strings Will be true if $data[res] is empty, i.e. if find_strings returns no result. */
   $no_strings = false;
@@ -98,13 +98,13 @@ if (
       $dir = $locale_dir . '/' . $lang . '/LC_MESSAGES';
 
       /** creates the path of the dirs */
-      \bbn\file\dir::create_path($dir);
+      \bbn\File\Dir::createPath($dir);
       /** @var  $po & $mo files path */
-      $files = \bbn\file\dir::get_files($locale_dir.'/'.$lang.'/LC_MESSAGES');
+      $files = \bbn\File\Dir::getFiles($locale_dir.'/'.$lang.'/LC_MESSAGES');
 
       $po = $mo = null;
       foreach ( $files as $f ){
-        $ext = \bbn\str::file_ext($f);
+        $ext = \bbn\Str::fileExt($f);
         if ( !empty($ext) && ($ext === 'po') ){
           $po = $f;
         }
@@ -175,7 +175,7 @@ if (
               $ext = pathinfo($path, PATHINFO_EXTENSION);
               
               if( $ext === 'js' ){
-                $tmp = substr($r['path'][$idx], strlen(constant($parent['code'])), -3);
+                $tmp = substr($r['path'][$idx], Strlen(constant($parent['code'])), -3);
                 
                 if ( strpos($tmp, 'components') === 0 ){
                   $name = dirname($tmp);
@@ -228,9 +228,9 @@ if (
       if ( !empty($js_files[$lang]) ){
 				$file_name = $locale_dir.'/'.$lang.'/'.$lang.'.json';
         
-        \bbn\file\dir::create_path(dirname($file_name));
+        \bbn\File\Dir::createPath(dirname($file_name));
         // put the content of the array js_files in a json file
-        $json = (boolean)file_put_contents($file_name, json_encode($js_files[$lang]));
+        $json = (boolean)file_put_contents($file_name, Json_encode($js_files[$lang]));
       }
     }
 
@@ -239,22 +239,22 @@ if (
 
 
     /** @var array The data for the strings table */
-    $tmp = $translation->get_translations_table($model->data['id_project'], $model->data['id_option']);
+    $tmp = $translation->getTranslationsTable($model->data['id_project'], $model->data['id_option']);
 
     //Set the cache of the table
-    $translation->cache_set($model->data['id_option'], 'get_translations_table',
+    $translation->cacheSet($model->data['id_option'], 'get_translations_table',
       $tmp
     );
     /** @var array The data of the table in cache */
-    $strings = $translation->cache_get($model->data['id_option'], 'get_translations_table');
+    $strings = $translation->cacheGet($model->data['id_option'], 'get_translations_table');
 
     //set the cache of the widget
-    $translation->cache_set($model->data['id_option'], 'get_translations_widget',
-      $translation->get_translations_widget($model->data['id_project'],$model->data['id_option'])
+    $translation->cacheSet($model->data['id_option'], 'get_translations_widget',
+      $translation->getTranslationsWidget($model->data['id_project'],$model->data['id_option'])
     );
     
     /** @var array The data of the widget in the cache*/
-    $widget = $translation->cache_get($model->data['id_option'], 'get_translations_widget');
+    $widget = $translation->cacheGet($model->data['id_option'], 'get_translations_widget');
     $success = true;
   }
   else {

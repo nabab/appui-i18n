@@ -1,7 +1,7 @@
 <?php
-/** @var $ctrl \bbn\mvc\controller */
+/** @var $ctrl \bbn\Mvc\Controller */
 if ( !\defined('APPUI_I18N_ROOT') ){
-  define('APPUI_I18N_ROOT', $ctrl->plugin_url('appui-i18n').'/');
+  define('APPUI_I18N_ROOT', $ctrl->pluginUrl('appui-i18n').'/');
   $ctrl->data['root'] = APPUI_I18N_ROOT;
 }
 return 1;

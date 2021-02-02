@@ -4,18 +4,18 @@
 *
 **/
 
-/** @var $this \bbn\mvc\model*/
+/** @var $this \bbn\Mvc\Model*/
 
 
 $model->data['success'] = false;
-$id_user = $model->inc->user->get_id();
-$is_dev =  $model->db->select_one("bbn_users", "admin", ['id' => $id_user]);
+$id_user = $model->inc->user->getId();
+$is_dev =  $model->db->selectOne("bbn_users", "admin", ['id' => $id_user]);
 if (!empty($id_user) ){
   if ( !empty($is_dev) ){
     //CASE admin
 
     //$project_count is the number of bbn_project
-    if ( $projects = $model->get_model('internationalization/languages')['projects'] ){
+    if ( $projects = $model->getModel('internationalization/languages')['projects'] ){
       $project_count = count($projects);
 
       //number of projects having 'en' as source language
@@ -35,10 +35,10 @@ if (!empty($id_user) ){
     ORDER BY `value_occurrence` DESC
     LIMIT 3
 MYSQL;
-      $best_translators = $model->db->get_rows($query);
+      $best_translators = $model->db->getRows($query);
       //take the name of the translator from bbn_users
       foreach ( $best_translators as $i => $b ){
-        $best_translators[$i]['name'] = $model->db->select_one('bbn_users', 'nom', ['id' => $b['id_user']]);
+        $best_translators[$i]['name'] = $model->db->selectOne('bbn_users', 'nom', ['id' => $b['id_user']]);
         unset($best_translators[$i]['id_user']);
       }
       $model->data['success'] = true;
@@ -48,10 +48,10 @@ MYSQL;
   //CASE !admin
 
   //langs of translation present in db
-  $langs_in_db = $model->db->get_col_array("SELECT DISTINCT lang FROM bbn_i18n_exp");
+  $langs_in_db = $model->db->getColArray("SELECT DISTINCT lang FROM bbn_i18n_exp");
 
   //the complete array of primaries languages
-  $primaries = $model->get_model('internationalization/languages')['primary'];
+  $primaries = $model->getModel('internationalization/languages')['primary'];
 
   //die(var_dump($model->data['source_lang']));
   $dropdown_langs = array_filter($primaries, function($i) use($langs_in_db, $source_lang) {
@@ -60,7 +60,7 @@ MYSQL;
   });
 
   //array containing all source languages
-  $source_langs = $model->db->get_column_values('bbn_i18n','lang');
+  $source_langs = $model->db->getColumnValues('bbn_i18n','lang');
 
   //array used for source of the second dropdown in statistic tab
   $source_dd_langs = array_filter($primaries, function($i) use($source_langs){

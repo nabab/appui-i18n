@@ -4,7 +4,7 @@ $success = false;
 
   if ( isset($model->data['id_project'] ) && ($model->data['id_project'] === 'options') ){
 
-    $data_widget = $model->get_model(APPUI_I18N_ROOT.'options/options_data', [
+    $data_widget = $model->getModel(APPUI_I18N_ROOT.'options/options_data', [
       'root' => APPUI_I18N_ROOT,
       'res' => ['success' => true],
       'id_project' => $model->data['id_project'],
@@ -15,14 +15,14 @@ $success = false;
   }
   else {
     //remake the cache of the widget
-    $translation = new \bbn\appui\i18n($model->db, $model->data['id_project']);
+    $translation = new \bbn\Appui\I18n($model->db, $model->data['id_project']);
 
-    $translation->cache_set($id_option, 'get_translations_widget',
-      $translation->get_translations_widget($model->data['id_project'],$id_option)
+    $translation->cacheSet($id_option, 'get_translations_widget',
+      $translation->getTranslationsWidget($model->data['id_project'],$id_option)
     );
     
     //return the new cache of the widget
-    $data_widget = $translation->cache_get($id_option, 'get_translations_widget');
+    $data_widget = $translation->cacheGet($id_option, 'get_translations_widget');
 
 
   }

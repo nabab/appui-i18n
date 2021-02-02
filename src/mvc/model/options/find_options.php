@@ -8,13 +8,13 @@
 
 if ( !empty($model->data['id_option']) ){
   $res = [];
-  $translation = new \bbn\appui\i18n($model->db);
+  $translation = new \bbn\Appui\I18n($model->db);
 
   /** @var $strings takes all the text of this option's children*/
   $strings = array_values($model->inc->options->options($model->data['id_option']));
   /** push into the array of strings the text of the option parent */
   $strings[] = $model->inc->options->text($model->data['id_option']);
-  $primaries = $translation->get_primaries_langs();
+  $primaries = $translation->getPrimariesLangs();
   foreach ($primaries as $p ){
     $configured_langs[] = $p['code'];
   }
@@ -30,12 +30,12 @@ if ( !empty($model->data['id_option']) ){
       if ( $model->db->insert('bbn_i18n', [
         'exp' => $i,
         'lang' =>  $model->data['language'],
-       // 'id_user'=> $model->inc->user->get_id(),
+       // 'id_user'=> $model->inc->user->getId(),
        // 'last_modified' => date('H-m-d H:i:s')
       ])){
         $new ++;
-        $id = $model->db->last_id();
-        $model->db->insert_ignore(
+        $id = $model->db->lastId();
+        $model->db->insertIgnore(
           'bbn_i18n_exp', [
             'id_exp' => $id,
             'expression'=> $i,
@@ -49,7 +49,7 @@ if ( !empty($model->data['id_option']) ){
       'exp'=> $i
     ];
     foreach( $configured_langs as $lang ){
-      if ( $exp = $model->db->select_one('bbn_i18n_exp', 'expression', [
+      if ( $exp = $model->db->selectOne('bbn_i18n_exp', 'expression', [
         'id_exp' => $row['id'],
         'lang' => $lang
       ]) ){

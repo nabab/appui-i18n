@@ -15,9 +15,9 @@ if ( $lang = $model->data['lang'] ){
   $model->data['success'] = false;
 
   //source of the dropdown of source languages
-  $dropdown_langs = $model->get_model('internationalization/page/statistic')['dropdown_langs'];
+  $dropdown_langs = $model->getModel('internationalization/page/statistic')['dropdown_langs'];
   //source of dropdown of translation languages
-  $source_dd_langs = $model->get_model('internationalization/page/statistic')['source_dd_langs'];
+  $source_dd_langs = $model->getModel('internationalization/page/statistic')['source_dd_langs'];
 
   $lang_name = '';
   if ( !empty($lang) || !empty($source_lang) ){
@@ -39,7 +39,7 @@ if ( $lang = $model->data['lang'] ){
     $source_total_strings = $model->db->count('bbn_i18n', ['lang' => $source_lang]);
 
     //an array with all id_exp for the selected source_language translated in $lang
-    $translated_nr = count( $model->db->get_rows("
+    $translated_nr = count( $model->db->getRows("
       SELECT bbn_i18n.id FROM `bbn_i18n` 
         JOIN bbn_i18n_exp 
           ON bbn_i18n_exp.id_exp = bbn_i18n.id
@@ -49,11 +49,11 @@ if ( $lang = $model->data['lang'] ){
 
     $translated_percentage = round($translated_nr / $source_total_strings * 100, 2).' %';
 
-    $langs_in_db = $model->db->get_col_array("SELECT DISTINCT lang FROM bbn_i18n_exp");
+    $langs_in_db = $model->db->getColArray("SELECT DISTINCT lang FROM bbn_i18n_exp");
 
    /* array_map(function($v)use($source_lang){
 
-      return  $v['exps'] = count( $model->db->get_rows("
+      return  $v['exps'] = count( $model->db->getRows("
       SELECT bbn_i18n.id FROM `bbn_i18n` 
         JOIN bbn_i18n_exp 
           ON bbn_i18n_exp.id_exp = bbn_i18n.id

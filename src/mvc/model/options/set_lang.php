@@ -7,7 +7,7 @@
  */
 if ( !empty($model->data['id_option']) && !empty($model->data['language']) ){
   $success = false;
-  if( $cfg = $model->inc->options->get_cfg() ){
+  if( $cfg = $model->inc->options->getCfg() ){
     die(var_dump($cfg));
   }
 }

@@ -6,9 +6,9 @@
  * Time: 12.51
  */
 //transfer to $model
-$source_langs = $ctrl->db->get_column_values('bbn_i18n', 'lang');
+$source_langs = $ctrl->db->getColumnValues('bbn_i18n', 'lang');
 if ( !empty($ctrl->post['id_project'])){
-  $ctrl->add_data([
+  $ctrl->addData([
     'id_project' => $ctrl->post['id_project'],
     'source_langs' => $source_langs
   ]);

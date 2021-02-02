@@ -4,23 +4,23 @@
  *
  **/
 
-/** @var $this \bbn\mvc\model*/
+/** @var $this \bbn\Mvc\Model*/
 /** @var  $projects array of projects*/
 
 $projects = [];
-//$id_project = $model->data['id_project'] ?? $model->inc->options->from_code('apst-app', 'project', 'appui');
-if ( $opt_projects = $model->inc->options->from_code('project', 'appui') ){
+//$id_project = $model->data['id_project'] ?? $model->inc->options->fromCode('apst-app', 'project', 'appui');
+if ( $opt_projects = $model->inc->options->fromCode('project', 'appui') ){
   $ids = array_keys($model->inc->options->options($opt_projects));
   if ( !empty($ids) ){
     foreach($ids as $i => $id){
-      $project = new \bbn\appui\project($model->db, $id);
+      $project = new \bbn\Appui\Project($model->db, $id);
       $opt = $model->inc->options;
-      $projects[$i] = $project->get_project_info();
+      $projects[$i] = $project->getProjectInfo();
     }
   }
 }
 if ( !empty($model->data['id_project']) ){
-  $project_idx = \bbn\x::find($projects, ['id' => $model->data['id_project']]);
+  $project_idx = \bbn\X::find($projects, ['id' => $model->data['id_project']]);
 }
 else{
   $project_idx = 0;
@@ -31,9 +31,9 @@ else{
 $res = [];
 $success = null;
 
-$uid_languages =  $model->inc->options->from_code('languages', 'i18n', 'appui');
+$uid_languages =  $model->inc->options->fromCode('languages', 'i18n', 'appui');
 $primaries = [];
-if ( $languages = $model->inc->options->full_tree($uid_languages) ){
+if ( $languages = $model->inc->options->fullTree($uid_languages) ){
   $filter = array_filter($languages['items'], function($v) {
     return !empty($v['primary']);
   });
@@ -41,7 +41,7 @@ if ( $languages = $model->inc->options->full_tree($uid_languages) ){
 }
 
 if ( isset($project_idx) && ($current_project = $projects[$project_idx]) && isset($projects[$project_idx]['path'])){
-  $translation = new \bbn\appui\i18n($model->db, $current_project['id']);
+  $translation = new \bbn\Appui\I18n($model->db, $current_project['id']);
   foreach ( $current_project['path'] as $idx => $pa ){
 
     /** for every project takes the full option of each path */
@@ -55,14 +55,14 @@ if ( isset($project_idx) && ($current_project = $projects[$project_idx]) && isse
       
       //if the widget has not cache for this method creates the cache
       //IF THE CACHE IS ACTIVE WHEN THE PROJECT IS CHANGED BY THE DROPDOWN IT RETURNS THE WIDGETS OF THE PROJECT APST-APP
-      /*if ( empty($translation->cache_has($id_option, 'get_translations_widget')) ){
-        //set data in cache $translation->cache_set($id_option, (string)method name, (array)data)
-        $translation->cache_set($id_option, 'get_translations_widget',
-          $translation->get_translations_widget($current_project['id'], $id_option)
+      /*if ( empty($translation->cacheHas($id_option, 'get_translations_widget')) ){
+        //set data in cache $translation->cacheSet($id_option, (string)method name, (array)data)
+        $translation->cacheSet($id_option, 'get_translations_widget',
+          $translation->getTranslationsWidget($current_project['id'], $id_option)
         );
       }
-      $res[$idx]['data_widget'] = $translation->cache_get($id_option, 'get_translations_widget');*/
-      $res[$idx]['data_widget'] = $translation->get_translations_widget($current_project['id'], $id_option);
+      $res[$idx]['data_widget'] = $translation->cacheGet($id_option, 'get_translations_widget');*/
+      $res[$idx]['data_widget'] = $translation->getTranslationsWidget($current_project['id'], $id_option);
     }
     else {
       /** if language is not set returns the array data_widget with locale_dirs and an empty array for result */

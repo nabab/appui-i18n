@@ -11,8 +11,8 @@ $success = false;
 /** at @change the table send row */
 if ( !empty($model->data['row']['id_exp'])){
   
-  /** @var  $translation instantiate the class appui\i18n*/
-  $translation = new \bbn\appui\i18n($model->db, $model->data['id_project']);
+  /** @var  $translation instantiate the class Appui\I18n*/
+  $translation = new \bbn\Appui\I18n($model->db, $model->data['id_project']);
   /** @var $row the row sent by strings table */
   $row = $model->data['row'];
   /** @var (array) $langs sent by strings table*/
@@ -29,7 +29,7 @@ if ( !empty($model->data['row']['id_exp'])){
       $expression = $row[$l.'_db'];
       /** @var $id if the $id of the string exists */
 
-      if ( $id = $model->db->select_one('bbn_i18n_exp', 'id', [
+      if ( $id = $model->db->selectOne('bbn_i18n_exp', 'id', [
         'id_exp' => $row['id_exp'],
         'lang' => $l
       ]) ){
@@ -47,7 +47,7 @@ if ( !empty($model->data['row']['id_exp'])){
       /** INSERT in DB */
       else {
         $modified_langs[] = $l;
-        $success = $model->db->insert_ignore('bbn_i18n_exp', [
+        $success = $model->db->insertIgnore('bbn_i18n_exp', [
           'expression' => stripslashes($expression),
           'id_exp' => $row['id_exp'],
           'lang' => $l
@@ -60,7 +60,7 @@ if ( !empty($model->data['row']['id_exp'])){
   if( !empty( $model->data['to_delete'] ) ){
     $to_delete = $model->data['to_delete'];
     foreach ( $to_delete as $del ){
-      if ( $id = $model->db->select_one('bbn_i18n_exp', 'id', [
+      if ( $id = $model->db->selectOne('bbn_i18n_exp', 'id', [
         'id_exp' => $row['id_exp'],
         'lang' => $del
       ]) ) {
@@ -82,11 +82,11 @@ if ( !empty($model->data['row']['id_exp'])){
     //replace the row in the cache of the table
 
     // $tmp the cache of the table
-    $tmp = $translation->cache_get($model->data['id_option'], 'get_translations_table');
+    $tmp = $translation->cacheGet($model->data['id_option'], 'get_translations_table');
 
     if ( !empty($tmp) && !empty($tmp['strings'][$model->data['row_idx']]) && !empty($modified_langs)){
       $widget;  
-      //$tmp = $translation->cache_get($model->data['id_option'], 'get_translations_table');
+      //$tmp = $translation->cacheGet($model->data['id_option'], 'get_translations_table');
       foreach ( $modified_langs as $mod ){
 
         //change the updated string in the row of the cache
@@ -102,14 +102,14 @@ if ( !empty($model->data['row']['id_exp'])){
         }
       }
 
-      $translation->cache_set($model->data['id_option'], 'get_translations_table',
+      $translation->cacheSet($model->data['id_option'], 'get_translations_table',
         $tmp
       );
       //remake the cache of the widget basing on new data
-      $translation->cache_set($model->data['id_option'], 'get_translations_widget',
-        $translation->get_translations_widget($model->data['id_project'],$model->data['id_option'])
+      $translation->cacheSet($model->data['id_option'], 'get_translations_widget',
+        $translation->getTranslationsWidget($model->data['id_project'],$model->data['id_option'])
       );
-      $widget = $translation->cache_get($model->data['id_option'], 'get_translations_widget');
+      $widget = $translation->cacheGet($model->data['id_option'], 'get_translations_widget');
 
     }
   }
@@ -118,11 +118,11 @@ if ( !empty($model->data['row']['id_exp'])){
     //replace the row in the cache of the table
 
     // $tmp the cache of the table
-    $tmp = $translation->cache_get($model->data['id_option'], 'get_translations_table');
+    $tmp = $translation->cacheGet($model->data['id_option'], 'get_translations_table');
 
     if ( !empty($tmp) && !empty($tmp['strings'][$model->data['row_idx']]) && !empty($modified_langs)){
 
-      $tmp = $translation->cache_get($model->data['id_option'], 'get_translations_table');
+      $tmp = $translation->cacheGet($model->data['id_option'], 'get_translations_table');
       foreach($modified_langs as $mod){
         if( !empty($mod) ){
           //change the updated string in the row of the cache
@@ -130,14 +130,14 @@ if ( !empty($model->data['row']['id_exp'])){
           $tmp['strings'][$model->data['row_idx']][$mod]['translations_db'] = $exp_changed;
         }
       }
-      $translation->cache_set($model->data['id_option'], 'get_translations_table',
+      $translation->cacheSet($model->data['id_option'], 'get_translations_table',
         $tmp
       );
       //remake the cache of the widget basing on new data
-      $translation->cache_set($model->data['id_option'], 'get_translations_widget',
-        $translation->get_translations_widget($model->data['id_project'],$model->data['id_option'])
+      $translation->cacheSet($model->data['id_option'], 'get_translations_widget',
+        $translation->getTranslationsWidget($model->data['id_project'],$model->data['id_option'])
       );
-      $widget = $translation->cache_get($model->data['id_option'], 'get_translations_widget');
+      $widget = $translation->cacheGet($model->data['id_option'], 'get_translations_widget');
 
     }
   }*/

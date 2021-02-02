@@ -1,7 +1,7 @@
 <?php
 
 //$root the option projects
-if ( $root = $model->inc->options->from_code('project', 'appui') ){
+if ( $root = $model->inc->options->fromCode('project', 'appui') ){
   //all projects x
   $tmp = $model->inc->options->options($root);
   // removing the option assets (that still exists) from array
@@ -9,20 +9,20 @@ if ( $root = $model->inc->options->from_code('project', 'appui') ){
   //array of projects ids
   $projects_ids = array_keys($tmp);
   //instantiate the class i18n
-  $translation = new \bbn\appui\i18n($model->db);
+  $translation = new \bbn\Appui\I18n($model->db);
   //primary languages from bbn_options
-  $primaries = $translation->get_primaries_langs();
+  $primaries = $translation->getPrimariesLangs();
   //return if the user is_dev
-  $is_dev =  $model->inc->user->get_session('dev');
+  $is_dev =  $model->inc->user->getSession('dev');
   $projects = [];
   
   
   //creates the array projects
   foreach ( $projects_ids as $p ){
-    $project = new \bbn\appui\project($model->db, $p);
+    $project = new \bbn\Appui\Project($model->db, $p);
     // if the option lang of the project is empty it creates the options using primaries langs
     
-    $projects[] = $project->get_project_info();
+    $projects[] = $project->getProjectInfo();
   }
   
   //adds the fake project options
@@ -41,7 +41,7 @@ if ( $root = $model->inc->options->from_code('project', 'appui') ){
 
 
   //create an array of all languages existing in the table of expressions 'bbn_i18n_exp '
-  $langs_in_db = $model->db->get_col_array("SELECT DISTINCT lang FROM bbn_i18n_exp");
+  $langs_in_db = $model->db->getColArray("SELECT DISTINCT lang FROM bbn_i18n_exp");
 
   return[
     'langs_in_db' => $langs_in_db,

@@ -9,7 +9,7 @@
              :limit="25"
              editable="inline"
              ref="history"
-             :order="[{field: 'last_modification', dir: 'DESC'}]"
+             :order="[{field: 'last_modification', Dir: 'DESC'}]"
              @change="insert_translation"
   >
     <bbns-column field="last_modification"

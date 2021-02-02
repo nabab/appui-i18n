@@ -9,14 +9,14 @@ $success = false;
 
 if ( !empty($model->data['id_option']) ){
 
-  $translation = new \bbn\appui\i18n($model->db, $model->data['id_project']);
+  $translation = new \bbn\Appui\I18n($model->db, $model->data['id_project']);
   /** @var string $to_explore The directory to explore for strings */
 
-  $to_explore = $translation->get_path_to_explore($model->data['id_option']);
+  $to_explore = $translation->getPathToExplore($model->data['id_option']);
 
   /** @var string $locale_dir Directory containing the locale files */
   
-  $locale_dir = $translation->get_locale_dir_path($model->data['id_option']);
+  $locale_dir = $translation->getLocaleDirPath($model->data['id_option']);
   
  
   if ( !empty($locale_dir) ){
@@ -27,13 +27,13 @@ if ( !empty($model->data['id_option']) ){
       if ( (strpos('.', $t ) !== 0 ) && ( strpos('index', $t ) !== 0 ) && ( strpos('..', $t ) !== 0 ) ){
         
         /** @var string The directory containing translations file */
-        $files = \bbn\file\dir::get_files($locale_dir . '/' . $tmp[$i] . '/LC_MESSAGES');
+        $files = \bbn\File\Dir::getFiles($locale_dir . '/' . $tmp[$i] . '/LC_MESSAGES');
        
         if ( is_array($files) ){
           foreach ( $files as $idx => $f ){
             if ( file_exists($files[$idx]) ){
               /** @var string The extension of files found in the dir $files */
-              $ext = \bbn\str::file_ext($files[$idx]);
+              $ext = \bbn\Str::fileExt($files[$idx]);
               if ( $ext === 'po' ){
                 $po = $files[$idx];
               }

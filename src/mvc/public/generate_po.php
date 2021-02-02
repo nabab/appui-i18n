@@ -7,12 +7,12 @@
  */
 $langs = ['en', 'fr', 'it'];
 $todo = [];
-foreach ( \bbn\file\dir::get_dirs(BBN_LIB_PATH.'bbn') as $d ){
+foreach ( \bbn\File\Dir::getDirs(BBN_LIB_PATH.'bbn') as $d ){
   if ( strpos(basename($d), 'appui-') === 0 ){
     $name = str_replace('-', '_', basename($d));
     foreach ( $langs as $ln ){
-      \bbn\file\dir::create_path($d.'/src/locale/'.$ln);
-      $st = 'cd "'.\bbn\str::escape_dquotes($d.'/src/locale/'.$ln).'";';
+      \bbn\File\Dir::createPath($d.'/src/locale/'.$ln);
+      $st = 'cd "'.\bbn\Str::escapeDquotes($d.'/src/locale/'.$ln).'";';
       $st .= 'find ../../../mvc -iname "*.php" | xargs xgettext -d '.$name;
       if ( is_file($d.'src/locale/'.$ln.'/'.$name.'.po') ){
         $st .= ' -j';
@@ -27,4 +27,4 @@ foreach ( \bbn\file\dir::get_dirs(BBN_LIB_PATH.'bbn') as $d ){
 echo '<pre>'.implode(PHP_EOL, $todo).';</pre>';
 //echo exec(implode(';'.PHP_EOL, $todo), $r);
 
-\bbn\x::dump($todo);
+\bbn\X::dump($todo);

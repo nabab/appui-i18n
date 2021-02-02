@@ -6,6 +6,6 @@
  * Time: 14.56
  */
 
-$data = $model->get_model(APPUI_I18N_ROOT.'page');
+$data = $model->getModel(APPUI_I18N_ROOT.'page');
 
 return $data;

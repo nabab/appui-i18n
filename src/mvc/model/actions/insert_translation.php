@@ -13,7 +13,7 @@ if ( !empty($model->data['id_exp']) && !empty($model->data['expression'])){
   $success = false;
   //case update the expression exists in this lang ($model->data['translation_lang'])
 
-  if ( $expression = $model->db->select_one('bbn_i18n_exp', 'expression', [
+  if ( $expression = $model->db->selectOne('bbn_i18n_exp', 'expression', [
     'id_exp' => $model->data['id_exp'],
     'lang' => $model->data['translation_lang']
   ]) ){
@@ -31,6 +31,6 @@ if ( !empty($model->data['id_exp']) && !empty($model->data['expression'])){
     ]);
   }
 
-  $id = $model->db->select_one('bbn_i18n_exp', 'id', ['id_exp' => $model->data['id_exp']]);
+  $id = $model->db->selectOne('bbn_i18n_exp', 'id', ['id_exp' => $model->data['id_exp']]);
   return [ 'success' => $success ];
 }

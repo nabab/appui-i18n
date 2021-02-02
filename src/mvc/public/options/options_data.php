@@ -7,5 +7,5 @@
  */
 
 if ( !empty($ctrl->post['id_project']) ){
-  $ctrl->cached_action();
+  $ctrl->cachedAction();
 }

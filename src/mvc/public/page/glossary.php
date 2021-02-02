@@ -11,7 +11,7 @@ if( !empty($ctrl->arguments[0]) && !empty($ctrl->arguments[1]) ){
   $ctrl->data['source_lang'] = $ctrl->arguments[0];
 
  // $ctrl->obj->url = 'glossary/'.$ctrl->arguments[0].$ctrl->arguments[1];
-  $primary = $ctrl->get_model('internationalization/page')['primary'];
+  $primary = $ctrl->getModel('internationalization/page')['primary'];
 
   foreach ( $primary as $p => $val ){
     $source_lang_name = '';
@@ -24,7 +24,7 @@ if( !empty($ctrl->arguments[0]) && !empty($ctrl->arguments[1]) ){
   }
 
   //to send $ctrl->arguments[0] to the $model
-  $ctrl->add_data(
+  $ctrl->addData(
     [
       'translation_lang' => $ctrl->arguments[1], 
      	'source_lang' => $ctrl->arguments[0], 

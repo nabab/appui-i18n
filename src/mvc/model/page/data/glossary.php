@@ -14,7 +14,7 @@ if ( !empty($model->data['limit']) &&  !empty($model->data['data']['translation_
   $source_code = $model->data['data']['source_lang'];
 
 
-  $grid = new \bbn\appui\grid($model->db, $model->data, [
+  $grid = new \bbn\Appui\Grid($model->db, $model->data, [
     'tables' => ['bbn_i18n'],
     'fields' => [
       'bbn_i18n.exp',
@@ -48,6 +48,6 @@ if ( !empty($model->data['limit']) &&  !empty($model->data['data']['translation_
 
   if ( $grid->check() ){
   
-    return $grid->get_datatable();
+    return $grid->getDatatable();
   }
 }

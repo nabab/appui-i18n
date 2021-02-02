@@ -3,16 +3,16 @@
  * Describe what it does!
  *
  **/
-/** @var $this \bbn\mvc\model*/
+/** @var $this \bbn\Mvc\Model*/
 if ( !empty($model->data['id_project']) ){
-  $project = new \bbn\appui\project($model->db, $model->data['id_project']);
+  $project = new \bbn\Appui\Project($model->db, $model->data['id_project']);
   if ( $project->check() ){
    	return [
-      'path' => $project->get_path(),
-      'langs' => $project->get_langs_ids(),
+      'path' => $project->getPath(),
+      'langs' => $project->getLangsIds(),
       'id' => $model->data['id_project'],
-      'lang' => $project->get_lang(),
-      'name' => $project->get_name()
+      'lang' => $project->getLang(),
+      'name' => $project->getName()
     ];
   }
   return [];

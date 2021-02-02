@@ -6,7 +6,7 @@
  * Time: 14.43
  */
 $ctrl->obj->url = APPUI_I18N_ROOT.'page/history';
-$is_dev = $ctrl->inc->user->is_dev();
+$is_dev = $ctrl->inc->user->isDev();
 
 
 

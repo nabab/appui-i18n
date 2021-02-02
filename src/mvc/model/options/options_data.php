@@ -4,29 +4,29 @@
  *
  **/
 
-/** @var $this \bbn\mvc\model*/
+/** @var $this \bbn\Mvc\Model*/
 
 
 
-$translation = new \bbn\appui\i18n($model->db);
+$translation = new \bbn\Appui\I18n($model->db);
 
 if ( !empty($model->data['id_project']) && ( $model->data['id_project'] === 'options' ) ){
   $configured_langs = [];
 
-  $primaries = $translation->get_primaries_langs();
+  $primaries = $translation->getPrimariesLangs();
   foreach ($primaries as $p ){
     $configured_langs[] = $p['id'];
   }
   $success = true;
   $data = [];
   if ( empty($model->data['id_option']) ){
-    $data = $translation->get_num_options();
+    $data = $translation->getNumOptions();
   }
   else{
-    $data = $translation->get_num_option($model->data['id_option']);
+    $data = $translation->getNumOption($model->data['id_option']);
     //die(var_dump('hrere', $model->data));
   }
-  $options = $translation->get_num_options();
+  $options = $translation->getNumOptions();
   
   return [
     'data' => $data,
