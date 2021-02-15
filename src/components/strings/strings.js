@@ -88,8 +88,8 @@
     },
     methods: {
       generate_mo(){
-        this.post(this.source.root + 'actions/generate_mo', {
-          id_option : this.source.id_option,
+        this.post(appui.plugins["appui-i18n"] + '/actions/generate_mo', {
+          id_option : this.source.res.id_option,
           id_project: this.source.id_project,
         }, (d) => {
           if ( d.success === true ){
@@ -101,8 +101,8 @@
       generate(){
         this.showAlert = true;
         if ( this.source.res.languages.length ){
-          this.post(this.source.root + 'actions/generate', {
-            id_option: this.source.id_option,
+          this.post(appui.plugins["appui-i18n"] + '/actions/generate', {
+            id_option: this.source.res.id_option,
             languages: this.source.res.languages,
             id_project: this.source.id_project,
             language: this.source.res.path_source_lang
@@ -121,7 +121,7 @@
                   let widgets = dashboard.findAll('bbn-widget');
                   if ( widgets.length ){
                     widgets.forEach((v, i) => {
-                      if ( v.uid === this.source.id_option ){
+                      if ( v.uid === this.source.res.id_option ){
                         let widget = v;
                         v.find('appui-i18n-widget').remake_cache()
 
@@ -139,7 +139,7 @@
                 if ( dashboard ) {
                   let widgets = dashboard.findAll('bbn-widget');
                     if ( widgets.length ){
-                      let idx = bbn.fn.search(widgets, 'uid', this.source.id_option),
+                      let idx = bbn.fn.search(widgets, 'uid', this.source.res.id_option),
                       cp = dashboard.closest('bbn-container').getComponent();
                       if ( idx > -1 ){
                         cp.source.data[idx].data_widget = d.widget;
@@ -164,8 +164,8 @@
       },
       /** checks if there are new strings in the files of the path */
       find_strings(){
-        this.post(this.source.root + 'actions/find_strings', {
-          id_option: this.source.id_option,
+        this.post(appui.plugins["appui-i18n"] + '/actions/find_strings', {
+          id_option: this.source.res.id_option,
           language: this.source.res.path_source_lang,
           languages: this.source.res.languages,
           id_project: this.source.id_project
@@ -220,7 +220,7 @@
           data = this.find('bbn-table').currentData;
           //idx = bbn.fn.search(data, { id_exp: id_exp });
         this.getPopup().confirm('Did you remove the expression from code before to delete the row?', () => {
-          this.post(this.source.root + 'actions/delete_expression', { id_exp: row.id_exp, exp: row.exp },  (d) => {
+          this.post(appui.plugins["appui-i18n"] + '/actions/delete_expression', { id_exp: row.id_exp, exp: row.exp },  (d) => {
             bbn.fn.log('succesws',d)
             if ( d.success ){
               //this.$refs.strings_table.updateData();
@@ -244,11 +244,11 @@
             to_delete.push(v)
           }
         })
-        this.post(this.source.root + 'actions/insert_translations', {
+        this.post(appui.plugins["appui-i18n"] + '/actions/insert_translations', {
           to_delete : to_delete,
           row: row,
           langs: this.source.res.languages,
-          id_option: this.source.id_option,
+          id_option: this.source.res.id_option,
           id_project: this.source.id_project,
           row_idx: idx
         }, (d) => {
@@ -282,7 +282,7 @@
               if ( dashboard ) {
                 let widgets = dashboard.findAll('bbn-widget');
                 if ( widgets.length ){
-                  let idx = bbn.fn.search(widgets, 'uid', this.source.id_option),
+                  let idx = bbn.fn.search(widgets, 'uid', this.source.res.id_option),
                   cp = dashboard.closest('bbn-container').getComponent();
                   if ( idx > -1 ){
                     cp.source.data[idx].data_widget = d.widget;
@@ -299,9 +299,9 @@
         //this.generate();
         this.showAlert = true;
         this.post('internationalization/actions/reload_table_cache', {
-          id_option: this.source.id_option,
+          id_option: this.source.res.id_option,
           id_project: this.source.id_project,
-          routes: this.source.root
+          routes: appui.plugins["appui-i18n"] + '/'
         }, (d) => {
           if ( d.success ){
             let diff = ( d.res.total - this.source.res.total );
@@ -332,7 +332,7 @@
                 tab = this.closest(dashboard, 'bbns-container'),
                 cp = tab.getComponent(),
                 data = cp.source.data,
-                widget_idx = bbn.fn.search(data, 'id', this.source.id_option);
+                widget_idx = bbn.fn.search(data, 'id', this.source.res.id_option);
             }*/
           }
         })

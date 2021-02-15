@@ -6,7 +6,7 @@
       return {
         id_project: null,
         project_name: '',
-        primary: this.closest('bbn-router').$parent.source.primary,
+        primary: null,
         changingProjectLang: false,
         language: '',
         optionsRoot: appui.plugins['appui-option'] + '/',
@@ -16,7 +16,10 @@
     
     computed: {
       languageText(){
-        return bbn.fn.getField(this.source.primary, 'text', 'code', this.language);
+        if (this.primary) {
+          return bbn.fn.getField(this.primary, 'text', 'code', this.language);
+        }
+        return null;
       },
       dd_primary(){
         let res = []
@@ -70,7 +73,8 @@
                 key: v.id,
                 component : 'appui-i18n-widget',
                 id_project: this.id_project,
-                buttonsRight: buttons
+                buttonsRight: buttons,
+                source: v
               })
             }
           })
@@ -190,6 +194,9 @@
           })
         }
       }
+    },
+    beforeMount(){
+      this.primary = this.closest('bbn-router').parentContainer.getComponent().source.primary;
     },
     watch : { 
       id_project(val){

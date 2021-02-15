@@ -12,7 +12,7 @@
              :filterable="true"
              :multifilter="true"
              ref="strings_table"
-             :order="[{field: 'expression', Dir: 'ASC'}]"
+             :order="[{field: 'expression', dir: 'ASC'}]"
              :toolbar="$options.components['toolbar-strings-table']"
              @change="insert_translation">
 

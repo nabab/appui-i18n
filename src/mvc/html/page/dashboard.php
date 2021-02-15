@@ -62,7 +62,7 @@
             <div class="langs">
               <div v-for="c in source.configured_langs"
                    class="bbn-i bbn-medium"
-                   v-text="getField(source.primary, 'text', {id: c})"
+                   v-text="getField(primary, 'text', {id: c})"
               ></div>
             </div>
 

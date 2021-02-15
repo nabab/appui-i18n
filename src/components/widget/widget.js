@@ -7,33 +7,48 @@
         /** @todo this property should be true after the success of the form in the case of return of d.no_strings = true*/
         no_strings : false,
         id_option: bbn.vue.closest(this, 'bbn-widget').uid,
-        primary: this.closest('bbn-router').$parent.source.primary,
+        primary: this.closest('bbn-router').parentContainer.getComponent().source.primary,
         //source language of the path
-        language: null,
+        language: this.source.language,
         /** the css class for progress bar the value is decided by the watch of progress_bar_val */
         progress_bar_class: '',
         root: appui.plugins['appui-i18n'] + '/'
       }
     },
     computed: {
+      container(){
+        let ct = this.closest('bbn-container');
+        if (ct) {
+          return ct.getComponent()
+        }
+        return null;
+      },
       id_project(){
-        return this.closest('bbn-container').getComponent().id_project
+        return this.container ? this.container.id_project : null;
       },
       project_name(){
-        return this.closest('bbn-container').getComponent().project_name
+        return this.container ? this.container.project_name : null;
+      },
+      parentSource(){
+        if (this.container) {
+          let ct = this.container.closest('bbn-container');
+          if (ct) {
+            return ct.source;
+          }
+        }
       },
       widget_idx(){
-        //return the real index of this widget in the array of data of dashboard it works also after drag and drop
-        let data = this.parentSource.data;
-        return bbn.fn.search(data, 'id', this.id_option);
-      },
-      parentSource() {
-        return this.closest('bbn-container').getComponent().source;
+        if (this.parentSource) {
+          //return the real index of this widget in the array of data of dashboard it works also after drag and drop
+          let data = this.parentSource.data;
+          return bbn.fn.search(data, 'id', this.id_option);
+        }
+        return null;
       },
       //used to render the widget, language of locale folder
       data_widget(){
         //if the source language of the path is set takes the array result from dashboard source
-        let result = this.parentSource.data[this.widget_idx].data_widget.result;
+        let result = bbn.fn.clone(this.source.data_widget.result);
         if ( this.language && result ){
           for ( let r in result ){
             result[r].class = '';
@@ -62,24 +77,16 @@
           return [];
         }
       },
+      //if the source language of the path is set takes the array result from dashboard source
       locale_dirs(){
-        //if the source language of the path is set takes the array result from dashboard source
-        let tab = bbn.vue.closest(this,'bbn-container'),
-            cp = tab.getComponent(),
-            locale_dirs = [];
-        if ( cp && cp.source.data && (this.widget_idx > -1) && cp.source.data[this.widget_idx].data_widget){
-           locale_dirs = cp.source.data[this.widget_idx].data_widget.locale_dirs
-        }
-        if ( this.language && locale_dirs.length){
-          return locale_dirs;
-        }
-        else {
-          return [];
-        }
+        return this.source.data_widget.locale_dirs;
       },
       configured_langs(){
-        if ( this.language ){
-          return this.parentSource.configured_langs
+        if (this.language && this.parentSource){
+          return this.parentSource.configured_langs;
+        }
+        else if (this.source.data_widget.result) {
+          return Object.keys(this.source.data_widget.result);
         }
       },
       dd_primary(){
@@ -106,28 +113,32 @@
       /** set the property language in db for this path */
       set_language(){
         /* the data coming from the post change the source of the dashboard at the index of this specific widget*/
-        this.post(this.root + 'actions/define_path_lang', {
-          'language': this.language,
-          'id_option': this.id_option,
-          'id_project': this.id_project,
-        }, (d) => {
-          if ( d.success ){
-            delete d.success;
-            delete d.time;
-            this.$nextTick( () => {
-              this.parentSource.data[this.widget_idx].data_widget = d.data_widget;
-              this.remake_cache();
-              appui.success(bbn._('Source language set'));
-              this.$forceUpdate();
-            });
-          }
-        })
+        if (this.parentSource) {
+          this.post(
+            this.root + 'actions/define_path_lang', {
+              id_option: this.id_option,
+              language: this.language,
+              id_project: this.id_project
+            }, (d) => {
+              if ( d.success ){
+                delete d.success;
+                delete d.time;
+                this.$nextTick( () => {
+                  this.source.data_widget = d.data_widget;
+                  this.remake_cache();
+                  appui.success(bbn._('Source language set'));
+                  this.$forceUpdate();
+                });
+              }
+            }
+          );
+        }
       },
       set_cfg(){
         this.post(this.root + 'options/set_lang', {
-          'id_option': this.id_option,
-          'id_project': this.id_project,
-          'language': this.language
+          id_option: this.id_option,
+          language: this.language,
+          id_project: this.id_project
         }, (d) => {
           if ( d.success ){
             this.language = null
@@ -138,9 +149,9 @@
       /** removes the property language of the path */
       remove_language(){
         this.post(this.root + '/actions/delete_path_lang', {
-          'id_option': bbn.vue.closest(this.$parent, 'bbn-container').getComponent().widgets[bbn.vue.closest(this, 'bbn-widget').index].key,
-          'language': this.language,
-          'id_project': this.id_project
+          id_option: this.id_option,
+          language: this.language,
+          id_project: this.id_project
         }, (d) => {
           if ( d.success ){
             this.language = null
@@ -192,14 +203,14 @@
         }
       },
       remake_cache(){
-        if ( this.language != null ){
+        if (this.parentSource && (this.language != null)) {
           this.post(this.root + 'actions/reload_widget_cache', {
             id_option: this.id_option,
             id_project: this.id_project
           }, (d) => {
             if ( d.success ){
               appui.success(bbn._('Widget updated'));
-              this.parentSource.data[this.widget_idx].data_widget = d.data_widget;
+              this.$set(this.source, 'data_widget', d.data_widget);
               this.$forceUpdate();
             }
           })
@@ -276,13 +287,6 @@
           this.alert(bbn._('Set a source language using the dropdown before to create translation file(s)'))
         }
       },
-    },
-    beforeMount(){
-      //this.language = this.parentSource.data[this.$parent.index].language;
-      this.language = this.parentSource.data[this.widget_idx].language;
-    },
-    mounted(){
-      this.closest('bbn-dashboard').onResize();
     },
     watch: {
       /** define the css class for the progressbar*/

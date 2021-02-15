@@ -1,7 +1,7 @@
 <?php
 
 //$root the option projects
-if ( $root = $model->inc->options->fromCode('project', 'appui') ){
+if ( $root = $model->inc->options->fromCode('list', 'project', 'appui') ){
   //all projects x
   $tmp = $model->inc->options->options($root);
   // removing the option assets (that still exists) from array

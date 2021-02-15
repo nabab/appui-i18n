@@ -8,7 +8,7 @@
              :limit="25"
              editable="inline"
              ref="user_history"
-             :order="[{field: 'last_modification', Dir: 'DESC'}]"
+             :order="[{field: 'last_modification', dir: 'DESC'}]"
              :pagination="true"
              @change="insert_translation"
   >

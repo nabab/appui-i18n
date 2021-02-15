@@ -1,8 +1,4 @@
 (() => {
   return {
-    props:['source'],
-    mounted(){
-
-    }
   }
 })();

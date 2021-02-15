@@ -6,7 +6,4 @@
  * Time: 15.09
  */
 
-$ctrl->addData([
-	'id_option' => $ctrl->post['id_option'],
-	'id_option' => $ctrl->post['id_option']
-])->action();
+$ctrl->action();

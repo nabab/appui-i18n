@@ -7,12 +7,15 @@ if ( strpos($ctrl->baseURL, APPUI_I18N_ROOT.'page/') !== 0 ){
   $ctrl->obj->url = 'internationalization/page';
 
   if ( !empty($templates) ){
-    $ctrl->data['templates'] = array_map(function ($t) use ($ctrl){
-      return [
-        'id' => basename($t, '.php'),
-        'html' => $ctrl->getView('./templates/'.basename($t, '.php'))
-      ];
-    }, $templates);
+    $ctrl->data['templates'] = array_map(
+      function ($t) use ($ctrl){
+        return [
+          'id' => basename($t, '.php'),
+          'html' => $ctrl->getView('./templates/'.basename($t, '.php'))
+        ];
+      },
+      $templates
+    );
   }
   $ctrl->setIcon('nf nf-fa-flag')
        ->setColor('orange', '#FFF')
