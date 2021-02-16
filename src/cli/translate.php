@@ -86,10 +86,12 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
                 $ext = \bbn\Str::fileExt($f);
                 if (!empty($ext) && ($ext === 'po')) {
                   $po = $f;
+                  unlink($f);
                 }
 
                 if (!empty($ext) && ($ext === 'mo')) {
                   $mo = $f;
+                  unlink($f);
                 }
               }
 
