@@ -1,5 +1,5 @@
 {
-    "components\/strings\/strings": {
+    "components\/strings": {
         "The translation in the po file is different from the one in database": "La traduction du fichier PO est diff\u00e9rent de celle dans la base de donn\u00e9es",
         "The translation in the po file is": "La traduction dans le fichier PO est",
         "Translation missing in po file": "Traduction manquante dans le fichier PO",
@@ -9,7 +9,7 @@
         "Show files containing the string": "Montrer les fichiers contenant les cha\u00eenes de caract\u00e8res",
         "File(s) containing the string": "Fichiers contenant les cha\u00eenes de caract\u00e8res"
     },
-    "components\/widget\/widget": {
+    "components\/widget": {
         "Source language set": "Langue source d\u00e9finie",
         "Source language reset": "Langue source reinitialis\u00e9e",
         "Source language reset for this option": "Langue source reinitialis\u00e9e pour cette option",
@@ -19,6 +19,8 @@
         "Select a source language for the path before to update the widget": "S\u00e9lectionner une langue source pour ce projet avant de pouvoir mettre \u00e0 jour le widget",
         "Define languages for the translation": "D\u00e9finir les langues de traduction",
         "Set a source language using the dropdown before to create translation file(s)": "D\u00e9finissez une langue source en utilisant la liste d\u00e9roulante afin de cr\u00e9er les fichiers de traduction",
+        "Are you sure you want to exit without saving changes?": "\u00cates-vous s\u00fbr de vouloir sortir sans sauvegarder vos modifications?",
+        "Check the box to create local folder of translation's files for the language in this path": "Cochez la case afin de cr\u00e9er un dossier local de traductions pour cette langue",
         "If the language for which you want to create the translation file is not in this list, you have to configure it for the whole project using the form": "Si la langue pour laquelle vous souhaitez cr\u00e9er une traduction n'est pas dans la liste, veuillez l'ajouter pour le projet dans le formulaire du tableau de bord",
         "in the dashboard": "Dans le tableau de bord",
         "new strings found in this path": "nouvelles expressions trouv\u00e9es dans ce r\u00e9pertoire",

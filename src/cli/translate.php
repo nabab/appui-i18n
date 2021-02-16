@@ -21,11 +21,11 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
   foreach ($ids as $id_project) {
     $project = new \bbn\Appui\Project($ctrl->db, $id_project);
     $info    = $project->getProjectInfo();
-    X::log("project  ".$info['name'], 'languages');
+    //X::log("project  ".$info['name'], 'languages');
     if (!empty($info['path'])) {
       $translation = new \bbn\Appui\I18n($ctrl->db, $info['id']);
       foreach ($info['path'] as $idx => $o) {
-        X::log("path ------------------ $o[code]", 'languages');
+        //X::log("path ------------------ $o[code]", 'languages');
         /** for every project takes the full option of each path */
         if ($res_idx = $opt->option($info['path'][$idx]['id_option'])) {
           $res[$idx] = $res_idx;
@@ -50,10 +50,13 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
               && ($data = $translation->getTranslationsStrings($id_option, $orig_lang, $lng_codes))
               && !empty($data['res'])
           ) {
-            X::log("path in ".$orig_lang, 'languages');
+            if ($domain === 'appui-option') {
+              //X::log($data);
+            }
+            //X::log("path in ".$orig_lang, 'languages');
             $index_file = $translation->getIndexPath($id_option);
-            X::log("index_file: $index_file", 'languages');
-            X::log("NUM res: ".count($data['res']), 'languages');
+            //X::log("index_file: $index_file", 'languages');
+            //X::log("NUM res: ".count($data['res']), 'languages');
 
             $num        = is_file($index_file) ? (int)file_get_contents($index_file) : 0;
             $num        = (string)($num + 1);
@@ -67,8 +70,8 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
             $dir = '';
             $js_files = [];
             foreach ($lng_codes as $lang){
-              X::log("LANG $lang", 'languages');
-              X::log("LOCALE DIR: $locale_dir", 'languages');
+              //X::log("LANG $lang", 'languages');
+              //X::log("LOCALE DIR: $locale_dir", 'languages');
               $js_files[$lang] = [];
 
               /** @var string $dir The path of locale dir for this id_option foreach lang */
@@ -88,15 +91,6 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
                 if (!empty($ext) && ($ext === 'mo')) {
                   $mo = $f;
                 }
-              }
-
-              /** checks if the file po exist for this lang and deletes it*/
-              if ($po) {
-                unlink($po);
-              }
-
-              if ($mo) {
-                unlink($mo);
               }
 
               // the new files
@@ -153,7 +147,10 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
                       if ($ext === 'js') {
                         $tmp = substr($r['path'][$idx], strlen($root), -3);
                         if (strpos($tmp, 'components/') === 0) {
-                          $name = $tmp;
+                          $bits = X::split($tmp, '/');
+                          // double name (dir/file)
+                          array_pop($bits);
+                          $name = X::join($bits, '/');
                         }
                         elseif (strpos($tmp, 'mvc/') === 0) {
                           if (strpos($tmp, 'mvc/js/') === 0) {
@@ -175,14 +172,17 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
                           // src
                           array_shift($bits);
                           if ($bits[0] === 'components') {
+                            // double name (dir/file)
+                            array_pop($bits);
                             $name = X::join($bits, '/');
                           }
                           elseif (($bits[0] === 'mvc') && ($bits[1] === 'js')) {
+                            // removing js folder
                             array_splice($bits, 1, 1);
                             $name = X::join($bits, '/');
                           }
                           else {
-                            X::log($tmp, 'lost');
+                            //X::log($tmp, 'lost');
                           }
                         }
 
@@ -195,7 +195,7 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
                           $js_files[$lang][$name][$r['original_exp']] = $r[$lang];
                         }
                         else {
-                          X::log($tmp, 'lost');
+                          //X::log($tmp, 'lost');
                         }
                       }
                     }
@@ -221,7 +221,7 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
                 $file_name = $locale_dir.'/'.$lang.'/'.$lang.'.json';
                 \bbn\File\Dir::createPath(dirname($file_name));
                 // put the content of the array js_files in a json file
-                X::log("PUTTING JS IN $file_name WITH ".count($js_files[$lang])." translations", 'languages');
+                //X::log("PUTTING JS IN $file_name WITH ".count($js_files[$lang])." translations", 'languages');
                 $json = (boolean)file_put_contents($file_name, json_encode($js_files[$lang], JSON_PRETTY_PRINT));
               }
             }

@@ -1,5 +1,5 @@
 {
-    "components\/strings\/strings": {
+    "components\/strings": {
         "The translation in the po file is different from the one in database": "La traduzione nel file po \u00e8 diversa da quella nel database",
         "The translation in the po file is": "La traduzione nel file po \u00e8",
         "Translation missing in po file": "La traduzione manca nel file po",
@@ -9,7 +9,7 @@
         "Show files containing the string": "",
         "File(s) containing the string": ""
     },
-    "components\/widget\/widget": {
+    "components\/widget": {
         "Source language set": "",
         "Source language reset": "",
         "Source language reset for this option": "",
@@ -19,6 +19,8 @@
         "Select a source language for the path before to update the widget": "",
         "Define languages for the translation": "",
         "Set a source language using the dropdown before to create translation file(s)": "",
+        "Are you sure you want to exit without saving changes?": "",
+        "Check the box to create local folder of translation's files for the language in this path": "",
         "If the language for which you want to create the translation file is not in this list, you have to configure it for the whole project using the form": "",
         "in the dashboard": "",
         "new strings found in this path": "",
