@@ -18,13 +18,14 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
   );
   $opt       =& $ctrl->inc->options;
   $primaries = array_values($filter);
-  foreach ($ids as $id) {
-    $project = new \bbn\Appui\Project($ctrl->db, $id);
+  foreach ($ids as $id_project) {
+    $project = new \bbn\Appui\Project($ctrl->db, $id_project);
     $info    = $project->getProjectInfo();
-    if (isset($info['path'])) {
+    X::log("project  ".$info['name'], 'languages');
+    if (!empty($info['path'])) {
       $translation = new \bbn\Appui\I18n($ctrl->db, $info['id']);
-      foreach ($info['path'] as $idx => $pa){
-        $js_files = [];
+      foreach ($info['path'] as $idx => $o) {
+        X::log("path ------------------ $o[code]", 'languages');
         /** for every project takes the full option of each path */
         if ($res_idx = $opt->option($info['path'][$idx]['id_option'])) {
           $res[$idx] = $res_idx;
@@ -35,9 +36,9 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
           //the id_option of the widget
           $id_option = $info['path'][$idx]['id_option'];
           $parent    = $opt->parent($id_option);
-          $root      = constant(strtoupper('bbn_'.$parent['code'].'_path'));
-          $domain    = $res[$idx]['text'];
-          $lang      = $opt->getProp($id_option, 'language');
+          $root      = $ctrl->{$parent['code'].'Path'}();
+          $domain    = $o['code'];
+          $orig_lang = $opt->getProp($id_option, 'language');
           $lng_codes = array_map(
             function ($a) use (&$opt) {
               return $opt->code($a);
@@ -45,11 +46,15 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
             $info['langs']
           );
           if ($root
-              && $lang
-              && ($data = $translation->getTranslationsStrings($id_option, $lang, $lng_codes))
+              && $orig_lang
+              && ($data = $translation->getTranslationsStrings($id_option, $orig_lang, $lng_codes))
               && !empty($data['res'])
           ) {
+            X::log("path in ".$orig_lang, 'languages');
             $index_file = $translation->getIndexPath($id_option);
+            X::log("index_file: $index_file", 'languages');
+            X::log("NUM res: ".count($data['res']), 'languages');
+
             $num        = is_file($index_file) ? (int)file_get_contents($index_file) : 0;
             $num        = (string)($num + 1);
             file_put_contents($index_file, $num);
@@ -60,7 +65,12 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
             clearstatcache();
 
             $dir = '';
+            $js_files = [];
             foreach ($lng_codes as $lang){
+              X::log("LANG $lang", 'languages');
+              X::log("LOCALE DIR: $locale_dir", 'languages');
+              $js_files[$lang] = [];
+
               /** @var string $dir The path of locale dir for this id_option foreach lang */
               $dir = $locale_dir . '/' . $lang . '/LC_MESSAGES';
 
@@ -140,41 +150,53 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
                       $ext = pathinfo($path, PATHINFO_EXTENSION);
 
 
-                      if($ext === 'js') {
+                      if ($ext === 'js') {
                         $tmp = substr($r['path'][$idx], strlen($root), -3);
-
                         if (strpos($tmp, 'components/') === 0) {
-                          $name = dirname($tmp);
+                          $name = $tmp;
                         }
                         elseif (strpos($tmp, 'mvc/') === 0) {
-                          if (!empty($idx = strpos($tmp, 'js/'))) {
-                            $name = str_replace('js/', '', $tmp);
+                          if (strpos($tmp, 'mvc/js/') === 0) {
+                            $tmp = 'mvc/'.substr($tmp, 7);
                           }
+
+                          $name = $tmp;
                         }
                         //case of plugins inside current (apst-app), temporary we decided to don't take it inside the json file of apst-app
-                        elseif (( strpos($tmp, 'plugins') === 0 ) && ($parent['code'] === 'app')) {
+                        elseif ((strpos($tmp, 'plugins/') === 0)) {//} && ($parent['code'] === 'app')) {
                           continue;
                         }
                         elseif (strpos($tmp, 'bbn/') === 0) {
-                          //removing mvc from $o['code'] of appui plugins
-                          $code = str_replace(substr($o['code'], -4), '', $o['code']);
-                          $tmp  = str_replace($code, '', $tmp);
-                          if (strpos($tmp, 'components') === 4) {
-                            $final = str_replace(substr($tmp, 0, 4),'', $tmp);
-                            $name  = dirname($final);
+                          $bits = X::split($tmp, '/');
+                          // bbn
+                          array_shift($bits);
+                          // plugin name
+                          array_shift($bits);
+                          // src
+                          array_shift($bits);
+                          if ($bits[0] === 'components') {
+                            $name = X::join($bits, '/');
                           }
-                          elseif (strpos($tmp, 'mvc') === 4) {
-                            $final = str_replace(substr($tmp, 0, 4), '', $tmp);
-                            $name  = str_replace('js/', '', $final);
+                          elseif (($bits[0] === 'mvc') && ($bits[1] === 'js')) {
+                            array_splice($bits, 1, 1);
+                            $name = X::join($bits, '/');
+                          }
+                          else {
+                            X::log($tmp, 'lost');
                           }
                         }
 
-                        if (empty($js_files[$lang][$name])) {
-                          $js_files[$lang][$name] = [];
-                        }
+                        if (!empty($name)) {
+                          if (empty($js_files[$lang][$name])) {
+                            $js_files[$lang][$name] = [];
+                          }
 
-                        //array of all js files found in po file
-                        $js_files[$lang][$name][$data['res'][$index]['original_exp']] = $data['res'][$index][$lang];
+                          //array of all js files found in po file
+                          $js_files[$lang][$name][$r['original_exp']] = $r[$lang];
+                        }
+                        else {
+                          X::log($tmp, 'lost');
+                        }
                       }
                     }
                   }
@@ -196,11 +218,11 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
               clearstatcache();
 
               if (!empty($js_files[$lang])) {
-                        $file_name = $locale_dir.'/'.$lang.'/'.$lang.'.json';
-
+                $file_name = $locale_dir.'/'.$lang.'/'.$lang.'.json';
                 \bbn\File\Dir::createPath(dirname($file_name));
                 // put the content of the array js_files in a json file
-                $json = (boolean)file_put_contents($file_name, json_encode($js_files[$lang]));
+                X::log("PUTTING JS IN $file_name WITH ".count($js_files[$lang])." translations", 'languages');
+                $json = (boolean)file_put_contents($file_name, json_encode($js_files[$lang], JSON_PRETTY_PRINT));
               }
             }
 
@@ -209,7 +231,7 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
 
 
             /** @var array The data for the strings table */
-            $tmp = $translation->getTranslationsTable($id, $id_option);
+            $tmp = $translation->getTranslationsTable($id_project, $id_option);
 
             //Set the cache of the table
             $translation->cacheSet(
@@ -219,6 +241,7 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
             /** @var array The data of the table in cache */
             $strings = $translation->cacheGet($id_option, 'get_translations_table');
 
+            /*
             //set the cache of the widget
             $translation->cacheSet(
               $id_option,
@@ -226,8 +249,9 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
               $translation->getTranslationsWidget($id,$id_option)
             );
 
-            /** @var array The data of the widget in the cache*/
+            /** @var array The data of the widget in the cache
             $widget  = $translation->cacheGet($id_option, 'get_translations_widget');
+            */
             $success = true;
           }
           else {
