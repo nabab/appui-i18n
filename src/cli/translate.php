@@ -181,6 +181,10 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
                             array_splice($bits, 1, 1);
                             $name = X::join($bits, '/');
                           }
+                          elseif ($bits[0] === 'bbn') {
+                            array_shift($bits);
+                            $name = X::join($bits, '/');
+                          }
                           else {
                             //X::log($tmp, 'lost');
                           }
