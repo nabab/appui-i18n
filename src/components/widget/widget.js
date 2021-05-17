@@ -188,9 +188,9 @@
       },
       open_strings_table(){
         //open the table of strings of this path combining new strings found in the files with strings present in db
-        //send arguments[0] (id_option of the path) to 'internationalization/page/path_translations/'
+        //send arguments[0] (id_option of the path) to 'page/path_translations/'
         //only if the the language of the path is set
-        //internationalization/page/path_translations/ will return the cached_model in its data, if a
+        //page/path_translations/ will return the cached_model in its data, if a
         // cached_model doesn't exist for this id_option it will be created
         if ( ( this.configured_langs !== undefined ) && ( this.id_project !== 'options')){
           bbn.fn.link(this.root + 'page/path_translations/' +this.project_name +'/'+ this.id_option);
@@ -302,7 +302,7 @@
 <bbn-form :source="source.row"
           :data="{id_project: source.data.id_project, language: source.data.language}"
           ref="form-locale"
-          :action="( source.data.id_project === 'options' ) ? 'internationalization/options/find_options' : 'internationalization/actions/generate'"
+          :action="root + (source.data.id_project === 'options' ? 'options/find_options' : 'actions/generate')"
           confirm-leave="`+ bbn._('Are you sure you want to exit without saving changes?') +`"
           :prefilled="true"
           @success="success"
@@ -332,7 +332,9 @@
 </bbn-form>
         `,
         data(){
-          return {}
+          return {
+            root: appui.plugins['appui-i18n'] + '/'
+          };
         },
         mounted(){
           //push the source language of the path in the array row.languages to have it as default language

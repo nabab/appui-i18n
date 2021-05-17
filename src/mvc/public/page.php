@@ -4,7 +4,7 @@ if ( strpos($ctrl->baseURL, APPUI_I18N_ROOT.'page/') !== 0 ){
   // the folder of components templates
   $templates = \bbn\File\Dir::getFiles($ctrl->pluginPath().'mvc/html/templates');
   $ctrl->data['templates'] = [];
-  $ctrl->obj->url = 'internationalization/page';
+  $ctrl->obj->url = $ctrl->data['root'].'page';
 
   if ( !empty($templates) ){
     $ctrl->data['templates'] = array_map(

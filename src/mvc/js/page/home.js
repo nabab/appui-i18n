@@ -1,6 +1,11 @@
 (() => {
   return {
     props:['source'],
+    data(){
+      return {
+        root: appui.plugins['appui-i18n'] + '/'
+      };
+    },
     methods: {
       //render for the third column of the projects table
       render_lang_name(row){
@@ -8,7 +13,7 @@
       },
       //render for the first column of the projects table
       render_projects(row){
-        return '<a href="internationalization/components/languages/glossaries">'+ row.name +'</a>'
+        return '<a href="' + this.root + 'components/languages/glossaries">'+ row.name +'</a>'
       },
       //render for the second column of the projects table
       render_langs(row){
@@ -45,28 +50,29 @@
           return{
             path: this.source.path,
             id_project: this.source.id,
-            id_option: false
-          }
+            id_option: false,
+            root: appui.plugins['appui-i18n'] + '/'
+          };
         },
         methods: {
           open_strings_table(row){
             //open the table of strings of this path combining new strings found in the files with strings present in db
-            //send arguments[0] (id_option of the path) to 'internationalization/page/path_translations/'
+            //send arguments[0] (id_option of the path) to 'page/path_translations/'
             this.id_option = row.id_option;
-            //internationalization/page/path_translations/ will return the cached_model in its data, if a
+            //page/path_translations/ will return the cached_model in its data, if a
             // cached_model doesn't exist for this id_option it will be created
-            bbn.fn.link('internationalization/page/path_translations/' + row.id_option);
+            bbn.fn.link(this.root + 'page/path_translations/' + row.id_option);
           },
           find_new_strings(row){
             //check in the path for new strings
-            this.post('internationalization/actions/find_strings', row, (d) => {
+            this.post(this.root + 'actions/find_strings', row, (d) => {
               //d.done is the number of new strings inserted in the db
               //the empty string passed to bbn.fn.alert is for the title of the alert
               if( d.done > 0 ){
-                appui.alert(d.done + ' strings successfully updated for ' + row.text + '<i class="nf nf-oct-smiley"></i>!', ' ');
+                appui.alert(d.done + ' ' + bbn._("strings successfully updated for") + ' ' + row.text + '<i class="nf nf-oct-smiley"></i>!', ' ');
               }
               else {
-                appui.alert('There are no new strings to update <i class="nf nf-fa-smile" aria-hidden="true"></i>', ' ');
+                appui.alert(bbn._('There are no new strings to update') + ' <i class="nf nf-fa-smile" aria-hidden="true"></i>', ' ');
               }
             });
           },
@@ -76,6 +82,11 @@
       //the component form to configure languages in which translate the project
       'languages-form': {
         template: '#languages-form',
+        data(){
+          return {
+            root: appui.plugins['appui-i18n'] + '/'
+          };
+        },
         methods:{
           //inArray: $.inArray,
           change_checked_langs(val, obj){

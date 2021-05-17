@@ -85,10 +85,10 @@ foreach ( $projects as $i => $p ){
   unset( $projects[$i]['path'] );
 }
 
-return [
+return $model->addData([
   'configured_langs' => $projects[$project_idx]['langs'],
   'primary' => $primaries,
   'success' => $success,
   'projects' => $projects,
   'data' => $res
-];
+])->data;

@@ -13,8 +13,8 @@
         dd_ready: false,
         //v-model of progress-bar
         translatedPercentage: false,
-        progressbar_color: ''
-
+        progressbar_color: '',
+        root: appui.plugins['appui-i18n'] + '/'
       }
     },
     computed: {
@@ -65,7 +65,7 @@
       //v-model of the first dropdown
       source_lang(val){
         if ( val ){
-          this.post('internationalization/page/lang', {
+          this.post(this.root + 'page/lang', {
             'source_lang': val,
             'lang' : this.search_for_lang
           }, (d) => {
@@ -81,7 +81,7 @@
         if ( val ){
           //an intermediate property used for the render of the statistic
           this.dd_ready = true;
-          this.post('internationalization/languages/lang', {
+          this.post(this.root + 'languages/lang', {
             'lang': val,
             'source_lang': this.source_lang
           }, (d) => {

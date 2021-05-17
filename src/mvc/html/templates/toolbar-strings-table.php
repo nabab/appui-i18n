@@ -34,7 +34,7 @@
                  @change="search"
                  v-model="valueToFind"
       ></bbn-input></div>
-    <div style="display:inline">
+    <!--div style="display:inline">
 
       <bbn-switch v-model="hide_source_language"
                   :value="true"
@@ -47,7 +47,7 @@
         <span style="vertical-align: sub;"
               v-text="hide_source_language ? 'Show source language column' : 'Hide source language column'"></span>
       </div>
-    </div>
+    </div-->
 
   </div>
   <div style="font-size:9px; text-align: right; padding-right: 6px;padding-bottom:3px"

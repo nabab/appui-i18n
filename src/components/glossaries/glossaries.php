@@ -1,6 +1,6 @@
 <div class="strings-table" style="min-height: 500px">
 
-  <bbn-table source="internationalization/page/data/glossary"
+  <bbn-table :source="root + 'page/data/glossary'"
              editable="nobuttons"
              :pageable="true"
              :sortable="true"
@@ -14,13 +14,13 @@
              @change="insert_translation"
   >
     <bbns-column field="exp"
-                title="<?=_('Original Expression')?>"
+                title="<?php echo _('Original Expression'); ?>"
                 :editable="false"
                 cls="bbn-i"
     ></bbns-column>
 
     <bbns-column field="translation"
-                 title="<?=_('Translation')?>"
+                 title="<?php echo _('Translation'); ?>"
     ></bbns-column>
 
 <!--    <bbns-column field="id_user"
@@ -29,7 +29,7 @@
                 :editable="false"
     ></bbns-column>-->
 
-    <bbns-column ftitle="<?=_('Status')?>"
+    <bbns-column ftitle="<?php echo _('Status'); ?>"
                  width="40"
                  cls="bbn-c"
                  :editable="false"

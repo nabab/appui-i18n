@@ -19,7 +19,6 @@
    <bbns-column field="exp"
                :title="'<?=_('Original expression in')?>' +' '+ source_lang "
                :index="1"
-               width="20%"
                :editable="false"
                cls="bbn-i"
                :sortable="true"
