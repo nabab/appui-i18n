@@ -5,6 +5,7 @@
       return {
         //primary is used to render the name of languages in the table
         primary : this.closest('bbn-router').$parent.source.primary,
+        root: appui.plugins['appui-i18n'] + '/'
       }
     },
     computed: {
@@ -15,7 +16,7 @@
         return appui.app.getUserName(row.user)
       },
       insert_translation(row,idx){
-        this.post('internationalization/actions/insert_translation', row, (success) => {
+        this.post(this.root + 'actions/insert_translation', row, (success) => {
           if (success){
             appui.success('Translation saved');
           }

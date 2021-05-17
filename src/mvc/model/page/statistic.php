@@ -8,14 +8,14 @@
 
 
 $model->data['success'] = false;
-$id_user = $model->inc->user->getId();
-$is_dev =  $model->db->selectOne("bbn_users", "admin", ['id' => $id_user]);
-if (!empty($id_user) ){
-  if ( !empty($is_dev) ){
+$id_user                = $model->inc->user->getId();
+$is_dev                 = $model->db->selectOne("bbn_users", "admin", ['id' => $id_user]);
+if (!empty($id_user)) {
+  if (!empty($is_dev)) {
     //CASE admin
 
     //$project_count is the number of bbn_project
-    if ( $projects = $model->getModel('internationalization/languages')['projects'] ){
+    if ($projects = $model->getModel(this.root + 'languages')['projects']) {
       $project_count = count($projects);
 
       //number of projects having 'en' as source language
@@ -27,7 +27,7 @@ if (!empty($id_user) ){
 
 
       //$best_translators the three most productive translators
-      $query = <<<MYSQL
+      $query            = <<<MYSQL
     SELECT `id_user`,
       COUNT(`id_user`) AS `value_occurrence` 
     FROM     `bbn_i18n`
@@ -37,10 +37,11 @@ if (!empty($id_user) ){
 MYSQL;
       $best_translators = $model->db->getRows($query);
       //take the name of the translator from bbn_users
-      foreach ( $best_translators as $i => $b ){
+      foreach ($best_translators as $i => $b){
         $best_translators[$i]['name'] = $model->db->selectOne('bbn_users', 'nom', ['id' => $b['id_user']]);
         unset($best_translators[$i]['id_user']);
       }
+
       $model->data['success'] = true;
     }
   }
@@ -51,21 +52,24 @@ MYSQL;
   $langs_in_db = $model->db->getColArray("SELECT DISTINCT lang FROM bbn_i18n_exp");
 
   //the complete array of primaries languages
-  $primaries = $model->getModel('internationalization/languages')['primary'];
+  $primaries = $model->getModel(APPUI_I18N_ROOT.'languages')['primary'];
 
   //die(var_dump($model->data['source_lang']));
-  $dropdown_langs = array_filter($primaries, function($i) use($langs_in_db, $source_lang) {
-
-    return in_array($i['code'], $langs_in_db);
-  });
+  $dropdown_langs = array_filter(
+    $primaries, function ($i) use ($langs_in_db, $source_lang) {
+      return in_array($i['code'], $langs_in_db);
+    }
+  );
 
   //array containing all source languages
   $source_langs = $model->db->getColumnValues('bbn_i18n','lang');
 
   //array used for source of the second dropdown in statistic tab
-  $source_dd_langs = array_filter($primaries, function($i) use($source_langs){
-    return in_array($i['code'], $source_langs);
-  });
+  $source_dd_langs = array_filter(
+    $primaries, function ($i) use ($source_langs) {
+      return in_array($i['code'], $source_langs);
+    }
+  );
 
 
 
@@ -75,8 +79,9 @@ MYSQL;
   //$total_translated_strings -> the total number of translated strings
   $total_translated_strings = $model->db->count('bbn_i18n_exp');
   //percentage of translated stings
-  $percentage_translated_strings = round(($total_translated_strings - $total_source_strings) / $total_source_strings *
-      100, 2).'%';
+  $percentage_translated_strings = round(
+    ($total_translated_strings - $total_source_strings) / $total_source_strings * 100, 2
+  ).'%';
 
   $model->data['success'] = true;
 }
@@ -92,11 +97,11 @@ return [
     'Number of strings in all projects:' => $total_source_strings,
     'Strings translated at least in one language:' => $percentage_translated_strings,
     'Most productive translator:' => $best_translators,
-    
+
   ],
   'projects' => $projects,
   'langs_in_db' => $langs_in_db,
-  'success'=> $model->data['success'],
+  'success' => $model->data['success'],
   'dropdown_langs' => $dropdown_langs,
   'source_dd_langs' => $source_dd_langs
 ];

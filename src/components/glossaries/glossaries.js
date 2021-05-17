@@ -2,7 +2,11 @@
 (() => {
   return {
     props: ['source'],
-
+    data(){
+      return {
+        root: appui.plugins['appui-i18n'] + '/'
+      };
+    },
     computed: {
       primary(){
         return this.closest('bbn-router').$parent.source.primary;
@@ -22,26 +26,36 @@
         return res;
       },
       delete_expression(row){
-        this.getPopup().confirm('Do you really want to delete the original expression and it\'s translation?', () => {
-          this.post('internationalization/actions/delete_expression', { id_exp: row.idExp, exp: row.original_exp },  (d) => {
-            this.$refs.glossary_table.remove(row)
-          } );
-        })
+        this.getPopup().confirm(
+          bbn._('Do you really want to delete the original expression and it\'s translation?'),
+          () => {
+            this.post(
+              this.root + 'actions/delete_expression',
+              {id_exp: row.idExp, exp: row.original_exp},
+              (d) => {
+                this.$refs.glossary_table.remove(row);
+              }
+            );
+          }
+        );
       },
       insert_translation(row,idx){
-        this.post('internationalization/actions/insert_translation',
+        this.post(
+          this.root + 'actions/insert_translation',
           {
             'id_exp' : row.idExp,
             'expression': row.translation,
             'translation_lang': this.source.translation_lang
-          }, (success) => {
-          if (success){
-            appui.success('Translation saved');
+          },
+          (success) => {
+            if (success){
+              appui.success('Translation saved');
+            }
+            else{
+              appui.error('An error occurred while saving translation');
+            }
           }
-          else{
-            appui.error('An error occurred while saving translation');
-          }
-        });
+        );
       },
       icons(row){
         let res = '';

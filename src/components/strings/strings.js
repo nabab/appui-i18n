@@ -6,8 +6,9 @@
         primary: this.closest('bbn-router').$parent.source.primary,
         column_length: true,
         hidden_cols: [],
-        showAlert: false
-      }
+        showAlert: false,
+        root: appui.plugins['appui-i18n'] + '/'
+      };
     },
     mounted(){
       //bbn.fn.log('this',this, this.mapData, this.hidden_cols, this.column_length)
@@ -298,7 +299,7 @@
         this.column_length = false;
         //this.generate();
         this.showAlert = true;
-        this.post('internationalization/actions/reload_table_cache', {
+        this.post(this.root + 'actions/reload_table_cache', {
           id_option: this.source.res.id_option,
           id_project: this.source.id_project,
           routes: appui.plugins["appui-i18n"] + '/'
@@ -415,8 +416,9 @@
             to_hide_col:[],
             hide_source_language: false,
             tab: null,
-            valueToFind: ''
-          }
+            valueToFind: '',
+            root: appui.plugins['appui-i18n'] + '/'
+          };
         },
         methods: {
           search(){

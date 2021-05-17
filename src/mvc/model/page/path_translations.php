@@ -49,9 +49,9 @@ if (!empty($model->data['id_option'])) {
     }
   }
 
-  return [
+  return $model->addData([
     'id_project' => $id_project ?: $id_project,
     'res' => $res,
     'pageTitle' => $model->inc->options->text($model->data['id_option'])
-  ];
+  ])->data;
 }

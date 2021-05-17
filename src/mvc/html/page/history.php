@@ -1,6 +1,6 @@
 <div class="bbn-flex-width" v-if="source.is_dev">
 
-  <bbn-table source="internationalization/page/data/history"
+  <bbn-table :source="root + 'page/data/history'"
              :info="true"
              :sortable="true"
              :pageable="true"
@@ -13,31 +13,31 @@
              @change="insert_translation"
   >
     <bbns-column field="last_modification"
-                title="<?=_('Date')?>"
+                title="<?php echo _('Date'); ?>"
                 type="date"
-                ftitle="<?=_('Date of last modification')?>"
+                ftitle="<?php echo _('Date of last modification'); ?>"
                 :editable="false"
                 width="8%"
     ></bbns-column>
 
     <bbns-column field="user"
-                 title="<?=_('User')?>"
-                 ftitle="<?=_('Translator\'s name')?>"
+                 title="<?php echo _('User'); ?>"
+                 ftitle="<?php echo _('Translator\'s name'); ?>"
                  :editable="false"
                  width="12%"
                  :render="renderUser"
     ></bbns-column>
 
     <bbns-column field="original_exp"
-                title="<?=_('Original Expression')?>"
-                ftitle="<?=_('Expression in the source language')?>"
+                title="<?php echo _('Original Expression'); ?>"
+                ftitle="<?php echo _('Expression in the source language'); ?>"
                 :editable="false"
                 cls="bbn-i"
     ></bbns-column>
 
     <bbns-column field="original_lang"
                 title=" "
-                ftitle="<?=_('The source language of the expression')?>"
+                ftitle="<?php echo _('The source language of the expression'); ?>"
                 width="50"
                 :editable="false"
                 :render="render_original_lang"
@@ -45,21 +45,21 @@
     ></bbns-column>
 
     <bbns-column field="expression"
-                title="<?=_('Translation')?>"
-                ftitle="<?=_('The expression translated by the user')?>"
+                title="<?php echo _('Translation'); ?>"
+                ftitle="<?php echo _('The expression translated by the user'); ?>"
     ></bbns-column>
 
 
     <bbns-column field="translation_lang"
                 title=" "
-                ftitle="<?=_('The language of translation')?>"
+                ftitle="<?php echo _('The language of translation'); ?>"
                 width="50"
                 :render="render_lang"
                 cls="bbn-c"
                 :editable="false"
     ></bbns-column>
 
-    <bbns-column ftitle="<?=_('Status')?>"
+    <bbns-column ftitle="<?php echo _('Status'); ?>"
                 :render="render_status"
                 width="40"
                 cls="bbn-c"
