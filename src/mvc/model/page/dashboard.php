@@ -56,7 +56,7 @@ if (isset($project_idx) && ($current_project = $projects[$project_idx]) && isset
     if ( isset( $res[$idx]['language'] ) ){
       //the id_option of the widget
       $id_option = $res[$idx]['id'];
-      
+
       //if the widget has not cache for this method creates the cache
       //IF THE CACHE IS ACTIVE WHEN THE PROJECT IS CHANGED BY THE DROPDOWN IT RETURNS THE WIDGETS OF THE PROJECT APST-APP
       /*if ( empty($translation->cacheHas($id_option, 'get_translations_widget')) ){

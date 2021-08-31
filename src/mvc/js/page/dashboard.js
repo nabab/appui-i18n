@@ -135,7 +135,7 @@
       },
       open_glossary_table(){
         //open a component popup to select source language and translation language for the table glossary
-          var tab = bbn.vue.closest(this, 'bbn-container').getComponent();
+          var tab = this.closest('bbn-container').getComponent();
           this.getPopup().open({
             scrollable: false,
             width: 400,
@@ -161,6 +161,7 @@
           component: this.$options.components['languages-form'],
           //send the configured langs for this id_project
           source: {
+            root: this.root,
             data: {
               primary: this.primary,
               language: this.language
@@ -249,7 +250,7 @@
             cp.$forceUpdate();
           }
         },
-        props: ['source'],
+
       }
     },
     mounted(){
