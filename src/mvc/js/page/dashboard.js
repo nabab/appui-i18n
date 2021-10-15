@@ -13,7 +13,7 @@
         root: appui.plugins['appui-i18n'] + '/'
       }
     },
-    
+
     computed: {
       languageText(){
         if (this.primary) {
@@ -197,9 +197,9 @@
       }
     },
     beforeMount(){
-      this.primary = this.closest('bbn-router').parentContainer.getComponent().source.primary;
+      this.primary = this.source.primary;
     },
-    watch : { 
+    watch : {
       id_project(val){
         if (val){
           this.language = bbn.fn.getField(this.source.projects, 'lang', 'id', val)
@@ -208,7 +208,30 @@
     },
     components: {
       'cfg_translations_form': {
-        template:'#cfg_translations_form',
+        template: `<bbn-form :source="source.row"
+                  @submit="link"
+                  :prefilled="true"
+                  @cancel="cancel"
+                  :scrollable="false"
+        >
+          <div class="bbn-flex-height">
+            <div class="bbn-grid-fields bbn-flex-fill bbn-padded bbn-c">
+              <span>
+                <?=_('Select source language')?>:
+              </span>
+              <div>
+                <bbn-dropdown placeholder="Choose" :source="source.dd_translation_lang" v-model="source.source_lang"></bbn-dropdown>
+              </div>
+
+              <span>
+                <?=_('Select a language for the translation')?>:
+              </span>
+              <div>
+                <bbn-dropdown placeholder="Choose" :source="source.dd_translation_lang" v-model="source.translation_lang"></bbn-dropdown>
+              </div>
+            </div>
+          </div>
+        </bbn-form>`,
         props:['source'],
         methods: {
           link(){
@@ -220,12 +243,50 @@
         }
       },
       'languages-form': {
-        template: '#languages-form',
+        props: ['source'],
+        template: `<bbn-form :scrollable="true"
+                              :source="source.row"
+                              ref="form"
+                              :action="source.root + 'actions/languages_form'"
+                              confirm-leave="<?php echo _('Are you sure you want to exit without saving changes?'); ?>"
+                              :prefilled="true"
+                              @success="success"
+        >
+          <div class="bbn-grid-fields">
+
+            <!--deve mandare il codice del linguaggio scelto come source {source:en}
+            AGGIUNGERE V-MODEL -->
+            <!--n>Select the source language</span>
+            <bbn-dropdown :source="source.data.primary"
+                ></bbn-dropdown-->
+                <div style="height:300px;" class="bbn-padded bbn-middle">
+                <span><?=_("Check the box to activate translation in the language for this root"); ?></span>
+            </div>
+
+            <div class="bbn-padded">
+                <div v-for="(l, index) in source.data.primary"
+                   class="bbn-vlpadded"
+                   ref="checkbox"
+              >
+                  <bbn-checkbox :id="l.id"
+                              value="1"
+                              :checked="inArray(l.id, source.row.configured_langs) > -1 || inArray(l.id, source.row.langs) > -1"
+                              @change="change_checked_langs"
+                              :label="l.text"
+                ></bbn-checkbox>
+
+                    </div>
+            </div>
+          </div>
+
+
+            <!-- buttons cancel e submit deve mandare {source_language:'', e i linguaggi messi a true, ex-> ita:true}-->
+
+        </bbn-form>`,
         mounted(){
           bbn.fn.each(this.source.data.primary, (v, i)=>{
             bbn.fn.log(v.id, this.source.data.language, (v.id === this.source.data.language))
           })
-          
         },
         methods:{
           success(d){

@@ -29,8 +29,8 @@
                 text="<?=_('Parse files for new strings')?>"
     >
     </bbn-button>
-    <div style="display:inline"> 
-      <bbn-input placeholder="<?=_("Search the string")?>" 
+    <div style="display:inline">
+      <bbn-input placeholder="<?=_("Search the string")?>"
                  @change="search"
                  v-model="valueToFind"
       ></bbn-input></div>
@@ -52,7 +52,7 @@
   </div>
   <div style="font-size:9px; text-align: right; padding-right: 6px;padding-bottom:3px"
        v-if="id_project !=='options'"
-  ><?=_("If the column with")?><i class="nf nf-fa-asterisk"></i> <?=_("is empty be sure to force translation files update and then update the table")?></div>
+  ><?=_("If the column with ")?><i class="nf nf-fa-asterisk"></i> <?=_("is empty be sure to force translation files update and then update the table")?></div>
 
   <div v-if="id_project ==='options'"
        class="bbn-padded bbn-grid-fields"

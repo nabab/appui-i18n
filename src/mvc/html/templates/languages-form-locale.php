@@ -1,8 +1,8 @@
 <bbn-form :source="source.row"
           :data="{id_project: source.data.id_project}"
           ref="form-locale"
-          :action="'<?=APPUI_I18N_ROOT?>' + (source.data.id_project === 'options' ? 'options/find_options' : 'actions/generate')"
-          confirm-leave="<?=_("Are you sure you want to exit without saving changes?")?>"
+          :action="'<?php echo APPUI_I18N_ROOT; ?>' + (source.data.id_project === 'options' ? 'options/find_options' : 'actions/generate')"
+          confirm-leave="<?php echo _("Are you sure you want to exit without saving changes?"); ?>"
           :prefilled="true"
           @success="success"
           @close="update"
@@ -11,7 +11,7 @@
   <div class="bbn-grid-fields">
 
     <div style="height:300px;" class="bbn-padded bbn-middle">
-      <span><?=_('Check the box to create local folder of translation\'s files for the language in this path')?></span>
+      <span><?php echo _('Check the box to create local folder of translation\'s files for the language in this path'); ?></span>
     </div>
 
     <div class="bbn-padded">

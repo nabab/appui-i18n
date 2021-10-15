@@ -18,6 +18,7 @@ if (( $o = $model->data['id_option'] )
 ) {
 
 
+  $parent = $model->inc->options->parent($o);
   /** @var bool $json Will be true if some translations are put into a JSON file */
   $json = false;
   /** @var array $js_files An array with files as index and an array expressions to put into the JSON file */
@@ -161,6 +162,14 @@ if (( $o = $model->data['id_option'] )
         $Catalog->addHeaders($headersClass);
       }
 
+      $constroot = 'BBN_'.strtoupper($parent['code']).'_PATH';
+      if (!defined($constroot)) {
+        X::log($model->inc->option->option($o));
+        throw new \Exception("Impossible to find the root for option, see Misc log");
+      }
+
+      $root = constant($constroot);
+
       /** @var takes all strings from the cached model of find_strings */
       foreach ($data['res'] as $index => $r){
         if (empty($Catalog->getEntry($r['original_exp']))) {
@@ -177,7 +186,7 @@ if (( $o = $model->data['id_option'] )
               $ext = pathinfo($path, PATHINFO_EXTENSION);
 
               if($ext === 'js') {
-                $tmp = substr($r['path'][$idx], strlen(constant($parent['code'])), -3);
+                $tmp = substr($r['path'][$idx], strlen($root), -3);
 
                 if (strpos($tmp, 'components') === 0) {
                   $name = dirname($tmp);
@@ -188,15 +197,14 @@ if (( $o = $model->data['id_option'] )
                   }
                 }
                 //case of plugins inside current (apst-app), temporary we decided to don't take it inside the json file of apst-app
-                elseif (( strpos($tmp, 'plugins') === 0 ) && ($parent['code'] === 'BBN_APP_PATH')) {
+                elseif (( strpos($tmp, 'plugins') === 0 ) && ($root === BBN_APP_PATH)) {
                   continue;
                 }
 
                 elseif (strpos($tmp, 'bbn/') === 0) {
-                  //removing mvc from $o['code'] of appui plugins
-
-                  $code                  = str_replace(substr($o['code'], -4), '', $o['code']);
-                                    $tmp = str_replace($code, '', $tmp);
+                  $optCode = $model->inc->options->code($o);
+                  $code = str_replace(substr($optCode, -4), '', $optCode);
+                  $tmp  = str_replace($code, '', $tmp);
                   if (strpos($tmp, 'components') === 4) {
                     $final      = str_replace(substr($tmp, 0,4),'',$tmp);
                           $name = dirname($final);

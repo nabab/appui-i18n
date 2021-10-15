@@ -3,7 +3,6 @@
     props: ['source'],
     data(){
       return {
-        primary: this.closest('bbn-router').$parent.source.primary,
         column_length: true,
         hidden_cols: [],
         showAlert: false,
@@ -16,7 +15,7 @@
     computed: {
       /** the source language of this id_option */
       source_lang(){
-        return bbn.fn.getField( this.primary, 'text', 'code' , this.source.res.path_source_lang)
+        return bbn.fn.getField(this.source.primary, 'text', 'code' , this.source.res.path_source_lang)
       },
       /**array of columns for the table*/
       columns(){
@@ -25,14 +24,13 @@
           def = null;
         var field = '',
           vm = this;
-       
+
         for ( let n in this.source.res.languages ){
           var obj = {
             field: this.source.res.languages[n] + '_db',
-            title:  ( this.source.res.languages[n] === this.source.res.path_source_lang) ? (bbn.fn.getField(this.primary, 'text', 'code', this.source.res.languages[n]) + '  <i class="nf nf-fa-asterisk" title="This is the original language of the expression"></i>') : bbn.fn.getField(this.primary, 'text', 'code', this.source.res.languages[n]),
+            title:  ( this.source.res.languages[n] === this.source.res.path_source_lang) ? (bbn.fn.getField(this.source.primary, 'text', 'code', this.source.res.languages[n]) + '  <i class="nf nf-fa-asterisk" title="This is the original language of the expression"></i>') : bbn.fn.getField(this.source.primary, 'text', 'code', this.source.res.languages[n]),
             editable: true
           };
-          
           /**render for the columns when the  project is not options */
           if ( ( this.source.id_project !== 'options' )  ){
             obj.render = (row) => {
@@ -48,7 +46,7 @@
                 (translation_po.length ? ' bbn-orange' : ' bbn-red')
                 + '">' + translation_db + '</span><i style="float:right" class="'+
                 (translation_po.length ? ' nf nf-fa-exclamation' : ' nf nf-fa-exclamation_triangle')
-                +' bbn-large '+ 
+                +' bbn-large '+
                 (translation_po.length ? ' bbn-orange' : ' bbn-red')
                 +'" title="' + (translation_po ? (bbn._('The translation in the po file is') + ': ' + translation_po ) : bbn._('Translation missing in po file')) + '"></i>'
               }
@@ -83,7 +81,7 @@
           width: 90,
           cls: 'bbn-c'
         });
-        
+
         return r;
       },
     },
@@ -109,11 +107,11 @@
             language: this.source.res.path_source_lang
           }, (d) => {
             if ( d.success ){
-             
+
               d.languages = d.languages.map( (v) => {
-                return bbn.fn.getField(this.primary, 'text', 'code', v);
+                return bbn.fn.getField(this.source.primary, 'text', 'code', v);
               });
-             
+
               let router = this.closest('bbn-router');
               if ( router ){
 
@@ -130,7 +128,7 @@
                     });
                   }
                 }
-                
+
 
               }
               this.source.res.strings = d.strings;
@@ -146,7 +144,7 @@
                         cp.source.data[idx].data_widget = d.widget;
                       }
                     }
-                    
+
                 }
               }
               appui.success('Files of translation successfully updated for '+ d.languages.join(' and ') );
@@ -207,7 +205,7 @@
       showPath(row){
         this.getPopup().open({
           title: bbn._('File(s) containing the string'),
-          source: row, 
+          source: row,
           component:this.$options.components['show-paths'],
           height: '500px',
           width: '400px'
@@ -215,9 +213,9 @@
       },
       /** deletes the original expression from db, if the expression is not deleted before from the file (using the link of the expander to the code) it will be again in the table when the table is reloaded or updated */
       delete_expression(row, ob, idx){
-        bbn.fn.log('arguments',arguments)  
+        bbn.fn.log('arguments',arguments)
         let id_exp = row.id_exp,
-            
+
           data = this.find('bbn-table').currentData;
           //idx = bbn.fn.search(data, { id_exp: id_exp });
         this.getPopup().confirm('Did you remove the expression from code before to delete the row?', () => {
@@ -259,7 +257,7 @@
                 this.source.res.strings[idx][v+'_db']= d.row[v+'_db'];
               })
             }
-            
+
             let table = this.find('bbn-table');
             //table.updateData();
             appui.success('Translation saved');
@@ -381,12 +379,12 @@
       },
     },
     components:{
-      'show-paths': { 
+      'show-paths': {
         template: `<div class="bbn-vpadded">
           <span class="bbn-spadded bbn-w-100" v-for="p in source.paths">
             <a v-text="p" @click="link_ide(p)" class="bbn-p"></a>
           </span></div>`,
-        props:['source'], 
+        props:['source'],
         methods: {
           link_ide(path){
             let idx = path.lastIndexOf('/'),
@@ -406,13 +404,91 @@
         }
 
       },
-      // the toolbar of the table, the template is on html/template folder 
+      // the toolbar of the table, the template is on html/template folder
       'toolbar-strings-table': {
-        template:'#toolbar-strings-table',
+        template: `
+        <div class="bbn-header bbn-w-100"
+             ref="toolbar-strings-table"
+             style="min-height: 60px;">
+          <div style="padding: 6px;"
+               v-if="id_project !=='options'"
+          >
+            <bbn-button :title="_('Force translation files update')"
+                        class="bbn-button bbn-events-component"
+                        @click="generate"
+                        icon="nf nf-fa-files_o"
+                        text="<?=_('Create translation files')?>"
+                        style="background-color: orange;"
+            >
+            </bbn-button>
+
+            <bbn-button :title="_('Rebuild table data')"
+                        class="bbn-button bbn-events-component"
+                        @click="remake_cache"
+                        icon="nf nf-fa-retweet"
+                        text="<?=_('Rebuild table data')?>"
+            >
+            </bbn-button>
+
+
+            <bbn-button :title="_('Check files for new strings')"
+                        class="bbn-button bbn-events-component"
+                        @click="find_strings"
+                        icon="nf nf-fa-search"
+                        text="<?=_('Parse files for new strings')?>"
+            >
+            </bbn-button>
+            <div style="display:inline">
+              <bbn-input :placeholder="_('Search the string')"
+                         @change="search"
+                         v-model="valueToFind"
+              ></bbn-input></div>
+            <!--div style="display:inline">
+
+              <bbn-switch v-model="hide_source_language"
+                          :value="true"
+                          :novalue="false"
+                          style="float: right;display: inline;"
+              ></bbn-switch>
+
+              <div style="display:inline; float: right; padding-right:6px"
+              >
+                <span style="vertical-align: sub;"
+                      v-text="hide_source_language ? 'Show source language column' : 'Hide source language column'"></span>
+              </div>
+            </div-->
+
+          </div>
+          <div style="font-size:9px; text-align: right; padding-right: 6px;padding-bottom:3px"
+               v-if="id_project !=='options'"
+          ><?=_("If the column with ")?><i class="nf nf-fa-asterisk"></i> <?=_("is empty be sure to force translation files update and then update the table")?></div>
+
+          <div v-if="id_project ==='options'"
+               class="bbn-padded bbn-grid-fields"
+
+          >
+            <div class="bbn-r"><?=_("Select languages you want to hide from the table")?></div>
+            <div class="bbn-r">
+              <div v-for="l in  languages"
+                   style="display: inline;"
+              >
+                <label v-text="l"></label>
+                <bbn-checkbox :key="l"
+                              style="padding-right: 3px"
+                              @change="hide_col"
+                              :value="l"
+                ></bbn-checkbox>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+`,
         props: ['source'],
         data(){
           return {
-            // v-model of multiselect when project === options 
+            // v-model of multiselect when project === options
             to_hide_col:[],
             hide_source_language: false,
             tab: null,
@@ -437,14 +513,14 @@
                   field: v + '_db',
                   operator: 'contains',
                   value: this.valueToFind
-                }) 
+                })
               })
             }
             else if ( (this.valueToFind === '') && (table.currentFilters.conditions.length) ) {
               table.currentFilters.conditions = [];
             }
           },
-          // takes the methods from the parent component using @var this.tab declared at created 
+          // takes the methods from the parent component using @var this.tab declared at created
           generate(){
             return this.tab ? this.tab.generate() : null;
           },

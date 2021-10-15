@@ -1,7 +1,7 @@
 
-<div ref="widget" :key="id_option" class="bbn-spadded">
+<div ref="widget" :key="source.id" class="bbn-spadded">
   <!--if the source language of the path is set -->
-  <div v-if="language">
+  <div v-if="source.language">
 
 
     <div>
@@ -20,7 +20,7 @@
       ></i>
 
      <span class="bbn-l"
-            v-text="getField(primary, 'text', {code: language})"
+            v-text="getField(primary, 'text', {code: source.language})"
             style="float:right"
       ></span>
     </div>
@@ -40,26 +40,26 @@
 
     <div v-if="no_strings" class="bbn-grid-full bbn-orange bbn-c"><?=_("There are no strings in this path")?></div>
 
-    <div v-if="data_widget && data_widget[language]" class="bbn-grid-fields" style="padding-top:8px;">
+    <div v-if="data_widget && data_widget[source.language]" class="bbn-grid-fields" style="padding-top:8px;">
 
-      <span v-if="data_widget[language] && (data_widget[language].num > 0)">
+      <span v-if="data_widget[source.language] && (data_widget[source.language].num > 0)">
         <?=_('Total number of expressions')?>:
       </span>
-      <span v-if="data_widget[language]"
-            v-text="(data_widget[language].num > 0) ? data_widget[language].num : (!no_strings) ? _('Regenerate the translation files') : ''"
-            :class="(data_widget[language].num > 0) ? '' : 'bbn-grid-full bbn-orange bbn-c'"
-            :style="(data_widget[language].num > 0) ? 'text-align:right!important' : ''"
+      <span v-if="data_widget[source.language]"
+            v-text="(data_widget[source.language].num > 0) ? data_widget[source.language].num : (!no_strings) ? _('Regenerate the translation files') : ''"
+            :class="(data_widget[source.language].num > 0) ? '' : 'bbn-grid-full bbn-orange bbn-c'"
+            :style="(data_widget[source.language].num > 0) ? 'text-align:right!important' : ''"
       ></span>
-      <div v-if="(data_widget[language]) && (data_widget[language].num > 0) "
+      <div v-if="(data_widget[source.language]) && (data_widget[source.language].num > 0) "
            v-for="(w, i) in data_widget"
            class="bbn-grid-full">
 
         <span v-text="getField(primary, 'text', {code: i})"
               class="bbn-b bbn-i"
-              v-if="i !== language"
+              v-if="i !== source.language"
         ></span>
         <span v-text=" w.num_translations + ' / '+ w.num"
-              v-if="i !== language"
+              v-if="i !== source.language"
               style="padding-left:6px"
         ></span>
 
@@ -67,14 +67,14 @@
         <bbn-progressbar :value="normalize(w.val)"
                          type="percent"
                          :class="w.class"
-                         v-if="i !== language"
+                         v-if="i !== source.language"
                          :width="250"
         ></bbn-progressbar>
 
 
 
         <div class="bbn-grid-full bbn-c"
-             v-if="w.num_translations_db && ( w.num !== 0 ) && ( w.num_translations_db !== w.num_translations ) && ( i !== language )"
+             v-if="w.num_translations_db && ( w.num !== 0 ) && ( w.num_translations_db !== w.num_translations ) && ( i !== source.language )"
         >
           <i class="nf nf-fa-exclamation_triangle bbn-large bbn-red"
              :title="'<?=_("Number of translations in db")?>' + ': ' + w.num_translations_db"
@@ -106,7 +106,7 @@
       <span v-text="(id_project === 'options') ? '<?=_("Select a source language for this option")?>' : '<?=_("Select a source language for this option")?>'"></span>
       <div v-if="id_project !== 'options'">
         <bbn-dropdown :source="dd_primary"
-                      v-model="language"
+                      v-model="source.language"
                       @change="set_language"
                       placeholder="<?=_('Select a language')?>"
         ></bbn-dropdown>
@@ -114,7 +114,7 @@
 
       <div   v-else>
         <bbn-dropdown :source="dd_primary"
-                      v-model="language"
+                      v-model="source.language"
                       @change="set_cfg"
                       placeholder="<?=_('Select a language')?>"
         ></bbn-dropdown>

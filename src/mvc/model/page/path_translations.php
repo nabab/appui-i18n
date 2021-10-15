@@ -13,7 +13,7 @@ if (!empty($model->data['id_option'])) {
   //REMAKE THE CACHE OF THE WIDGETS
   /** @var  $translation instantiate the class Appui\I18n*/
   $translation = new \bbn\Appui\I18n($model->db, $id_project);
-  
+
   //if the table has no cache it creates cache
   if (!empty($id_project)
       && (!empty($model->data['force'])
@@ -48,8 +48,15 @@ if (!empty($model->data['id_option'])) {
       }
     }
   }
-
+  $uid_languages = $model->inc->options->fromCode('languages', 'i18n', 'appui');
+  if ( $languages = $model->inc->options->fullOptions($uid_languages) ){
+    $filter = array_filter($languages, function($v) {
+      return !empty($v['primary']);
+    });
+    $primaries = array_values($filter);
+  }
   return $model->addData([
+    'primary' => $primaries,
     'id_project' => $id_project ?: $id_project,
     'res' => $res,
     'pageTitle' => $model->inc->options->text($model->data['id_option'])
