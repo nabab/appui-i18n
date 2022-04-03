@@ -1,8 +1,16 @@
 {
+  "cfg": {
+    "show_code": 1,
+    "show_icon": 1,
+    "allow_children": 1,
+    "i18n": "en"
+  },
+  "id_parent": ["appui"],
   "text": "Internationalization",
   "code": "i18n",
-  "id_parent": "appui",
+  "id_alias": ["plugin", "list", "templates", "option", "appui"],
   "icon": "nf nf-mdi-translate",
+  "plugin": true,
   "items": [
     {
       "text": "Languages",
@@ -220,7 +228,7 @@
           "code": "el"
         },
         {
-          "text": "Guaraní",
+          "text": "Guaran\u00ed",
           "code": "gn"
         },
         {
@@ -425,11 +433,11 @@
           "code": "gv"
         },
         {
-          "text": "Māori",
+          "text": "M\u0101ori",
           "code": "mi"
         },
         {
-          "text": "Marathi (Marāṭhī)",
+          "text": "Marathi (Mar\u0101\u1e6dh\u012b)",
           "code": "mr"
         },
         {
@@ -469,7 +477,7 @@
           "code": "no"
         },
         {
-          "text": "Norwegian Bokmål",
+          "text": "Norwegian Bokm\u00e5l",
           "code": "nb"
         },
         {
@@ -505,7 +513,7 @@
           "code": "os"
         },
         {
-          "text": "Pāli",
+          "text": "P\u0101li",
           "code": "pi"
         },
         {
@@ -553,7 +561,7 @@
           "code": "sg"
         },
         {
-          "text": "Sanskrit (Saṁskṛta)",
+          "text": "Sanskrit (Sa\u1e41sk\u1e5bta)",
           "code": "sa"
         },
         {
@@ -706,7 +714,7 @@
           "code": "vi"
         },
         {
-          "text": "Volapük",
+          "text": "Volap\u00fck",
           "code": "vo"
         },
         {
