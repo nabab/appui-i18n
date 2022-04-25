@@ -5,7 +5,6 @@
                 "columns": [
                     "id"
                 ],
-                "ref_db": null,
                 "ref_table": "bbn_history_uids",
                 "ref_column": "bbn_uid",
                 "constraint": "bbn_i18n_ibfk_2",
@@ -18,12 +17,6 @@
                     "exp",
                     "lang"
                 ],
-                "ref_db": null,
-                "ref_table": null,
-                "ref_column": null,
-                "constraint": null,
-                "update": null,
-                "delete": null,
                 "unique": 1
             }
         },
@@ -68,7 +61,6 @@
                 "columns": [
                     "id"
                 ],
-                "ref_db": null,
                 "ref_table": "bbn_history_uids",
                 "ref_column": "bbn_uid",
                 "constraint": "bbn_i18n_exp_ibfk_2",
@@ -81,19 +73,12 @@
                     "id_exp",
                     "lang"
                 ],
-                "ref_db": null,
-                "ref_table": null,
-                "ref_column": null,
-                "constraint": "bbn_i18n_exp_ibfk_1",
-                "update": "CASCADE",
-                "delete": "CASCADE",
                 "unique": 1
             },
             "id_exp": {
                 "columns": [
                     "id_exp"
                 ],
-                "ref_db": null,
                 "ref_table": "bbn_i18n",
                 "ref_column": "id",
                 "constraint": "bbn_i18n_exp_ibfk_1",
@@ -105,12 +90,6 @@
                 "columns": [
                     "lang"
                 ],
-                "ref_db": null,
-                "ref_table": null,
-                "ref_column": null,
-                "constraint": null,
-                "update": null,
-                "delete": null,
                 "unique": 0
             }
         },
