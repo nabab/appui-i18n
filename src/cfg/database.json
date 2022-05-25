@@ -49,8 +49,7 @@
             "lang": {
                 "type": "varchar",
                 "null": 0,
-                "key": null,
-                "signed": true,
+                        "signed": true,
                 "maxlength": 2
             }
         }
@@ -131,8 +130,7 @@
             "expression": {
                 "type": "varchar",
                 "null": 0,
-                "key": null,
-                "signed": true,
+                        "signed": true,
                 "maxlength": 1000
             }
         }
