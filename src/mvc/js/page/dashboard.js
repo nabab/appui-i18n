@@ -1,5 +1,4 @@
 (() => {
-
   return {
     props:['source'],
     data(){
@@ -112,6 +111,7 @@
       },
     },
     methods: {
+      isMobile: bbn.fn.isMobile,
       set_project_language(){
         this.post(this.root + 'actions/project_lang', {
           id_project: this.id_project,
