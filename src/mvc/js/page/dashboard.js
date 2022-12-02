@@ -1,46 +1,46 @@
 (() => {
   return {
-    props:['source'],
+    props: {
+      source: {
+        type: Object
+      }
+    },
     data(){
       return {
-        id_project: null,
-        project_name: '',
-        primary: null,
-        changingProjectLang: false,
-        language: '',
+        id_project: this.source.projects[0].id,
+        primary: this.source.primary,
+        language: this.source.projects[0].lang,
         optionsRoot: appui.plugins['appui-option'] + '/',
         root: appui.plugins['appui-i18n'] + '/'
       }
     },
-
     computed: {
+      isOptionsProject(){
+        return this.id_project === 'options';
+      },
+      currentProject(){
+        return !!this.idProject ? bbn.fn.getRow(this.source.projects, 'id', this.idProject) : {};
+      },
       languageText(){
         if (this.primary) {
           return bbn.fn.getField(this.primary, 'text', 'code', this.language);
         }
         return null;
       },
-      dd_primary(){
-        let res = []
-        this.primary.forEach( (v, i) => {
-          res.push({value: v.code, text: v.text})
-        })
-        return res;
-      },
       widgets(){
-        let res = [],
-          buttons;
+        let res = [];
         if (this.source.data){
-          if (this.id_project !== 'options'){
-            buttons = [{
-              text: bbn._('Update widget data'),
-              icon: 'nf nf-fa-retweet',
-              action: 'remake_cache'
-            },{
+          let buttons = [{
+            text: bbn._('Update widget data'),
+            icon: 'nf nf-fa-retweet',
+            action: 'remake_cache'
+          }];
+          if (!this.isOptionsProject) {
+            buttons.push({
               text: bbn._('Setup languages'),
               icon: 'nf nf-fa-flag',
               action: 'generate'
-            },{
+            }, {
               text: bbn._('Open the table of strings'),
               icon: 'nf nf-fa-book',
               action: 'open_strings_table',
@@ -48,25 +48,25 @@
               text: bbn._('Delete locale folder'),
               icon: 'nf nf-fa-trash',
               action: 'delete_locale_folder',
-            }]
+            });
           }
           else {
-            buttons = [{
+            buttons.push({
               text: bbn._('Update widget data'),
               icon: 'nf nf-fa-retweet',
               action: 'remake_cache'
-            },{
+            }, {
               text: bbn._('Find new options or translations for this category'),
               icon: 'icon-database',
               action: 'find_options'
-            },{
+            }, {
               text: bbn._('Open the table of strings of this path'),
               icon: 'nf nf-fa-book',
               action: 'open_strings_table',
-            }]
+            });
           }
-          this.source.data.forEach( (v, i) => {
-            if ( v.id ){
+          this.source.data.forEach(v => {
+            if (v.id) {
               res.push({
                 title: v.title,
                 key: v.id,
@@ -74,7 +74,7 @@
                 id_project: this.id_project,
                 buttonsRight: buttons,
                 source: v
-              })
+              });
             }
           })
           return res;
@@ -112,28 +112,27 @@
     },
     methods: {
       isMobile: bbn.fn.isMobile,
-      set_project_language(){
+      setProjectLanguage(){
         this.post(this.root + 'actions/project_lang', {
           id_project: this.id_project,
           language: this.language
-        }, (d) => {
-          if ( d.success ){
+        }, d => {
+          if (d.success) {
             let idx = bbn.fn.search(this.source.projects, 'id', this.id_project);
             if ( idx > -1 ){
               this.source.projects[idx].lang = this.language;
             }
-            this.changingProjectLang = false
             appui.success(bbn._('Project source language successfully updated'))
           }
         })
       },
-      open_users_activity(){
+      openUsersActivity(){
         bbn.fn.link(this.root + 'page/history/');
       },
-      open_user_activity(){
+      openUserActivity(){
         bbn.fn.link(this.root + 'page/user_history');
       },
-      open_glossary_table(){
+      openGlossary(){
         //open a component popup to select source language and translation language for the table glossary
           var tab = this.closest('bbn-container').getComponent();
           this.getPopup().open({
@@ -153,12 +152,12 @@
 
         },
 
-      cfg_project_languages(){
+      openProjectLanguagesCfg(){
         this.getPopup().open({
           width: 600,
           height: 500,
           title: bbn._("Config translation languages for the project"),
-          component: this.$options.components['languages-form'],
+          component: this.$options.components.languagesForm,
           //send the configured langs for this id_project
           source: {
             root: this.root,
@@ -176,17 +175,16 @@
       getField: bbn.fn.getField,
       load_widgets(){
         this.source.data = [];
-        if ( this.id_project !== 'options' ){
+        if (!this.isOptionsProject) {
           this.post(this.root + 'page/dashboard', { id_project: this.id_project }, (d) => {
             if ( d.data.success ){
               this.source.data = d.data.data;
               this.source.configured_langs = d.data.configured_langs;
-              this.project_name = bbn.fn.getField(this.source.projects, 'name', 'id', this.id_project)
             }
           });
         }
         /** case of project options this controller will return only result of each language and locale dirs */
-        else if ( this.id_project === 'options' ){
+        else {
           this.post(this.root + 'options/options_data', { id_project: this.id_project }, (d) => {
             if ( d.success && d.data ){
               this.source.data = d.data.data;
@@ -195,9 +193,6 @@
           })
         }
       }
-    },
-    beforeMount(){
-      this.primary = this.source.primary;
     },
     watch : {
       id_project(val){
@@ -242,7 +237,7 @@
           },
         }
       },
-      'languages-form': {
+      languagesForm: {
         props: ['source'],
         template: `<bbn-form :scrollable="true"
                               :source="source.row"
@@ -313,11 +308,6 @@
         },
 
       }
-    },
-    mounted(){
-      this.id_project = this.source.projects[0].id;
-      this.project_name = this.source.projects[0].name;
-      this.language =  bbn.fn.getField(this.source.projects, 'lang', {id: this.id_project});
     }
   }
 
