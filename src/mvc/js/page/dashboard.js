@@ -7,16 +7,16 @@
     },
     data(){
       return {
-        id_project: this.source.projects[0].id,
+        idProject: !!this.source.projects.length ? this.source.projects[0].id : '',
         primary: this.source.primary,
-        language: this.source.projects[0].lang,
+        language: !!this.source.projects.length ? this.source.projects[0].lang : '',
         optionsRoot: appui.plugins['appui-option'] + '/',
         root: appui.plugins['appui-i18n'] + '/'
       }
     },
     computed: {
       isOptionsProject(){
-        return this.id_project === 'options';
+        return this.idProject === 'options';
       },
       currentProject(){
         return !!this.idProject ? bbn.fn.getRow(this.source.projects, 'id', this.idProject) : {};
@@ -71,7 +71,7 @@
                 title: v.title,
                 key: v.id,
                 component : 'appui-i18n-widget',
-                id_project: this.id_project,
+                id_project: this.idProject,
                 buttonsRight: buttons,
                 source: v
               });
@@ -81,17 +81,6 @@
         }
 
       },
-      //source to choose the source language using the popup
-      /*dd_source_lang(){
-        let res = [];
-        $.each(this.primary, (i, v) => {
-          res.push({
-            value: v.lang,
-            text: bbn.fn.getField(this.primary, 'text', 'code', v.lang)
-          })
-        })
-        return res;
-      },*/
       //source to choose the translation language using the popup
       dd_translation_lang(){
         let res = [];
@@ -99,26 +88,17 @@
           res.push({text: v.text, value: v.code })
         })
         return res;
-      },
-
-      //the source of projects' dropdown
-      dd_projects(){
-        let res = [];
-        bbn.fn.map(this.source.projects, (v, i) => {
-          res.push({value: v.id, text: v.name})
-        });
-        return res;
-      },
+      }
     },
     methods: {
       isMobile: bbn.fn.isMobile,
       setProjectLanguage(){
         this.post(this.root + 'actions/project_lang', {
-          id_project: this.id_project,
+          id_project: this.idProject,
           language: this.language
         }, d => {
           if (d.success) {
-            let idx = bbn.fn.search(this.source.projects, 'id', this.id_project);
+            let idx = bbn.fn.search(this.source.projects, 'id', this.idProject);
             if ( idx > -1 ){
               this.source.projects[idx].lang = this.language;
             }
@@ -155,28 +135,24 @@
       openProjectLanguagesCfg(){
         this.getPopup().open({
           width: 600,
-          height: 500,
+          height: 300,
           title: bbn._("Config translation languages for the project"),
           component: this.$options.components.languagesForm,
-          //send the configured langs for this id_project
-          source: {
-            root: this.root,
-            data: {
-              primary: this.primary,
-              language: this.language
+          componentOptions: {
+            source: {
+              langs: this.source.configured_langs,
+              idProject: this.idProject
             },
-            row: {
-              configured_langs: this.source.configured_langs,
-              id: this.id_project
-            }
+            currentLanguage: this.language,
+            primariesLanguages: this.primary
           }
         })
       },
       getField: bbn.fn.getField,
-      load_widgets(){
+      loadWidgets(){
         this.source.data = [];
         if (!this.isOptionsProject) {
-          this.post(this.root + 'page/dashboard', { id_project: this.id_project }, (d) => {
+          this.post(this.root + 'page/dashboard', { id_project: this.idProject }, (d) => {
             if ( d.data.success ){
               this.source.data = d.data.data;
               this.source.configured_langs = d.data.configured_langs;
@@ -185,7 +161,7 @@
         }
         /** case of project options this controller will return only result of each language and locale dirs */
         else {
-          this.post(this.root + 'options/options_data', { id_project: this.id_project }, (d) => {
+          this.post(this.root + 'options/options_data', { id_project: this.idProject }, (d) => {
             if ( d.success && d.data ){
               this.source.data = d.data.data;
               this.source.configured_langs = d.configured_langs
@@ -194,8 +170,11 @@
         }
       }
     },
+    created(){
+      appui.register('appui-i18n-dashboard', this);
+    },
     watch : {
-      id_project(val){
+      idProject(val){
         if (val){
           this.language = bbn.fn.getField(this.source.projects, 'lang', 'id', val)
         }
@@ -238,72 +217,62 @@
         }
       },
       languagesForm: {
-        props: ['source'],
-        template: `<bbn-form :scrollable="true"
-                              :source="source.row"
-                              ref="form"
-                              :action="source.root + 'actions/languages_form'"
-                              confirm-leave="<?php echo _('Are you sure you want to exit without saving changes?'); ?>"
-                              :prefilled="true"
-                              @success="success"
-        >
-          <div class="bbn-grid-fields">
-
-            <!--deve mandare il codice del linguaggio scelto come source {source:en}
-            AGGIUNGERE V-MODEL -->
-            <!--n>Select the source language</span>
-            <bbn-dropdown :source="source.data.primary"
-                ></bbn-dropdown-->
-                <div style="height:300px;" class="bbn-padded bbn-middle">
-                <span><?=_("Check the box to activate translation in the language for this root"); ?></span>
-            </div>
-
-            <div class="bbn-padded">
-                <div v-for="(l, index) in source.data.primary"
-                   class="bbn-vlpadded"
-                   ref="checkbox"
-              >
-                  <bbn-checkbox :id="l.id"
-                              value="1"
-                              :checked="inArray(l.id, source.row.configured_langs) > -1 || inArray(l.id, source.row.langs) > -1"
-                              @change="change_checked_langs"
+        props: {
+          source: {
+            type: Object
+          },
+          currentLanguage: {
+            type: String
+          },
+          primariesLanguages: {
+            type: Array
+          }
+        },
+        template: `
+          <bbn-form :scrollable="true"
+                    :source="source"
+                    ref="form"
+                    :action="root + 'actions/languages_form'"
+                    confirm-leave="<?php echo _('Are you sure you want to exit without saving changes?'); ?>"
+                    :prefilled="true"
+                    @success="success">
+            <div class="bbn-padded bbn-grid"
+                 style="grid-template-columns: repeat(3, 1fr)">
+              <div v-for="l in primariesLanguages"
+                  class="bbn-spadded bbn-radius bbn-alt-background">
+                <bbn-checkbox :id="l.id"
+                              :checked="source.langs.includes(l.id)"
+                              @change="toggleLang"
                               :label="l.text"
-                ></bbn-checkbox>
-
-                    </div>
+                              component="appui-i18n-lang"
+                              :componentOptions="{code: l.code}"
+                              :disabled="l.code === currentLanguage"/>
+              </div>
             </div>
-          </div>
-
-
-            <!-- buttons cancel e submit deve mandare {source_language:'', e i linguaggi messi a true, ex-> ita:true}-->
-
-        </bbn-form>`,
-        mounted(){
-          bbn.fn.each(this.source.data.primary, (v, i)=>{
-            bbn.fn.log(v.id, this.source.data.language, (v.id === this.source.data.language))
-          })
+          </bbn-form>
+        `,
+        data(){
+          return {
+            root: appui.plugins['appui-i18n'] + '/'
+          }
         },
         methods:{
           success(d){
-            if ( d.success ){
+            if (d.success) {
               appui.success(bbn._('Languages successfully updated'))
             }
-          },
-          inArray(l, arr){
-            if ( bbn.fn.isArray(arr) ){
-              return arr.indexOf(l)
+            else {
+              appui.error();
             }
           },
-          change_checked_langs(val, obj){
-            let idx = this.source.row.configured_langs.indexOf(obj.id);
-            let cp = this.closest('bbn-container').getComponent();
-            if ( idx > -1 ){
-              cp.source.configured_langs.splice(idx, 1);
+          toggleLang(val, obj){
+            let idx = this.source.langs.indexOf(obj.id);
+            if (idx > -1) {
+              this.source.langs.splice(idx, 1);
             }
             else {
-              cp.source.configured_langs.push(obj.id)
+              this.source.langs.push(obj.id)
             }
-            cp.$forceUpdate();
           }
         },
 

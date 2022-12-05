@@ -1,32 +1,23 @@
 
-<div ref="widget" :key="source.id" class="bbn-spadded">
+<div :key="source.id"
+     class="bbn-spadded">
   <!--if the source language of the path is set -->
   <div v-if="source.language">
-
-
     <div>
-      <span v-text="(id_project === 'options') ? ('<?=_("Source language of this option")?>' + ': ') : ('<?=_("Source language of this path")?>' + ': ')"></span>
+      <span v-text="((id_project === 'options') ? _('Source language of this option') : _('Source language of this path')) + ':'"/>
       <i class="nf nf-fa-times"
          v-if="id_project === 'options'"
          @click="remove_cfg"
          title="<?=_("Reset source language for this option")?>"
-         style="float:right; margin-left:6px; cursor: pointer; margin-top: 4px"
-      ></i>
+         style="float:right; margin-left:6px; cursor: pointer; margin-top: 4px"/>
       <i class="nf nf-fa-times"
          v-else
          @click="remove_language"
          title="<?=_("Reset source language for this path")?>"
-         style="float:right; margin-left:6px; cursor: pointer; margin-top: 4px"
-      ></i>
-
-     <span class="bbn-l"
-            v-text="getField(primary, 'text', {code: source.language})"
-            style="float:right"
-      ></span>
+         style="float:right; margin-left:6px; cursor: pointer; margin-top: 4px"/>
+      <appui-i18n-lang :code="source.language"
+                       style="float:right"/>
     </div>
-
-
-
     <div class="bbn-grid-fields" v-if="data_widget && locale_dirs.length && !no_strings" style="padding-top: 8px">
       <span v-if="id_project !== 'options'"><?=_("Files of translations found")?>: </span>
       <span v-else><?=_("Languages of translation allowed for this option")?>: </span>
@@ -54,10 +45,9 @@
            v-for="(w, i) in data_widget"
            class="bbn-grid-full">
 
-        <span v-text="getField(primary, 'text', {code: i})"
-              class="bbn-b bbn-i"
-              v-if="i !== source.language"
-        ></span>
+        <appui-i18n-lang v-if="i !== source.language"
+                         :code="i"
+                         class="bbn-b bbn-i"/>
         <span v-text=" w.num_translations + ' / '+ w.num"
               v-if="i !== source.language"
               style="padding-left:6px"

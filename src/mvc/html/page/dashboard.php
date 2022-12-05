@@ -17,9 +17,11 @@
             <div :class="['bbn-upper', 'bbn-right-space', 'bbn-b', 'bbn-secondary-text-alt', {'bbn-bottom-xsspace': isMobile()}]"
                  v-text="_('Select a project')"/>
             <bbn-dropdown :url="source.root + 'page/dashboard'"
-                          :source="dd_projects"
-                          v-model="id_project"
-                          @change="load_widgets"/>
+                          :source="source.projects"
+                          v-model="idProject"
+                          @change="loadWidgets"
+                          source-value="id"
+                          source-text="name"/>
           </div>
           <bbn-button v-if="!isOptionsProject"
                       icon="nf nf-fa-cogs"
@@ -57,7 +59,8 @@
                       @change="setProjectLanguage"
                       placeholder="<?=_('Select a language')?>"
                       class="appui-i18n-dashboard-head-lang bbn-b bbn-primary-text-alt bbn-vxsmargin"
-                      source-value="code"/>
+                      source-value="code"
+                      component="appui-i18n-lang"/>
       </div>
       <div v-else
            class="bbn-large">
@@ -81,8 +84,9 @@
           <?=_("Languages configured for options translation")?>:
         </span>
         <span v-for="c in source.configured_langs"
-             class="bbn-radius bbn-spadded bbn-alt-background bbn-nowrap bbn-right-sspace bbn-vxsmargin"
-             v-text="getField(primary, 'text', {id: c})"/>
+             class="bbn-radius bbn-spadded bbn-alt-background bbn-nowrap bbn-right-sspace bbn-vxsmargin">
+          <appui-i18n-lang :code="getField(primary, 'code', {id: c})"/>
+        </span>
       </div>
     </div>
   </div>

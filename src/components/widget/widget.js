@@ -1,7 +1,6 @@
 (() => {
   return {
     props: ['source'],
-    name: 'widget',
     data(){
       return {
         /** @todo this property should be true after the success of the form in the case of return of d.no_strings = true*/
@@ -11,7 +10,8 @@
         language: this.source.language,
         /** the css class for progress bar the value is decided by the watch of progress_bar_val */
         progress_bar_class: '',
-        root: appui.plugins['appui-i18n'] + '/'
+        root: appui.plugins['appui-i18n'] + '/',
+        dashboard: appui.getRegistered('appui-i18n-dashboard')
       }
     },
     computed: {
@@ -23,10 +23,10 @@
         return null;
       },
       primary(){
-        return this.closest('bbn-container').getComponent().primary
+        return this.dashboard.primary;
       },
       id_project(){
-        return this.closest('bbn-container').getComponent() ? this.closest('bbn-container').getComponent().id_project : null;
+        return this.dashboard.idProject;
       },
       project_name(){
         return this.container ? this.container.project_name : null;
@@ -94,9 +94,11 @@
       },
       dd_primary(){
         let res = []
-        this.primary.forEach( ( v, i) => {
-          res.push({value: v.code, text: v.text})
-        })
+        if (this.primary) {
+          this.primary.forEach((v, i) => {
+            res.push({value: v.code, text: v.text})
+          });
+        }
         return res;
       },
 
@@ -266,11 +268,10 @@
             width: 500,
             title: bbn._("Define languages for the translation"),
             scrollable: true,
-            component: this.$options.components['languages-form-locale'],
+            component: this.$options.components.languagesForm,
             source: {
               row: {
                 id_option: bbn.vue.closest(this, 'bbn-widget').uid,
-                //locale dirs
                 languages: this.locale_dirs
               },
               data: {
@@ -301,52 +302,49 @@
       }*/
     },
     components: {
-      'languages-form-locale': {
+      languagesForm: {
         template: `
-<bbn-form :source="source.row"
-          :data="{id_project: source.data.id_project, language: source.data.language}"
-          ref="form-locale"
-          :action="root + (source.data.id_project === 'options' ? 'options/find_options' : 'actions/generate')"
-          confirm-leave="`+ bbn._('Are you sure you want to exit without saving changes?') +`"
-          :prefilled="true"
-          @success="success"
-          @close="update"
->
-  <div class="bbn-grid-fields">
-    <div style="height:300px;" class="bbn-padded bbn-middle">
-      <span>`+ bbn._('Check the box to create local folder of translation\'s files for the language in this path') +`</span>
-    </div>
-    <div class="bbn-padded">
-      <div v-for="l in source.data.configured_langs"
-           class="bbn-vlpadded"
-           :key="l"
-           ref="checkbox">
-        <bbn-checkbox :value="getField(source.data.primary, 'code', {id: l})"
-                      :checked="checked_lang(l)"
-                      @change="change_languages"
-                      :disabled="getField(source.data.primary, 'code', {id: l}) === source.data.language"
-                      :label="getField(source.data.primary, 'text', {id: l})"/>
-      </div>
-    </div>
-
-  </div>
-  <div class="bbn-s bbn-padded"
-       v-html="message"
-       style="position:absolute; bottom:0;left: 0;margin-bottom: 6px;margin-right:6px;"/>
-</bbn-form>
+          <bbn-form :source="source.row"
+                    :data="{
+                      id_project: source.data.id_project,
+                      language: source.data.language
+                    }"
+                    ref="form-locale"
+                    :action="root + (source.data.id_project === 'options' ? 'options/find_options' : 'actions/generate')"
+                    confirm-leave="`+ bbn._('Are you sure you want to exit without saving changes?') +`"
+                    :prefilled="true"
+                    @success="success"
+                    @close="update"
+                    @hook:mounted="formMounted">
+            <div class="bbn-padded"
+                 style="padding-bottom: 4rem">
+              <div>
+                ` + bbn._('Check the box to create local folder of translation\'s files for the language in this path') + `
+              </div>
+              <div class="bbn-vpadded bbn-grid"
+                  style="grid-template-columns: repeat(2, 1fr)">
+                <div v-for="l in source.data.configured_langs"
+                    class="bbn-spadded bbn-radius bbn-alt-background"
+                    :key="l"
+                    ref="checkbox">
+                  <bbn-checkbox :checked="source.row.languages.includes(getCode(l))"
+                                @change="toggleLanguage"
+                                :disabled="getCode(l) === source.data.language"
+                                component="appui-i18n-lang"
+                                :componentOptions="{code: getCode(l)}"
+                                :value="l"/>
+                </div>
+              </div>
+            </div>
+            <div class="bbn-s bbn-padded bbn-bottom-left bbn-bottom-right"
+                 style="bottom: 1rem"
+                v-html="message"/>
+          </bbn-form>
         `,
         data(){
           return {
             root: appui.plugins['appui-i18n'] + '/'
           };
-        },
-        mounted(){
-          //push the source language of the path in the array row.languages to have it as default language
-          //if ( $.inArray(this.source.data.language, this.source.row.languages) <= -1 ){
-
-          if ( this.source.row.languages.indexOf(this.source.data.language) <= -1 ){
-            this.source.row.languages.push(this.source.data.language)
-          }
         },
         computed: {
           message(){
@@ -354,10 +352,26 @@
           },
         },
         methods: {
-          getField: bbn.fn.getField,
-          //inArray: $.inArray,
+          formMounted(){
+            //push the source language of the path in the array row.languages to have it as default language
+            if (!this.source.row.languages.includes(this.source.data.language)) {
+              this.source.row.languages.push(this.source.data.language);
+            }
+          },
+          getCode(id){
+            return bbn.fn.getField(this.source.data.primary, 'code', {id: id});
+          },
           //change the languages of locale dirs
-          change_languages(val, obj) {
+          toggleLanguage(val, obj) {
+            let code = this.getCode(obj.value);
+            if (this.source.row.languages.includes(code)) {
+              this.source.row.languages.splice(this.source.row.languages.indexOf(code), 1);
+            }
+            else {
+              this.source.row.languages.push(code);
+            }
+            return;
+
             let dashboard = bbn.vue.closest(this, 'bbn-container').getComponent(),
               widgets = bbn.vue.findAll(dashboard, 'bbn-widget'),
               this_widget = dashboard.source.data[this.source.data.widget_idx],
@@ -386,16 +400,6 @@
                 num_translations: 0,
                 num: 0
               }
-            }
-          },
-          checked_lang(l){
-            let code = bbn.fn.getField(this.source.data.primary, 'code', 'id', l);
-            //if ( $.inArray(code, this.source.row.languages) > -1 ){
-            if ( this.source.row.languages.indexOf(code) > -1 ){
-              return true;
-            }
-            else {
-              return false;
             }
           },
           get_widget(){

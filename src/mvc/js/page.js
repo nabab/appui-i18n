@@ -5,27 +5,16 @@
  * Time: 10.25
  */
 /* jshint esversion: 6 */
-(()=>{
-  let languages;
+(() => {
   return {
+    name: 'appui-i18n',
     data(){
       return {
         root: appui.plugins['appui-i18n'] + '/'
       };
     },
-
     created(){
-      languages = this;
-      let mixins = [{
-        props: {
-          languages: {
-            type: Object,
-            default(){
-              return languages;
-            }
-          }
-        }
-      }];
-    },
+      appui.register('appui-i18n', this);
+    }
   };
 })();
