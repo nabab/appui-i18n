@@ -36,18 +36,18 @@
                 "type": "binary",
                 "null": 0,
                 "key": "PRI",
-                        "maxlength": 16
+                "maxlength": 16
             },
             "exp": {
                 "type": "varchar",
                 "null": 0,
                 "key": "MUL",
-                        "maxlength": 255
+                "maxlength": 1000
             },
             "lang": {
                 "type": "varchar",
                 "null": 0,
-                                "maxlength": 2
+                "maxlength": 2
             }
         }
     },
@@ -107,24 +107,24 @@
                 "type": "binary",
                 "null": 0,
                 "key": "PRI",
-                        "maxlength": 16
+                "maxlength": 16
             },
             "id_exp": {
                 "type": "binary",
                 "null": 0,
                 "key": "MUL",
-                        "maxlength": 16
+                "maxlength": 16
             },
             "lang": {
                 "type": "varchar",
                 "null": 0,
                 "key": "MUL",
-                        "maxlength": 2
+                "maxlength": 2
             },
             "expression": {
                 "type": "varchar",
                 "null": 0,
-                                "maxlength": 1000
+                "maxlength": 1000
             }
         }
     }

@@ -12,39 +12,31 @@
  */
 use Gettext\Translations;
 
-if (( $o = $model->data['id_option'] )
-    && ($id_project = $model->data['id_project'])
-    && ($language = $model->data['language'])
+if (($o = $model->data['id_option'])
+  && ($idProject = $model->data['id_project'])
+  && ($language = $model->data['language'])
 ) {
-
-
   $parent = $model->inc->options->parent($o);
   /** @var bool $json Will be true if some translations are put into a JSON file */
   $json = false;
   /** @var array $js_files An array with files as index and an array expressions to put into the JSON file */
   $js_files = [];
   //instantiate the class i18n
-  $translation = new \bbn\Appui\I18n($model->db, $id_project);
+  $translation = new \bbn\Appui\I18n($model->db, $idProject);
   //die(var_dump($translation->getPoFiles($model->data['id_option'])));
   $success = false;
-
-
   /** @var string $to_explore The directory to explore for strings */
   $to_explore = $translation->getPathToExplore($o);
   //the position of locale dir
   $locale_dir = $translation->getLocaleDirPath($o);
-
   /** @var string $domain The domain on which will be bound gettext */
   $domain = $model->inc->options->text($o);
-
   //the number contained in the txt file inside the folder locale
   $num = is_file($translation->getIndexPath($o)) ? (int)file_get_contents($translation->getIndexPath($o)) : 0;
-
   //if the file txt does not exist it creates the file
-  if(!is_file($translation->getIndexPath($o)) || !is_dir($locale_dir)) {
+  if (!is_file($translation->getIndexPath($o)) || !is_dir($locale_dir)) {
     \bbn\File\Dir::createPath($locale_dir);
   }
-
   file_put_contents($translation->getIndexPath($o), ++$num);
 
   $domain .= $num;
@@ -63,7 +55,7 @@ if (( $o = $model->data['id_option'] )
     $ex_dir    = [];
     /** @var array $ex_dir Languages unchecked in the form */
     if (!empty($ex_dir = array_diff($old_langs, $languages))) {
-      foreach ($ex_dir as $ex){
+      foreach ($ex_dir as $ex) {
         // index of ex lang in $languages
         $idx = array_search($ex, $old_langs, true);
 
@@ -94,7 +86,7 @@ if (( $o = $model->data['id_option'] )
 
   // $data['res'] is the array of strings
   if (!empty($data['res'])) {
-        clearstatcache();
+    clearstatcache();
     $dir = '';
     foreach ($languages as $lang){
       /** @var string $dir The path of locale dir for this id_option foreach lang */
@@ -111,7 +103,6 @@ if (( $o = $model->data['id_option'] )
         if (!empty($ext) && ($ext === 'po')) {
           $po = $f;
         }
-
         if (!empty($ext) && ($ext === 'mo')) {
           $mo = $f;
         }
@@ -136,12 +127,12 @@ if (( $o = $model->data['id_option'] )
       //instantiate the parser
       $fileHandler = new Sepia\PoParser\SourceHandler\FileSystem($new_po);
       $poParser    = new Sepia\PoParser\Parser($fileHandler);
-      $Catalog     = Sepia\PoParser\Parser::parseFile($new_po);
+      $catalog     = Sepia\PoParser\Parser::parseFile($new_po);
 
-      $Compiler     = new Sepia\PoParser\PoCompiler();
+      $compiler     = new Sepia\PoParser\PoCompiler();
       $headersClass = new Sepia\PoParser\Catalog\Header();
 
-      if (empty($Catalog->getHeaders())) {
+      if (empty($catalog->getHeaders())) {
         //headers for new po file
         $headers = [
           "Project-Id-Version: 1",
@@ -159,7 +150,7 @@ if (( $o = $model->data['id_option'] )
         ];
         //set the headers on the Catalog object
         $headersClass->setHeaders($headers);
-        $Catalog->addHeaders($headersClass);
+        $catalog->addHeaders($headersClass);
       }
 
       $constroot = 'BBN_'.strtoupper($parent['code']).'_PATH';
@@ -172,7 +163,7 @@ if (( $o = $model->data['id_option'] )
 
       /** @var takes all strings from the cached model of find_strings */
       foreach ($data['res'] as $index => $r){
-        if (empty($Catalog->getEntry($r['original_exp']))) {
+        if (empty($catalog->getEntry($r['original_exp']))) {
           //prepare the new entry for the Catalog
           $entry = new Sepia\PoParser\Catalog\Entry($r['original_exp'], $r[$lang]);
 
@@ -226,12 +217,12 @@ if (( $o = $model->data['id_option'] )
           }
 
           //add the prepared entry to the catalog
-          $Catalog->addEntry($entry);
+          $catalog->addEntry($entry);
         }
       }
 
       //compile the catalog
-      $file = $Compiler->compile($Catalog);
+      $file = $compiler->compile($catalog);
 
       //save the catalog in the file
       $fileHandler->save($file);

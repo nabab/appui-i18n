@@ -28,8 +28,12 @@
       id_project(){
         return this.dashboard.idProject;
       },
-      project_name(){
-        return this.container ? this.container.project_name : null;
+      projectName(){
+        return !!this.dashboard
+          && !!this.dashboard.currentProject
+          && !!this.dashboard.currentProject.name ?
+          this.dashboard.currentProject.name :
+          '';
       },
       parentSource(){
         if (this.container) {
@@ -199,7 +203,7 @@
         // cached_model doesn't exist for this id_option it will be created
 
         if ( ( this.configured_langs !== undefined ) && ( this.id_project !== 'options')){
-          bbn.fn.link(this.root + 'page/path_translations/' +this.project_name +'/'+ this.source.id);
+          bbn.fn.link(this.root + 'page/path_translations/' +this.projectName +'/'+ this.source.id);
         }
         else if ( (this.configured_langs === undefined) && ( this.id_project !== 'options')){
           this.alert(bbn._('You have to configure at least a language of translation using the button') +' <i class="nf nf-fa-flag"></i> ' + bbn._('of the widget before to open the strings table') );
@@ -341,6 +345,7 @@
                 v-html="message"/>
           </bbn-form>
         `,
+        props: ['source', 'data'],
         data(){
           return {
             root: appui.plugins['appui-i18n'] + '/'
@@ -426,34 +431,25 @@
           },
           success(d){
             this.send_no_strings = false;
-            if ( d.success ){
+            if (!!d.success) {
               this.get_widget().remake_cache();
               if ( d.ex_dir.length ){
-
                 d.ex_dir.forEach((v, i) => {
                   //this.source.data.widget.remake_cache();
-
                   this.$nextTick(() => {
                     let st = bbn.fn.getField(this.source.data.primary, 'text', 'code', v) + ' translation files successfully files deleted';
                     appui.success(st)
                   })
                 });
-
               }
               if ( d.new_dir.length ){
-
                 d.new_dir.forEach((v, i) => {
-                //this.source.data.widget.remake_cache();
-
-                appui.success(  bbn.fn.getField(this.source.data.primary, 'text', 'code', v) + ' translation files successfully created')
-              } )
-
-
+                  //this.source.data.widget.remake_cache();
+                  appui.success(  bbn.fn.getField(this.source.data.primary, 'text', 'code', v) + ' translation files successfully created')
+                });
               }
-
               this.generate_mo();
-
-              if ( d.done > 0 ){
+              if (d.done > 0) {
                 appui.success(d.done + ' ' + bbn._('new strings found in this path') )
               }
               if ( this.closest('bbn-router') ){
@@ -465,21 +461,16 @@
                     bbn.fn.log('tab',v)
                     v.reload();
                   }
-
                 });
-
               }
-
-
             }
-            else if (d.no_strings === true){
+            else if (!!d.no_strings) {
               /** change the property no_strings of the widget to render html */
               this.get_widget().no_strings = true
               appui.warning(bbn._("There are no strings in this path"));
             }
           }
-        },
-        props: ['source', 'data'],
+        }
       }
     }
   }
