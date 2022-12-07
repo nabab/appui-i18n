@@ -21,7 +21,7 @@ if ($trans = $ctrl->db->rselectAll('bbn_i18n')) {
         ]]
       ]
     ])) {
-      $did += $ctrl->db->delete('bbn_i18n', ['id' => $t['id']]);
+      $did += $ctrl->db->delete('bbn_history_uids', ['bbn_uid' => $t['id']]);
     }
     else {
       $did += $ctrl->db->update('bbn_i18n', $t, ['id' => $t['id']]);
@@ -51,7 +51,7 @@ if ($trans2 = $ctrl->db->rselectAll('bbn_i18n_exp')) {
         ]]
       ]
     ])) {
-      $did2 += $ctrl->db->delete('bbn_i18n_exp', ['id' => $t['id']]);
+      $did2 += $ctrl->db->delete('bbn_history_uids', ['bbn_uid' => $t['id']]);
     }
     else {
       $did2 += $ctrl->db->update('bbn_i18n_exp', $t, ['id' => $t['id']]);
