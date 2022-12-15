@@ -85,6 +85,15 @@ foreach ( $projects as $i => $p ){
   unset( $projects[$i]['path'] );
 }
 
+$projects[] = [
+  'langs' => array_map(function($p){
+    return $p['id'];
+  }, $primaries),
+  'id' => 'options',
+  'lang' => 'en',
+  'name' => _('Options')
+];
+
 return $model->addData([
   'configured_langs' => $projects[$project_idx]['langs'],
   'primary' => $primaries,
