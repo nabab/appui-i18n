@@ -52,31 +52,31 @@
           }
           else {
             buttons.push({
-              text: bbn._('Update widget data'),
-              icon: 'nf nf-fa-retweet',
-              action: 'remake_cache'
-            }, {
               text: bbn._('Find new options or translations for this category'),
               icon: 'icon-database',
               action: 'find_options'
             }, {
-              text: bbn._('Open the table of strings of this path'),
+              text: bbn._('Open the table of strings'),
               icon: 'nf nf-fa-book',
               action: 'open_strings_table',
             });
           }
-          this.source.data.forEach(v => {
-            if (v.id) {
-              res.push({
-                title: v.title,
-                key: v.id,
-                component : 'appui-i18n-widget',
-                id_project: this.idProject,
-                buttonsRight: buttons,
-                source: v
-              });
-            }
-          })
+          if (bbn.fn.isArray(this.source.data)
+            && this.source.data.length
+          ) {
+            bbn.fn.each(this.source.data, v => {
+              if (v.id || v.code) {
+                res.push({
+                  title: v.title,
+                  key: v.id || v.code,
+                  component : 'appui-i18n-widget',
+                  id_project: this.idProject,
+                  buttonsRight: buttons,
+                  source: v
+                });
+              }
+            });
+          }
           return res;
         }
 
@@ -150,24 +150,14 @@
       },
       getField: bbn.fn.getField,
       loadWidgets(){
-        this.source.data = [];
-        if (!this.isOptionsProject) {
-          this.post(this.root + 'page/dashboard', { id_project: this.idProject }, (d) => {
-            if ( d.data.success ){
-              this.source.data = d.data.data;
-              this.source.configured_langs = d.data.configured_langs;
-            }
-          });
-        }
-        /** case of project options this controller will return only result of each language and locale dirs */
-        else {
-          this.post(this.root + 'options/options_data', { id_project: this.idProject }, (d) => {
-            if ( d.success && d.data ){
-              this.source.data = d.data.data;
-              this.source.configured_langs = d.configured_langs
-            }
-          })
-        }
+        this.source.data.splice(0);
+        this.source.configured_langs.splice(0);
+        this.post(this.root + 'data/dashboard', {idProject: this.idProject}, d => {
+          if (d.success) {
+            this.source.data.push(...d.paths);
+            this.source.configured_langs.push(...d.langs);
+          }
+        });
       }
     },
     created(){
