@@ -1,13 +1,15 @@
 <?php
 
 //$root the option projects
-if ($root = $model->inc->options->fromCode('list', 'project', 'appui')) {
-  //all projects x
+if (defined('BBN_APP_NAME')
+  && ($root = $model->inc->options->fromCode('list', 'project', 'appui'))
+) {
+  //all projects
   $tmp = $model->inc->options->options($root);
   //array of projects ids
   $projectsIds = !empty($tmp) ? array_keys($tmp) : [];
   //instantiate the class i18n
-  $translation = new \bbn\Appui\I18n($model->db);
+  $translation = new \bbn\Appui\I18n($model->db, BBN_APP_NAME);
   //primary languages from bbn_options
   $primaries = $translation->getPrimariesLangs();
   // Projects list
@@ -23,13 +25,14 @@ if ($root = $model->inc->options->fromCode('list', 'project', 'appui')) {
   //adds the fake project options
   /** path will be filled only if the project 'options' is selected by the dropdown of the dashboard*/
   $projects[] = [
+    'id' => 'options',
+    'code' => 'options',
+    'name' => _('Options'),
     'path' => [],
     'langs' => array_map(function($p){
       return $p['id'];
     }, $primaries),
-    'id' => 'options',
-    'lang' => 'en',
-    'name' => _('Options')
+    'lang' => 'en'
   ];
 
   return [

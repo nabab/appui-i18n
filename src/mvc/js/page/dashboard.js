@@ -7,7 +7,7 @@
     },
     data(){
       return {
-        idProject: !!this.source.projects.length ? this.source.projects[0].id : '',
+        idProject: !!this.source.projects.length ? bbn.fn.getField(this.source.projects, 'id', 'name', bbn.env.appName) : '',
         primary: this.source.primary,
         language: !!this.source.projects.length ? this.source.projects[0].lang : '',
         optionsRoot: appui.plugins['appui-option'] + '/',
@@ -67,7 +67,7 @@
             bbn.fn.each(this.source.data, v => {
               if (v.id || v.code) {
                 res.push({
-                  title: v.title,
+                  title: v.title + (this.isOptionsProject ? ` (${v.code})` : ''),
                   key: v.id || v.code,
                   component : 'appui-i18n-widget',
                   id_project: this.idProject,

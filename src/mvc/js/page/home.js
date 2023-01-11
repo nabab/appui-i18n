@@ -57,11 +57,11 @@
         methods: {
           open_strings_table(row){
             //open the table of strings of this path combining new strings found in the files with strings present in db
-            //send arguments[0] (id_option of the path) to 'page/path_translations/'
+            //send arguments[0] (id_option of the path) to 'page/expressions/'
             this.id_option = row.id_option;
-            //page/path_translations/ will return the cached_model in its data, if a
+            //page/expressions/ will return the cached_model in its data, if a
             // cached_model doesn't exist for this id_option it will be created
-            bbn.fn.link(this.root + 'page/path_translations/' + row.id_option);
+            bbn.fn.link(this.root + 'page/expressions/' + row.id_option);
           },
           find_new_strings(row){
             //check in the path for new strings

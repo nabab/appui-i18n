@@ -2,13 +2,17 @@
 $res = [
   'success' => false
 ];
-if ($model->hasData('idProject', true)) {
+if ($model->hasData('idProject', true)
+  && defined('BBN_APP_NAME')
+) {
   $idProj = $model->data['idProject'];
-  $i18nCls = new \bbn\Appui\I18n($model->db, $idProj);
   if ($idProj === 'options') {
+    $i18nCls = new \bbn\Appui\I18n($model->db, BBN_APP_NAME);
     $langs = $model->inc->options->findI18nLangs();
+    $langsIds = [];
     $paths = [];
     foreach ($langs as $l) {
+      $langsIds[] = $model->inc->options->fromCode($l, 'languages', 'i18n', 'appui');
       $paths[] = [
         'title' => $model->inc->options->text($l, 'languages', 'i18n', 'appui'),
         'language' => $l,
@@ -19,10 +23,11 @@ if ($model->hasData('idProject', true)) {
     return [
       'success' => true,
       'paths' => $paths,
-      'langs' => $langs
+      'langs' => $langsIds
     ];
   }
   else {
+    $i18nCls = new \bbn\Appui\I18n($model->db, $idProj);
     $projectCls = new \bbn\Appui\Project($model->db, $idProj);
     $res['langs'] = $projectCls->getLangsIds();
     if ($paths = $projectCls->getPaths()) {

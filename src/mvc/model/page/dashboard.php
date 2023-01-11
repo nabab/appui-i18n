@@ -24,12 +24,13 @@ if ($projectsIds = $model->inc->options->items('list', 'project', 'appui')) {
   }
 }
 $projects[] = [
+  'id' => 'options',
+  'code' => 'options',
+  'name' => _('Options'),
   'langs' => array_map(function($p){
     return $p['id'];
   }, $primaries),
-  'id' => 'options',
-  'lang' => 'en',
-  'name' => _('Options')
+  'lang' => 'en'
 ];
 $dash = $model->getModel($model->pluginUrl(). '/data/dashboard', ['idProject' => $projects[0]['id']]);
 return $model->addData([

@@ -6,147 +6,83 @@
  * Time: 13.25
  */
 
-
-$success = false;
-/** at @change the table send row */
-if ( !empty($model->data['row']['id_exp'])){
-  
-  /** @var  $translation instantiate the class Appui\I18n*/
-  $translation = new \bbn\Appui\I18n($model->db, $model->data['id_project']);
-  /** @var $row the row sent by strings table */
+if ($model->hasData(['id_project', 'id_option', 'row'])
+  && !empty($model->data['row']['id_exp'])
+  && defined('BBN_APP_NAME')
+) {
+  $isOptions = ($model->data['id_project'] === 'options') && !\bbn\Str::isUid($model->data['id_option']);
+  $i18nCls = new \bbn\Appui\I18n($model->db, $isOptions ? BBN_APP_NAME : $model->data['id_project']);
+  /** @var array $row the row sent by strings table */
   $row = $model->data['row'];
-  /** @var (array) $langs sent by strings table*/
+  /** @var array $langs sent by strings table*/
   $langs = $model->data['langs'];
   $deleted = [];
-  $modified_langs = [];
+  $modified = [];
   $widget;
 
-
-  foreach( $langs as $l ){
-    if ( !empty($row[$l.'_db']) ){
-
-      /** @var $expression the string */
-      $expression = $row[$l.'_db'];
-      /** @var $id if the $id of the string exists */
-
-      if ( $id = $model->db->selectOne('bbn_i18n_exp', 'id', [
-        'id_exp' => $row['id_exp'],
-        'lang' => $l
-      ]) ){
-
-        /** UPDATE DB */
-        if ( $model->db->update('bbn_i18n_exp', ['expression' => $expression], [
-          'id' => $id,
-          'lang' => $l
-        ]) ){
-          $modified_langs[] = $l;
-          $success = true;
-        }
+  foreach ($langs as $l) {
+    if (!empty($row[$l.'_db'])) {
+      if ($i18nCls->insertOrUpdateTranslation($row['id_exp'], $row[$l . '_db'], $l)) {
+        $modified[] = $l;
       }
-
-      /** INSERT in DB */
       else {
-        $modified_langs[] = $l;
-        $success = $model->db->insertIgnore('bbn_i18n_exp', [
-          'expression' => stripslashes($expression),
-          'id_exp' => $row['id_exp'],
-          'lang' => $l
-        ]);
+        $success = false;
       }
     }
-
-  }
-
-  if( !empty( $model->data['to_delete'] ) ){
-    $to_delete = $model->data['to_delete'];
-    foreach ( $to_delete as $del ){
-      if ( $id = $model->db->selectOne('bbn_i18n_exp', 'id', [
-        'id_exp' => $row['id_exp'],
-        'lang' => $del
-      ]) ) {
-        /** if in a cell of the table the string is deleted it deletes the string from db */
-        if ( $model->db->delete('bbn_i18n_exp',[
-          'id_exp' => $row['id_exp'],
-          'lang' => $del,
-          'id' => $id
-        ]) ){
-
-          $success = true;
-          $deleted[] = $del;
-        }
+    else {
+      if ($i18nCls->deleteTranslation($row['id_exp'], $l)) {
+        $deleted[] = $l;
       }
     }
   }
 
-  if ( !empty($modified_langs) && !empty($success) ){
+  if (!empty($modified) || !empty($deleted)) {
     //replace the row in the cache of the table
-
-    // $tmp the cache of the table
-    $tmp = $translation->cacheGet($model->data['id_option'], 'get_translations_table');
-
-    if ( !empty($tmp) && !empty($tmp['strings'][$model->data['row_idx']]) && !empty($modified_langs)){
-      $widget;  
-      //$tmp = $translation->cacheGet($model->data['id_option'], 'get_translations_table');
-      foreach ( $modified_langs as $mod ){
-
-        //change the updated string in the row of the cache
-        $exp_changed = $model->data['row'][$mod.'_db'];
-        $tmp['strings'][$model->data['row_idx']][$mod.'_db'] = $exp_changed;
-
-      }
-      if ( !empty($to_delete) ){
-        foreach( $to_delete as $del ){
+    $tmp = $i18nCls->cacheGet($model->data['id_option'], $isOptions ? 'get_options_translations_table' : 'get_translations_table');
+    if (!empty($tmp) && !empty($tmp['strings'])){
+      $idx = \bbn\X::find($tmp['strings'], ['id_exp' => $row['id_exp']]);
+      if (!is_null($idx)) {
+        foreach ($modified as $mod) {
           //change the updated string in the row of the cache
+          $tmp['strings'][$idx][$mod . '_db'] = $row[$mod . '_db'];
+        }
+        foreach ($deleted as $del) {
+          //change the removed string in the row of the cache
           $exp_changed = $model->data['row'][$del .'_db'];
-          $tmp['strings'][$model->data['row_idx']][$del .'_db'] = $exp_changed;
+          $tmp['strings'][$idx][$del . '_db'] = $row[$del . '_db'];
+        }
+        $i18nCls->cacheSet(
+          $model->data['id_option'],
+          $isOptions ? 'get_options_translations_table' : 'get_translations_table',
+          $tmp
+        );
+        //remake the cache of the widget basing on new data
+        if ($isOptions) {
+          $i18nCls->cacheSet(
+            $model->data['id_option'],
+            'get_options_translations_widget',
+            $i18nCls->getOptionsTranslationsWidget($model->data['id_option'])
+          );
+          $widget = $i18nCls->cacheGet($model->data['id_option'], 'get_options_translations_widget');
+        }
+        else {
+          $i18nCls->cacheSet(
+            $model->data['id_option'],
+            'get_translations_widget',
+            $i18nCls->getTranslationsWidget($model->data['id_project'], $model->data['id_option'])
+          );
+          $widget = $i18nCls->cacheGet($model->data['id_option'], 'get_translations_widget');
         }
       }
-
-      $translation->cacheSet($model->data['id_option'], 'get_translations_table',
-        $tmp
-      );
-      //remake the cache of the widget basing on new data
-      $translation->cacheSet($model->data['id_option'], 'get_translations_widget',
-        $translation->getTranslationsWidget($model->data['id_project'],$model->data['id_option'])
-      );
-      $widget = $translation->cacheGet($model->data['id_option'], 'get_translations_widget');
-
     }
   }
-
-  /*if ( !empty($modified_langs) ){
-    //replace the row in the cache of the table
-
-    // $tmp the cache of the table
-    $tmp = $translation->cacheGet($model->data['id_option'], 'get_translations_table');
-
-    if ( !empty($tmp) && !empty($tmp['strings'][$model->data['row_idx']]) && !empty($modified_langs)){
-
-      $tmp = $translation->cacheGet($model->data['id_option'], 'get_translations_table');
-      foreach($modified_langs as $mod){
-        if( !empty($mod) ){
-          //change the updated string in the row of the cache
-          $exp_changed = $model->data['row'][$mod];
-          $tmp['strings'][$model->data['row_idx']][$mod]['translations_db'] = $exp_changed;
-        }
-      }
-      $translation->cacheSet($model->data['id_option'], 'get_translations_table',
-        $tmp
-      );
-      //remake the cache of the widget basing on new data
-      $translation->cacheSet($model->data['id_option'], 'get_translations_widget',
-        $translation->getTranslationsWidget($model->data['id_project'],$model->data['id_option'])
-      );
-      $widget = $translation->cacheGet($model->data['id_option'], 'get_translations_widget');
-
-    }
-  }*/
 
   return [
     'widget' => $widget,
-    'modified_langs' => $modified_langs,
+    'modified_langs' => $modified,
     'deleted' => $deleted,
-    'row' => $model->data['row'],
-    'success' => $success
+    'row' => $row,
+    'success' => !empty($modified) || !empty($deleted)
   ];
 }
+return ['success' => false];

@@ -35,6 +35,13 @@
           this.dashboard.currentProject.name :
           '';
       },
+      projectCode(){
+        return !!this.dashboard
+          && !!this.dashboard.currentProject
+          && !!this.dashboard.currentProject.code ?
+          this.dashboard.currentProject.code :
+          '';
+      },
       parentSource(){
         if (this.container) {
           let ct = this.container.closest('bbn-container');
@@ -197,19 +204,16 @@
       },
       open_strings_table(){
         //open the table of strings of this path combining new strings found in the files with strings present in db
-        //send arguments[0] (id_option of the path) to 'page/path_translations/'
+        //send arguments[0] (id_option of the path) to 'page/expressions/'
         //only if the the language of the path is set
-        //page/path_translations/ will return the cached_model in its data, if a
+        //page/expressions/ will return the cached_model in its data, if a
         // cached_model doesn't exist for this id_option it will be created
-
-        if ( ( this.configured_langs !== undefined ) && ( this.id_project !== 'options')){
-          bbn.fn.link(this.root + 'page/path_translations/' +this.projectName +'/'+ this.source.id);
+        if (this.configured_langs !== undefined) {
+          bbn.fn.link(this.root + 'page/expressions/' + this.projectCode + '/' +
+            (this.id_project !== 'options' ? this.source.id : this.source.code));
         }
-        else if ( (this.configured_langs === undefined) && ( this.id_project !== 'options')){
-          this.alert(bbn._('You have to configure at least a language of translation using the button') +' <i class="nf nf-fa-flag"></i> ' + bbn._('of the widget before to open the strings table') );
-        }
-        else if ( ( this.configured_langs !== undefined ) && ( this.id_project === 'options') ){
-          bbn.fn.link(this.root + 'page/path_translations/options/' + this.source.id );
+        else if (this.id_project !== 'options') {
+          this.alert(bbn._('You have to configure at least a language of translation using the button') +' <i class="nf nf-fa-flag"></i> ' + bbn._('of the widget before to open the strings table'));
         }
       },
       remake_cache(){
@@ -456,7 +460,7 @@
                 let tabs = bbn.vue.findAll(this.closest('bbn-router') , 'bbns-container');
                 bbn.fn.log('tabs', tabs, this.source.row.id_option)
                 tabs.forEach((v, i) => {
-                  if ( v.url === 'path_translations/'+ this.source.row.id_option ){
+                  if ( v.url === 'expressions/'+ this.source.row.id_option ){
                     var tab = v;
                     bbn.fn.log('tab',v)
                     v.reload();
