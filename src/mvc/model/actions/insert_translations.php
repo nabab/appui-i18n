@@ -79,9 +79,8 @@ if ($model->hasData(['id_project', 'id_option', 'row'])
 
   return [
     'widget' => $widget,
-    'modified_langs' => $modified,
+    'modified' => $modified,
     'deleted' => $deleted,
-    'row' => $row,
     'success' => !empty($modified) || !empty($deleted)
   ];
 }

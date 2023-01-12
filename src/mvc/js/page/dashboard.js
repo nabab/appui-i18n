@@ -1,5 +1,6 @@
 (() => {
   return {
+    name: 'appui-i18n-dashboard',
     props: {
       source: {
         type: Object
@@ -52,10 +53,6 @@
           }
           else {
             buttons.push({
-              text: bbn._('Find new options or translations for this category'),
-              icon: 'icon-database',
-              action: 'find_options'
-            }, {
               text: bbn._('Open the table of strings'),
               icon: 'nf nf-fa-book',
               action: 'open_strings_table',

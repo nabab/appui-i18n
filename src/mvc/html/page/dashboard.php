@@ -92,7 +92,8 @@
   </div>
   <div class="bbn-flex-fill">
     <bbn-dashboard v-if="widgets.length"
-                   :source="widgets"/>
+                   :source="widgets"
+                   ref="dashboard"/>
     <bbn-loader v-else/>
   </div>
 </div>

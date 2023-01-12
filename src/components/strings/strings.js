@@ -13,6 +13,14 @@
       //bbn.fn.log('this',this, this.mapData, this.hidden_cols, this.column_length)
     },
     computed: {
+      isOptions(){
+        return !!this.source
+          && !!this.source.res
+          && !!this.source.id_project
+          && !!this.source.res.id_option
+          && (this.source.id_project === 'options')
+          && (this.source.res.id_option.length === 2)
+      },
       /** the source language of this id_option */
       source_lang(){
         return bbn.fn.getField(this.source.primary, 'text', 'code' , this.source.res.path_source_lang)
@@ -235,7 +243,7 @@
         })
       },
       /** called at @change of the table (when the idx of the row focused changes), insert translation in db and remake the po file */
-      insert_translation(row, idx){
+      insert_translation(row){
         if (!!row) {
           this.post(this.root + 'actions/insert_translations', {
             row: row,
@@ -243,37 +251,31 @@
             id_option: this.source.res.id_option,
             id_project: this.source.id_project
           }, d => {
-            if (d.success && !d.deleted.length && d.modified_langs.length ){
-              if ( this.source.id_project !== 'options'){
-                d.modified_langs.forEach((v, i) => {
-                  this.source.res.strings[idx][v+'_db']= d.row[v+'_db'];
-                })
+            if (!d.success) {
+              appui.error(bbn._('An error occurred while saving translation'));
+            }
+            else {
+              appui.success(bbn._('Translation saved'));
+              if (d.deleted
+                && d.deleted.length
+                && !this.isOptions
+              ) {
+                appui.warning(bbn._('Please be sure to remake po files'));
               }
-              appui.success('Translation saved');
-            }
-            else if ( !d.success && !d.deleted.length ){
-              appui.error('An error occurred while saving translation');
-            }
-            else if ( d.success && d.deleted.length ){
-              d.deleted.forEach((v, i) => {
-                this.source.res.strings[idx][v + '_db'] = d.row[v+'_db'];
-                //this.source.res.strings[idx][+ '_db'] = this.source.res.strings[idx][v]['translations_po'];
-                appui.warning('Translation deleted from db, please be sure to remake po files');
-              })
-            }
-            if ( this.closest('bbn-router') ) {
-              bbn.fn.log('before table update', this.closest('bbn-router'))
-              //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
-              if ( this.closest('bbn-router') ) {
-                let dashboard = this.closest('bbn-router').find('bbn-dashboard');
-                //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
-                if ( dashboard ) {
-                  let widgets = dashboard.findAll('bbn-widget');
-                  if ( widgets.length ){
-                    let idx = bbn.fn.search(widgets, 'uid', this.source.res.id_option),
-                    cp = dashboard.closest('bbn-container').getComponent();
-                    if ( idx > -1 ){
-                      cp.source.data[idx].data_widget = d.widget;
+              if (!!d.widget) {
+                let router = this.closest('bbn-router');
+                if (router) {
+                  let dashboardPage = router.find('appui-i18n-dashboard');
+                  if (dashboardPage
+                    && !!dashboardPage.idProject
+                    && (dashboardPage.idProject === this.source.id_project)
+                  ) {
+                    let dashboard = dashboardPage.getRef('dashboard');
+                    if (dashboard) {
+                      let widget = dashboard.getWidget(this.source.res.id_option);
+                      if (widget) {
+                        this.$set(widget.source, 'data_widget', d.widget);
+                      }
                     }
                   }
                 }
