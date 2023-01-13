@@ -243,7 +243,7 @@
         })
       },
       /** called at @change of the table (when the idx of the row focused changes), insert translation in db and remake the po file */
-      insert_translation(row){
+      insertTranslation(row){
         if (!!row) {
           this.post(this.root + 'actions/insert_translations', {
             row: row,

@@ -14,7 +14,7 @@
              ref="strings_table"
              :order="[{field: 'expression', dir: 'ASC'}]"
              :toolbar="source.id_project !== 'options' ? $options.components['toolbar-strings-table'] : ''"
-             @change="insert_translation">
+             @change="insertTranslation">
 
    <bbns-column field="exp"
                :title="'<?=_('Original expression in')?>' +' '+ source_lang "
