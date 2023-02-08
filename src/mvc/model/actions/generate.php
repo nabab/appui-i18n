@@ -203,15 +203,14 @@ if (( $o = $model->data['id_option'] )
 
                 elseif (strpos($tmp, 'bbn/') === 0) {
                   $optCode = $model->inc->options->code($o);
-                  $code = str_replace(substr($optCode, -4), '', $optCode);
-                  $tmp  = str_replace($code, '', $tmp);
+                  $tmp  = str_replace($optCode.'/', '', substr($tmp, 4));
                   if (strpos($tmp, 'components') === 4) {
-                    $final      = str_replace(substr($tmp, 0,4),'',$tmp);
-                          $name = dirname($final);
+                    $final = str_replace(substr($tmp, 0,4),'',$tmp);
+                    $name = dirname($final);
                   }
                   elseif (strpos($tmp, 'mvc') === 4) {
-                                        $final = str_replace(substr($tmp, 0,4),'',$tmp);
-                                        $name  = str_replace('js/','',$final);
+                    $final = str_replace(substr($tmp, 0,4),'',$tmp);
+                    $name  = str_replace('js/','',$final);
                   }
                 }
 
