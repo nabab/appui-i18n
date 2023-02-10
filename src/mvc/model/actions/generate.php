@@ -185,19 +185,25 @@ if (( $o = $model->data['id_option'] )
 
               $ext = pathinfo($path, PATHINFO_EXTENSION);
 
-              if($ext === 'js') {
+              if (($ext === 'js')
+                || ($ext === 'php')
+                || ($ext === 'html')
+              ) {
                 $tmp = substr($r['path'][$idx], strlen($root), -3);
 
                 if (strpos($tmp, 'components') === 0) {
                   $name = dirname($tmp);
                 }
                 elseif (strpos($tmp, 'mvc') === 0) {
-                  if (!empty($idx = strpos($tmp, 'js/'))) {
+                  if (strpos($tmp, 'js/')) {
                     $name = str_replace('js/', '', $tmp);
+                  }
+                  else if (strpos($tmp, 'html/')) {
+                    $name = str_replace('html/', '', $tmp);
                   }
                 }
                 //case of plugins inside current (apst-app), temporary we decided to don't take it inside the json file of apst-app
-                elseif (( strpos($tmp, 'plugins') === 0 ) && ($root === BBN_APP_PATH)) {
+                elseif ((strpos($tmp, 'plugins') === 0) && ($root === BBN_APP_PATH)) {
                   continue;
                 }
 
@@ -205,19 +211,23 @@ if (( $o = $model->data['id_option'] )
                   $optCode = $model->inc->options->code($o);
                   $tmp  = str_replace($optCode.'/', '', substr($tmp, 4));
                   if (strpos($tmp, 'components') === 4) {
-                    $final = str_replace(substr($tmp, 0,4),'',$tmp);
+                    $final = str_replace(substr($tmp, 0,4), '', $tmp);
                     $name = dirname($final);
                   }
                   elseif (strpos($tmp, 'mvc') === 4) {
-                    $final = str_replace(substr($tmp, 0,4),'',$tmp);
-                    $name  = str_replace('js/','',$final);
+                    if ((strpos($tmp, 'js/') !== 8)
+                      && (strpos($tmp, 'html/') !== 8)
+                    ) {
+                      continue;
+                    }
+                    $final = str_replace(substr($tmp, 0, 4), '', $tmp);
+                    $name  = preg_replace(['/js\//', '/html\//'], '', $final, 1);
                   }
                 }
 
                 if (empty($js_files[$lang][$name])) {
                   $js_files[$lang][$name] = [];
                 }
-
                 //array of all js files found in po file
                 $js_files[$lang][$name][$data['res'][$index]['original_exp']] = $data['res'][$index][$lang];
               }
@@ -237,8 +247,7 @@ if (( $o = $model->data['id_option'] )
       clearstatcache();
 
       if (!empty($js_files[$lang])) {
-                $file_name = $locale_dir.'/'.$lang.'/'.$lang.'.json';
-
+        $file_name = $locale_dir.'/'.$lang.'/'.$lang.'.json';
         \bbn\File\Dir::createPath(dirname($file_name));
         // put the content of the array js_files in a json file
         $json = (boolean)file_put_contents($file_name, json_encode($js_files[$lang]));
