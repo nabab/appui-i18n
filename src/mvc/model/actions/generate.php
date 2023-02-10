@@ -189,17 +189,17 @@ if (( $o = $model->data['id_option'] )
                 || ($ext === 'php')
                 || ($ext === 'html')
               ) {
-                $tmp = substr($r['path'][$idx], strlen($root), -3);
+                $tmp = substr($r['path'][$idx], strlen($root), -(strlen($ext) + 1));
 
                 if (strpos($tmp, 'components') === 0) {
                   $name = dirname($tmp);
                 }
                 elseif (strpos($tmp, 'mvc') === 0) {
-                  if (strpos($tmp, 'js/')) {
-                    $name = str_replace('js/', '', $tmp);
+                  if (strpos($tmp, 'js/') === 4) {
+                    $name = preg_replace('/js\//', '', $tmp, 1);
                   }
-                  else if (strpos($tmp, 'html/')) {
-                    $name = str_replace('html/', '', $tmp);
+                  else if (strpos($tmp, 'html/') === 4) {
+                    $name = preg_replace('/html\//', '', $tmp, 1);
                   }
                 }
                 //case of plugins inside current (apst-app), temporary we decided to don't take it inside the json file of apst-app
