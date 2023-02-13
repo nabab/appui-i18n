@@ -13,7 +13,7 @@
              :multifilter="true"
              ref="strings_table"
              :order="[{field: 'expression', dir: 'ASC'}]"
-             :toolbar="source.id_project !== 'options' ? $options.components['toolbar-strings-table'] : ''"
+             :toolbar="$options.components.toolbar"
              @change="insertTranslation">
 
    <bbns-column field="exp"
