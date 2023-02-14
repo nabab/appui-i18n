@@ -88,16 +88,6 @@
       },
     },
     methods: {
-      generate_mo(){
-        this.post(this.root + 'actions/generate_mo', {
-          id_option : this.source.res.id_option,
-          id_project: this.source.id_project,
-        }, (d) => {
-          if ( d.success === true ){
-            appui.success(bbn._('Mo files correctly generated'));
-          }
-        })
-      },
       /** generate po files for all columns of the table */
       generate(){
         this.showAlert = true;
@@ -133,9 +123,6 @@
               this.$nextTick(() => {
                 this.showAlert = false;
               });
-            }
-            if (!this.isOptions) {
-              this.generate_mo();
             }
           });
         }
@@ -387,16 +374,16 @@
                         class="bbn-right-sspace bbn-top-sspace"/>
               <bbn-button :title="_('Force translation files update')"
                           class="bbn-bg-orange bbn-white bbn-right-sspace bbn-top-sspace"
-                          @click="generate"
+                          @click="main.generate"
                           icon="nf nf-fa-files_o"
                           :text="_('Create translation files')"/>
               <bbn-button :title="_('Rebuild table data')"
-                          @click="remake_cache"
+                          @click="main.remake_cache"
                           icon="nf nf-fa-retweet"
                           :text="_('Rebuild table data')"
                           class="bbn-right-sspace bbn-top-sspace"/>
               <bbn-button :title="_('Check files for new strings')"
-                          @click="find_strings"
+                          @click="main.find_strings"
                           icon="nf nf-fa-search"
                           :text="_('Parse files for new strings')"
                           v-if="!isOptions"
@@ -454,22 +441,10 @@
             else if (!this.valueToFind.length && table.currentFilters.conditions.length) {
               table.currentFilters.conditions.splice(0);
             }
-          },
-          generate(){
-            return this.main ? this.main.generate() : null;
-          },
-          generate_mo() {
-            return this.main ? this.main.generate_mo() : null;
-          },
-          find_strings(){
-            return this.main ? this.main.find_strings() : null;
-          },
-          remake_cache(){
-            return this.main ? this.main.remake_cache() : null;
           }
         },
-        mounted(){
-          this.main = this.closest('appui-i18n-strings');
+        beforeMount(){
+          this.$set(this, 'main', this.closest('appui-i18n-strings'));
         },
         watch: {
           valueToFind(val){

@@ -421,18 +421,6 @@
           update(){
             this.get_widget().remake_cache();
           },
-          generate_mo() {
-
-            let id_option = this.get_widget().id_option;
-            this.post(this.root + 'actions/generate_mo', {
-              id_option: id_option,
-              id_project: this.id_project
-            }, (d) => {
-              if (d.success === true) {
-                appui.success('Mo files correctly generated');
-              }
-            })
-          },
           success(d){
             this.send_no_strings = false;
             if (!!d.success) {
@@ -452,7 +440,6 @@
                   appui.success(  bbn.fn.getField(this.source.data.primary, 'text', 'code', v) + ' translation files successfully created')
                 });
               }
-              this.generate_mo();
               if (d.done > 0) {
                 appui.success(d.done + ' ' + bbn._('new strings found in this path') )
               }
