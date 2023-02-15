@@ -12,11 +12,8 @@
     computed: {
       isOptions(){
         return !!this.source
-          && !!this.source.res
           && !!this.source.id_project
-          && !!this.source.res.id_option
           && (this.source.id_project === 'options')
-          && (this.source.res.id_option.length === 2)
       },
       /** the source language of this id_option */
       source_lang(){
@@ -34,51 +31,44 @@
               text,
             editable: true
           };
-          if (!this.isOptions) {
-            obj.render = row => {
-              let translation_db = row[l + '_db'];
-              let translation_po = row[l + '_po'];
-              if ((translation_db !== false)
-                && !!translation_db.length
-                && (translation_db === translation_po)
-              ) {
-                return `${translation_db} <i class="nf nf-fa-check bbn-large bbn-green" title="` + bbn._('Expression correctly inserted in db and po file') + `" style="float:right"/>`;
-              }
-              else if (translation_db.length
-                && (translation_db !== translation_po)
-                && (!this.isOptions)
-              ) {
-                return  `<span title="` + (translation_po.length ? bbn._('The translation in the po file is different from the one in database') : '') + `"
-                               class="${translation_po.length ? 'bbn-orange' : 'bbn-red'}">
-                          ${translation_db}
-                        </span>
-                        <i style="float:right"
-                           class="${translation_po.length ? 'nf nf-fa-exclamation' : 'nf nf-fa-exclamation_triangle'} bbn-large ${translation_po.length ? 'bbn-orange' : 'bbn-red'}"
-                           title="` + (translation_po ? (bbn._('The translation in the po file is') + ': ' + translation_po) : bbn._('Translation missing in po file')) + `"/>
-                        `;
-              }
-              else if (translation_db === false) {
-                return '';
-              }
+          obj.render = row => {
+            let translation_db = row[l + '_db'];
+            let translation_po = row[l + '_po'];
+            if ((translation_db !== false)
+              && !!translation_db.length
+              && (translation_db === translation_po)
+            ) {
+              return `${translation_db} <i class="nf nf-fa-check bbn-large bbn-green" title="` + bbn._('Expression correctly inserted in db and po file') + `" style="float:right"/>`;
+            }
+            else if (translation_db.length
+              && (translation_db !== translation_po)
+            ) {
+              return  `<span title="` + (translation_po.length ? bbn._('The translation in the po file is different from the one in database') : '') + `"
+                              class="${translation_po.length ? 'bbn-orange' : 'bbn-red'}">
+                        ${translation_db}
+                      </span>
+                      <i style="float:right"
+                          class="${translation_po.length ? 'nf nf-fa-exclamation' : 'nf nf-fa-exclamation_triangle'} bbn-large ${translation_po.length ? 'bbn-orange' : 'bbn-red'}"
+                          title="` + (translation_po ? (bbn._('The translation in the po file is') + ': ' + translation_po) : bbn._('Translation missing in po file')) + `"/>
+                      `;
+            }
+            else if (translation_db === false) {
+              return '';
             }
           }
           r.push(obj);
         });
-        /** column occurrence --- doesn't exist for project option */
-        if (!this.isOptions){
-          r.push({
-            ftitle: bbn._('Number of occurrences of the strings in the path files'),
-            title: '#',
-            field: 'occurrence',
-            editable: false,
-            render(row){
-              return row.occurrence ? row.occurrence : 0;
-            },
-            width: 40,
-            cls: 'bbn-c'
-          });
-        }
         r.push({
+          ftitle: bbn._('Number of occurrences of the strings in the path files'),
+          title: '#',
+          field: 'occurrence',
+          editable: false,
+          render(row){
+            return row.occurrence ? row.occurrence : 0;
+          },
+          width: 40,
+          cls: 'bbn-c'
+        }, {
           ftitle: bbn._('Remove original expression'),
           buttons: this.buttons,
           width: this.isOptions ? 50 : 90,
@@ -123,6 +113,10 @@
               this.$nextTick(() => {
                 this.showAlert = false;
               });
+            }
+            else {
+              appui.error();
+              this.showAlert = false;
             }
           });
         }

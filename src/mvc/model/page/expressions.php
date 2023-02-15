@@ -10,7 +10,7 @@
 if ($model->hasData(['project', 'option'], true)) {
   $project = $model->data['project'];
   $option = $model->data['option'];
-  $isOptions = ($project === 'options') && !\bbn\Str::isUid($option);
+  $isOptions = ($project === 'options');
 
   /** @var  $translation instantiate the class Appui\I18n*/
   $translation = new \bbn\Appui\I18n($model->db, $isOptions ? null : $project);
@@ -24,18 +24,11 @@ if ($model->hasData(['project', 'option'], true)) {
           && !$translation->cacheHas($option, 'get_options_translations_table'))
         ))
   ) {
-    //set data in cache $translation->cacheSet($id_option, (string)method name, (array)data)
     if ($isOptions) {
-      $translation->cacheSet(
-        $option, 'get_options_translations_table',
-        $translation->getOptionsTranslationsTable($option)
-      );
+      $translation->getOptionsTranslationsTable($option);
     }
     else {
-      $translation->cacheSet(
-        $option, 'get_translations_table',
-        $translation->getTranslationsTable($project, $option)
-      );
+      $translation->getTranslationsTable($project, $option);
     }
   }
 
@@ -45,6 +38,6 @@ if ($model->hasData(['project', 'option'], true)) {
     'primary' => $primaries,
     'id_project' => $project,
     'res' => $res,
-    'pageTitle' => $isOptions ? \bbn\X::_('Options - %s', \bbn\X::getField($primaries, ['code' => $option], 'text')) : $model->inc->options->text($option)
+    'pageTitle' => $isOptions ? \bbn\X::_('Options - %s', $model->inc->options->text($option)) : $model->inc->options->text($option)
   ])->data;
 }

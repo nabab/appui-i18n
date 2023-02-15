@@ -10,7 +10,7 @@ if ($model->hasData(['id_project', 'id_option', 'row'])
   && !empty($model->data['row']['id_exp'])
   && defined('BBN_APP_NAME')
 ) {
-  $isOptions = ($model->data['id_project'] === 'options') && !\bbn\Str::isUid($model->data['id_option']);
+  $isOptions = ($model->data['id_project'] === 'options');
   $i18nCls = new \bbn\Appui\I18n($model->db, $isOptions ? BBN_APP_NAME : $model->data['id_project']);
   /** @var array $row the row sent by strings table */
   $row = $model->data['row'];

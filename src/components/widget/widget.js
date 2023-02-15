@@ -209,8 +209,7 @@
         //page/expressions/ will return the cached_model in its data, if a
         // cached_model doesn't exist for this id_option it will be created
         if (this.configured_langs !== undefined) {
-          bbn.fn.link(this.root + 'page/expressions/' + this.projectCode + '/' +
-            (this.id_project !== 'options' ? this.source.id : this.source.code));
+          bbn.fn.link(this.root + 'page/expressions/' + this.projectCode + '/' + this.source.id);
         }
         else if (this.id_project !== 'options') {
           this.alert(bbn._('You have to configure at least a language of translation using the button') +' <i class="nf nf-fa-flag"></i> ' + bbn._('of the widget before to open the strings table'));
