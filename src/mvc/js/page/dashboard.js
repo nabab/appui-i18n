@@ -53,6 +53,10 @@
           }
           else {
             buttons.push({
+              text: bbn._('Create translation files'),
+              icon: 'nf nf-md-file_replace_outline',
+              action: 'generateFiles',
+            }, {
               text: bbn._('Open the table of strings'),
               icon: 'nf nf-fa-book',
               action: 'open_strings_table',

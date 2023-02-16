@@ -5,7 +5,7 @@
       return {
         /** @todo this property should be true after the success of the form in the case of return of d.no_strings = true*/
         no_strings : false,
-        id_option: bbn.vue.closest(this, 'bbn-widget').uid,
+        id_option: this.source.id,
         //source language of the path
         language: this.source.language,
         /** the css class for progress bar the value is decided by the watch of progress_bar_val */
@@ -220,10 +220,10 @@
           this.post(this.root + 'actions/reload_widget_cache', {
             id_option: this.source.id,
             id_project: this.id_project
-          }, (d) => {
-            if ( d.success ){
+          }, d => {
+            if (d.success) {
               appui.success(bbn._('Widget updated'));
-              this.$set(this.source, 'data_widget', d.data_widget);
+              this.$set(this.source, 'data_widget', d.data);
               this.$forceUpdate();
             }
           })
@@ -278,7 +278,7 @@
             component: this.$options.components.languagesForm,
             source: {
               row: {
-                id_option: bbn.vue.closest(this, 'bbn-widget').uid,
+                id_option: this.source.id,
                 languages: this.locale_dirs
               },
               data: {
@@ -299,6 +299,21 @@
           this.alert(bbn._('Set a source language using the dropdown before to create translation file(s)'))
         }
       },
+      generateFiles(){
+        this.post(this.root + 'actions/generate', {
+          id_option: this.source.id,
+          languages: this.locale_dirs,
+          id_project: this.id_project,
+          language: this.source.language
+        }, d => {
+          if (d.success && !!d.widget) {
+            this.$set(this.source, 'data_widget', d.widget);
+          }
+          else {
+            appui.error();
+          }
+        });
+      }
     },
     watch: {
       /** define the css class for the progressbar*/

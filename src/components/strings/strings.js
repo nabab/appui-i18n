@@ -92,24 +92,28 @@
               d.languages = d.languages.map(v => {
                 return bbn.fn.getField(this.source.primary, 'text', 'code', v);
               });
-              let i18n = this.closest('appui-i18n');
-              if (i18n) {
-                let dashboardPage = i18n.find('appui-i18n-dashboard');
-                if (dashboardPage
-                  && !!dashboardPage.idProject
-                  && (dashboardPage.idProject === this.source.id_project)
-                ) {
-                  let dashboard = dashboardPage.getRef('dashboard');
-                  if (dashboard) {
-                    let widget = dashboard.getWidget(this.source.res.id_option);
-                    if (widget) {
-                      this.$set(widget.source, 'data_widget', d.widget);
+              this.source.res.strings = d.strings;
+              if (!!d.strings && d.strings.length) {
+                appui.success(bbn._('Files of translation successfully updated for %s', d.languages.join(' ' + bbn._('and') + ' ')));
+              }
+              if (!!d.widget) {
+                let i18n = this.closest('appui-i18n');
+                if (i18n) {
+                  let dashboardPage = i18n.find('appui-i18n-dashboard');
+                  if (dashboardPage
+                    && !!dashboardPage.idProject
+                    && (dashboardPage.idProject === this.source.id_project)
+                  ) {
+                    let dashboard = dashboardPage.getRef('dashboard');
+                    if (dashboard) {
+                      let widget = dashboard.getWidget(this.source.res.id_option);
+                      if (widget) {
+                        this.$set(widget.source, 'data_widget', d.widget);
+                      }
                     }
                   }
                 }
               }
-              this.source.res.strings = d.strings;
-              appui.success(bbn._('Files of translation successfully updated for %s', d.languages.join(' ' + bbn._('and') + ' ')));
               this.$nextTick(() => {
                 this.showAlert = false;
               });
@@ -126,7 +130,7 @@
         }
       },
       /** checks if there are new strings in the files of the path */
-      find_strings(){
+      findStrings(){
         this.post(this.root + 'actions/find_strings', {
           id_option: this.source.res.id_option,
           language: this.source.res.path_source_lang,
@@ -240,48 +244,59 @@
         }
       },
       /** remakes the model of table in cache */
-      remake_cache(){
+      remakeCache(){
         this.column_length = false;
-        //this.generate();
         this.showAlert = true;
         this.post(this.root + 'actions/reload_table_cache', {
           id_option: this.source.res.id_option,
-          id_project: this.source.id_project,
-          routes: this.root
-        }, (d) => {
-          if ( d.success ){
-            let diff = ( d.res.total - this.source.res.total );
-            this.source.res.languages = d.res.languages;
-            this.source.res.strings = d.res.strings;
-            //this.find(this, 'bbn-table').updateData();
-            if ( diff > 0 ){
-              appui.warning(bbn._('%d new string(s) found in %s', diff, this.source.res.path));
-              this.source.res.strings = d.res.strings;
-              this.source.res.total = d.res.total;
-              //this.find(this, 'bbn-table').updateData();
+          id_project: this.source.id_project
+        }, d => {
+          if (d.success) {
+            if (!!d.data) {
+              let diff = d.data.total - this.source.res.total;
+              this.source.res.languages = d.data.languages;
+              this.source.res.strings = d.data.strings;
+              this.source.res.total = d.data.total;
+              if (diff > 0) {
+                appui.warning(bbn._('%d new string(s) found in %s', diff, this.source.res.path));
+              }
+              else if (diff < 0) {
+                appui.warning(bbn._('%d string(s) deleted from %s files', Math.abs(diff), this.source.res.path));
+              }
+              else if (diff = 0) {
+                appui.warning(bbn._('There are no changes in data'));
+              }
+              this.$nextTick(() => {
+                this.showAlert = false;
+                this.column_length = true;
+              });
             }
-            else if ( diff < 0 ){
-              appui.warning(bbn._('%d string(s) deleted from %s files', Math.abs(diff), this.source.res.path));
-              this.source.res.strings = d.res.strings;
-              this.source.res.total = d.res.total;
+            else {
+              appui.error();
             }
-            else if ( diff = 0 ){
-              appui.warning(bbn._('There are no changes in data'));
+            if (!!d.widget) {
+              let i18n = this.closest('appui-i18n');
+              if (i18n) {
+                let dashboardPage = i18n.find('appui-i18n-dashboard');
+                if (dashboardPage
+                  && !!dashboardPage.idProject
+                  && (dashboardPage.idProject === this.source.id_project)
+                ) {
+                  let dashboard = dashboardPage.getRef('dashboard');
+                  if (dashboard) {
+                    let widget = dashboard.getWidget(this.source.res.id_option);
+                    if (widget) {
+                      this.$set(widget.source, 'data_widget', d.widget);
+                    }
+                  }
+                }
+              }
             }
-            this.$nextTick(() => {
-              this.showAlert = false;
-              this.column_length = true;
-            });
-            let router = this.closest('bbn-router');
-            /*if( this.find(router, 'bbn-dashboard') !== undefined ){
-              let dashboard = this.find(router, 'bbn-dashboard'),
-                tab = this.closest(dashboard, 'bbns-container'),
-                cp = tab.getComponent(),
-                data = cp.source.data,
-                widget_idx = bbn.fn.search(data, 'id', this.source.res.id_option);
-            }*/
           }
-        })
+          else {
+            appui.error();
+          }
+        });
       },
     },
     watch: {
@@ -369,15 +384,15 @@
               <bbn-button :title="_('Force translation files update')"
                           class="bbn-bg-orange bbn-white bbn-right-sspace bbn-top-sspace"
                           @click="main.generate"
-                          icon="nf nf-fa-files_o"
+                          icon="nf nf-md-file_replace_outline"
                           :text="_('Create translation files')"/>
               <bbn-button :title="_('Rebuild table data')"
-                          @click="main.remake_cache"
+                          @click="main.remakeCache"
                           icon="nf nf-fa-retweet"
                           :text="_('Rebuild table data')"
                           class="bbn-right-sspace bbn-top-sspace"/>
               <bbn-button :title="_('Check files for new strings')"
-                          @click="main.find_strings"
+                          @click="main.findStrings"
                           icon="nf nf-fa-search"
                           :text="_('Parse files for new strings')"
                           v-if="!isOptions"
