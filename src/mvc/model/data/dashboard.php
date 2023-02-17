@@ -14,7 +14,7 @@ if ($model->hasData('idProject', true)
   if ($isOptions) {
     $res['langs'] = array_map(function($l) use($primaries) {
       return \bbn\X::getField($primaries, ['code' => $l], 'id');
-    }, $model->inc->options->findI18nLangs());
+    }, $model->inc->options->findI18nLocales());
   }
   else {
     $res['langs'] = $projectCls->getLangsIds();
