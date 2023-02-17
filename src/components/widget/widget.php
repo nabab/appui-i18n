@@ -15,8 +15,7 @@
     <div class="bbn-grid-fields"
          v-if="data_widget && locale_dirs.length && !no_strings"
          style="padding-top: 8px">
-      <span v-if="!dashboard.isOptionsProject"><?=_("Files of translations found")?>: </span>
-      <span v-else><?=_("Languages of translation allowed")?>: </span>
+      <span><?=_("Files of translations found")?>: </span>
       <div>
         <div v-for="w in locale_dirs"
              v-text="w" style="display: inline; padding-left: 6px; float: right;"
@@ -40,23 +39,22 @@
       <div v-if="data_widget[source.language].num > 0"
            v-for="(w, i) in data_widget"
            class="bbn-grid-full">
-        <appui-i18n-lang v-if="i !== source.language"
-                         :code="i"
-                         class="bbn-b bbn-i"/>
-        <span v-text=" w.num_translations + ' / '+ w.num"
-              v-if="i !== source.language"
-              style="padding-left:6px"/>
-        <bbn-progressbar :value="normalize(w.val)"
-                         type="percent"
-                         :class="w.class"
-                         v-if="i !== source.language"
-                         :width="250"/>
-        <div class="bbn-grid-full bbn-c"
-             v-if="w.num_translations_db && (w.num !== 0) && (w.num_translations_db !== w.num_translations) && (i !== source.language)">
-          <i class="nf nf-fa-exclamation_triangle bbn-large bbn-red"
-             :title="'<?=_("Number of translations in db")?>' + ': ' + w.num_translations_db"
-          ></i><?=_("The number of translations in po file and the number of translations in db are different, please remake the po file")?>
-        </div>
+        <template v-if="!!dashboard.isOptionsProject || ((i !== source.language) && configured_langs.includes(getField(primary, 'id', 'code', i)))">
+          <appui-i18n-lang :code="i"
+                           class="bbn-b bbn-i"/>
+          <span v-text=" w.num_translations + ' / '+ w.num"
+                style="padding-left:6px"/>
+          <bbn-progressbar :value="normalize(w.val)"
+                           type="percent"
+                           :class="w.class"
+                           :width="250"/>
+          <div class="bbn-grid-full bbn-c"
+               v-if="w.num_translations_db && (w.num !== 0) && (w.num_translations_db !== w.num_translations)">
+            <i class="nf nf-fa-exclamation_triangle bbn-large bbn-red"
+               :title="'<?=_("Number of translations in db")?>' + ': ' + w.num_translations_db"
+            ></i><?=_("The number of translations in po file and the number of translations in db are different, please remake the po file")?>
+          </div>
+        </template>
       </div>
     </div>
     <div v-else-if="!locale_dirs.length"

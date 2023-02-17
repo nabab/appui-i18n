@@ -63,25 +63,25 @@
         //if the source language of the path is set takes the array result from dashboard source
         let result = bbn.fn.clone(this.source.data_widget.result);
         if ( this.source.language && result ){
-          for ( let r in result ){
-            result[r].class = '';
-            result[r].class_db = '';
+          bbn.fn.iterate(result, (r, l) => {
+            result[l].class = '';
+            result[l].class_db = '';
 
-            if (result[r].num_translations >= 0 ){
-              result[r].val = result[r].num_translations/result[r].num * 100
+            if (r.num_translations >= 0) {
+              result[l].val = !r.num ? 0 : r.num_translations/r.num * 100
               /** the css class for progress bar */
-              if ( ( result[r].val >= 0 ) && (result[r].val <= 30) ){
-                result[r].class = 'low'
+              if ((r.val >= 0) && (r.val <= 30)) {
+                result[l].class = 'low'
               }
-              else if ( ( result[r].val > 30 ) && ( result[r].val <= 70 ) ){
-                result[r].class = 'medium'
+              else if ((r.val > 30) && (r.val <= 70)) {
+                result[l].class = 'medium'
               }
-              else if ( ( result[r].val > 70 ) && ( result[r].val <= 100 ) ){
-                result[r].class = 'high'
+              else if ((r.val > 70) && (r.val <= 100)) {
+                result[l].class = 'high'
               }
             }
 
-          }
+          });
 
 
           return result;

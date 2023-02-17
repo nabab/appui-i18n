@@ -66,7 +66,7 @@
            class="bbn-large">
         <a :href="optionsRoot + 'tree'"
             title="<?=_("Choose the option you want to translate from the options' tree")?>"
-            v-text="_('Follow the link to configure other options for translation')"/>
+            v-text="_('Click here to configure the languages on the options\' tree')"/>
       </div>
       <div v-if="source.configured_langs"
            class="bbn-vmiddle bbn-top-sspace"
@@ -81,7 +81,7 @@
         </span>
         <span v-else
               class="bbn-medium bbn-medium bbn-right-sspace">
-          <?=_("Languages configured for options translation")?>:
+          <?=_("Languages found in the main project's options")?>:
         </span>
         <span v-for="c in source.configured_langs"
              class="bbn-radius bbn-spadded bbn-alt-background bbn-nowrap bbn-right-sspace bbn-vxsmargin">
