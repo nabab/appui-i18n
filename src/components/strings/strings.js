@@ -6,10 +6,28 @@
         column_length: true,
         hidden_cols: [],
         showAlert: false,
-        root: appui.plugins['appui-i18n'] + '/'
+        root: appui.plugins['appui-i18n'] + '/',
+        mainPage: appui.getRegistered('appui-i18n')
       };
     },
     computed: {
+      currentProject(){
+        return bbn.fn.getRow(this.mainPage.source.projects, 'code', this.source.id_project);
+      },
+      currentLangs(){
+        let langs = [];
+        if (this.currentProject) {
+          bbn.fn.each(this.currentProject.langs, l => {
+            if (this.mainPage.source.primary) {
+              let a = bbn.fn.getField(this.mainPage.source.primary, 'code', 'id', l);
+              if (a) {
+                langs.push(a);
+              }
+            }
+          });
+        }
+        return langs;
+      },
       isOptions(){
         return !!this.source
           && !!this.source.id_project
@@ -22,7 +40,7 @@
       /**array of columns for the table*/
       columns(){
         let r = [];
-        bbn.fn.each(this.source.res.languages, l => {
+        bbn.fn.each(this.currentLangs, l => {
           let text = bbn.fn.getField(this.source.primary, 'text', 'code', l);
           let obj = {
             field: l + '_db',
@@ -34,14 +52,18 @@
           obj.render = row => {
             let translation_db = row[l + '_db'];
             let translation_po = row[l + '_po'];
-            if ((translation_db !== false)
+            if (translation_db === false) {
+              return '';
+            }
+            if (!bbn.fn.isNull(translation_db)
               && !!translation_db.length
               && (translation_db === translation_po)
             ) {
               return `${translation_db} <i class="nf nf-fa-check bbn-large bbn-green" title="` + bbn._('Expression correctly inserted in db and po file') + `" style="float:right"/>`;
             }
-            else if (translation_db.length
-              && (translation_db !== translation_po)
+            else if (bbn.fn.isNull(translation_db)
+              || (translation_db.length
+              && (translation_db !== translation_po))
             ) {
               return  `<span title="` + (translation_po.length ? bbn._('The translation in the po file is different from the one in database') : '') + `"
                               class="${translation_po.length ? 'bbn-orange' : 'bbn-red'}">
@@ -51,9 +73,6 @@
                           class="${translation_po.length ? 'nf nf-fa-exclamation' : 'nf nf-fa-exclamation_triangle'} bbn-large ${translation_po.length ? 'bbn-orange' : 'bbn-red'}"
                           title="` + (translation_po ? (bbn._('The translation in the po file is') + ': ' + translation_po) : bbn._('Translation missing in po file')) + `"/>
                       `;
-            }
-            else if (translation_db === false) {
-              return '';
             }
           }
           r.push(obj);
@@ -97,22 +116,7 @@
                 appui.success(bbn._('Files of translation successfully updated for %s', d.languages.join(' ' + bbn._('and') + ' ')));
               }
               if (!!d.widget) {
-                let i18n = this.closest('appui-i18n');
-                if (i18n) {
-                  let dashboardPage = i18n.find('appui-i18n-dashboard');
-                  if (dashboardPage
-                    && !!dashboardPage.idProject
-                    && (dashboardPage.idProject === this.source.id_project)
-                  ) {
-                    let dashboard = dashboardPage.getRef('dashboard');
-                    if (dashboard) {
-                      let widget = dashboard.getWidget(this.source.res.id_option);
-                      if (widget) {
-                        this.$set(widget.source, 'data_widget', d.widget);
-                      }
-                    }
-                  }
-                }
+                this.updateWidget(this.source.res.id_option, d.widget);
               }
               this.$nextTick(() => {
                 this.showAlert = false;
@@ -222,22 +226,7 @@
                 appui.warning(bbn._('Please be sure to remake po files'));
               }
               if (!!d.widget) {
-                let i18n = this.closest('appui-i18n');
-                if (i18n) {
-                  let dashboardPage = i18n.find('appui-i18n-dashboard');
-                  if (dashboardPage
-                    && !!dashboardPage.idProject
-                    && (dashboardPage.idProject === this.source.id_project)
-                  ) {
-                    let dashboard = dashboardPage.getRef('dashboard');
-                    if (dashboard) {
-                      let widget = dashboard.getWidget(this.source.res.id_option);
-                      if (widget) {
-                        this.$set(widget.source, 'data_widget', d.widget);
-                      }
-                    }
-                  }
-                }
+                this.updateWidget(this.source.res.id_option, d.widget);
               }
             }
           });
@@ -275,22 +264,7 @@
               appui.error();
             }
             if (!!d.widget) {
-              let i18n = this.closest('appui-i18n');
-              if (i18n) {
-                let dashboardPage = i18n.find('appui-i18n-dashboard');
-                if (dashboardPage
-                  && !!dashboardPage.idProject
-                  && (dashboardPage.idProject === this.source.id_project)
-                ) {
-                  let dashboard = dashboardPage.getRef('dashboard');
-                  if (dashboard) {
-                    let widget = dashboard.getWidget(this.source.res.id_option);
-                    if (widget) {
-                      this.$set(widget.source, 'data_widget', d.widget);
-                    }
-                  }
-                }
-              }
+              this.updateWidget(this.source.res.id_option, d.widget);
             }
           }
           else {
@@ -298,6 +272,22 @@
           }
         });
       },
+      updateWidget(idWidget, data){
+        let dashboardPage = appui.getRegistered('appui-i18n-dashboard', true);
+        if (!!this.currentProject
+          && dashboardPage
+          && !!dashboardPage.idProject
+          && (dashboardPage.idProject === this.currentProject.id)
+        ) {
+          let dashboard = dashboardPage.getRef('dashboard');
+          if (dashboard) {
+            let widget = dashboard.getWidget(idWidget);
+            if (widget) {
+              this.$set(widget.source, 'data_widget', data);
+            }
+          }
+        }
+      }
     },
     watch: {
       showAlert(val){

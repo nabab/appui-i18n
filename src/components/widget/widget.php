@@ -39,7 +39,7 @@
       <div v-if="data_widget[source.language].num > 0"
            v-for="(w, i) in data_widget"
            class="bbn-grid-full">
-        <template v-if="!!dashboard.isOptionsProject || ((i !== source.language) && configured_langs.includes(getField(primary, 'id', 'code', i)))">
+        <template v-if="!!dashboard.isOptionsProject || configured_langs.includes(getField(primary, 'id', 'code', i))">
           <appui-i18n-lang :code="i"
                            class="bbn-b bbn-i"/>
           <span v-text=" w.num_translations + ' / '+ w.num"

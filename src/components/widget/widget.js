@@ -95,13 +95,7 @@
         return this.source.data_widget.locale_dirs;
       },
       configured_langs(){
-        return this.closest('bbn-container').getComponent() && this.closest('bbn-container').getComponent().source ? this.closest('bbn-container').getComponent().source.configured_langs : [];
-        if (this.source.language &&  this.closest('bbn-container').getComponent()){
-          return  this.closest('bbn-container').getComponent().source.configured_langs;
-        }
-        else if (this.source.data_widget.result) {
-          return Object.keys(this.source.data_widget.result);
-        }
+        return appui.getRegistered('appui-i18n-dashboard').source.configured_langs;
       },
       dd_primary(){
         let res = []

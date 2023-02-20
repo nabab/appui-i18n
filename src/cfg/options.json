@@ -3,7 +3,8 @@
     "show_code": 1,
     "show_icon": 1,
     "allow_children": 1,
-    "i18n": "en"
+    "i18n": "en",
+    "i18n_inheritance": "cascade"
   },
   "id_parent": ["appui"],
   "text": "Internationalization",
