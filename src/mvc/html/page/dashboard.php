@@ -1,117 +1,99 @@
-<div class="bbn-overlay dashboard-splitter-container">
-  <bbn-splitter orientation="vertical"
-                :resizable="true"
-  >
-
-    <bbn-pane :collapsible="true"
-              :resizable="true"
-              size="17%"
-
-    >
-      <div class="bbn-overlay config-container">
-
-          <div class="first">
-            <span class="bbn-b bbn-medium"><?=_('Select a project')?></span>
+<div class="appui-i18n-dashboard bbn-overlay bbn-flex-height bbn-alt-background">
+  <div class="bbn-padded">
+    <div class="appui-i18n-dashboard-toolbar bbn-bottom-space">
+      <div :class="['bbn-spadded', 'bbn-background', 'bbn-radius', 'appui-task-box-shadow', 'bbn-vmiddle', 'bbn-nowrap', {
+            'bbn-flex-width': !isMobile(),
+            'bbn-flex-height': !!isMobile()
+          }]">
+        <div :class="['bbn-alt-background', 'bbn-vmiddle', 'bbn-radius', 'bbn-flex-fill', {
+               'bbn-hspadded': !isMobile(),
+               'bbn-spadded': isMobile()
+             }]"
+             style="min-height: 2rem; flex-wrap: wrap">
+          <div :class="['bbn-vxsmargin', {
+                'bbn-vmiddle bbn-right-lspace': !isMobile(),
+                'bbn-right-space': isMobile()
+              }]">
+            <div :class="['bbn-upper', 'bbn-right-space', 'bbn-b', 'bbn-secondary-text-alt', {'bbn-bottom-xsspace': isMobile()}]"
+                 v-text="_('Select a project')"/>
             <bbn-dropdown :url="source.root + 'page/dashboard'"
-                          :source="dd_projects"
-                          v-model="id_project"
-                          @change="load_widgets"
-            ></bbn-dropdown>
+                          :source="source.projects"
+                          v-model="idProject"
+                          @change="loadWidgets"
+                          source-value="id"
+                          source-text="name"/>
           </div>
-
-          <div class="second bbn-b bbn-medium bbn-w-100" v-if="id_project !== 'options'">
-            <div class="bbn-w-50 bbn-right">
-              <span><?=_("The source language for this project is")?>:</span>
-            </div>
-            <div class="bbn-w-50 bbn-grid-fields" style="height:30px">
-              <div>
-                <span class="bbn-green bbn-medium bbn-hpadded" v-text="languageText"></span>
-                <i :class="['bbn-large', 'bbn-p' ,{
-                    'nf nf-fa-edit' : !changingProjectLang,
-                    'nf nf-fa-times': changingProjectLang
-                  }]" 
-                    @click="changingProjectLang = !changingProjectLang"
-                    :title="_('Change the project source lang')"
-                ></i>
-              </div>
-              <div v-show="changingProjectLang" >
-                <bbn-dropdown :source="dd_primary"
-                              v-model="language"
-                              @change="set_project_language"
-                              placeholder="<?=_('Select a language')?>"
-                ></bbn-dropdown>
-              </div>
-            </div>
-          </div>
-          <div v-else
-               class="bbn-large second"
-          >
-            <a :href="optionsRoot + 'tree'"
-               title="<?=_("Choose the option you want to translate from the options' tree")?>"
-            ><?=_("Follow the link to configure other options for translation")?></a>
-          </div>
-
-          <div class="third" v-show="source.configured_langs">
-            <span v-if="(id_project !== 'options') && source.configured_langs.length"  class="bbn-b bbn-medium">
-              <?=_("Languages configured for translation of this project")?>:
-            </span>
-            <span  class="bbn-b bbn-medium" v-else-if="(id_project !== 'options') && !source.configured_langs.length">
-              <?=_("There are no languages configured for the translation of this project")?>
-            </span>
-            <span v-else class="bbn-b bbn-medium"><?=_("Languages configured for options translation")?>:</span>
-            <div class="langs">
-              <div v-for="c in source.configured_langs"
-                   class="bbn-i bbn-medium"
-                   v-text="getField(primary, 'text', {id: c})"
-              ></div>
-            </div>
-
-          </div>
-
-          <div class="fourth">
-            <div style="max-height: 25px;" class="bbn-grid-full bbn-c" >
-              <bbn-button icon="nf nf-fa-cogs"
-                          text="<?=_("Config project languges")?>"
-                          @click="cfg_project_languages"
-                          title="<?=_("Configure languages for this project")?>"
-                          v-if="id_project !== 'options'"
-              ></bbn-button>
-
-              <bbn-button icon="nf nf-fa-user"
-                          text="<?=_("User activity")?>"
-                          @click="open_user_activity"
-              ></bbn-button>
-
-              <bbn-button icon="nf nf-fa-users"
-                          text="<?=_("Users activity")?>"
-                          @click="open_users_activity"
-              ></bbn-button>
-
-              <bbn-button icon="nf nf-fa-flag"
-                          text="<?=_("Glossary table")?>"
-                          @click="open_glossary_table"
-              ></bbn-button>
-
-
-            </div>
-          </div>
-
-
-
-
-
+          <bbn-button v-if="!isOptionsProject"
+                      icon="nf nf-fa-cogs"
+                      text="<?=_("Config project languges")?>"
+                      @click="openProjectLanguagesCfg"
+                      title="<?=_("Configure languages for this project")?>"
+                      class="bbn-right-space bbn-vxsmargin bbn-no-border"/>
+          <bbn-button icon="nf nf-fa-user"
+                      text="<?=_("User activity")?>"
+                      @click="openUserActivity"
+                      class="bbn-right-space bbn-vxsmargin bbn-no-border"/>
+          <bbn-button icon="nf nf-fa-users"
+                      text="<?=_("Users activity")?>"
+                      @click="openUsersActivity"
+                      class="bbn-right-space bbn-vxsmargin bbn-no-border"/>
+          <bbn-button icon="nf nf-fa-flag"
+                      text="<?=_("Glossary table")?>"
+                      @click="openGlossary"
+                      class="bbn-right-space bbn-vxsmargin bbn-no-border"/>
+        </div>
+        <div :class="['bbn-upper', 'bbn-b', 'bbn-lg', 'bbn-tertiary-text-alt', {
+              'bbn-left-lspace bbn-right-space': !isMobile(),
+              'bbn-top-space bbn-bottom-space': !!isMobile(),
+            }]"
+            v-text="_('i18n')"/>
       </div>
-
-    </bbn-pane>
-
-
-    <bbn-pane v-if="widgets.length">
-      <bbn-dashboard :source="widgets"
-      >
-      </bbn-dashboard>
-    </bbn-pane>
-    <bbn-pane v-else>
-      <bbn-loader></bbn-loader>
-    </bbn-pane>
-  </bbn-splitter>
+    </div>
+    <div class="appui-i18n-dashboard-head bbn-background bbn-radius bbn-padded bbn-middle">
+      <div v-if="!isOptionsProject"
+           class="bbn-medium bbn-vmiddle"
+           style="flex-wrap: wrap !important">
+        <span class="bbn-right-sspace"><?=_("The source language for this project is")?>:</span>
+        <bbn-dropdown :source="source.primary"
+                      v-model="language"
+                      @change="setProjectLanguage"
+                      placeholder="<?=_('Select a language')?>"
+                      class="appui-i18n-dashboard-head-lang bbn-b bbn-primary-text-alt bbn-vxsmargin"
+                      source-value="code"
+                      component="appui-i18n-lang"/>
+      </div>
+      <div v-else
+           class="bbn-large">
+        <a :href="optionsRoot + 'tree'"
+            title="<?=_("Choose the option you want to translate from the options' tree")?>"
+            v-text="_('Click here to configure the languages on the options\' tree')"/>
+      </div>
+      <div v-if="source.configured_langs"
+           class="bbn-vmiddle bbn-top-sspace"
+           style="flex-wrap: wrap !important">
+        <span v-if="!isOptionsProject && source.configured_langs.length"
+              class="bbn-medium bbn-right-sspace">
+          <?=_("Languages configured for translation of this project")?>:
+        </span>
+        <span v-else-if="!isOptionsProject && !source.configured_langs.length"
+              class="bbn-medium bbn-medium bbn-right-sspace">
+          <?=_("There are no languages configured for the translation of this project")?>
+        </span>
+        <span v-else
+              class="bbn-medium bbn-medium bbn-right-sspace">
+          <?=_("Languages found in the main project's options")?>:
+        </span>
+        <span v-for="c in source.configured_langs"
+             class="bbn-radius bbn-spadded bbn-alt-background bbn-nowrap bbn-right-sspace bbn-vxsmargin">
+          <appui-i18n-lang :code="getField(primary, 'code', {id: c})"/>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="bbn-flex-fill">
+    <bbn-dashboard v-if="widgets.length"
+                   :source="widgets"
+                   ref="dashboard"/>
+    <bbn-loader v-else/>
+  </div>
 </div>

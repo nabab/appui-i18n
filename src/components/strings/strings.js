@@ -6,178 +6,149 @@
         column_length: true,
         hidden_cols: [],
         showAlert: false,
-        root: appui.plugins['appui-i18n'] + '/'
+        root: appui.plugins['appui-i18n'] + '/',
+        mainPage: appui.getRegistered('appui-i18n')
       };
     },
-    mounted(){
-      //bbn.fn.log('this',this, this.mapData, this.hidden_cols, this.column_length)
-    },
     computed: {
+      currentProject(){
+        return bbn.fn.getRow(this.mainPage.source.projects, 'code', this.source.id_project);
+      },
+      currentLangs(){
+        let langs = [];
+        if (this.currentProject) {
+          bbn.fn.each(this.currentProject.langs, l => {
+            if (this.mainPage.source.primary) {
+              let a = bbn.fn.getField(this.mainPage.source.primary, 'code', 'id', l);
+              if (a) {
+                langs.push(a);
+              }
+            }
+          });
+        }
+        return langs;
+      },
+      isOptions(){
+        return !!this.source
+          && !!this.source.id_project
+          && (this.source.id_project === 'options')
+      },
       /** the source language of this id_option */
       source_lang(){
         return bbn.fn.getField(this.source.primary, 'text', 'code' , this.source.res.path_source_lang)
       },
       /**array of columns for the table*/
       columns(){
-        let r = [],
-          i = 0,
-          def = null;
-        var field = '',
-          vm = this;
-
-        for ( let n in this.source.res.languages ){
-          var obj = {
-            field: this.source.res.languages[n] + '_db',
-            title:  ( this.source.res.languages[n] === this.source.res.path_source_lang) ? (bbn.fn.getField(this.source.primary, 'text', 'code', this.source.res.languages[n]) + '  <i class="nf nf-fa-asterisk" title="This is the original language of the expression"></i>') : bbn.fn.getField(this.source.primary, 'text', 'code', this.source.res.languages[n]),
+        let r = [];
+        bbn.fn.each(this.currentLangs, l => {
+          let text = bbn.fn.getField(this.source.primary, 'text', 'code', l);
+          let obj = {
+            field: l + '_db',
+            title:  (l === this.source.res.path_source_lang) ?
+              (`${text} <i class="nf nf-fa-asterisk" title="` + bbn._('This is the original language of the expression') + `"/>`) :
+              text,
             editable: true
           };
-          /**render for the columns when the  project is not options */
-          if ( ( this.source.id_project !== 'options' )  ){
-            obj.render = (row) => {
-              let translation_db = row[this.source.res.languages[n] + '_db'];
-              let translation_po = row[this.source.res.languages[n] + '_po'];
-              if ( ( translation_db !== false ) && ( translation_db.length )  && ( translation_db === translation_po ) ){
-                return translation_db + '<i class="nf nf-fa-check bbn-large bbn-green" title="Expression correctly inserted in db and po file" style="float:right"><i/>'
-              }
-              else if ( translation_db.length &&  ( translation_db !== translation_po ) && ( this.source.id_project !== 'options') ){
-                return  '<span title="'+
-                (translation_po.length ? bbn._( 'The translation in the po file is different from the one in database') : '')
-                +'" class="' +
-                (translation_po.length ? ' bbn-orange' : ' bbn-red')
-                + '">' + translation_db + '</span><i style="float:right" class="'+
-                (translation_po.length ? ' nf nf-fa-exclamation' : ' nf nf-fa-exclamation_triangle')
-                +' bbn-large '+
-                (translation_po.length ? ' bbn-orange' : ' bbn-red')
-                +'" title="' + (translation_po ? (bbn._('The translation in the po file is') + ': ' + translation_po ) : bbn._('Translation missing in po file')) + '"></i>'
-              }
-              else if ( translation_db === false ){
-                return '';
-              }
+          obj.render = row => {
+            let translation_db = row[l + '_db'];
+            let translation_po = row[l + '_po'];
+            if (translation_db === false) {
+              return '';
+            }
+            if (!bbn.fn.isNull(translation_db)
+              && !!translation_db.length
+              && (translation_db === translation_po)
+            ) {
+              return `${translation_db} <i class="nf nf-fa-check bbn-large bbn-green" title="` + bbn._('Expression correctly inserted in db and po file') + `" style="float:right"/>`;
+            }
+            else if (bbn.fn.isNull(translation_db)
+              || (translation_db.length
+              && (translation_db !== translation_po))
+            ) {
+              return  `<span title="` + (translation_po.length ? bbn._('The translation in the po file is different from the one in database') : '') + `"
+                              class="${translation_po.length ? 'bbn-orange' : 'bbn-red'}">
+                        ${translation_db}
+                      </span>
+                      <i style="float:right"
+                          class="${translation_po.length ? 'nf nf-fa-exclamation' : 'nf nf-fa-exclamation_triangle'} bbn-large ${translation_po.length ? 'bbn-orange' : 'bbn-red'}"
+                          title="` + (translation_po ? (bbn._('The translation in the po file is') + ': ' + translation_po) : bbn._('Translation missing in po file')) + `"/>
+                      `;
             }
           }
           r.push(obj);
-          if ( n === this.source.res.source_lang ){
-            def = i;
-          }
-          i++;
-        }
-        /** column occurrence --- doesn't exist for project option */
-        if ( this.source.id_project !== 'options' ){
-          r.push({
-            ftitle: bbn._('Number of occurrences of the strings in the path files'),
-            title: '#',
-            field: 'occurrence',
-            editable: false,
-            render(row){
-              return row.occurrence ? row.occurrence : 0;
-            },
-            width: 40,
-            cls: 'bbn-c'
-          });
-        }
+        });
         r.push({
+          ftitle: bbn._('Number of occurrences of the strings in the path files'),
+          title: '#',
+          field: 'occurrence',
+          editable: false,
+          render(row){
+            return row.occurrence ? row.occurrence : 0;
+          },
+          width: 40,
+          cls: 'bbn-c'
+        }, {
           ftitle: bbn._('Remove original expression'),
           buttons: this.buttons,
-          width: 90,
+          width: this.isOptions ? 50 : 90,
           cls: 'bbn-c'
         });
-
         return r;
       },
     },
     methods: {
-      generate_mo(){
-        this.post(appui.plugins["appui-i18n"] + '/actions/generate_mo', {
-          id_option : this.source.res.id_option,
-          id_project: this.source.id_project,
-        }, (d) => {
-          if ( d.success === true ){
-            appui.success('Mo files correctly generated');
-          }
-        })
-      },
       /** generate po files for all columns of the table */
       generate(){
         this.showAlert = true;
         if ( this.source.res.languages.length ){
-          this.post(appui.plugins["appui-i18n"] + '/actions/generate', {
+          this.post(this.root + 'actions/generate', {
             id_option: this.source.res.id_option,
             languages: this.source.res.languages,
             id_project: this.source.id_project,
             language: this.source.res.path_source_lang
-          }, (d) => {
-            if ( d.success ){
-
-              d.languages = d.languages.map( (v) => {
+          }, d => {
+            if (d.success) {
+              d.languages = d.languages.map(v => {
                 return bbn.fn.getField(this.source.primary, 'text', 'code', v);
               });
-
-              let router = this.closest('bbn-router');
-              if ( router ){
-
-                let dashboard = router.find('bbn-dashboard');
-                if ( dashboard ){
-                  let widgets = dashboard.findAll('bbn-widget');
-                  if ( widgets.length ){
-                    widgets.forEach((v, i) => {
-                      if ( v.uid === this.source.res.id_option ){
-                        let widget = v;
-                        v.find('appui-i18n-widget').remake_cache()
-
-                      }
-                    });
-                  }
-                }
-
-
-              }
               this.source.res.strings = d.strings;
-              if ( this.closest('bbn-router') ) {
-                let dashboard = this.closest('bbn-router').find('bbn-dashboard');
-                //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
-                if ( dashboard ) {
-                  let widgets = dashboard.findAll('bbn-widget');
-                    if ( widgets.length ){
-                      let idx = bbn.fn.search(widgets, 'uid', this.source.res.id_option),
-                      cp = dashboard.closest('bbn-container').getComponent();
-                      if ( idx > -1 ){
-                        cp.source.data[idx].data_widget = d.widget;
-                      }
-                    }
-
-                }
+              if (!!d.strings && d.strings.length) {
+                appui.success(bbn._('Files of translation successfully updated for %s', d.languages.join(' ' + bbn._('and') + ' ')));
               }
-              appui.success('Files of translation successfully updated for '+ d.languages.join(' and ') );
+              if (!!d.widget) {
+                this.updateWidget(this.source.res.id_option, d.widget);
+              }
               this.$nextTick(() => {
                 this.showAlert = false;
-                //this.find('bbn-table').updateData();
               });
             }
-            this.generate_mo();
+            else {
+              appui.error();
+              this.showAlert = false;
+            }
           });
         }
         else {
-          this.alert('You have to configure at least a language using the button <i class="nf nf-fa-flag"></i> of the widget in the dashboard');
+          this.alert(bbn._('You have to configure at least a language using the button %s of the widget in the dashboard', '<i class="nf nf-fa-flag"></i>'));
           this.showAlert = false;
         }
       },
       /** checks if there are new strings in the files of the path */
-      find_strings(){
-        this.post(appui.plugins["appui-i18n"] + '/actions/find_strings', {
+      findStrings(){
+        this.post(this.root + 'actions/find_strings', {
           id_option: this.source.res.id_option,
           language: this.source.res.path_source_lang,
           languages: this.source.res.languages,
           id_project: this.source.id_project
-        }, (d) => {
-          if ( d.success ){
-            if ( ( d.done > 0 ) && ( d.news.length ) ){
-              //devo fare generate per poterle avere in tabella...
-              appui.success(d.done + ' new strings found')
+        }, d => {
+          if (d.success) {
+            if (!!d.done) {
+              appui.success(bbn._('%d new strings found', d.done));
               this.generate();
 
             }
             else {
-              appui.warning('No new strings found')
+              appui.warning(bbn._('No new strings found'));
             }
           }
         } );
@@ -203,13 +174,13 @@
       },
       //opens the popup containing the link(s) to the file(s) containing the string
       showPath(row){
-        this.getPopup().open({
+        this.getPopup({
           title: bbn._('File(s) containing the string'),
           source: row,
-          component:this.$options.components['show-paths'],
-          height: '500px',
-          width: '400px'
-        })
+          component:this.$options.components.showPath,
+          height: 500,
+          width: 400
+        });
       },
       /** deletes the original expression from db, if the expression is not deleted before from the file (using the link of the expander to the code) it will be again in the table when the table is reloaded or updated */
       delete_expression(row, ob, idx){
@@ -218,124 +189,105 @@
 
           data = this.find('bbn-table').currentData;
           //idx = bbn.fn.search(data, { id_exp: id_exp });
-        this.getPopup().confirm('Did you remove the expression from code before to delete the row?', () => {
-          this.post(appui.plugins["appui-i18n"] + '/actions/delete_expression', { id_exp: row.id_exp, exp: row.exp },  (d) => {
+        this.confirm(bbn._('Did you remove the expression from code before to delete the row?'), () => {
+          this.post(this.root + 'actions/delete_expression', {id_exp: row.id_exp, exp: row.exp},  d => {
             bbn.fn.log('succesws',d)
-            if ( d.success ){
+            if (d.success) {
               //this.$refs.strings_table.updateData();
-              appui.success('Expression deleted ');
+              appui.success(bbn._('Expression deleted '));
               this.$nextTick(()=>{
                 this.$refs.strings_table.currentData.splice(idx, 1);
               })
             }
             else{
-              appui.error('An error occurred while deleting the expression');
+              appui.error(bbn._('An error occurred while deleting the expression'));
             }
           } );
         })
       },
       /** called at @change of the table (when the idx of the row focused changes), insert translation in db and remake the po file */
-      insert_translation(row,idx){
-        var to_delete = [];
-        //creates an array of languages to delete
-        this.source.res.languages.forEach((v, i) => {
-          if ( row[v + '_db'] === '' ){
-            to_delete.push(v)
-          }
-        })
-        this.post(appui.plugins["appui-i18n"] + '/actions/insert_translations', {
-          to_delete : to_delete,
-          row: row,
-          langs: this.source.res.languages,
-          id_option: this.source.res.id_option,
-          id_project: this.source.id_project,
-          row_idx: idx
-        }, (d) => {
-          if (d.success && !d.deleted.length && d.modified_langs.length ){
-            if ( this.source.id_project !== 'options'){
-              d.modified_langs.forEach((v, i) => {
-                this.source.res.strings[idx][v+'_db']= d.row[v+'_db'];
-              })
+      insertTranslation(row){
+        if (!!row) {
+          this.post(this.root + 'actions/insert_translations', {
+            row: row,
+            langs: this.source.res.languages,
+            id_option: this.source.res.id_option,
+            id_project: this.source.id_project
+          }, d => {
+            if (!d.success) {
+              appui.error(bbn._('An error occurred while saving translation'));
             }
-
-            let table = this.find('bbn-table');
-            //table.updateData();
-            appui.success('Translation saved');
-          }
-          else if ( !d.success && !d.deleted.length ){
-            appui.error('An error occurred while saving translation');
-          }
-          else if ( d.success && d.deleted.length ){
-            d.deleted.forEach((v, i) => {
-              this.source.res.strings[idx][v + '_db'] = d.row[v+'_db'];
-              //this.source.res.strings[idx][+ '_db'] = this.source.res.strings[idx][v]['translations_po'];
-              appui.warning('Translation deleted from db, please be sure to remake po files');
-            })
-          }
-          if ( this.closest('bbn-router') ) {
-            bbn.fn.log('before table update', this.closest('bbn-router'))
-            //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
-            if ( this.closest('bbn-router') ) {
-              let dashboard = this.closest('bbn-router').find('bbn-dashboard');
-              //if the dashboard have already been created it replace data of the widget with new data arriving from the new cache of the widget.
-              if ( dashboard ) {
-                let widgets = dashboard.findAll('bbn-widget');
-                if ( widgets.length ){
-                  let idx = bbn.fn.search(widgets, 'uid', this.source.res.id_option),
-                  cp = dashboard.closest('bbn-container').getComponent();
-                  if ( idx > -1 ){
-                    cp.source.data[idx].data_widget = d.widget;
-                  }
-                }
+            else {
+              appui.success(bbn._('Translation saved'));
+              if (d.deleted
+                && d.deleted.length
+                && !this.isOptions
+              ) {
+                appui.warning(bbn._('Please be sure to remake po files'));
+              }
+              if (!!d.widget) {
+                this.updateWidget(this.source.res.id_option, d.widget);
               }
             }
-          }
-        });
+          });
+        }
       },
       /** remakes the model of table in cache */
-      remake_cache(){
+      remakeCache(){
         this.column_length = false;
-        //this.generate();
         this.showAlert = true;
         this.post(this.root + 'actions/reload_table_cache', {
           id_option: this.source.res.id_option,
-          id_project: this.source.id_project,
-          routes: appui.plugins["appui-i18n"] + '/'
-        }, (d) => {
-          if ( d.success ){
-            let diff = ( d.res.total - this.source.res.total );
-            this.source.res.languages = d.res.languages;
-            this.source.res.strings = d.res.strings;
-            //this.find(this, 'bbn-table').updateData();
-            if ( diff > 0 ){
-              appui.warning(diff + ' new string(s) found in ' + this.source.res.path);
-              this.source.res.strings = d.res.strings;
-              this.source.res.total = d.res.total;
-              //this.find(this, 'bbn-table').updateData();
+          id_project: this.source.id_project
+        }, d => {
+          if (d.success) {
+            if (!!d.data) {
+              let diff = d.data.total - this.source.res.total;
+              this.source.res.languages = d.data.languages;
+              this.source.res.strings = d.data.strings;
+              this.source.res.total = d.data.total;
+              if (diff > 0) {
+                appui.warning(bbn._('%d new string(s) found in %s', diff, this.source.res.path));
+              }
+              else if (diff < 0) {
+                appui.warning(bbn._('%d string(s) deleted from %s files', Math.abs(diff), this.source.res.path));
+              }
+              else if (diff = 0) {
+                appui.warning(bbn._('There are no changes in data'));
+              }
+              this.$nextTick(() => {
+                this.showAlert = false;
+                this.column_length = true;
+              });
             }
-            else if ( diff < 0 ){
-              appui.warning(Math.abs(diff) + ' string(s) deleted from ' + this.source.res.path + ' files');
-              this.source.res.strings = d.res.strings;
-              this.source.res.total = d.res.total;
+            else {
+              appui.error();
             }
-            else if ( diff = 0 ){
-              appui.warning('There are no changes in data')
+            if (!!d.widget) {
+              this.updateWidget(this.source.res.id_option, d.widget);
             }
-            this.$nextTick(() => {
-              this.showAlert = false;
-              this.column_length = true;
-            });
-            let router = this.closest('bbn-router');
-            /*if( this.find(router, 'bbn-dashboard') !== undefined ){
-              let dashboard = this.find(router, 'bbn-dashboard'),
-                tab = this.closest(dashboard, 'bbns-container'),
-                cp = tab.getComponent(),
-                data = cp.source.data,
-                widget_idx = bbn.fn.search(data, 'id', this.source.res.id_option);
-            }*/
           }
-        })
+          else {
+            appui.error();
+          }
+        });
       },
+      updateWidget(idWidget, data){
+        let dashboardPage = appui.getRegistered('appui-i18n-dashboard', true);
+        if (!!this.currentProject
+          && dashboardPage
+          && !!dashboardPage.idProject
+          && (dashboardPage.idProject === this.currentProject.id)
+        ) {
+          let dashboard = dashboardPage.getRef('dashboard');
+          if (dashboard) {
+            let widget = dashboard.getWidget(idWidget);
+            if (widget) {
+              this.$set(widget.source, 'data_widget', data);
+            }
+          }
+        }
+      }
     },
     watch: {
       showAlert(val){
@@ -379,14 +331,19 @@
       },
     },
     components:{
-      'show-paths': {
-        template: `<div class="bbn-vpadded">
-          <span class="bbn-spadded bbn-w-100" v-for="p in source.paths">
-            <a v-text="p" @click="link_ide(p)" class="bbn-p"></a>
-          </span></div>`,
+      showPaths: {
+        template: `
+          <div class="bbn-vpadded">
+            <span class="bbn-spadded bbn-w-100"
+                  v-for="p in source.paths">
+              <a v-text="p"
+                 @click="linkToIde(p)"
+                 class="bbn-p"/>
+            </span>
+          </div>`,
         props:['source'],
         methods: {
-          link_ide(path){
+          linkToIde(path){
             let idx = path.lastIndexOf('/'),
               st = 'ide/editor/file/',
               ext = path.slice(idx, path.length);
@@ -404,111 +361,75 @@
         }
 
       },
-      // the toolbar of the table, the template is on html/template folder
-      'toolbar-strings-table': {
+      toolbar: {
         template: `
-        <div class="bbn-header bbn-w-100"
-             ref="toolbar-strings-table"
-             style="min-height: 60px;">
-          <div style="padding: 6px;"
-               v-if="id_project !=='options'"
-          >
-            <bbn-button :title="_('Force translation files update')"
-                        class="bbn-button bbn-events-component"
-                        @click="generate"
-                        icon="nf nf-fa-files_o"
-                        text="<?=_('Create translation files')?>"
-                        style="background-color: orange;"
-            >
-            </bbn-button>
-
-            <bbn-button :title="_('Rebuild table data')"
-                        class="bbn-button bbn-events-component"
-                        @click="remake_cache"
-                        icon="nf nf-fa-retweet"
-                        text="<?=_('Rebuild table data')?>"
-            >
-            </bbn-button>
-
-
-            <bbn-button :title="_('Check files for new strings')"
-                        class="bbn-button bbn-events-component"
-                        @click="find_strings"
-                        icon="nf nf-fa-search"
-                        text="<?=_('Parse files for new strings')?>"
-            >
-            </bbn-button>
-            <div style="display:inline">
+          <div class="bbn-header bbn-flex-width bbn-left-padded bbn-right-padded bbn-bottom-padded bbn-top-sspadded">
+            <div class="bbn-vmiddle"
+                style="flex-wrap: wrap">
               <bbn-input :placeholder="_('Search the string')"
-                         @change="search"
-                         v-model="valueToFind"
-              ></bbn-input></div>
-            <!--div style="display:inline">
-
-              <bbn-switch v-model="hide_source_language"
-                          :value="true"
-                          :novalue="false"
-                          style="float: right;display: inline;"
-              ></bbn-switch>
-
-              <div style="display:inline; float: right; padding-right:6px"
-              >
-                <span style="vertical-align: sub;"
-                      v-text="hide_source_language ? 'Show source language column' : 'Hide source language column'"></span>
-              </div>
-            </div-->
-
-          </div>
-          <div style="font-size:9px; text-align: right; padding-right: 6px;padding-bottom:3px"
-               v-if="id_project !=='options'"
-          ><?=_("If the column with ")?><i class="nf nf-fa-asterisk"></i> <?=_("is empty be sure to force translation files update and then update the table")?></div>
-
-          <div v-if="id_project ==='options'"
-               class="bbn-padded bbn-grid-fields"
-
-          >
-            <div class="bbn-r"><?=_("Select languages you want to hide from the table")?></div>
-            <div class="bbn-r">
-              <div v-for="l in  languages"
-                   style="display: inline;"
-              >
-                <label v-text="l"></label>
-                <bbn-checkbox :key="l"
-                              style="padding-right: 3px"
-                              @change="hide_col"
-                              :value="l"
-                ></bbn-checkbox>
-              </div>
-
+                        v-model="valueToFind"
+                        :button-right="valueToFind.length ? 'nf nf-fa-close bbn-red' : 'nf nf-fa-search'"
+                        @clickRightButton="valueToFind = valueToFind.length ? '' : valueToFind"
+                        class="bbn-right-sspace bbn-top-sspace"/>
+              <bbn-button :title="_('Force translation files update')"
+                          class="bbn-bg-orange bbn-white bbn-right-sspace bbn-top-sspace"
+                          @click="main.generate"
+                          icon="nf nf-md-file_replace_outline"
+                          :text="_('Create translation files')"/>
+              <bbn-button :title="_('Rebuild table data')"
+                          @click="main.remakeCache"
+                          icon="nf nf-fa-retweet"
+                          :text="_('Rebuild table data')"
+                          class="bbn-right-sspace bbn-top-sspace"/>
+              <bbn-button :title="_('Check files for new strings')"
+                          @click="main.findStrings"
+                          icon="nf nf-fa-search"
+                          :text="_('Parse files for new strings')"
+                          v-if="!isOptions"
+                          class="bbn-top-sspace"/>
+            </div>
+            <div class="bbn-xs bbn-vmiddle bbn-flex-fill bbn-left-space bbn-top-sspace"
+                v-if="!isOptions"
+                style="justify-content: flex-end">
+              <span>
+                <span v-text="_('If the column with')"/>
+                <i class="nf nf-fa-asterisk"/>
+                <span v-text="_('is empty be sure to force translation files update and then update the table')"/>
+              </span>
             </div>
           </div>
-
-        </div>
-`,
+        `,
         props: ['source'],
         data(){
           return {
-            // v-model of multiselect when project === options
-            to_hide_col:[],
-            hide_source_language: false,
-            tab: null,
+            main: null,
             valueToFind: '',
             root: appui.plugins['appui-i18n'] + '/'
           };
         },
+        computed: {
+          languages(){
+            return this.main ? this.main.source.res.languages : []
+          },
+          idProject(){
+            return this.main ? this.main.source.id_project : null
+          },
+          isOptions(){
+            return !!this.idProject && (this.idProject === 'options');
+          }
+        },
         methods: {
           search(){
-            //apply currentfilters to the table on the field of original exp and in all languages
             let table = this.closest('bbn-table');
-            //search the string in the input field of toolbar
-            if ( this.valueToFind !== '' ){
+            if (this.valueToFind.length) {
+              table.currentFilters.conditions.splice(0);
               table.currentFilters.logic = 'OR'
               table.currentFilters.conditions.push({
                 field: 'exp',
                 operator: 'contains',
                 value: this.valueToFind
               });
-              bbn.fn.each(this.tab.source.res.languages, (v, i) => {
+              bbn.fn.each(this.languages, (v, i) => {
                 table.currentFilters.conditions.push({
                   field: v + '_db',
                   operator: 'contains',
@@ -516,73 +437,20 @@
                 })
               })
             }
-            else if ( (this.valueToFind === '') && (table.currentFilters.conditions.length) ) {
-              table.currentFilters.conditions = [];
-            }
-          },
-          // takes the methods from the parent component using @var this.tab declared at created
-          generate(){
-            return this.tab ? this.tab.generate() : null;
-          },
-          generate_mo() {
-            return this.tab ? this.tab.generate_mo() : null;
-          },
-          find_strings(){
-            return this.tab ? this.tab.find_strings() : null;
-          },
-          remake_cache(){
-            return this.tab ? this.tab.remake_cache() : null;
-          },
-          hide_col(val){
-            if ( val && this.tab ){
-              let idx = this.tab.hidden_cols.indexOf(val);
-              if ( idx > -1 ){
-                this.tab.hidden_cols.splice(idx, 1);
-              }
-              else {
-                this.tab.hidden_cols.push(val);
-              }
+            else if (!this.valueToFind.length && table.currentFilters.conditions.length) {
+              table.currentFilters.conditions.splice(0);
             }
           }
         },
-        mounted(){
-          this.tab = this.closest('appui-i18n-strings');
+        beforeMount(){
+          this.$set(this, 'main', this.closest('appui-i18n-strings'));
         },
         watch: {
           valueToFind(val){
-            if ( !val.length ){
-              this.closest('bbn-table').currentFilters.logic = '';
-              this.closest('bbn-table').currentFilters.conditions = [];
-            }
-          },
-          /** v-model of bbn-switch used to hide the column of original language */
-          hide_source_language(val, oldVal){
-            // get the index of the column of source language
-            var idx = bbn.fn.search(this.tab.columns, 'field', this.tab.source.res.path_source_lang + '_db');
-            if ( ( val === true ) && ( idx > -1) ){
-              this.tab.columns[idx].hidden = true;
-              this.tab.find('bbn-table').updateData();
-              this.tab.$forceUpdate()
-            }
-            else if (( val === false )){
-              this.tab.columns[idx].hidden = false;
-              this.tab.find('bbn-table').updateData();
-              this.tab.$forceUpdate()
-            }
-          },
-
-        },
-        computed: {
-          languages(){
-            return this.tab ? this.tab.source.res.languages : []
-          },
-          id_project(){
-            return this.tab ? this.tab.source.id_project : null
-          },
-
+            this.search();
+          }
         }
-
-      },
+      }
     }
   }
 })();

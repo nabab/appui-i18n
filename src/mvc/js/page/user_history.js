@@ -6,7 +6,8 @@
         //primary is used to render the name of languages in the table
         primary: this.closest('bbn-router').$parent.source.primary,
         ready: false,
-        root: appui.plugins['appui-i18n'] + '/'
+        root: appui.plugins['appui-i18n'] + '/',
+        githubUrl: 'https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/'
       };
     },
     computed: {
@@ -62,7 +63,7 @@
       render_lang(row){
         let st = '';
         if ( row.translation_lang === 'fr' ){
-          st += '<img class="flag" style="width:25px;height:15px" src="https://lipis.github.io/flag-icon-css/flags/4x3/fr.svg" alt="France Flag">'
+          st += '<img class="flag" style="width:25px;height:15px" src="3https://lipis.github.io/flag-icon-css/flags/4x3/fr.svg" alt="France Flag">'
         }
         else if ( row.translation_lang === 'en' ){
           st += '<img class="flag" style="width:30px;height:20px" src="https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg" alt="United Kingdom Flag">'
