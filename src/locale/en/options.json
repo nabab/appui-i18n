@@ -1,0 +1,1498 @@
+{
+    "Internationalization": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n"
+        ],
+        "original": "Internationalization",
+        "translation": "Internationalization"
+    },
+    "Languages": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages"
+        ],
+        "original": "Languages",
+        "translation": "Languages"
+    },
+    "Abkhaz": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ab"
+        ],
+        "original": "Abkhaz",
+        "translation": "Abkhaz"
+    },
+    "Afar": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/aa"
+        ],
+        "original": "Afar",
+        "translation": "Afar"
+    },
+    "Afrikaans": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/af"
+        ],
+        "original": "Afrikaans",
+        "translation": "Afrikaans"
+    },
+    "Akan": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ak"
+        ],
+        "original": "Akan",
+        "translation": "Akan"
+    },
+    "Albanian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/sq"
+        ],
+        "original": "Albanian",
+        "translation": "Albanian"
+    },
+    "Amharic": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/am"
+        ],
+        "original": "Amharic",
+        "translation": "Amharic"
+    },
+    "Arabic": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ar"
+        ],
+        "original": "Arabic",
+        "translation": "Arabic"
+    },
+    "Aragonese": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/an"
+        ],
+        "original": "Aragonese",
+        "translation": "Aragonese"
+    },
+    "Armenian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/hy"
+        ],
+        "original": "Armenian",
+        "translation": "Armenian"
+    },
+    "Assamese": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/as"
+        ],
+        "original": "Assamese",
+        "translation": "Assamese"
+    },
+    "Avaric": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/av"
+        ],
+        "original": "Avaric",
+        "translation": "Avaric"
+    },
+    "Avestan": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ae"
+        ],
+        "original": "Avestan",
+        "translation": "Avestan"
+    },
+    "Aymara": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ay"
+        ],
+        "original": "Aymara",
+        "translation": "Aymara"
+    },
+    "Azerbaijani": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/az"
+        ],
+        "original": "Azerbaijani",
+        "translation": "Azerbaijani"
+    },
+    "Bambara": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/bm"
+        ],
+        "original": "Bambara",
+        "translation": "Bambara"
+    },
+    "Bashkir": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ba"
+        ],
+        "original": "Bashkir",
+        "translation": "Bashkir"
+    },
+    "Basque": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/eu"
+        ],
+        "original": "Basque",
+        "translation": "Basque"
+    },
+    "Belarusian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/be"
+        ],
+        "original": "Belarusian",
+        "translation": "Belarusian"
+    },
+    "Bengali": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/bn"
+        ],
+        "original": "Bengali",
+        "translation": "Bengali"
+    },
+    "Bihari": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/bh"
+        ],
+        "original": "Bihari",
+        "translation": "Bihari"
+    },
+    "Bislama": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/bi"
+        ],
+        "original": "Bislama",
+        "translation": "Bislama"
+    },
+    "Bosnian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/bs"
+        ],
+        "original": "Bosnian",
+        "translation": "Bosnian"
+    },
+    "Breton": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/br"
+        ],
+        "original": "Breton",
+        "translation": "Breton"
+    },
+    "Bulgarian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/bg"
+        ],
+        "original": "Bulgarian",
+        "translation": "Bulgarian"
+    },
+    "Burmese": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/my"
+        ],
+        "original": "Burmese",
+        "translation": "Burmese"
+    },
+    "Catalan; Valencian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ca"
+        ],
+        "original": "Catalan; Valencian",
+        "translation": "Catalan; Valencian"
+    },
+    "Chamorro": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ch"
+        ],
+        "original": "Chamorro",
+        "translation": "Chamorro"
+    },
+    "Chechen": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ce"
+        ],
+        "original": "Chechen",
+        "translation": "Chechen"
+    },
+    "Chichewa; Chewa; Nyanja": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ny"
+        ],
+        "original": "Chichewa; Chewa; Nyanja",
+        "translation": "Chichewa; Chewa; Nyanja"
+    },
+    "Chinese": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/zh"
+        ],
+        "original": "Chinese",
+        "translation": "Chinese"
+    },
+    "Chuvash": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/cv"
+        ],
+        "original": "Chuvash",
+        "translation": "Chuvash"
+    },
+    "Cornish": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/kw"
+        ],
+        "original": "Cornish",
+        "translation": "Cornish"
+    },
+    "Corsican": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/co"
+        ],
+        "original": "Corsican",
+        "translation": "Corsican"
+    },
+    "Cree": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/cr"
+        ],
+        "original": "Cree",
+        "translation": "Cree"
+    },
+    "Croatian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/hr"
+        ],
+        "original": "Croatian",
+        "translation": "Croatian"
+    },
+    "Czech": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/cs"
+        ],
+        "original": "Czech",
+        "translation": "Czech"
+    },
+    "Danish": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/da"
+        ],
+        "original": "Danish",
+        "translation": "Danish"
+    },
+    "Divehi; Dhivehi; Maldivian;": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/dv"
+        ],
+        "original": "Divehi; Dhivehi; Maldivian;",
+        "translation": "Divehi; Dhivehi; Maldivian;"
+    },
+    "Dutch": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/nl"
+        ],
+        "original": "Dutch",
+        "translation": "Dutch"
+    },
+    "English": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/en"
+        ],
+        "original": "English",
+        "translation": "English"
+    },
+    "Esperanto": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/eo"
+        ],
+        "original": "Esperanto",
+        "translation": "Esperanto"
+    },
+    "Estonian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/et"
+        ],
+        "original": "Estonian",
+        "translation": "Estonian"
+    },
+    "Ewe": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ee"
+        ],
+        "original": "Ewe",
+        "translation": "Ewe"
+    },
+    "Faroese": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/fo"
+        ],
+        "original": "Faroese",
+        "translation": "Faroese"
+    },
+    "Fijian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/fj"
+        ],
+        "original": "Fijian",
+        "translation": "Fijian"
+    },
+    "Finnish": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/fi"
+        ],
+        "original": "Finnish",
+        "translation": "Finnish"
+    },
+    "French": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/fr"
+        ],
+        "original": "French",
+        "translation": "French"
+    },
+    "Fula; Fulah; Pulaar; Pular": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ff"
+        ],
+        "original": "Fula; Fulah; Pulaar; Pular",
+        "translation": "Fula; Fulah; Pulaar; Pular"
+    },
+    "Galician": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/gl"
+        ],
+        "original": "Galician",
+        "translation": "Galician"
+    },
+    "Georgian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ka"
+        ],
+        "original": "Georgian",
+        "translation": "Georgian"
+    },
+    "German": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/de"
+        ],
+        "original": "German",
+        "translation": "German"
+    },
+    "Greek, Modern": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/el"
+        ],
+        "original": "Greek, Modern",
+        "translation": "Greek, Modern"
+    },
+    "Guaran\u00ed": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/gn"
+        ],
+        "original": "Guaran\u00ed",
+        "translation": "Guaran\u00ed"
+    },
+    "Gujarati": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/gu"
+        ],
+        "original": "Gujarati",
+        "translation": "Gujarati"
+    },
+    "Haitian; Haitian Creole": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ht"
+        ],
+        "original": "Haitian; Haitian Creole",
+        "translation": "Haitian; Haitian Creole"
+    },
+    "Hausa": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ha"
+        ],
+        "original": "Hausa",
+        "translation": "Hausa"
+    },
+    "Hebrew (modern)": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/he"
+        ],
+        "original": "Hebrew (modern)",
+        "translation": "Hebrew (modern)"
+    },
+    "Herero": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/hz"
+        ],
+        "original": "Herero",
+        "translation": "Herero"
+    },
+    "Hindi": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/hi"
+        ],
+        "original": "Hindi",
+        "translation": "Hindi"
+    },
+    "Hiri Motu": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ho"
+        ],
+        "original": "Hiri Motu",
+        "translation": "Hiri Motu"
+    },
+    "Hungarian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/hu"
+        ],
+        "original": "Hungarian",
+        "translation": "Hungarian"
+    },
+    "Icelandic": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/is"
+        ],
+        "original": "Icelandic",
+        "translation": "Icelandic"
+    },
+    "Ido": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/io"
+        ],
+        "original": "Ido",
+        "translation": "Ido"
+    },
+    "Igbo": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ig"
+        ],
+        "original": "Igbo",
+        "translation": "Igbo"
+    },
+    "Indonesian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/id"
+        ],
+        "original": "Indonesian",
+        "translation": "Indonesian"
+    },
+    "Interlingua": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ia"
+        ],
+        "original": "Interlingua",
+        "translation": "Interlingua"
+    },
+    "Interlingue": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ie"
+        ],
+        "original": "Interlingue",
+        "translation": "Interlingue"
+    },
+    "Inuktitut": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/iu"
+        ],
+        "original": "Inuktitut",
+        "translation": "Inuktitut"
+    },
+    "Inupiaq": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ik"
+        ],
+        "original": "Inupiaq",
+        "translation": "Inupiaq"
+    },
+    "Irish": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ga"
+        ],
+        "original": "Irish",
+        "translation": "Irish"
+    },
+    "Italian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/it"
+        ],
+        "original": "Italian",
+        "translation": "Italian"
+    },
+    "Japanese": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ja"
+        ],
+        "original": "Japanese",
+        "translation": "Japanese"
+    },
+    "Javanese": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/jv"
+        ],
+        "original": "Javanese",
+        "translation": "Javanese"
+    },
+    "Kalaallisut, Greenlandic": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/kl"
+        ],
+        "original": "Kalaallisut, Greenlandic",
+        "translation": "Kalaallisut, Greenlandic"
+    },
+    "Kannada": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/kn"
+        ],
+        "original": "Kannada",
+        "translation": "Kannada"
+    },
+    "Kanuri": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/kr"
+        ],
+        "original": "Kanuri",
+        "translation": "Kanuri"
+    },
+    "Kashmiri": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ks"
+        ],
+        "original": "Kashmiri",
+        "translation": "Kashmiri"
+    },
+    "Kazakh": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/kk"
+        ],
+        "original": "Kazakh",
+        "translation": "Kazakh"
+    },
+    "Khmer": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/km"
+        ],
+        "original": "Khmer",
+        "translation": "Khmer"
+    },
+    "Kikuyu, Gikuyu": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ki"
+        ],
+        "original": "Kikuyu, Gikuyu",
+        "translation": "Kikuyu, Gikuyu"
+    },
+    "Kinyarwanda": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/rw"
+        ],
+        "original": "Kinyarwanda",
+        "translation": "Kinyarwanda"
+    },
+    "Kirghiz, Kyrgyz": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ky"
+        ],
+        "original": "Kirghiz, Kyrgyz",
+        "translation": "Kirghiz, Kyrgyz"
+    },
+    "Kirundi": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/rn"
+        ],
+        "original": "Kirundi",
+        "translation": "Kirundi"
+    },
+    "Komi": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/kv"
+        ],
+        "original": "Komi",
+        "translation": "Komi"
+    },
+    "Kongo": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/kg"
+        ],
+        "original": "Kongo",
+        "translation": "Kongo"
+    },
+    "Korean": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ko"
+        ],
+        "original": "Korean",
+        "translation": "Korean"
+    },
+    "Kurdish": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ku"
+        ],
+        "original": "Kurdish",
+        "translation": "Kurdish"
+    },
+    "Kwanyama, Kuanyama": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/kj"
+        ],
+        "original": "Kwanyama, Kuanyama",
+        "translation": "Kwanyama, Kuanyama"
+    },
+    "Lao": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/lo"
+        ],
+        "original": "Lao",
+        "translation": "Lao"
+    },
+    "Latin": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/la"
+        ],
+        "original": "Latin",
+        "translation": "Latin"
+    },
+    "Latvian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/lv"
+        ],
+        "original": "Latvian",
+        "translation": "Latvian"
+    },
+    "Limburgish, Limburgan, Limburger": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/li"
+        ],
+        "original": "Limburgish, Limburgan, Limburger",
+        "translation": "Limburgish, Limburgan, Limburger"
+    },
+    "Lingala": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ln"
+        ],
+        "original": "Lingala",
+        "translation": "Lingala"
+    },
+    "Lithuanian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/lt"
+        ],
+        "original": "Lithuanian",
+        "translation": "Lithuanian"
+    },
+    "Luba-Katanga": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/lu"
+        ],
+        "original": "Luba-Katanga",
+        "translation": "Luba-Katanga"
+    },
+    "Luganda": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/lg"
+        ],
+        "original": "Luganda",
+        "translation": "Luganda"
+    },
+    "Luxembourgish, Letzeburgesch": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/lb"
+        ],
+        "original": "Luxembourgish, Letzeburgesch",
+        "translation": "Luxembourgish, Letzeburgesch"
+    },
+    "Macedonian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/mk"
+        ],
+        "original": "Macedonian",
+        "translation": "Macedonian"
+    },
+    "Malagasy": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/mg"
+        ],
+        "original": "Malagasy",
+        "translation": "Malagasy"
+    },
+    "Malay": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ms"
+        ],
+        "original": "Malay",
+        "translation": "Malay"
+    },
+    "Malayalam": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ml"
+        ],
+        "original": "Malayalam",
+        "translation": "Malayalam"
+    },
+    "Maltese": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/mt"
+        ],
+        "original": "Maltese",
+        "translation": "Maltese"
+    },
+    "Manx": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/gv"
+        ],
+        "original": "Manx",
+        "translation": "Manx"
+    },
+    "M\u0101ori": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/mi"
+        ],
+        "original": "M\u0101ori",
+        "translation": "M\u0101ori"
+    },
+    "Marathi (Mar\u0101\u1e6dh\u012b)": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/mr"
+        ],
+        "original": "Marathi (Mar\u0101\u1e6dh\u012b)",
+        "translation": "Marathi (Mar\u0101\u1e6dh\u012b)"
+    },
+    "Marshallese": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/mh"
+        ],
+        "original": "Marshallese",
+        "translation": "Marshallese"
+    },
+    "Mongolian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/mn"
+        ],
+        "original": "Mongolian",
+        "translation": "Mongolian"
+    },
+    "Nauru": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/na"
+        ],
+        "original": "Nauru",
+        "translation": "Nauru"
+    },
+    "Navajo, Navaho": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/nv"
+        ],
+        "original": "Navajo, Navaho",
+        "translation": "Navajo, Navaho"
+    },
+    "Ndonga": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ng"
+        ],
+        "original": "Ndonga",
+        "translation": "Ndonga"
+    },
+    "Nepali": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ne"
+        ],
+        "original": "Nepali",
+        "translation": "Nepali"
+    },
+    "North Ndebele": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/nd"
+        ],
+        "original": "North Ndebele",
+        "translation": "North Ndebele"
+    },
+    "Northern Sami": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/se"
+        ],
+        "original": "Northern Sami",
+        "translation": "Northern Sami"
+    },
+    "Norwegian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/no"
+        ],
+        "original": "Norwegian",
+        "translation": "Norwegian"
+    },
+    "Norwegian Bokm\u00e5l": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/nb"
+        ],
+        "original": "Norwegian Bokm\u00e5l",
+        "translation": "Norwegian Bokm\u00e5l"
+    },
+    "Norwegian Nynorsk": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/nn"
+        ],
+        "original": "Norwegian Nynorsk",
+        "translation": "Norwegian Nynorsk"
+    },
+    "Nuosu": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ii"
+        ],
+        "original": "Nuosu",
+        "translation": "Nuosu"
+    },
+    "Occitan": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/oc"
+        ],
+        "original": "Occitan",
+        "translation": "Occitan"
+    },
+    "Ojibwe, Ojibwa": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/oj"
+        ],
+        "original": "Ojibwe, Ojibwa",
+        "translation": "Ojibwe, Ojibwa"
+    },
+    "Old Church Slavonic, Church Slavic, Church Slavonic, Old Bulgarian, Old Slavonic": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/cu"
+        ],
+        "original": "Old Church Slavonic, Church Slavic, Church Slavonic, Old Bulgarian, Old Slavonic",
+        "translation": "Old Church Slavonic, Church Slavic, Church Slavonic, Old Bulgarian, Old Slavonic"
+    },
+    "Oriya": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/or"
+        ],
+        "original": "Oriya",
+        "translation": "Oriya"
+    },
+    "Oromo": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/om"
+        ],
+        "original": "Oromo",
+        "translation": "Oromo"
+    },
+    "Ossetian, Ossetic": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/os"
+        ],
+        "original": "Ossetian, Ossetic",
+        "translation": "Ossetian, Ossetic"
+    },
+    "P\u0101li": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/pi"
+        ],
+        "original": "P\u0101li",
+        "translation": "P\u0101li"
+    },
+    "Panjabi, Punjabi": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/pa"
+        ],
+        "original": "Panjabi, Punjabi",
+        "translation": "Panjabi, Punjabi"
+    },
+    "Pashto, Pushto": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ps"
+        ],
+        "original": "Pashto, Pushto",
+        "translation": "Pashto, Pushto"
+    },
+    "Persian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/fa"
+        ],
+        "original": "Persian",
+        "translation": "Persian"
+    },
+    "Polish": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/pl"
+        ],
+        "original": "Polish",
+        "translation": "Polish"
+    },
+    "Portuguese": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/pt"
+        ],
+        "original": "Portuguese",
+        "translation": "Portuguese"
+    },
+    "Quechua": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/qu"
+        ],
+        "original": "Quechua",
+        "translation": "Quechua"
+    },
+    "Romanian, Moldavian, Moldovan": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ro"
+        ],
+        "original": "Romanian, Moldavian, Moldovan",
+        "translation": "Romanian, Moldavian, Moldovan"
+    },
+    "Romansh": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/rm"
+        ],
+        "original": "Romansh",
+        "translation": "Romansh"
+    },
+    "Russian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ru"
+        ],
+        "original": "Russian",
+        "translation": "Russian"
+    },
+    "Samoan": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/sm"
+        ],
+        "original": "Samoan",
+        "translation": "Samoan"
+    },
+    "Sango": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/sg"
+        ],
+        "original": "Sango",
+        "translation": "Sango"
+    },
+    "Sanskrit (Sa\u1e41sk\u1e5bta)": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/sa"
+        ],
+        "original": "Sanskrit (Sa\u1e41sk\u1e5bta)",
+        "translation": "Sanskrit (Sa\u1e41sk\u1e5bta)"
+    },
+    "Sardinian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/sc"
+        ],
+        "original": "Sardinian",
+        "translation": "Sardinian"
+    },
+    "Scottish Gaelic; Gaelic": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/gd"
+        ],
+        "original": "Scottish Gaelic; Gaelic",
+        "translation": "Scottish Gaelic; Gaelic"
+    },
+    "Serbian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/sr"
+        ],
+        "original": "Serbian",
+        "translation": "Serbian"
+    },
+    "Shona": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/sn"
+        ],
+        "original": "Shona",
+        "translation": "Shona"
+    },
+    "Sindhi": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/sd"
+        ],
+        "original": "Sindhi",
+        "translation": "Sindhi"
+    },
+    "Sinhala, Sinhalese": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/si"
+        ],
+        "original": "Sinhala, Sinhalese",
+        "translation": "Sinhala, Sinhalese"
+    },
+    "Slovak": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/sk"
+        ],
+        "original": "Slovak",
+        "translation": "Slovak"
+    },
+    "Slovene": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/sl"
+        ],
+        "original": "Slovene",
+        "translation": "Slovene"
+    },
+    "Somali": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/so"
+        ],
+        "original": "Somali",
+        "translation": "Somali"
+    },
+    "South Ndebele": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/nr"
+        ],
+        "original": "South Ndebele",
+        "translation": "South Ndebele"
+    },
+    "Southern Sotho": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/st"
+        ],
+        "original": "Southern Sotho",
+        "translation": "Southern Sotho"
+    },
+    "Spanish; Castilian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/es"
+        ],
+        "original": "Spanish; Castilian",
+        "translation": "Spanish; Castilian"
+    },
+    "Sundanese": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/su"
+        ],
+        "original": "Sundanese",
+        "translation": "Sundanese"
+    },
+    "Swahili": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/sw"
+        ],
+        "original": "Swahili",
+        "translation": "Swahili"
+    },
+    "Swati": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ss"
+        ],
+        "original": "Swati",
+        "translation": "Swati"
+    },
+    "Swedish": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/sv"
+        ],
+        "original": "Swedish",
+        "translation": "Swedish"
+    },
+    "Tagalog": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/tl"
+        ],
+        "original": "Tagalog",
+        "translation": "Tagalog"
+    },
+    "Tahitian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ty"
+        ],
+        "original": "Tahitian",
+        "translation": "Tahitian"
+    },
+    "Tajik": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/tg"
+        ],
+        "original": "Tajik",
+        "translation": "Tajik"
+    },
+    "Tamil": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ta"
+        ],
+        "original": "Tamil",
+        "translation": "Tamil"
+    },
+    "Tatar": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/tt"
+        ],
+        "original": "Tatar",
+        "translation": "Tatar"
+    },
+    "Telugu": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/te"
+        ],
+        "original": "Telugu",
+        "translation": "Telugu"
+    },
+    "Thai": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/th"
+        ],
+        "original": "Thai",
+        "translation": "Thai"
+    },
+    "Tibetan Standard, Tibetan, Central": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/bo"
+        ],
+        "original": "Tibetan Standard, Tibetan, Central",
+        "translation": "Tibetan Standard, Tibetan, Central"
+    },
+    "Tigrinya": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ti"
+        ],
+        "original": "Tigrinya",
+        "translation": "Tigrinya"
+    },
+    "Tonga (Tonga Islands)": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/to"
+        ],
+        "original": "Tonga (Tonga Islands)",
+        "translation": "Tonga (Tonga Islands)"
+    },
+    "Tsonga": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ts"
+        ],
+        "original": "Tsonga",
+        "translation": "Tsonga"
+    },
+    "Tswana": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/tn"
+        ],
+        "original": "Tswana",
+        "translation": "Tswana"
+    },
+    "Turkish": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/tr"
+        ],
+        "original": "Turkish",
+        "translation": "Turkish"
+    },
+    "Turkmen": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/tk"
+        ],
+        "original": "Turkmen",
+        "translation": "Turkmen"
+    },
+    "Twi": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/tw"
+        ],
+        "original": "Twi",
+        "translation": "Twi"
+    },
+    "Uighur, Uyghur": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ug"
+        ],
+        "original": "Uighur, Uyghur",
+        "translation": "Uighur, Uyghur"
+    },
+    "Ukrainian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/uk"
+        ],
+        "original": "Ukrainian",
+        "translation": "Ukrainian"
+    },
+    "Urdu": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ur"
+        ],
+        "original": "Urdu",
+        "translation": "Urdu"
+    },
+    "Uzbek": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/uz"
+        ],
+        "original": "Uzbek",
+        "translation": "Uzbek"
+    },
+    "Venda": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/ve"
+        ],
+        "original": "Venda",
+        "translation": "Venda"
+    },
+    "Vietnamese": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/vi"
+        ],
+        "original": "Vietnamese",
+        "translation": "Vietnamese"
+    },
+    "Volap\u00fck": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/vo"
+        ],
+        "original": "Volap\u00fck",
+        "translation": "Volap\u00fck"
+    },
+    "Walloon": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/wa"
+        ],
+        "original": "Walloon",
+        "translation": "Walloon"
+    },
+    "Welsh": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/cy"
+        ],
+        "original": "Welsh",
+        "translation": "Welsh"
+    },
+    "Western Frisian": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/fy"
+        ],
+        "original": "Western Frisian",
+        "translation": "Western Frisian"
+    },
+    "Wolof": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/wo"
+        ],
+        "original": "Wolof",
+        "translation": "Wolof"
+    },
+    "Xhosa": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/xh"
+        ],
+        "original": "Xhosa",
+        "translation": "Xhosa"
+    },
+    "Yiddish": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/yi"
+        ],
+        "original": "Yiddish",
+        "translation": "Yiddish"
+    },
+    "Yoruba": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/yo"
+        ],
+        "original": "Yoruba",
+        "translation": "Yoruba"
+    },
+    "Zhuang, Chuang": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/languages\/za"
+        ],
+        "original": "Zhuang, Chuang",
+        "translation": "Zhuang, Chuang"
+    },
+    "Permissions": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/permissions"
+        ],
+        "original": "Permissions",
+        "translation": "Permissions"
+    },
+    "Plugins": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/plugins"
+        ],
+        "original": "Plugins",
+        "translation": "Plugins"
+    },
+    "Translatable languages": {
+        "language": "en",
+        "paths": [
+            "appui\/i18n\/langs"
+        ],
+        "original": "Translatable languages",
+        "translation": "Translatable languages"
+    }
+}
