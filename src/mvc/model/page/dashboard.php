@@ -32,9 +32,15 @@ $projects[] = [
   }, $primaries),
   'lang' => 'en'
 ];
-$dash = $model->getModel($model->pluginUrl(). '/data/dashboard', ['idProject' => $projects[0]['id']]);
+$currentProj = $projects[0];
+if (\defined('BBN_APP_NAME')
+  && ($p = X::getRow($projects, ['code' => BBN_APP_NAME]))
+) {
+  $currentProj = $p;
+}
+$dash = $model->getModel($model->pluginUrl(). '/data/dashboard', ['idProject' => $currentProj['id']]);
 return $model->addData([
-  'configured_langs' => $projects[0]['langs'],
+  'configured_langs' => $currentProj['langs'],
   'primary' => $primaries,
   'success' => $dash['success'],
   'projects' => $projects,
