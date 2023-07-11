@@ -12,8 +12,8 @@
     },
     computed: {
       opr(){
-        if ( bbn.vue.find(this, 'bbn-table') ){
-          let table_data = bbn.vue.find(this, 'bbn-table').currentData
+        if ( this.find('bbn-table') ){
+          let table_data = this.find('bbn-table').currentData
           for ( var i = 0; i < table_data.length; i++){
             if (table_data[i].opr === 'DELETE'){
               return false;

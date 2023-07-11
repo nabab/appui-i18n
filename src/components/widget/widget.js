@@ -389,8 +389,8 @@
             }
             return;
 
-            let dashboard = bbn.vue.closest(this, 'bbn-container').getComponent(),
-              widgets = bbn.vue.findAll(dashboard, 'bbn-widget'),
+            let dashboard = this.closest('bbn-container').getComponent(),
+              widgets = dashboard.findAll('bbn-widget'),
               this_widget = dashboard.source.data[this.source.data.widget_idx],
               //idx = $.inArray(obj.value, dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs );
               idx = dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs.indexOf(obj.value);
@@ -452,7 +452,7 @@
                 appui.success(d.done + ' ' + bbn._('new strings found in this path') )
               }
               if ( this.closest('bbn-router') ){
-                let tabs = bbn.vue.findAll(this.closest('bbn-router') , 'bbns-container');
+                let tabs = this.closest('bbn-router').findAll('bbn-container');
                 bbn.fn.log('tabs', tabs, this.source.row.id_option)
                 tabs.forEach((v, i) => {
                   if ( v.url === 'expressions/'+ this.source.row.id_option ){

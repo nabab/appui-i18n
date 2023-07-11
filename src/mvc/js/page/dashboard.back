@@ -5,7 +5,7 @@
     data(){
       return {
         id_project: null,
-        primary: bbn.vue.closest(this, 'bbn-tabnav').$parent.source.primary
+        primary: this.closest('bbn-tabnav').$parent.source.primary
 
       }
     },
@@ -102,7 +102,7 @@
       },
       open_glossary_table(){
         //open a component popup to select source language and translation language for the table glossary
-          var tab = bbn.vue.closest(this, 'bbn-container').getComponent();
+          var tab = this.closest('bbn-container').getComponent();
           this.getPopup().open({
             scrollable: false,
             width: 400,
@@ -183,17 +183,17 @@
             }
           },
           change_checked_langs(val, obj){
-            let form = bbn.vue.find(this, 'bbn-form'),
+            let form = bbn.cp.find(this, 'bbn-form'),
               //idx =  $.inArray(obj.id, this.source.row.configured_langs);
               idx = this.source.row.configured_langs.indexOf(obj.id);
 
             if ( idx > -1 ){
-              bbn.vue.closest(this, 'bbn-container').getComponent().source.configured_langs.splice(idx, 1);
-              bbn.vue.closest(this, 'bbn-container').getComponent().$forceUpdate();
+              this.closest('bbn-container').getComponent().source.configured_langs.splice(idx, 1);
+              this.closest('bbn-container').getComponent().$forceUpdate();
             }
             else {
-              bbn.vue.closest(this, 'bbn-container').getComponent().source.configured_langs.push(obj.id)
-              bbn.vue.closest(this, 'bbn-container').getComponent().$forceUpdate();
+              this.closest('bbn-container').getComponent().source.configured_langs.push(obj.id)
+              this.closest('bbn-container').getComponent().$forceUpdate();
             }
           }
         },

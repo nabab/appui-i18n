@@ -90,7 +90,7 @@
         methods:{
           //inArray: $.inArray,
           change_checked_langs(val, obj){
-            let form = bbn.vue.find(this, 'bbn-form'),
+            let form = this.find('bbn-form'),
             //idx =  $.inArray(obj.id, this.source.row.langs);
             idx = this.source.row.langs.indexOf(obj.id);
             bbn.fn.log('++++++++++++', obj.id, idx)
@@ -100,7 +100,7 @@
             }
             else {
               this.source.row.langs.push(obj.id);
-              //bbn.vue.closest(this, 'bbns-container').getComponent().$forceUpdate();
+              //this.closest('bbns-container').getComponent().$forceUpdate();
             }
           }
         },
