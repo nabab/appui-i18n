@@ -61,7 +61,7 @@
       //used to render the widget, language of locale folder
       data_widget(){
         //if the source language of the path is set takes the array result from dashboard source
-        let result = bbn.fn.clone(this.source.data_widget.result);
+        let result = bbn.fn.clone(this.source.data_widget.result, true);
         if ( this.source.language && result ){
           bbn.fn.iterate(result, (r, l) => {
             result[l].class = '';
@@ -116,10 +116,13 @@
         else{
           return 0
         }
-
       },
-      search: bbn.fn.search,
-      getField: bbn.fn.getField,
+      search(...args) {
+        return bbn.fn.search(...args);
+      },
+      getField(...args) {
+        return bbn.fn.getField(...args);
+      },
       /** set the property language in db for this path */
       set_language(){
         /* the data coming from the post change the source of the dashboard at the index of this specific widget*/

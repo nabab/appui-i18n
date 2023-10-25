@@ -1,6 +1,5 @@
 <?php
-if ( strpos(BBN_BASEURL, APPUI_I18N_ROOT.'page/') !== 0 ){
-
+if (!defined('BBN_BASEURL') || strpos(constant('BBN_BASEURL'), APPUI_I18N_ROOT.'page/') !== 0 ){
   // the folder of components templates
   $templates = \bbn\File\Dir::getFiles($ctrl->pluginPath().'mvc/html/templates');
   $ctrl->data['templates'] = [];

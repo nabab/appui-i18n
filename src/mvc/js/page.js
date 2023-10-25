@@ -15,6 +15,9 @@
     },
     created(){
       appui.register('appui-i18n', this);
+    },
+    beforeDestroy(){
+      appui.unregister('appui-i18n');
     }
   };
 })();

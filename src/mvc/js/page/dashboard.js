@@ -71,9 +71,11 @@
                   title: v.title + (this.isOptionsProject ? ` (${v.code})` : ''),
                   key: v.id || v.code,
                   component : 'appui-i18n-widget',
-                  id_project: this.idProject,
-                  buttonsRight: buttons,
-                  source: v
+                  options: {
+                    source: v,
+                    id_project: this.idProject,
+                    buttonsRight: buttons,
+                  }
                 });
               }
             });
@@ -145,7 +147,7 @@
               idProject: this.idProject
             },
             currentLanguage: this.language,
-            primariesLanguages: this.primary
+            primariesLanguages: this.source.primary
           }
         })
       },
@@ -164,6 +166,9 @@
     created(){
       appui.register('appui-i18n-dashboard', this);
     },
+    beforeDestroy(){
+      appui.unregister('appui-i18n-dashboard');
+    },
     watch : {
       idProject(val){
         if (val){
@@ -177,23 +182,20 @@
                   @submit="link"
                   :prefilled="true"
                   @cancel="cancel"
-                  :scrollable="false"
-        >
-          <div class="bbn-flex-height">
-            <div class="bbn-grid-fields bbn-flex-fill bbn-padded bbn-c">
-              <span>
-                <?=_('Select source language')?>:
-              </span>
-              <div>
-                <bbn-dropdown placeholder="Choose" :source="source.dd_translation_lang" v-model="source.source_lang"></bbn-dropdown>
-              </div>
+                  :scrollable="false">
+          <div class="bbn-grid-fields bbn-flex-fill bbn-padded bbn-c">
+            <span>
+              <?=_('Select source language')?>:
+            </span>
+            <div>
+              <bbn-dropdown placeholder="Choose" :source="source.dd_translation_lang" v-model="source.source_lang"></bbn-dropdown>
+            </div>
 
-              <span>
-                <?=_('Select a language for the translation')?>:
-              </span>
-              <div>
-                <bbn-dropdown placeholder="Choose" :source="source.dd_translation_lang" v-model="source.translation_lang"></bbn-dropdown>
-              </div>
+            <span>
+              <?=_('Select a language for the translation')?>:
+            </span>
+            <div>
+              <bbn-dropdown placeholder="Choose" :source="source.dd_translation_lang" v-model="source.translation_lang"></bbn-dropdown>
             </div>
           </div>
         </bbn-form>`,
@@ -220,7 +222,8 @@
           }
         },
         template: `
-          <bbn-form :scrollable="true"
+        <div class="bbn-w-100">
+          <bbn-form :scrollable="false"
                     :source="source"
                     ref="form"
                     :action="root + 'actions/languages_form'"
@@ -228,7 +231,8 @@
                     :prefilled="true"
                     @success="success">
             <div class="bbn-padded bbn-grid"
-                 style="grid-template-columns: repeat(3, 1fr)">
+                 style="grid-template-columns: repeat(3, 1fr)"
+                 v-if="primariesLanguages?.length">
               <div v-for="l in primariesLanguages"
                   class="bbn-spadded bbn-radius bbn-alt-background">
                 <bbn-checkbox :id="l.id"
@@ -236,12 +240,14 @@
                               @change="toggleLang"
                               :label="l.text"
                               component="appui-i18n-lang"
-                              :componentOptions="{code: l.code}"
+                              :component-options="{code: l.code}"
                               :disabled="l.code === currentLanguage"/>
               </div>
             </div>
+            <h2 v-else
+                v-text="_('No primary languages found')"/>
           </bbn-form>
-        `,
+        </div>`,
         data(){
           return {
             root: appui.plugins['appui-i18n'] + '/'
