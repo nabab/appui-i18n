@@ -27,8 +27,8 @@
 </div>
 <?php
 foreach ($templates as $tpl) {
-  ?><script id="<?=$tpl['id']?>" type="text/x-template">
-    <?=$tpl['html']?>
+  ?><script id="<?= $tpl['id'] ?>" type="text/x-template">
+    <?= $tpl['html'] ?>
   </script>
 <?php
 }

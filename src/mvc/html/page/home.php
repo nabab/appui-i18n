@@ -15,17 +15,17 @@
     <bbns-column field="name"
                 width="35%"
                 class="bbn-xl bbn-b"
-                title="<?=_('Projects')?>"
+                title="<?= _('Projects') ?>"
                 :render="render_projects"
     ></bbns-column>
 
-    <bbns-column title="<?=_('Language(s)')?>"
+    <bbns-column title="<?= _('Language(s)') ?>"
                 field="langs"
                 :render="render_langs"
                 class="bbn-xl"
     ></bbns-column>
 
-    <bbns-column title="<?=_('Source language')?>"
+    <bbns-column title="<?= _('Source language') ?>"
                 field="lang"
                 :render="render_lang_name"
                 class="bbn-xl"

@@ -3,14 +3,14 @@
   >
     <bbns-column field="text"
                 title="Path"
-                ftitle="<?=_('All different paths of this project')?>"
+                ftitle="<?= _('All different paths of this project') ?>"
                 ref="paths_table"
                 width="80%"
     ></bbns-column>
 
     <bbns-column field="language"
-                title="<?=_('Language')?>"
-                ftitle="<?=_('Original language of the path')?>"
+                title="<?= _('Language') ?>"
+                ftitle="<?= _('Original language of the path') ?>"
                 width="10%"
     ></bbns-column>
 
@@ -21,14 +21,14 @@
                   notext: true,
                   action: find_new_strings,
                   icon: 'zmdi zmdi-flash',
-                  title: '<?=_('Check for new strings in this path')?>',
-                  text: '<?=_('Check for new strings in this path')?>',
+                  title: '<?= _('Check for new strings in this path') ?>',
+                  text: '<?= _('Check for new strings in this path') ?>',
                   },{
                   notext: true,
                   action: open_strings_table,
                   icon: 'nf nf-fa-book',
-                  text: '<?=_('Go to the table of strings of this path')?>',
-                  title: '<?=_('Go to the table of strings of this path')?>'
+                  text: '<?= _('Go to the table of strings of this path') ?>',
+                  title: '<?= _('Go to the table of strings of this path') ?>'
            	  	 }]"
     ></bbns-column>
 
