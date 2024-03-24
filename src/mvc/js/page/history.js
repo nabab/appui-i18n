@@ -13,7 +13,7 @@
     },
     methods: {
       renderUser(row){
-        return appui.app.getUserName(row.user)
+        return appui.getUserName(row.user)
       },
       insert_translation(row,idx){
         this.post(this.root + 'actions/insert_translation', row, (success) => {

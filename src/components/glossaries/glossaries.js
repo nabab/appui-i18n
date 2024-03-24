@@ -14,7 +14,7 @@
     },
     methods: {
       render_user(row){
-        return appui.app.getUserName(row.id_user) || 'User not found';
+        return appui.getUserName(row.id_user) || 'User not found';
       },
       buttons(){
         let res = [];
