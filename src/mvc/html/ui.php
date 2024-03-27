@@ -19,7 +19,7 @@
    <!-- <bbns-container url="history"
               icon="nf nf-fa-flag"
               title="Translations"
-              :static="true"
+              :fixed="true"
               :load="true"
               :source="source"
     ></bbns-container>-->
