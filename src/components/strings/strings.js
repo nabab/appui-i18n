@@ -369,7 +369,7 @@
               <bbn-input :placeholder="_('Search the string')"
                         v-model="valueToFind"
                         :button-right="valueToFind.length ? 'nf nf-fa-close bbn-red' : 'nf nf-fa-search'"
-                        @clickRightButton="valueToFind = valueToFind.length ? '' : valueToFind"
+                        @clickrightbutton="valueToFind = valueToFind.length ? '' : valueToFind"
                         class="bbn-right-sspace bbn-top-sspace"/>
               <bbn-button :title="_('Force translation files update')"
                           class="bbn-bg-orange bbn-white bbn-right-sspace bbn-top-sspace"
