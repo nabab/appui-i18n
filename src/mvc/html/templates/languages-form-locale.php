@@ -10,13 +10,13 @@
 
   <div class="bbn-grid-fields">
 
-    <div style="height:300px;" class="bbn-padded bbn-middle">
+    <div style="height:300px;" class="bbn-padding bbn-middle">
       <span><?php echo _('Check the box to create local folder of translation\'s files for the language in this path'); ?></span>
     </div>
 
-    <div class="bbn-padded">
+    <div class="bbn-padding">
       <div v-for="l in source.data.configured_langs"
-            class="bbn-vlpadded"
+            class="bbn-vlpadding"
             ref="checkbox"
       >
         <bbn-checkbox :value="getField(source.data.primary, 'code', {id: l})"
@@ -33,7 +33,7 @@
    
 
   </div>
-  <div class="bbn-s bbn-padded"
+  <div class="bbn-s bbn-padding"
        v-html="message"
        style="position:absolute; bottom:0;left: 0;margin-bottom: 6px;margin-right:6px;"
   ></div>

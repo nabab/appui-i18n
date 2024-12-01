@@ -333,8 +333,8 @@
     components:{
       showPaths: {
         template: `
-          <div class="bbn-vpadded">
-            <span class="bbn-spadded bbn-w-100"
+          <div class="bbn-vpadding">
+            <span class="bbn-spadding bbn-w-100"
                   v-for="p in source.paths">
               <a v-text="p"
                  @click="linkToIde(p)"
@@ -363,7 +363,7 @@
       },
       toolbar: {
         template: `
-          <div class="bbn-header bbn-flex-width bbn-left-padded bbn-right-padded bbn-bottom-padded bbn-top-sspadded">
+          <div class="bbn-header bbn-flex-width bbn-left-padding bbn-right-padding bbn-bottom-padding bbn-top-sspadding">
             <div class="bbn-vmiddle"
                 style="flex-wrap: wrap">
               <bbn-input :placeholder="_('Search the string')"

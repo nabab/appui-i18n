@@ -5,7 +5,7 @@
           :scrollable="false"
 >
   <div class="bbn-flex-height">
-    <div class="bbn-grid-fields bbn-flex-fill bbn-padded bbn-c">
+    <div class="bbn-grid-fields bbn-flex-fill bbn-padding bbn-c">
       <span>
         <?= _('Select source language') ?>:
       </span>

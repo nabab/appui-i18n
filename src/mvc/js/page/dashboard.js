@@ -183,7 +183,7 @@
                   :prefilled="true"
                   @cancel="cancel"
                   :scrollable="false">
-          <div class="bbn-grid-fields bbn-flex-fill bbn-padded bbn-c">
+          <div class="bbn-grid-fields bbn-flex-fill bbn-padding bbn-c">
             <span>
               <?= _('Select source language') ?>:
             </span>
@@ -230,11 +230,11 @@
                     confirm-leave="<?php echo _('Are you sure you want to exit without saving changes?'); ?>"
                     :prefilled="true"
                     @success="success">
-            <div class="bbn-padded bbn-grid"
+            <div class="bbn-padding bbn-grid"
                  style="grid-template-columns: repeat(3, 1fr)"
                  v-if="primariesLanguages?.length">
               <div v-for="l in primariesLanguages"
-                  class="bbn-spadded bbn-radius bbn-alt-background">
+                  class="bbn-spadding bbn-radius bbn-alt-background">
                 <bbn-checkbox :id="l.id"
                               :checked="source.langs.includes(l.id)"
                               @change="toggleLang"

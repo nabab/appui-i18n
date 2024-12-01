@@ -1,13 +1,13 @@
 <div class="appui-i18n-dashboard bbn-overlay bbn-flex-height bbn-alt-background">
-  <div class="bbn-padded">
+  <div class="bbn-padding">
     <div class="appui-i18n-dashboard-toolbar bbn-bottom-space">
-      <div :class="['bbn-spadded', 'bbn-background', 'bbn-radius', 'appui-task-box-shadow', 'bbn-vmiddle', 'bbn-nowrap', {
+      <div :class="['bbn-spadding', 'bbn-background', 'bbn-radius', 'appui-task-box-shadow', 'bbn-vmiddle', 'bbn-nowrap', {
             'bbn-flex-width': !isMobile(),
             'bbn-flex-height': !!isMobile()
           }]">
         <div :class="['bbn-alt-background', 'bbn-vmiddle', 'bbn-radius', 'bbn-flex-fill', {
-               'bbn-hspadded': !isMobile(),
-               'bbn-spadded': isMobile()
+               'bbn-hspadding': !isMobile(),
+               'bbn-spadding': isMobile()
              }]"
              style="min-height: 2rem; flex-wrap: wrap">
           <div :class="['bbn-vxsmargin', {
@@ -49,7 +49,7 @@
             v-text="_('i18n')"/>
       </div>
     </div>
-    <div class="appui-i18n-dashboard-head bbn-background bbn-radius bbn-padded bbn-middle">
+    <div class="appui-i18n-dashboard-head bbn-background bbn-radius bbn-padding bbn-middle">
       <div v-if="!isOptionsProject"
            class="bbn-medium bbn-vmiddle"
            style="flex-wrap: wrap !important">
@@ -84,7 +84,7 @@
           <?= _("Languages found in the main project's options") ?>:
         </span>
         <span v-for="c in source.configured_langs"
-             class="bbn-radius bbn-spadded bbn-alt-background bbn-nowrap bbn-right-sspace bbn-vxsmargin">
+             class="bbn-radius bbn-spadding bbn-alt-background bbn-nowrap bbn-right-sspace bbn-vxsmargin">
           <appui-i18n-lang :code="getField(primary, 'code', {id: c})"/>
         </span>
       </div>

@@ -1,4 +1,4 @@
-<span :class="['appui-i18n-lang', 'bbn-nowrap', 'bbn-vmiddle', {'bbn-spadded': padded}]"
+<span :class="['appui-i18n-lang', 'bbn-nowrap', 'bbn-vmiddle', {'bbn-spadding': padded}]"
       style="display: inline-flex">
   <img v-if="currentFlag"
        :src="currentFlag"

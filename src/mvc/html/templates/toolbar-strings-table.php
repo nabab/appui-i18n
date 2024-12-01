@@ -55,7 +55,7 @@
   ><?= _("If the column with ")?><i class="nf nf-fa-asterisk"></i> <?=_("is empty be sure to force translation files update and then update the table") ?></div>
 
   <div v-if="id_project ==='options'"
-       class="bbn-padded bbn-grid-fields"
+       class="bbn-padding bbn-grid-fields"
 
   >
     <div class="bbn-r"><?= _("Select languages you want to hide from the table") ?></div>

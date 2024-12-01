@@ -335,15 +335,15 @@
                     @success="success"
                     @close="update"
                     @hook:mounted="formMounted">
-            <div class="bbn-padded"
+            <div class="bbn-padding"
                  style="padding-bottom: 4rem">
               <div>
                 ` + bbn._('Check the box to create local folder of translation\'s files for the language in this path') + `
               </div>
-              <div class="bbn-vpadded bbn-grid"
+              <div class="bbn-vpadding bbn-grid"
                   style="grid-template-columns: repeat(2, 1fr)">
                 <div v-for="l in source.data.configured_langs"
-                    class="bbn-spadded bbn-radius bbn-alt-background"
+                    class="bbn-spadding bbn-radius bbn-alt-background"
                     :key="l"
                     ref="checkbox">
                   <bbn-checkbox :checked="source.row.languages.includes(getCode(l))"
@@ -355,7 +355,7 @@
                 </div>
               </div>
             </div>
-            <div class="bbn-s bbn-padded bbn-bottom-left bbn-bottom-right"
+            <div class="bbn-s bbn-padding bbn-bottom-left bbn-bottom-right"
                  style="bottom: 1rem"
                 v-html="message"/>
           </bbn-form>

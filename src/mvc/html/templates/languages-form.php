@@ -13,13 +13,13 @@
     <!--n>Select the source language</span>
     <bbn-dropdown :source="source.data.primary"
         ></bbn-dropdown-->
-        <div style="height:300px;" class="bbn-padded bbn-middle">
+        <div style="height:300px;" class="bbn-padding bbn-middle">
         <span><?php echo _("Check the box to activate translation in the language for this root"); ?></span>  
     </div>
     
-    <div class="bbn-padded">
+    <div class="bbn-padding">
         <div v-for="(l, index) in source.data.primary"
-           class="bbn-vlpadded"
+           class="bbn-vlpadding"
            ref="checkbox"
       >
           <bbn-checkbox :id="l.id"

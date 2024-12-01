@@ -1,6 +1,6 @@
 
 <div :key="source.id"
-     class="bbn-spadded">
+     class="bbn-spadding">
   <!--if the source language of the path is set -->
   <div v-if="source.language">
     <div v-if="!dashboard.isOptionsProject">
@@ -65,7 +65,7 @@
   </div>
   <!--if the source language of the path is not set -->
   <div v-else-if="!dashboard.isOptionsProject">
-    <div class="bbn-padded bbn-grid-fields">
+    <div class="bbn-padding bbn-grid-fields">
       <span v-text="_('Select a source language for this option')"/>
       <div>
         <bbn-dropdown :source="dd_primary"
