@@ -44,7 +44,7 @@
           let text = bbn.fn.getField(this.source.primary, 'text', 'code', l);
           let obj = {
             field: l + '_db',
-            title:  (l === this.source.res.path_source_lang) ?
+            label:  (l === this.source.res.path_source_lang) ?
               (`${text} <i class="nf nf-fa-asterisk" title="` + bbn._('This is the original language of the expression') + `"/>`) :
               text,
             editable: true
@@ -78,8 +78,8 @@
           r.push(obj);
         });
         r.push({
-          ftitle: bbn._('Number of occurrences of the strings in the path files'),
-          title: '#',
+          flabel: bbn._('Number of occurrences of the strings in the path files'),
+          label: '#',
           field: 'occurrence',
           editable: false,
           render(row){
@@ -88,7 +88,7 @@
           width: 40,
           cls: 'bbn-c'
         }, {
-          ftitle: bbn._('Remove original expression'),
+          flabel: bbn._('Remove original expression'),
           buttons: this.buttons,
           width: this.isOptions ? 50 : 90,
           cls: 'bbn-c'
@@ -175,7 +175,7 @@
       //opens the popup containing the link(s) to the file(s) containing the string
       showPath(row){
         this.getPopup({
-          title: bbn._('File(s) containing the string'),
+          label: bbn._('File(s) containing the string'),
           source: row,
           component:this.$options.components.showPath,
           height: 500,
@@ -375,16 +375,16 @@
                           class="bbn-bg-orange bbn-white bbn-right-sspace bbn-top-sspace"
                           @click="main.generate"
                           icon="nf nf-md-file_replace_outline"
-                          :text="_('Create translation files')"/>
+                          :label="_('Create translation files')"/>
               <bbn-button :title="_('Rebuild table data')"
                           @click="main.remakeCache"
                           icon="nf nf-fa-retweet"
-                          :text="_('Rebuild table data')"
+                          :label="_('Rebuild table data')"
                           class="bbn-right-sspace bbn-top-sspace"/>
               <bbn-button :title="_('Check files for new strings')"
                           @click="main.findStrings"
                           icon="nf nf-fa-search"
-                          :text="_('Parse files for new strings')"
+                          :label="_('Parse files for new strings')"
                           v-if="!isOptions"
                           class="bbn-top-sspace"/>
             </div>

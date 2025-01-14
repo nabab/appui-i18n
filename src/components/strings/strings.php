@@ -17,7 +17,7 @@
              @change="insertTranslation">
 
    <bbns-column field="exp"
-               :title="'<?= _('Original expression in') ?>' +' '+ source_lang "
+               :label="'<?= _('Original expression in') ?>' +' '+ source_lang "
                :index="1"
                :editable="false"
                cls="bbn-i"

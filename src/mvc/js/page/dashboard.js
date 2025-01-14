@@ -68,7 +68,7 @@
             bbn.fn.each(this.source.data, v => {
               if (v.id || v.code) {
                 res.push({
-                  title: v.title + (this.isOptionsProject ? ` (${v.code})` : ''),
+                  label: v.title + (this.isOptionsProject ? ` (${v.code})` : ''),
                   key: v.id || v.code,
                   component : 'appui-i18n-widget',
                   options: {
@@ -118,7 +118,7 @@
       openGlossary(){
         //open a component popup to select source language and translation language for the table glossary
           var tab = this.closest('bbn-container').getComponent();
-          this.getPopup().open({
+          this.getPopup({
             scrollable: false,
             width: 400,
             height: 250,
@@ -130,16 +130,16 @@
               dd_translation_lang: tab.dd_translation_lang,
             },
             component: tab.$options.components.cfg_translations_form,
-            title: bbn._('Config your translation tab')
+            label: bbn._('Config your translation tab')
           })
 
         },
 
       openProjectLanguagesCfg(){
-        this.getPopup().open({
+        this.getPopup({
           width: 600,
           height: 300,
-          title: bbn._("Config translation languages for the project"),
+          label: bbn._("Config translation languages for the project"),
           component: this.$options.components.languagesForm,
           componentOptions: {
             source: {

@@ -14,7 +14,7 @@
                   class="bbn-button bbn-events-component"
                   @click="open_user_history"
                   icon="nf nf-fa-user"
-                  text="<?= _('User\'s translation') ?>"
+                  label="<?= _('User\'s translation') ?>"
       >
       </bbn-button>
 

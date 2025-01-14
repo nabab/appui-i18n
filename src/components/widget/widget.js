@@ -270,7 +270,7 @@
         if ( this.source.language !== null ){
           this.getPopup({
             width: 500,
-            title: bbn._("Define languages for the translation"),
+            label: bbn._("Define languages for the translation"),
             scrollable: true,
             component: this.$options.components.languagesForm,
             source: {

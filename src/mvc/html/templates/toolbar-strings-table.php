@@ -8,7 +8,7 @@
                 class="bbn-button bbn-events-component"
                 @click="generate"
                 icon="nf nf-fa-files_o"
-                text="<?= _('Create translation files') ?>"
+                label="<?= _('Create translation files') ?>"
                 style="background-color: orange;"
     >
     </bbn-button>
@@ -17,7 +17,7 @@
                 class="bbn-button bbn-events-component"
                 @click="remake_cache"
                 icon="nf nf-fa-retweet"
-                text="<?= _('Rebuild table data') ?>"
+                label="<?= _('Rebuild table data') ?>"
     >
     </bbn-button>
 
@@ -26,7 +26,7 @@
                 class="bbn-button bbn-events-component"
                 @click="find_strings"
                 icon="nf nf-fa-search"
-                text="<?= _('Parse files for new strings') ?>"
+                label="<?= _('Parse files for new strings') ?>"
     >
     </bbn-button>
     <div style="display:inline">

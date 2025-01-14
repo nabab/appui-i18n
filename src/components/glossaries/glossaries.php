@@ -14,29 +14,29 @@
              @change="insert_translation"
   >
     <bbns-column field="exp"
-                title="<?php echo _('Original Expression'); ?>"
+                label="<?php echo _('Original Expression'); ?>"
                 :editable="false"
                 cls="bbn-i"
     ></bbns-column>
 
     <bbns-column field="translation"
-                 title="<?php echo _('Translation'); ?>"
+                 label="<?php echo _('Translation'); ?>"
     ></bbns-column>
 
 <!--    <bbns-column field="id_user"
                 :render="render_user"
-                title="<?/*=_('User')*/?>"
+                label="<?/*=_('User')*/?>"
                 :editable="false"
     ></bbns-column>-->
 
-    <bbns-column ftitle="<?php echo _('Status'); ?>"
+    <bbns-column flabel="<?php echo _('Status'); ?>"
                  width="40"
                  cls="bbn-c"
                  :editable="false"
                  :render="icons"
     ></bbns-column>
 <!--
-    <bbns-column ftitle="<?/*=_('Actions')*/?>"
+    <bbns-column flabel="<?/*=_('Actions')*/?>"
                 width="40"
                 cls="bbn-b"
                 :buttons="buttons"

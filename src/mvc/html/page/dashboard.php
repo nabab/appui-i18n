@@ -25,20 +25,20 @@
           </div>
           <bbn-button v-if="!isOptionsProject"
                       icon="nf nf-fa-cogs"
-                      text="<?= _("Config project languges") ?>"
+                      label="<?= _("Config project languges") ?>"
                       @click="openProjectLanguagesCfg"
                       title="<?= _("Configure languages for this project") ?>"
                       class="bbn-right-space bbn-vxsmargin bbn-no-border"/>
           <bbn-button icon="nf nf-fa-user"
-                      text="<?= _("User activity") ?>"
+                      label="<?= _("User activity") ?>"
                       @click="openUserActivity"
                       class="bbn-right-space bbn-vxsmargin bbn-no-border"/>
           <bbn-button icon="nf nf-fa-users"
-                      text="<?= _("Users activity") ?>"
+                      label="<?= _("Users activity") ?>"
                       @click="openUsersActivity"
                       class="bbn-right-space bbn-vxsmargin bbn-no-border"/>
           <bbn-button icon="nf nf-fa-flag"
-                      text="<?= _("Glossary table") ?>"
+                      label="<?= _("Glossary table") ?>"
                       @click="openGlossary"
                       class="bbn-right-space bbn-vxsmargin bbn-no-border"/>
         </div>

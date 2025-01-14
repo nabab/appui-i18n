@@ -2,20 +2,20 @@
   <bbn-table :source="source.path"
   >
     <bbns-column field="text"
-                title="Path"
-                ftitle="<?= _('All different paths of this project') ?>"
+                label="Path"
+                flabel="<?= _('All different paths of this project') ?>"
                 ref="paths_table"
                 width="80%"
     ></bbns-column>
 
     <bbns-column field="language"
-                title="<?= _('Language') ?>"
-                ftitle="<?= _('Original language of the path') ?>"
+                label="<?= _('Language') ?>"
+                flabel="<?= _('Original language of the path') ?>"
                 width="10%"
     ></bbns-column>
 
     <bbns-column field="code"
-                title=" "
+                label=" "
                 cls="bbn-c"
                 :buttons="[{
                   notext: true,

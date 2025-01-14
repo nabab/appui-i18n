@@ -15,17 +15,17 @@
     <bbns-column field="name"
                 width="35%"
                 class="bbn-xl bbn-b"
-                title="<?= _('Projects') ?>"
+                label="<?= _('Projects') ?>"
                 :render="render_projects"
     ></bbns-column>
 
-    <bbns-column title="<?= _('Language(s)') ?>"
+    <bbns-column label="<?= _('Language(s)') ?>"
                 field="langs"
                 :render="render_langs"
                 class="bbn-xl"
     ></bbns-column>
 
-    <bbns-column title="<?= _('Source language') ?>"
+    <bbns-column label="<?= _('Source language') ?>"
                 field="lang"
                 :render="render_lang_name"
                 class="bbn-xl"
@@ -34,7 +34,7 @@
     <bbns-column :buttons="[{
                     action: cfg_languages,
                     icon: 'nf nf-fa-flag',
-                    title: 'Configure languages of translation for this project'
+                    label: 'Configure languages of translation for this project'
                   }]"
                 width="80"
                 cls="bbn-c"

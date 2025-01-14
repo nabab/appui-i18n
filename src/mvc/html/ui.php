@@ -2,7 +2,7 @@
   <bbn-router :autoload="true" :nav="true">
     <bbns-container url="dashboard"
                     icon="nf nf-fa-edit"
-                    :title="_('Projects Dashboard')"
+                    :label="_('Projects Dashboard')"
                     :load="true"
                     :source="source"
                     :static="false"
@@ -11,14 +11,14 @@
     <!--
 		<bbns-container url="home"
 							icon="nf nf-fa-tasks"
-              title="Projects table"
+              label="Projects table"
               :load="true"
               :source="source">
 		</bbns-container>
 		-->
    <!-- <bbns-container url="history"
               icon="nf nf-fa-flag"
-              title="Translations"
+              label="Translations"
               :fixed="true"
               :load="true"
               :source="source"

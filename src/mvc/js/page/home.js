@@ -38,7 +38,7 @@
         });
         //edit projects' table using the form $options.components['appui-languages-form'] declared in the html of
         // the projects table
-        return this.$refs.table1.edit(row,  {height: 600, width:500, title: bbn._("Config languages for the project")}, idx);
+        return this.$refs.table1.edit(row,  {height: 600, width:500, label: bbn._("Config languages for the project")}, idx);
       },
     },
     components: {

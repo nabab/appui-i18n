@@ -103,7 +103,7 @@
       open_glossary_table(){
         //open a component popup to select source language and translation language for the table glossary
           var tab = this.closest('bbn-container').getComponent();
-          this.getPopup().open({
+          this.getPopup({
             scrollable: false,
             width: 400,
             height: 250,
@@ -121,10 +121,10 @@
         },
 
       cfg_project_languages(){
-        this.getPopup().open({
+        this.getPopup({
           width: 600,
           height: 500,
-          title: bbn._("Config translation languages for the project"),
+          label: bbn._("Config translation languages for the project"),
           component: this.$options.components['languages-form'],
           //send the configured langs for this id_project
           source: {
