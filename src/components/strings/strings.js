@@ -165,7 +165,7 @@
         if ( this.source.id_project !== 'options' ){
           res.push({
             action: this.showPath,
-            icon: 'nf nf-mdi-sign_direction',
+            icon: 'nf nf-md-sign_direction',
             title: bbn._('Show files containing the string'),
             notext: true
           });
