@@ -17,24 +17,43 @@
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 
 stages:          # List of stages for jobs, and their order of execution
+  - codeberg
   - github
 
+codeberg-sync:
+  stage: codeberg
+  script:
+    - echo "Synching with Codeberg"
+    - rm -rf ~/plugins_appui-i18n
+    - mkdir ~/plugins_appui-i18n
+    - cd ~/plugins_appui-i18n
+    - git clone --bare git@git.bbn.so:plugins/appui-i18n.git .
+    - git remote add --mirror=fetch codeberg git@codeberg.org:appui/i18n.git
+    - git fetch git@git.bbn.so:plugins/appui-i18n.git master
+    - git fetch git@codeberg.org:appui/i18n.git master
+    - git push -f git@codeberg.org:appui/i18n.git master
+    - git push -f git@codeberg.org:appui/i18n.git --tags
+    - cd -
+    - rm -rf ~/plugins_appui-i18n
+    - echo "Codeberg synching finished !"
+  tags:
+    - codeberg
 github-sync:       # This job runs in the build stage, which runs first.
   stage: github
   script:
     - echo "Synching with Github..."
-    - cd ~/
-    - rm -rf plugins
-    - mkdir -p plugins/appui-i18n
-    - git clone --bare git@git.bbn.so:plugins/appui-i18n.git plugins/appui-i18n
-    - cd plugins/appui-i18n
+    - rm -rf ~/plugins_appui-i18n
+    - mkdir ~/plugins_appui-i18n
+    - cd ~/plugins_appui-i18n
+    - git clone --bare git@git.bbn.so:plugins/appui-i18n.git .
     - git remote add --mirror=fetch github git@github.com:nabab/appui-i18n.git
     - git fetch git@git.bbn.so:plugins/appui-i18n.git master
     - git fetch git@github.com:nabab/appui-i18n.git master
-    - git push -f git@github.com:nabab/appui-i18n.git --all
+    - git push -f git@github.com:nabab/appui-i18n.git master
     - git push -f git@github.com:nabab/appui-i18n.git --tags
     - cd -
-    - rm -rf plugins
-    - echo "Synching finished !"
+    - rm -rf ~/plugins_appui-i18n
+    - echo "Github synching finished !"
   tags:
     - github
+
