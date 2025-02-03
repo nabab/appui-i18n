@@ -71,10 +71,10 @@
                   label: v.title + (this.isOptionsProject ? ` (${v.code})` : ''),
                   key: v.id || v.code,
                   component : 'appui-i18n-widget',
-                  options: {
-                    source: v,
+                  source: v,
+                  buttonsRight: buttons,
+                  componentOptions: {
                     id_project: this.idProject,
-                    buttonsRight: buttons,
                   }
                 });
               }

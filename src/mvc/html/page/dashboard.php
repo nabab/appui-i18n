@@ -15,15 +15,15 @@
                 'bbn-right-space': isMobile()
               }]">
             <div :class="['bbn-upper', 'bbn-right-space', 'bbn-b', 'bbn-secondary-text-alt', {'bbn-bottom-xsspace': isMobile()}]"
-                 v-text="_('Select a project')"/>
+                 bbn-text="_('Select a project')"/>
             <bbn-dropdown :url="source.root + 'page/dashboard'"
                           :source="source.projects"
-                          v-model="idProject"
+                          bbn-model="idProject"
                           @change="loadWidgets"
                           source-value="id"
                           source-text="name"/>
           </div>
-          <bbn-button v-if="!isOptionsProject"
+          <bbn-button bbn-if="!isOptionsProject"
                       icon="nf nf-fa-cogs"
                       label="<?= _("Config project languges") ?>"
                       @click="openProjectLanguagesCfg"
@@ -46,44 +46,44 @@
               'bbn-left-lspace bbn-right-space': !isMobile(),
               'bbn-top-space bbn-bottom-space': !!isMobile(),
             }]"
-            v-text="_('i18n')"/>
+            bbn-text="_('i18n')"/>
       </div>
     </div>
     <div class="appui-i18n-dashboard-head bbn-background bbn-radius bbn-padding bbn-middle">
-      <div v-if="!isOptionsProject"
+      <div bbn-if="!isOptionsProject"
            class="bbn-medium bbn-vmiddle"
            style="flex-wrap: wrap !important">
         <span class="bbn-right-sspace"><?= _("The source language for this project is") ?>:</span>
         <bbn-dropdown :source="source.primary"
-                      v-model="language"
+                      bbn-model="language"
                       @change="setProjectLanguage"
                       placeholder="<?= _('Select a language') ?>"
                       class="appui-i18n-dashboard-head-lang bbn-b bbn-primary-text-alt bbn-vxsmargin"
                       source-value="code"
                       component="appui-i18n-lang"/>
       </div>
-      <div v-else
+      <div bbn-else
            class="bbn-large">
         <a :href="optionsRoot + 'tree'"
             title="<?= _("Choose the option you want to translate from the options' tree") ?>"
-            v-text="_('Click here to configure the languages on the options\' tree')"/>
+            bbn-text="_('Click here to configure the languages on the options\' tree')"/>
       </div>
-      <div v-if="source.configured_langs"
+      <div bbn-if="source.configured_langs"
            class="bbn-vmiddle bbn-top-sspace"
            style="flex-wrap: wrap !important">
-        <span v-if="!isOptionsProject && source.configured_langs.length"
+        <span bbn-if="!isOptionsProject && source.configured_langs.length"
               class="bbn-medium bbn-right-sspace">
           <?= _("Languages configured for translation of this project") ?>:
         </span>
-        <span v-else-if="!isOptionsProject && !source.configured_langs.length"
+        <span bbn-else-if="!isOptionsProject && !source.configured_langs.length"
               class="bbn-medium bbn-medium bbn-right-sspace">
           <?= _("There are no languages configured for the translation of this project") ?>
         </span>
-        <span v-else
+        <span bbn-else
               class="bbn-medium bbn-medium bbn-right-sspace">
           <?= _("Languages found in the main project's options") ?>:
         </span>
-        <span v-for="c in source.configured_langs"
+        <span bbn-for="c in source.configured_langs"
              class="bbn-radius bbn-spadding bbn-alt-background bbn-nowrap bbn-right-sspace bbn-vxsmargin">
           <appui-i18n-lang :code="getField(primary, 'code', {id: c})"/>
         </span>
@@ -91,9 +91,9 @@
     </div>
   </div>
   <div class="bbn-flex-fill">
-    <bbn-dashboard v-if="widgets.length"
+    <bbn-dashboard bbn-if="widgets.length"
                    :source="widgets"
                    ref="dashboard"/>
-    <bbn-loader v-else/>
+    <bbn-loader bbn-else/>
   </div>
 </div>
