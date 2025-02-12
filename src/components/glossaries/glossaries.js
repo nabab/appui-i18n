@@ -33,7 +33,7 @@
               this.root + 'actions/delete_expression',
               {id_exp: row.idExp, exp: row.original_exp},
               (d) => {
-                this.$refs.glossary_table.remove(row);
+                this.$refs.glossary_table.removeItem(row);
               }
             );
           }
