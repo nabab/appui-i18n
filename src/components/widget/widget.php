@@ -1,6 +1,6 @@
-
 <div :key="source.id"
-     class="bbn-spadding">
+     class="bbn-spadding"
+     style="display: block">
   <!--if the source language of the path is set -->
   <div v-if="source.language">
     <div v-if="!dashboard.isOptionsProject">
