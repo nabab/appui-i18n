@@ -1,19 +1,12 @@
 <?php
-/*
- * Describe what it does!
- *
- **/
+use bbn\X;
+use bbn\Appui\Project;
 
-/** @var bbn\Mvc\Model $model */
-
-Use bbn\X;
-
-/** @var  $projects array of projects*/
 $projects = [];
 $primaries = [];
 if ($projectsIds = $model->inc->options->items('list', 'project', 'appui')) {
   foreach ($projectsIds as $id) {
-    $projectCls = new \bbn\Appui\Project($model->db, $id);
+    $projectCls = new Project($model->db, $id);
     $projectInfo = $projectCls->getProjectInfo();
     /** unset path because don't needed */
     unset($projectInfo['path']);
@@ -23,6 +16,7 @@ if ($projectsIds = $model->inc->options->items('list', 'project', 'appui')) {
     }
   }
 }
+
 $projects[] = [
   'id' => 'options',
   'code' => 'options',
@@ -38,6 +32,7 @@ if (\defined('BBN_APP_NAME')
 ) {
   $currentProj = $p;
 }
+
 $dash = $model->getModel($model->pluginUrl(). '/data/dashboard', ['idProject' => $currentProj['id']]);
 return $model->addData([
   'configured_langs' => $currentProj['langs'],

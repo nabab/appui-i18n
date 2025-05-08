@@ -7,10 +7,11 @@
       }
     },
     data(){
+      const idProject = this.source.projects?.length ? bbn.fn.getField(this.source.projects, 'id', 'name', bbn.env.appName) : '';
       return {
-        idProject: !!this.source.projects.length ? bbn.fn.getField(this.source.projects, 'id', 'name', bbn.env.appName) : '',
+        isLoading: false,
+        idProject,
         primary: this.source.primary,
-        language: !!this.source.projects.length ? this.source.projects[0].lang : '',
         optionsRoot: appui.plugins['appui-option'] + '/',
         root: appui.plugins['appui-i18n'] + '/'
       }
@@ -22,6 +23,38 @@
       currentProject(){
         return !!this.idProject ? bbn.fn.getRow(this.source.projects, 'id', this.idProject) : {};
       },
+      currentProjectLanguage: {
+        get(){
+          return this.currentProject?.lang || '';
+        },
+        set(val){
+          if (val
+            && this.idProject
+            && this.currentProject
+            && (val !== this.currentProject.lang)
+          ) {
+            const current = this.currentProject.lang;
+            this.currentProject.lang = val;
+            this.isLoading = true;
+            this.post(this.root + 'actions/project_lang', {
+              id_project: this.idProject,
+              language: val
+            }, d => {
+              if (d.success) {
+                appui.success(bbn._('Project source language successfully updated'))
+              }
+              else {
+                this.currentProject.lang = current;
+                appui.error(bbn._('Project source language not updated'));
+              }
+
+              this.isLoading = false;
+            }, () => {
+              this.isLoading = false;
+            });
+          }
+        }
+      },
       languageText(){
         if (this.primary) {
           return bbn.fn.getField(this.primary, 'text', 'code', this.language);
@@ -32,32 +65,32 @@
         let res = [];
         if (this.source.data){
           let buttons = [{
-            text: bbn._('Update widget data'),
+            label: bbn._('Update widget data'),
             icon: 'nf nf-fa-retweet',
             action: 'remake_cache'
           }];
           if (!this.isOptionsProject) {
             buttons.push({
-              text: bbn._('Setup languages'),
+              label: bbn._('Setup languages'),
               icon: 'nf nf-fa-flag',
               action: 'generate'
             }, {
-              text: bbn._('Open the table of strings'),
+              label: bbn._('Open the table of strings'),
               icon: 'nf nf-fa-book',
               action: 'open_strings_table',
             }, {
-              text: bbn._('Delete locale folder'),
+              label: bbn._('Delete locale folder'),
               icon: 'nf nf-fa-trash',
               action: 'delete_locale_folder',
             });
           }
           else {
             buttons.push({
-              text: bbn._('Create translation files'),
+              label: bbn._('Create translation files'),
               icon: 'nf nf-md-file_replace_outline',
               action: 'generateFiles',
             }, {
-              text: bbn._('Open the table of strings'),
+              label: bbn._('Open the table of strings'),
               icon: 'nf nf-fa-book',
               action: 'open_strings_table',
             });
@@ -95,20 +128,6 @@
     },
     methods: {
       isMobile: bbn.fn.isMobile,
-      setProjectLanguage(){
-        this.post(this.root + 'actions/project_lang', {
-          id_project: this.idProject,
-          language: this.language
-        }, d => {
-          if (d.success) {
-            let idx = bbn.fn.search(this.source.projects, 'id', this.idProject);
-            if ( idx > -1 ){
-              this.source.projects[idx].lang = this.language;
-            }
-            appui.success(bbn._('Project source language successfully updated'))
-          }
-        })
-      },
       openUsersActivity(){
         bbn.fn.link(this.root + 'page/history/');
       },
@@ -137,9 +156,10 @@
 
       openProjectLanguagesCfg(){
         this.getPopup({
-          width: 600,
-          height: 300,
+          //width: 600,
+          //height: 300,
           label: bbn._("Config translation languages for the project"),
+          scrollable: true,
           component: this.$options.components.languagesForm,
           componentOptions: {
             source: {
@@ -152,7 +172,7 @@
         })
       },
       getField: bbn.fn.getField,
-      loadWidgets(){
+      loadProject(){
         this.source.data.splice(0);
         this.source.configured_langs.splice(0);
         this.post(this.root + 'data/dashboard', {idProject: this.idProject}, d => {
@@ -227,13 +247,13 @@
                     :source="source"
                     ref="form"
                     :action="root + 'actions/languages_form'"
-                    confirm-leave="<?php echo _('Are you sure you want to exit without saving changes?'); ?>"
+                    confirm-leave="` + bbn._('Are you sure you want to exit without saving changes?') + `"
                     :prefilled="true"
                     @success="success">
-            <div class="bbn-padding bbn-grid"
-                 style="grid-template-columns: repeat(3, 1fr)"
-                 v-if="primariesLanguages?.length">
-              <div v-for="l in primariesLanguages"
+            <div bbn-if="primariesLanguages?.length"
+                 class="bbn-padding bbn-grid bbn-grid-gap"
+                 style="grid-template-columns: repeat(3, 1fr)">
+              <div bbn-for="l in primariesLanguages"
                   class="bbn-spadding bbn-radius bbn-alt-background">
                 <bbn-checkbox :id="l.id"
                               :checked="source.langs.includes(l.id)"
@@ -244,8 +264,7 @@
                               :disabled="l.code === currentLanguage"/>
               </div>
             </div>
-            <h2 v-else
-                v-text="_('No primary languages found')"/>
+            <h2 bbn-else>` + bbn._('No primary languages found') + `</h2>
           </bbn-form>
         </div>`,
         data(){

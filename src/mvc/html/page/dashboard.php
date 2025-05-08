@@ -19,7 +19,7 @@
             <bbn-dropdown :url="source.root + 'page/dashboard'"
                           :source="source.projects"
                           bbn-model="idProject"
-                          @change="loadWidgets"
+                          @change="loadProject"
                           source-value="id"
                           source-text="name"/>
           </div>
@@ -55,8 +55,7 @@
            style="flex-wrap: wrap !important">
         <span class="bbn-right-sspace"><?= _("The source language for this project is") ?>:</span>
         <bbn-dropdown :source="source.primary"
-                      bbn-model="language"
-                      @change="setProjectLanguage"
+                      bbn-model="currentProjectLanguage"
                       placeholder="<?= _('Select a language') ?>"
                       class="appui-i18n-dashboard-head-lang bbn-b bbn-primary-text-alt bbn-vxsmargin"
                       source-value="code"
@@ -94,6 +93,10 @@
     <bbn-dashboard bbn-if="widgets.length"
                    :source="widgets"
                    ref="dashboard"/>
-    <bbn-loader bbn-else/>
+    <bbn-loader bbn-else font-size="l"/>
+  </div>
+  <div bbn-if="isLoading"
+       class="bbn-overlay bbn-modal">
+    <bbn-loader font-size="l"/>
   </div>
 </div>

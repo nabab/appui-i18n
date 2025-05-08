@@ -1,4 +1,7 @@
 <?php
+use bbn\X;
+use bbn\Appui\Project;
+use bbn\Appui\I18n;
 $res = [
   'success' => false,
   'paths' => []
@@ -8,12 +11,12 @@ if ($model->hasData('idProject', true)
 ) {
   $isOptions = $model->data['idProject'] === 'options';
   $idProj = $isOptions ? BBN_APP_NAME : $model->data['idProject'];
-  $i18nCls = new \bbn\Appui\I18n($model->db, $idProj);
-  $projectCls = new \bbn\Appui\Project($model->db, $idProj);
+  $i18nCls = new I18n($model->db, $idProj);
+  $projectCls = new Project($model->db, $idProj);
   $primaries = $projectCls->getPrimariesLangs();
   if ($isOptions) {
     $res['langs'] = array_map(function($l) use($primaries) {
-      return \bbn\X::getField($primaries, ['code' => $l], 'id');
+      return X::getField($primaries, ['code' => $l], 'id');
     }, $model->inc->options->findI18nLocales());
   }
   else {

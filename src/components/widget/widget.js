@@ -340,9 +340,9 @@
               <div>
                 ` + bbn._('Check the box to create local folder of translation\'s files for the language in this path') + `
               </div>
-              <div class="bbn-vpadding bbn-grid"
+              <div class="bbn-vpadding bbn-grid bbn-grid-gap"
                   style="grid-template-columns: repeat(2, 1fr)">
-                <div v-for="l in source.data.configured_langs"
+                <div bbn-for="l in source.data.configured_langs"
                     class="bbn-spadding bbn-radius bbn-alt-background"
                     :key="l"
                     ref="checkbox">
@@ -350,14 +350,14 @@
                                 @change="toggleLanguage"
                                 :disabled="getCode(l) === source.data.language"
                                 component="appui-i18n-lang"
-                                :componentOptions="{code: getCode(l)}"
+                                :component-options="{code: getCode(l)}"
                                 :value="l"/>
                 </div>
               </div>
             </div>
             <div class="bbn-s bbn-padding bbn-bottom-left bbn-bottom-right"
                  style="bottom: 1rem"
-                v-html="message"/>
+                 bbn-html="message"/>
           </bbn-form>
         `,
         props: ['source', 'data'],
