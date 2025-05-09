@@ -92,7 +92,8 @@
   <div class="bbn-flex-fill">
     <bbn-dashboard bbn-if="widgets.length"
                    :source="widgets"
-                   ref="dashboard"/>
+                   ref="dashboard"
+                   :scrollable="true"/>
     <bbn-loader bbn-else font-size="l"/>
   </div>
   <div bbn-if="isLoading"
