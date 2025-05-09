@@ -48,7 +48,7 @@ if ($model->hasData('idProject', true)
               $opt['data_widget'] = $i18nCls->cacheGet($opt['id'], 'get_translations_widget');
             }
             else {
-              $opt['data_widget'] = $i18nCls->getTranslationsWidget($idProj, $opt['id']);
+              $opt['data_widget'] = $i18nCls->getTranslationsWidget($opt['id']);
             }
           }
           else {

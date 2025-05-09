@@ -10,7 +10,7 @@ if (($idOption = $model->data['id_option'])
   }
   else {
     $data = $i18nCls->getTranslationsTable($idProject, $idOption);
-    $widget = $i18nCls->getTranslationsWidget($idProject, $idOption);
+    $widget = $i18nCls->getTranslationsWidget($idOption);
   }
   return [
     'data' => $data,

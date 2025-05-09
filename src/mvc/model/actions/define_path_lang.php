@@ -6,7 +6,7 @@ if ( isset( $model->data['language'] ) && $model->data['id_option'] &&  !empty($
   $translation = new \bbn\Appui\I18n($model->db, $model->data['id_project']);
 
   $model->inc->options->setProp($model->data['id_option'], ['language' => $model->data['language']]);
-  $data_widget = $translation->getTranslationsWidget($model->data['id_project'],$model->data['id_option']);
+  $data_widget = $translation->getTranslationsWidget($model->data['id_option']);
 
 
   $tmp = $translation->getTranslationsTable($model->data['id_project'], $model->data['id_option']);

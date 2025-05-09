@@ -48,11 +48,11 @@ if (isset($project_idx) && ($current_project = $projects[$project_idx]) && isset
       /*if ( empty($translation->cacheHas($id_option, 'get_translations_widget')) ){
         //set data in cache $translation->cacheSet($id_option, (string)method name, (array)data)
         $translation->cacheSet($id_option, 'get_translations_widget',
-          $translation->getTranslationsWidget($current_project['id'], $id_option)
+          $translation->getTranslationsWidget($id_option)
         );
       }
       $res[$idx]['data_widget'] = $translation->cacheGet($id_option, 'get_translations_widget');*/
-      $res[$idx]['data_widget'] = $translation->getTranslationsWidget($current_project['id'], $id_option);
+      $res[$idx]['data_widget'] = $translation->getTranslationsWidget($id_option);
     }
     else {
       /** if language is not set returns the array data_widget with locale_dirs and an empty array for result */
