@@ -45,7 +45,8 @@
             label:  (l === this.source.res.path_source_lang) ?
               (`${text} <i class="nf nf-fa-asterisk" title="` + bbn._('This is the original language of the expression') + `"/>`) :
               text,
-            editable: true
+            editable: true,
+            editor: 'appui-i18n-strings-editor'
           };
           obj.render = row => {
             let translation_db = row[l + '_db'];
@@ -63,12 +64,12 @@
               || (translation_db.length
               && (translation_db !== translation_po))
             ) {
-              return  `<span title="` + (translation_po.length ? bbn._('The translation in the po file is different from the one in database') : '') + `"
-                              class="${translation_po.length ? 'bbn-orange' : 'bbn-red'}">
+              return  `<span title="` + (translation_po?.length ? bbn._('The translation in the po file is different from the one in database') : '') + `"
+                              class="${translation_po?.length ? 'bbn-orange' : 'bbn-red'}">
                         ${translation_db}
                       </span>
                       <i style="float:right"
-                          class="${translation_po.length ? 'nf nf-fa-exclamation' : 'nf nf-fa-exclamation_triangle'} bbn-large ${translation_po.length ? 'bbn-orange' : 'bbn-red'}"
+                          class="${translation_po?.length ? 'nf nf-fa-exclamation' : 'nf nf-fa-exclamation_triangle'} bbn-large ${translation_po?.length ? 'bbn-orange' : 'bbn-red'}"
                           title="` + (translation_po ? (bbn._('The translation in the po file is') + ': ' + translation_po) : bbn._('Translation missing in po file')) + `"/>
                       `;
             }
