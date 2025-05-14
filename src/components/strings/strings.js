@@ -55,23 +55,27 @@
               return '';
             }
             if (!bbn.fn.isNull(translation_db)
-              && !!translation_db.length
+              && translation_db?.length
               && (translation_db === translation_po)
             ) {
-              return `${translation_db} <i class="nf nf-fa-check bbn-large bbn-green" title="` + bbn._('Expression correctly inserted in db and po file') + `" style="float:right"/>`;
+              return `<div class="bbn-vmiddle" style="justify-content: space-between">
+                <span>${translation_db}</span>
+                <i class="nf nf-fa-check bbn-s bbn-green" title="` + bbn._('Expression correctly inserted in db and po file') + `" style="float:right"/>
+              </div>`;
             }
             else if (bbn.fn.isNull(translation_db)
-              || (translation_db.length
-              && (translation_db !== translation_po))
+              || (translation_db?.length
+                && (translation_db !== translation_po))
             ) {
-              return  `<span title="` + (translation_po?.length ? bbn._('The translation in the po file is different from the one in database') : '') + `"
-                              class="${translation_po?.length ? 'bbn-orange' : 'bbn-red'}">
-                        ${translation_db}
-                      </span>
-                      <i style="float:right"
-                          class="${translation_po?.length ? 'nf nf-fa-exclamation' : 'nf nf-fa-exclamation_triangle'} bbn-large ${translation_po?.length ? 'bbn-orange' : 'bbn-red'}"
-                          title="` + (translation_po ? (bbn._('The translation in the po file is') + ': ' + translation_po) : bbn._('Translation missing in po file')) + `"/>
-                      `;
+              return  `<div class="bbn-vmiddle" style="justify-content: space-between">
+                <span title="` + (translation_po?.length ? bbn._('The translation in the po file is different from the one in database') : '') + `"
+                      class="${translation_po?.length ? 'bbn-orange' : 'bbn-red'}">
+                  ${translation_db}
+                </span>
+                <i style="float:right"
+                   class="${translation_po?.length ? 'nf nf-fa-exclamation' : 'nf nf-fa-exclamation_triangle'} bbn-s ${translation_po?.length ? 'bbn-orange' : 'bbn-red'}"
+                   title="` + (translation_po ? (bbn._('The translation in the po file is') + ': ' + translation_po) : bbn._('Translation missing in po file')) + `"/>
+              </div>`;
             }
           }
           r.push(obj);
@@ -89,7 +93,7 @@
         }, {
           flabel: bbn._('Remove original expression'),
           buttons: this.buttons,
-          width: this.isOptions ? 50 : 90,
+          width: this.isOptions ? 40 : 70,
           cls: 'bbn-c'
         });
         return r;
@@ -206,7 +210,7 @@
       },
       /** called at @change of the table (when the idx of the row focused changes), insert translation in db and remake the po file */
       insertTranslation(row){
-        if (!!row) {
+        if (row) {
           this.post(this.root + 'actions/insert_translations', {
             row: row,
             langs: this.source.res.languages,
@@ -366,21 +370,21 @@
               <bbn-input placeholder="` + bbn._('Search the string') + `"
                         bbn-model="valueToFind"
                         :button-right="valueToFind.length ? 'nf nf-fa-close bbn-red' : 'nf nf-fa-search'"
-                        @clickrightbutton="valueToFind = valueToFind.length ? '' : valueToFind"
+                        @clickrightbutton="valueToFind = valueToFind?.length ? '' : valueToFind"
                         class="bbn-right-sspace bbn-top-sspace"/>
               <bbn-button title="` + bbn._('Force translation files update') + `"
                           class="bbn-bg-orange bbn-white bbn-right-sspace bbn-top-sspace"
-                          @click="main.generate"
+                          @click="generate"
                           icon="nf nf-md-file_replace_outline"
                           label="` + bbn._('Create translation files') + `"/>
               <bbn-button title="` + bbn._('Rebuild table data') + `"
-                          @click="main.remakeCache"
+                          @click="remakeCache"
                           icon="nf nf-fa-retweet"
                           label="` + bbn._('Rebuild table data') + `"
                           class="bbn-right-sspace bbn-top-sspace"/>
               <bbn-button bbn-if="!isOptions"
                           title="` + bbn._('Check files for new strings') + `"
-                          @click="main.findStrings"
+                          @click="findStrings"
                           icon="nf nf-fa-search"
                           label="` + bbn._('Parse files for new strings') + `"
                           class="bbn-top-sspace"/>
@@ -399,7 +403,7 @@
         props: ['source'],
         data(){
           return {
-            main: null,
+            main: this.closest('appui-i18n-strings'),
             valueToFind: '',
             root: appui.plugins['appui-i18n'] + '/'
           };
@@ -437,10 +441,16 @@
             else if (!this.valueToFind.length && table.currentFilters.conditions.length) {
               table.currentFilters.conditions.splice(0);
             }
+          },
+          generate(){
+            this.main.generate();
+          },
+          remakeCache(){
+            this.main.remakeCache();
+          },
+          findStrings(){
+            this.main.findStrings();
           }
-        },
-        beforeMount(){
-          this.$set(this, 'main', this.closest('appui-i18n-strings'));
         },
         watch: {
           valueToFind(val){

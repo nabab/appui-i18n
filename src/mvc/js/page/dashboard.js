@@ -139,16 +139,13 @@
           var tab = this.closest('bbn-container').getComponent();
           this.getPopup({
             scrollable: false,
-            width: 400,
-            height: 250,
             source: {
               source_lang: false,
               translation_lang: false,
-              primary: tab.primary,
               dd_source_lang: tab.dd_source_lang,
               dd_translation_lang: tab.dd_translation_lang,
             },
-            component: tab.$options.components.cfg_translations_form,
+            component: tab.$options.components.cfgTranslationsForm,
             label: bbn._('Config your translation tab')
           })
 
@@ -197,32 +194,37 @@
       }
     },
     components: {
-      'cfg_translations_form': {
-        template: `<bbn-form :source="source.row"
-                  @submit="link"
-                  :prefilled="true"
-                  @cancel="cancel"
-                  :scrollable="false">
-          <div class="bbn-grid-fields bbn-flex-fill bbn-padding bbn-c">
-            <span>
-              <?= _('Select source language') ?>:
-            </span>
-            <div>
-              <bbn-dropdown placeholder="Choose" :source="source.dd_translation_lang" v-model="source.source_lang"></bbn-dropdown>
+      cfgTranslationsForm: {
+        template: `
+          <bbn-form :source="source"
+                    @submit="link"
+                    @cancel="cancel"
+                    :scrollable="false">
+            <div class="bbn-grid-fields bbn-flex-fill bbn-padding bbn-c">
+              <span>` + bbn._('Select source language:') + `</span>
+              <div>
+                <bbn-dropdown placeholder="` + bbn._('Choose') + `"
+                              :source="source.dd_translation_lang"
+                              bbn-model="source.source_lang"/>
+              </div>
+              <span>` + bbn._('Select a language for the translation:') + `</span>
+              <div>
+                <bbn-dropdown placeholder="` + bbn._('Choose') + `"
+                              :source="source.dd_translation_lang"
+                              bbn-model="source.translation_lang"/>
+              </div>
             </div>
-
-            <span>
-              <?= _('Select a language for the translation') ?>:
-            </span>
-            <div>
-              <bbn-dropdown placeholder="Choose" :source="source.dd_translation_lang" v-model="source.translation_lang"></bbn-dropdown>
-            </div>
-          </div>
-        </bbn-form>`,
-        props:['source'],
+          </bbn-form>
+        `,
+        mixins: [bbn.cp.mixins.basic],
+        props: {
+          source: {
+            type: Object
+          }
+        },
         methods: {
           link(){
-            bbn.fn.link(this.root + 'page/glossary/' + this.source.source_lang + '/' + this.source.translation_lang);
+            bbn.fn.link(appui.plugins['appui-i18n'] + '/page/glossary/' + this.source.source_lang + '/' + this.source.translation_lang);
           },
           cancel(){
             this.getPopup().close();
@@ -291,9 +293,7 @@
             }
           }
         },
-
       }
     }
   }
-
 })();
