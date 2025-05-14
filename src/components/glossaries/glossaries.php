@@ -1,5 +1,4 @@
 <div class="strings-table" style="min-height: 500px">
-
   <bbn-table :source="root + 'page/data/glossary'"
              editable="nobuttons"
              :pageable="true"
@@ -10,18 +9,18 @@
              ref="glossary_table"
              :info="true"
              :order="[{field: 'exp', dir: 'ASC'}]"
-             :data="{source_lang: source.source_lang, lang_name:source.lang_name, translation_lang: source.translation_lang}"
-             @change="insert_translation"
-  >
+             :data="{
+               source_lang: source.source_lang,
+               lang_name:source.lang_name,
+               translation_lang: source.translation_lang
+            }"
+             @change="insert_translation">
     <bbns-column field="exp"
-                label="<?php echo _('Original Expression'); ?>"
+                label="<?=_('Original Expression')?>"
                 :editable="false"
-                cls="bbn-i"
-    ></bbns-column>
-
+                cls="bbn-i"/>
     <bbns-column field="translation"
-                 label="<?php echo _('Translation'); ?>"
-    ></bbns-column>
+                 label="<?php echo _('Translation'); ?>"/>
 
 <!--    <bbns-column field="id_user"
                 :render="render_user"
