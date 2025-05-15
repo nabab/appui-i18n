@@ -6,42 +6,25 @@
              :filterable="true"
              :multifilter="true"
              :limit="25"
-             ref="glossary_table"
+             ref="table"
              :info="true"
              :order="[{field: 'exp', dir: 'ASC'}]"
              :data="{
                source_lang: source.source_lang,
-               lang_name:source.lang_name,
+               lang_name: source.lang_name,
                translation_lang: source.translation_lang
-            }"
-             @change="insert_translation">
+             }"
+             @change="insertTranslation">
     <bbns-column field="exp"
                 label="<?=_('Original Expression')?>"
                 :editable="false"
                 cls="bbn-i"/>
     <bbns-column field="translation"
-                 label="<?php echo _('Translation'); ?>"/>
-
-<!--    <bbns-column field="id_user"
-                :render="render_user"
-                label="<?/*=_('User')*/?>"
-                :editable="false"
-    ></bbns-column>-->
-
-    <bbns-column flabel="<?php echo _('Status'); ?>"
-                 width="40"
-                 cls="bbn-c"
-                 :editable="false"
-                 :render="icons"
-    ></bbns-column>
-<!--
-    <bbns-column flabel="<?/*=_('Actions')*/?>"
-                width="40"
+                 label="<?=_('Translation')?>"
+                 editor="appui-i18n-strings-editor"/>
+    <!--<bbns-column flabel="<?/*=_('Actions')*/?>"
+                :width="40"
                 cls="bbn-b"
-                :buttons="buttons"
-    ></bbns-column>-->
-
-
-
+                :buttons="buttons"/>-->
   </bbn-table>
 </div>

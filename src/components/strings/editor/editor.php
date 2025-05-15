@@ -2,5 +2,6 @@
   <bbn-input bbn-model="source[name]"
              ref="input"
              tabindex="0"
-             @change.stop/>
+             @change.stop
+             class="bbn-w-100"/>
 </div>

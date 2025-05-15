@@ -20,7 +20,6 @@
         return row.user ? appui.getUserName(row.user) : '';
       },
       renderStatus(row){
-        let st = '';
         let icon = '';
         let color = '';
         let title = '';
@@ -61,7 +60,8 @@
         if (title) {
           return `<i class="${icon} ${color} bbn-xl" title="${title}"></i>`;
         }
-        return st;
+
+        return '';
       },
       renderFlag(row, col){
         let code = row[col.field === 'lang' ? 'translation_lang' : 'original_lang'];

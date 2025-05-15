@@ -139,12 +139,7 @@
           var tab = this.closest('bbn-container').getComponent();
           this.getPopup({
             scrollable: false,
-            source: {
-              source_lang: false,
-              translation_lang: false,
-              dd_source_lang: tab.dd_source_lang,
-              dd_translation_lang: tab.dd_translation_lang,
-            },
+            source: this.primary,
             component: tab.$options.components.cfgTranslationsForm,
             label: bbn._('Config your translation tab')
           })
@@ -196,7 +191,7 @@
     components: {
       cfgTranslationsForm: {
         template: `
-          <bbn-form :source="source"
+          <bbn-form :source="formSource"
                     @submit="link"
                     @cancel="cancel"
                     :scrollable="false">
@@ -204,14 +199,16 @@
               <span>` + bbn._('Select source language:') + `</span>
               <div>
                 <bbn-dropdown placeholder="` + bbn._('Choose') + `"
-                              :source="source.dd_translation_lang"
-                              bbn-model="source.source_lang"/>
+                              :source="source"
+                              bbn-model="formSource.sourceLang"
+                              source-value="code"/>
               </div>
               <span>` + bbn._('Select a language for the translation:') + `</span>
               <div>
                 <bbn-dropdown placeholder="` + bbn._('Choose') + `"
-                              :source="source.dd_translation_lang"
-                              bbn-model="source.translation_lang"/>
+                              :source="source"
+                              bbn-model="formSource.translationLang"
+                              source-value="code"/>
               </div>
             </div>
           </bbn-form>
@@ -219,12 +216,20 @@
         mixins: [bbn.cp.mixins.basic],
         props: {
           source: {
-            type: Object
+            type: Array
+          }
+        },
+        data(){
+          return {
+            formSource: {
+              sourceLang: '',
+              translationLang: ''
+            }
           }
         },
         methods: {
           link(){
-            bbn.fn.link(appui.plugins['appui-i18n'] + '/page/glossary/' + this.source.source_lang + '/' + this.source.translation_lang);
+            bbn.fn.link(appui.plugins['appui-i18n'] + '/page/glossary/' + this.formSource.sourceLang + '/' + this.formSource.translationLang);
           },
           cancel(){
             this.getPopup().close();
