@@ -46,7 +46,7 @@
               (`${text} <i class="nf nf-fa-asterisk" title="` + bbn._('This is the original language of the expression') + `"/>`) :
               text,
             editable: true,
-            editor: 'appui-i18n-strings-editor'
+            editor: 'appui-i18n-translations-editor'
           };
           obj.render = row => {
             let translation_db = row[l + '_db'];
@@ -403,7 +403,7 @@
         props: ['source'],
         data(){
           return {
-            main: this.closest('appui-i18n-strings'),
+            main: this.closest('appui-i18n-translations'),
             valueToFind: '',
             root: appui.plugins['appui-i18n'] + '/'
           };

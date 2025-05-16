@@ -68,33 +68,31 @@
             label: bbn._('Update widget data'),
             icon: 'nf nf-fa-retweet',
             action: 'remake_cache'
+          }, (this.isOptionsProject ? {
+            label: bbn._('Create translation files'),
+            icon: 'nf nf-md-file_replace_outline',
+            action: 'generateFiles',
+          } : {
+            label: bbn._('Setup languages'),
+            icon: 'nf nf-fa-flag',
+            action: 'generate'
+          }), {
+            label: bbn._('Open the table of strings'),
+            icon: 'nf nf-fa-book',
+            action: 'openStringsTable',
+          }, {
+            label: bbn._('Open the translations form'),
+            icon: 'nf nf-md-translate',
+            action: 'openTranslationsForm',
           }];
           if (!this.isOptionsProject) {
             buttons.push({
-              label: bbn._('Setup languages'),
-              icon: 'nf nf-fa-flag',
-              action: 'generate'
-            }, {
-              label: bbn._('Open the table of strings'),
-              icon: 'nf nf-fa-book',
-              action: 'open_strings_table',
-            }, {
               label: bbn._('Delete locale folder'),
               icon: 'nf nf-fa-trash',
               action: 'delete_locale_folder',
             });
           }
-          else {
-            buttons.push({
-              label: bbn._('Create translation files'),
-              icon: 'nf nf-md-file_replace_outline',
-              action: 'generateFiles',
-            }, {
-              label: bbn._('Open the table of strings'),
-              icon: 'nf nf-fa-book',
-              action: 'open_strings_table',
-            });
-          }
+
           if (bbn.fn.isArray(this.source.data)
             && this.source.data.length
           ) {

@@ -21,7 +21,7 @@
                 cls="bbn-i"/>
     <bbns-column field="translation"
                  label="<?=_('Translation')?>"
-                 editor="appui-i18n-strings-editor"/>
+                 editor="appui-i18n-translations-editor"/>
     <!--<bbns-column flabel="<?/*=_('Actions')*/?>"
                 :width="40"
                 cls="bbn-b"

@@ -1,0 +1,1 @@
+<appui-i18n-translations-translate :source="source"/>

@@ -199,7 +199,7 @@
           });
         })
       },
-      open_strings_table(){
+      openStringsTable(){
         //open the table of strings of this path combining new strings found in the files with strings present in db
         //send arguments[0] (id_option of the path) to 'page/expressions/'
         //only if the the language of the path is set
@@ -209,7 +209,15 @@
           bbn.fn.link(this.root + 'page/expressions/' + this.projectCode + '/' + this.source.id);
         }
         else if (this.id_project !== 'options') {
-          this.alert(bbn._('You have to configure at least a language of translation using the button') +' <i class="nf nf-fa-flag"></i> ' + bbn._('of the widget before to open the strings table'));
+          this.alert(bbn._('You have to configure at least a language of translation using the button %s of the widget before to open the strings table', '<i class="nf nf-fa-flag"></i>'));
+        }
+      },
+      openTranslationsForm(){
+        if (this.configured_langs) {
+          bbn.fn.link(this.root + 'page/translate/' + this.projectCode + '/' + this.source.id);
+        }
+        else if (this.id_project !== 'options') {
+          this.alert(bbn._('You have to configure at least a language of translation using the button %s of the widget before to open the strings table', '<i class="nf nf-fa-flag"></i>'));
         }
       },
       remake_cache(){
