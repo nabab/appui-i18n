@@ -1,19 +1,11 @@
 <?php
-/**
- * Created by BBN Solutions.
- * User: Loredana Bruno
- * Date: 14/12/17
- * Time: 13.05
- */
+use bbn\Appui\I18n;
 
-/* @var string ID of the path to analyze is expected */
 if ($model->hasData(['project', 'option'], true)) {
   $project = $model->data['project'];
   $option = $model->data['option'];
   $isOptions = ($project === 'options');
-
-  /** @var  $translation instantiate the class Appui\I18n*/
-  $translation = new \bbn\Appui\I18n($model->db, $isOptions ? null : $project);
+  $translation = new I18n($model->db, $isOptions ? null : $project);
 
   //if the table has no cache it creates cache
   if (!empty($project)
