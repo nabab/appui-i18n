@@ -45,8 +45,7 @@
             label:  (l === this.source.res.path_source_lang) ?
               (`${text} <i class="nf nf-fa-asterisk" title="` + bbn._('This is the original language of the expression') + `"/>`) :
               text,
-            editable: true,
-            editor: 'appui-i18n-translations-editor'
+            editable: true
           };
           obj.render = row => {
             let translation_db = row[l + '_db'];

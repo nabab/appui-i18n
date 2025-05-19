@@ -30,18 +30,22 @@
         );
       },
       insertTranslation(row){
-        this.post(this.root + 'actions/insert_translation', {
-          'id_exp' : row.idExp,
-          'expression': row.translation,
-          'lang': this.source.translation_lang
-        }, d => {
-          if (d.success){
-            appui.success('Translation saved');
-          }
-          else{
-            appui.error('An error occurred while saving translation');
-          }
-        });
+        if (row?.translation
+          && row?.idExp
+        ) {
+          this.post(this.root + 'actions/insert_translation', {
+            'id_exp' : row.idExp,
+            'expression': row.translation,
+            'lang': this.source.translation_lang
+          }, d => {
+            if (d.success){
+              appui.success('Translation saved');
+            }
+            else{
+              appui.error('An error occurred while saving translation');
+            }
+          });
+        }
       },
     }
   }

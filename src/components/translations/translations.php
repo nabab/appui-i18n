@@ -1,5 +1,4 @@
-<div class="strings-table"
-     style="min-height: 500px; width:100%">
+<div class="appui-i18n-translations bbn-overlay">
   <bbn-table bbn-if="source.res?.languages?.length && !showAlert"
              :source="source.res?.strings || []"
              :columns="columns"

@@ -1,4 +1,4 @@
-<div class="strings-table" style="min-height: 500px">
+<div class="appui-i18n-glossaries bbn-overlay">
   <bbn-table :source="root + 'page/data/glossary'"
              editable="nobuttons"
              :pageable="true"
@@ -20,8 +20,7 @@
                 :editable="false"
                 cls="bbn-i"/>
     <bbns-column field="translation"
-                 label="<?=_('Translation')?>"
-                 editor="appui-i18n-translations-editor"/>
+                 label="<?=_('Translation')?>"/>
     <!--<bbns-column flabel="<?/*=_('Actions')*/?>"
                 :width="40"
                 cls="bbn-b"
