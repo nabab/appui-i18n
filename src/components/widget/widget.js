@@ -1,5 +1,6 @@
 (() => {
   return {
+    mixins: [bbn.cp.mixins.basic],
     props: ['source'],
     data(){
       return {
@@ -160,17 +161,19 @@
         })
       },
       /** removes the property language of the path */
-      remove_language(){
-        this.post(this.root + '/actions/delete_path_lang', {
-          id_option: this.source.id,
-          language: this.source.language,
-          id_project: this.id_project
-        }, (d) => {
-          if ( d.success ){
-            this.source.language = null
-            appui.success(bbn._('Source language reset'));
-          }
-        })
+      removeLanguage(){
+        this.confirm(bbn._('Are you sure you want to remove the source language for this path?'), () => {
+          this.post(this.root + '/actions/delete_path_lang', {
+            id_option: this.source.id,
+            language: this.source.language,
+            id_project: this.id_project
+          }, d => {
+            if (d.success) {
+              this.source.language = null
+              appui.success(bbn._('Source language reset'));
+            }
+          })
+        });
       },
       /** removes the property language of the option from its cfg */
       remove_cfg(){

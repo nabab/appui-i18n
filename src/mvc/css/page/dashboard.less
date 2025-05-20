@@ -1,24 +1,18 @@
 /* LESS Document */
+@boxshadow: inset 0 0 1rem 0.05rem var(--header-background);
 .appui-i18n-dashboard {
   .appui-i18n-dashboard-toolbar {
+    box-shadow: @boxshadow;
     .bbn-dropdown {
       border: 0 !important;
     }
   }
   .appui-i18n-dashboard-head {
+    box-shadow: @boxshadow;
     flex-direction: column;
     .appui-i18n-dashboard-head-lang {
       .bbn-input {
         color: inherit;
-      }
-    }
-  }
-  .bbn-dashboard {
-    .bbn-masonry > .bbn-widget {
-      & > .bbn-content,
-      & > .bbn-header {
-        background-color: var(--default-background);
-        color: var(--default-text);
       }
     }
   }

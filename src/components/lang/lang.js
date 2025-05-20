@@ -16,6 +16,10 @@
       flag: {
         type: Boolean,
         default: true
+      },
+      onlyFlag: {
+        type: Boolean,
+        default: false
       }
     },
     data(){
