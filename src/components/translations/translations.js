@@ -5,9 +5,7 @@
       return {
         columnLength: true,
         hiddenCols: [],
-        showAlert: false,
-        root: appui.plugins['appui-i18n'] + '/',
-        mainPage: appui.getRegistered('appui-i18n')
+        showAlert: false
       };
     },
     computed: {

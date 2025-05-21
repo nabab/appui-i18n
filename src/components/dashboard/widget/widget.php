@@ -1,8 +1,8 @@
-<div class="appui-i18n-widget">
+<div class="appui-i18n-dashboard-widget">
   <!--if the source language of the path is set -->
   <div bbn-if="source.language"
        class="bbn-grid-fields bbn-r">
-    <template bbn-if="!dashboard.isOptionsProject">
+    <template bbn-if="!isOptionsProject">
       <span bbn-text="_('Source language of this path')"/>
       <div class="bbn-vmiddle"
            style="column-gap: var(--sspace); justify-content: end">
@@ -12,11 +12,11 @@
            title="<?= _("Reset source language for this path") ?>"/>
       </div>
     </template>
-    <template bbn-if="data_widget && locale_dirs.length && !no_strings">
+    <template bbn-if="data && localeDirs?.length && !no_strings">
       <span><?= _("Files of translations found") ?></span>
       <div class="bbn-flex-wrap"
            style="column-gap: var(--sspace); justify-content: end">
-        <appui-i18n-lang bbn-for="w in locale_dirs"
+        <appui-i18n-lang bbn-for="w in localeDirs"
                          :code="w"
                          :only-flag="true"/>
       </div>
@@ -25,15 +25,15 @@
          class="bbn-grid-full bbn-orange bbn-c">
       <?= _("There are no strings in this path") ?>
     </div>
-    <template bbn-if="data_widget && data_widget[source.language]">
-      <span bbn-if="data_widget[source.language].num"><?= _('Total number of expressions') ?></span>
-      <span bbn-text="data_widget[source.language].num ? data_widget[source.language].num : (!no_strings ? _('Regenerate the translation files') : '')"
-            :class="data_widget[source.language].num ? '' : 'bbn-grid-full bbn-orange bbn-c'"
-            :style="data_widget[source.language].num ? 'text-align:right!important' : ''"/>
-      <div bbn-if="data_widget[source.language].num"
-           bbn-for="(w, i) in data_widget"
+    <template bbn-if="data && data[source.language]">
+      <span bbn-if="data[source.language].num"><?= _('Total number of expressions') ?></span>
+      <span bbn-text="data[source.language].num ? data[source.language].num : (!no_strings ? _('Regenerate the translation files') : '')"
+            :class="data[source.language].num ? '' : 'bbn-grid-full bbn-orange bbn-c'"
+            :style="data[source.language].num ? 'text-align:right!important' : ''"/>
+      <div bbn-if="data[source.language].num"
+           bbn-for="(w, i) in data"
            class="bbn-grid-full bbn-vmiddle bbn-flex-width bbn-grid-sgap bbn-border bbn-radius bbn-left-xspadding">
-        <template bbn-if="!!dashboard.isOptionsProject || configured_langs.includes(getField(primary, 'id', 'code', i))">
+        <template bbn-if="isOptionsProject || configuredLangs?.includes(getField(primary, 'id', 'code', i))">
           <appui-i18n-lang :code="i"
                            class="bbn-b bbn-i"/>
           <span bbn-text=" w.num_translations + ' / '+ w.num"/>
@@ -52,14 +52,14 @@
         </template>
       </div>
     </template>
-    <div bbn-else-if="!locale_dirs.length"
+    <div bbn-else-if="!localeDirs?.length"
          style="padding-top:10px"
          class="bbn-c bbn-full-grid">
       <?= _("No translation files found for this path, to start translation configure at least one language using the")?> <i class="nf nf-fa-flag bbn-large"></i> <?=_("button") ?>
     </div>
   </div>
   <!--if the source language of the path is not set -->
-  <div bbn-else-if="!dashboard.isOptionsProject">
+  <div bbn-else-if="!isOptionsProject">
     <div class="bbn-padding bbn-grid-fields">
       <span bbn-text="_('Select a source language for this option')"/>
       <div>

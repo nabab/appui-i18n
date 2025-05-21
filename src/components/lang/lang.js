@@ -24,7 +24,6 @@
     },
     data(){
       return {
-        mainPage: appui.getRegistered('appui-i18n'),
         githubFlagsUrl: 'https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/',
         padded: false
       }
@@ -37,26 +36,29 @@
         if (!this.currentCode || !this.flag) {
           return '';
         }
+
         let code = this.currentCode;
         if (code === 'en') {
           code = 'gb';
         }
+
         return this.githubFlagsUrl + code + '.svg';
       },
       currentText(){
-        if (this.text && this.text.length) {
+        if (this.text?.length) {
           return this.text;
         }
-        if (this.source.text && this.source.text.length) {
+
+        if (this.source.text?.length) {
           return this.source.text;
         }
-        if (this.mainPage
-          && this.mainPage.source
-          && this.mainPage.source.primary
+
+        if (this.mainPage?.data?.primary
           && this.code
         ) {
-          return bbn.fn.getField(this.mainPage.source.primary, 'text', 'code', this.code);
+          return bbn.fn.getField(this.mainPage.data.primary, 'text', 'code', this.code);
         }
+
         return '';
       }
     },

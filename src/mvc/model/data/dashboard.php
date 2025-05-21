@@ -2,6 +2,7 @@
 use bbn\X;
 use bbn\Appui\Project;
 use bbn\Appui\I18n;
+
 $res = [
   'success' => false,
   'paths' => []

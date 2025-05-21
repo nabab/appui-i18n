@@ -1,7 +1,11 @@
 (() => {
   return {
     mixins: [bbn.cp.mixins.basic],
-    props: ['source'],
+    props: {
+      source: {
+        type: Object,
+      }
+    },
     data(){
       return {
         /** @todo this property should be true after the success of the form in the case of return of d.no_strings = true*/
@@ -10,93 +14,49 @@
         //source language of the path
         language: this.source.language,
         /** the css class for progress bar the value is decided by the watch of progress_bar_val */
-        progress_bar_class: '',
-        root: appui.plugins['appui-i18n'] + '/',
-        dashboard: appui.getRegistered('appui-i18n-dashboard')
+        progress_bar_class: ''
       }
     },
     computed: {
-      container(){
-        let ct = this.closest('bbn-container');
-        if (ct) {
-          return ct.getComponent()
+      widgetIndex(){
+        if (this.dashboard?.data) {
+          const idx = bbn.fn.search(this.dashboard.data, 'id', this.source.id);
+          return idx > -1 ? idx : null;
         }
-        return null;
-      },
-      primary(){
-        return this.dashboard.primary;
-      },
-      id_project(){
-        return this.dashboard.idProject;
-      },
-      projectName(){
-        return !!this.dashboard
-          && !!this.dashboard.currentProject
-          && !!this.dashboard.currentProject.name ?
-          this.dashboard.currentProject.name :
-          '';
-      },
-      projectCode(){
-        return !!this.dashboard
-          && !!this.dashboard.currentProject
-          && !!this.dashboard.currentProject.code ?
-          this.dashboard.currentProject.code :
-          '';
-      },
-      parentSource(){
-        if (this.container) {
-          let ct = this.container.closest('bbn-container');
-          if (ct) {
-            return ct.source;
-          }
-        }
-      },
-      widget_idx(){
-        if (this.parentSource) {
-          //return the real index of this widget in the array of data of dashboard it works also after drag and drop
-          let data = this.parentSource.data;
-          return bbn.fn.search(data, 'id', this.source.id);
-        }
+
         return null;
       },
       //used to render the widget, language of locale folder
-      data_widget(){
-        //if the source language of the path is set takes the array result from dashboard source
-        let result = bbn.fn.clone(this.source.data_widget.result, true);
-        if ( this.source.language && result ){
+      data(){
+        if (this.source?.language && this.source?.data_widget?.result) {
+          let result = bbn.fn.clone(this.source.data_widget.result, true);
           bbn.fn.iterate(result, (r, l) => {
-            result[l].class = '';
-            result[l].class_db = '';
-
+            r.class = '';
+            r.class_db = '';
             if (r.num_translations >= 0) {
-              result[l].val = !r.num ? 0 : r.num_translations/r.num * 100
+              r.val = !r.num ? 0 : r.num_translations/r.num * 100
               /** the css class for progress bar */
               if ((r.val >= 0) && (r.val <= 30)) {
-                result[l].class = 'low'
+                r.class = 'low'
               }
               else if ((r.val > 30) && (r.val <= 70)) {
-                result[l].class = 'medium'
+                r.class = 'medium'
               }
               else if ((r.val > 70) && (r.val <= 100)) {
-                result[l].class = 'high'
+                r.class = 'high'
               }
             }
 
           });
 
-
           return result;
         }
-        else {
-          return [];
-        }
+
+        return [];
       },
       //if the source language of the path is set takes the array result from dashboard source
-      locale_dirs(){
-        return this.source.data_widget.locale_dirs;
-      },
-      configured_langs(){
-        return appui.getRegistered('appui-i18n-dashboard').source.configured_langs;
+      localeDirs(){
+        return this.source?.data_widget?.locale_dirs;
       },
       dd_primary(){
         let res = []
@@ -127,12 +87,12 @@
       /** set the property language in db for this path */
       set_language(){
         /* the data coming from the post change the source of the dashboard at the index of this specific widget*/
-        if (this.parentSource) {
+        if (this.dashboard?.data) {
           this.post(
             this.root + 'actions/define_path_lang', {
               id_option: this.source.id,
               language: this.source.language,
-              id_project: this.id_project
+              id_project: this.idProject
             }, (d) => {
               if ( d.success ){
                 delete d.success;
@@ -152,7 +112,7 @@
         this.post(this.root + 'options/set_lang', {
           id_option: this.source.id,
           language: this.source.language,
-          id_project: this.id_project
+          id_project: this.idProject
         }, (d) => {
           if ( d.success ){
             this.source.language = null
@@ -166,7 +126,7 @@
           this.post(this.root + '/actions/delete_path_lang', {
             id_option: this.source.id,
             language: this.source.language,
-            id_project: this.id_project
+            id_project: this.idProject
           }, d => {
             if (d.success) {
               this.source.language = null
@@ -190,7 +150,7 @@
         this.confirm('Are you sure you want to delete the folder locale for this path?',()=>{
           this.post(this.root + 'actions/delete_locale_folder', {
             id_option: this.source.id,
-            id_project: this.id_project
+            id_project: this.idProject
           }, (d) => {
             if ( d.success ){
               this.remake_cache()
@@ -208,26 +168,26 @@
         //only if the the language of the path is set
         //page/expressions/ will return the cached_model in its data, if a
         // cached_model doesn't exist for this id_option it will be created
-        if (this.configured_langs !== undefined) {
-          bbn.fn.link(this.root + 'page/expressions/' + this.projectCode + '/' + this.source.id);
+        if (this.configuredLangs?.length) {
+          bbn.fn.link(this.baseURL + 'expressions/' + this.projectCode + '/' + this.source.id);
         }
-        else if (this.id_project !== 'options') {
+        else if (!this.isOptionsProject) {
           this.alert(bbn._('You have to configure at least a language of translation using the button %s of the widget before to open the strings table', '<i class="nf nf-fa-flag"></i>'));
         }
       },
       openTranslationsForm(){
-        if (this.configured_langs) {
-          bbn.fn.link(this.root + 'page/translate/' + this.projectCode + '/' + this.source.id);
+        if (this.configuredLangs) {
+          bbn.fn.link(this.baseURL + 'translate/' + this.projectCode + '/' + this.source.id);
         }
-        else if (this.id_project !== 'options') {
+        else if (!this.isOptionsProject) {
           this.alert(bbn._('You have to configure at least a language of translation using the button %s of the widget before to open the strings table', '<i class="nf nf-fa-flag"></i>'));
         }
       },
       remake_cache(){
-        if (this.parentSource && (this.source.language != null)) {
+        if (this.dashboard?.data && (this.source.language != null)) {
           this.post(this.root + 'actions/reload_widget_cache', {
             id_option: this.source.id,
-            id_project: this.id_project
+            id_project: this.idProject
           }, d => {
             if (d.success) {
               appui.success(bbn._('Widget updated'));
@@ -259,7 +219,7 @@
       },*/
       /** method to find strings and translation for the option -works with db- only for the id_project === 'option' */
       find_options(){
-        if ( this.id_project === 'options' ){
+        if (this.isOptionsProject) {
           let url = this.root + 'options/find_options';
           this.post(url, {
             id_option : this.source.id,
@@ -287,15 +247,15 @@
             source: {
               row: {
                 id_option: this.source.id,
-                languages: this.locale_dirs
+                languages: this.localeDirs
               },
               data: {
-                id_project: this.id_project,
+                id_project: this.idProject,
                 primary: this.primary,
                 language: this.source.language,
-                widget_idx : this.widget_idx,
+                widget_idx : this.widgetIndex,
                 //langs configured for the project
-                configured_langs: this.configured_langs,
+                configured_langs: this.configuredLangs,
                 /** widget is needed to make operations on the current widget*/
                 //widget: this,
               }
@@ -310,8 +270,8 @@
       generateFiles(){
         this.post(this.root + 'actions/generate', {
           id_option: this.source.id,
-          languages: this.locale_dirs,
-          id_project: this.id_project,
+          languages: this.localeDirs,
+          id_project: this.idProject,
           language: this.source.language
         }, d => {
           if (d.success && !!d.widget) {

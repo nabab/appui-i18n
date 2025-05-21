@@ -1,19 +1,65 @@
 (() => {
+  let mixins = [bbn.cp.mixins.i18n, {
+    data() {
+      return {
+        _dashboard: null,
+      };
+    },
+    computed: {
+      dashboard(){
+        if (!this._dashboard) {
+          this.updateInternalDashboard();
+
+        }
+
+        return this._dashboard;
+      },
+      idProject(){
+        return this.dashboard?.idProject;
+      },
+      projectName(){
+        return this.dashboard?.currentProject?.name || '';
+      },
+      projectCode(){
+        return this.dashboard?.currentProject?.code || '';
+      },
+      primary(){
+        return this.dashboard?.primary;
+      },
+      configuredLangs(){
+        return this.dashboard?.configuredLangs;
+      },
+      isOptionsProject(){
+        return this.dashboard?.isOptionsProject;
+      }
+    },
+    methods: {
+      updateInternalDashboard() {
+        this._dashboard = this.closest('appui-i18n-dashboard');
+      }
+    }
+  }];
+  bbn.cp.addUrlAsPrefix(
+    'appui-i18n-dashboard-',
+    appui.plugins['appui-component'] + '/',
+    mixins
+  );
+
   return {
-    name: 'appui-i18n-dashboard',
     props: {
       source: {
         type: Object
       }
     },
     data(){
-      const idProject = this.source.projects?.length ? bbn.fn.getField(this.source.projects, 'id', 'name', bbn.env.appName) : '';
+      const idProject = this.source?.id_project || (this.source.projects?.length ? bbn.fn.getField(this.source.projects, 'id', 'name', bbn.env.appName) : '');
       return {
-        isLoading: false,
+        isLoading: true,
         idProject,
         primary: this.source.primary,
         optionsRoot: appui.plugins['appui-option'] + '/',
-        root: appui.plugins['appui-i18n'] + '/'
+        configuredLangs: [],
+        data: []
       }
     },
     computed: {
@@ -21,7 +67,9 @@
         return this.idProject === 'options';
       },
       currentProject(){
-        return !!this.idProject ? bbn.fn.getRow(this.source.projects, 'id', this.idProject) : {};
+        return this.idProject && this.source?.projects?.length ?
+          bbn.fn.getRow(this.source.projects, 'id', this.idProject) :
+          {};
       },
       currentProjectLanguage: {
         get(){
@@ -63,7 +111,7 @@
       },
       widgets(){
         let res = [];
-        if (this.source.data){
+        if (this.data?.length){
           let buttons = [{
             label: bbn._('Update widget data'),
             icon: 'nf nf-fa-retweet',
@@ -93,24 +141,21 @@
             });
           }
 
-          if (bbn.fn.isArray(this.source.data)
-            && this.source.data.length
-          ) {
-            bbn.fn.each(this.source.data, v => {
-              if (v.id || v.code) {
-                res.push({
-                  label: v.title + (this.isOptionsProject ? ` (${v.code})` : ''),
-                  key: v.id || v.code,
-                  component : 'appui-i18n-widget',
-                  source: v,
-                  buttonsRight: buttons,
-                  componentOptions: {
-                    id_project: this.idProject,
-                  }
-                });
-              }
-            });
-          }
+          bbn.fn.each(this.data, v => {
+            if (v.id || v.code) {
+              res.push({
+                label: v.title + (this.isOptionsProject ? ` (${v.code})` : ''),
+                key: v.id || v.code,
+                component : 'appui-i18n-dashboard-widget',
+                buttonsRight: buttons,
+                options: {
+                  idProject: this.source?.id_project,
+                  source: v
+                }
+              });
+            }
+          });
+
           return res;
         }
 
@@ -125,12 +170,11 @@
       }
     },
     methods: {
-      isMobile: bbn.fn.isMobile,
       openUsersActivity(){
-        bbn.fn.link(this.root + 'page/history/');
+        bbn.fn.link(this.baseURL + 'history/');
       },
       openUserActivity(){
-        bbn.fn.link(this.root + 'page/user_history');
+        bbn.fn.link(this.baseURL + 'user_history');
       },
       openGlossary(){
         //open a component popup to select source language and translation language for the table glossary
@@ -153,7 +197,7 @@
           component: this.$options.components.languagesForm,
           componentOptions: {
             source: {
-              langs: this.source.configured_langs,
+              langs: this.configuredLangs,
               idProject: this.idProject
             },
             currentLanguage: this.language,
@@ -163,21 +207,35 @@
       },
       getField: bbn.fn.getField,
       loadProject(){
-        this.source.data.splice(0);
-        this.source.configured_langs.splice(0);
+        this.isLoading = true;
+        this.data.splice(0);
+        this.configuredLangs.splice(0);
         this.post(this.root + 'data/dashboard', {idProject: this.idProject}, d => {
           if (d.success) {
-            this.source.data.push(...d.paths);
-            this.source.configured_langs.push(...d.langs);
+            this.data.push(...d.paths);
+            this.configuredLangs.push(...d.langs);
           }
+
+          this.$nextTick(() => {
+            this.isLoading = false;
+          });
+        }, () => {
+          this.$nextTick(() => {
+            this.isLoading = false;
+          });
         });
       }
     },
     created(){
-      appui.register('appui-i18n-dashboard', this);
+      appui.register('appui-i18n-dashboard' + (this.source?.id_project ? `-${this.source.id_project}` : ''), this);
+    },
+    mounted(){
+      if (this.idProject){
+        this.loadProject();
+      }
     },
     beforeDestroy(){
-      appui.unregister('appui-i18n-dashboard');
+      appui.unregister('appui-i18n-dashboard' + (this.source?.id_project ? `-${this.source.id_project}` : ''));
     },
     watch : {
       idProject(val){
@@ -227,7 +285,7 @@
         },
         methods: {
           link(){
-            bbn.fn.link(appui.plugins['appui-i18n'] + '/page/glossary/' + this.formSource.sourceLang + '/' + this.formSource.translationLang);
+            bbn.fn.link(this.baseURL + 'glossary/' + this.formSource.sourceLang + '/' + this.formSource.translationLang);
           },
           cancel(){
             this.getPopup().close();
