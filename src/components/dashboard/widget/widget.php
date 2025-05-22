@@ -3,7 +3,8 @@
   <div bbn-if="source.language"
        class="bbn-grid-fields bbn-r">
     <template bbn-if="!isOptionsProject">
-      <span bbn-text="_('Source language of this path')"/>
+      <span class="bbn-no-wrap"
+            bbn-text="_('Source language of this path')"/>
       <div class="bbn-vmiddle"
            style="column-gap: var(--sspace); justify-content: end">
         <appui-i18n-lang :code="source.language"/>
@@ -12,7 +13,7 @@
            title="<?= _("Reset source language for this path") ?>"/>
       </div>
     </template>
-    <template bbn-if="data && localeDirs?.length && !no_strings">
+    <template bbn-if="data && localeDirs?.length && !noStrings">
       <span><?= _("Files of translations found") ?></span>
       <div class="bbn-flex-wrap"
            style="column-gap: var(--sspace); justify-content: end">
@@ -21,13 +22,13 @@
                          :only-flag="true"/>
       </div>
     </template>
-    <div bbn-if="no_strings"
+    <div bbn-if="noStrings"
          class="bbn-grid-full bbn-orange bbn-c">
       <?= _("There are no strings in this path") ?>
     </div>
     <template bbn-if="data && data[source.language]">
       <span bbn-if="data[source.language].num"><?= _('Total number of expressions') ?></span>
-      <span bbn-text="data[source.language].num ? data[source.language].num : (!no_strings ? _('Regenerate the translation files') : '')"
+      <span bbn-text="data[source.language].num ? data[source.language].num : (!noStrings ? _('Regenerate the translation files') : '')"
             :class="data[source.language].num ? '' : 'bbn-grid-full bbn-orange bbn-c'"
             :style="data[source.language].num ? 'text-align:right!important' : ''"/>
       <div bbn-if="data[source.language].num"
@@ -53,9 +54,9 @@
       </div>
     </template>
     <div bbn-else-if="!localeDirs?.length"
-         style="padding-top:10px"
-         class="bbn-c bbn-full-grid">
-      <?= _("No translation files found for this path, to start translation configure at least one language using the")?> <i class="nf nf-fa-flag bbn-large"></i> <?=_("button") ?>
+         style="text-align: center"
+         class="bbn-grid-full"
+         bbn-html="_('No translation files found for this path, to start translation configure at least one language using the %s button', `<i class='nf nf-fa-flag bbn-large'></i>`)">
     </div>
   </div>
   <!--if the source language of the path is not set -->
@@ -63,9 +64,9 @@
     <div class="bbn-padding bbn-grid-fields">
       <span bbn-text="_('Select a source language for this option')"/>
       <div>
-        <bbn-dropdown :source="dd_primary"
+        <bbn-dropdown :source="ddPrimary"
                       bbn-model="source.language"
-                      @change="set_cfg"
+                      @change="setCfg"
                       placeholder="<?= _('Select a language') ?>"/>
       </div>
     </div>

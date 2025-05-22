@@ -10,13 +10,13 @@
     },
     computed: {
       currentProject(){
-        return bbn.fn.getRow(this.mainPage.source.projects, 'code', this.source.id_project);
+        return bbn.fn.getRow(this.mainPage?.source?.projects || [], 'code', this.source.id_project);
       },
       currentLangs(){
         let langs = [];
         if (this.currentProject) {
           bbn.fn.each(this.currentProject.langs, l => {
-            if (this.mainPage.source.primary) {
+            if (this.mainPage?.source?.primary) {
               let a = bbn.fn.getField(this.mainPage.source.primary, 'code', 'id', l);
               if (a) {
                 langs.push(a);
@@ -273,17 +273,16 @@
         });
       },
       updateWidget(idWidget, data){
-        let dashboardPage = appui.getRegistered('appui-i18n-dashboard', true);
-        if (!!this.currentProject
-          && dashboardPage
-          && !!dashboardPage.idProject
+        let dashboardPage = this.mainPage.find('appui-i18n-dashboard');
+        if (this.currentProject
+          && dashboardPage?.idProject
           && (dashboardPage.idProject === this.currentProject.id)
         ) {
           let dashboard = dashboardPage.getRef('dashboard');
           if (dashboard) {
             let widget = dashboard.getWidget(idWidget);
             if (widget) {
-              this.$set(widget.source, 'data_widget', data);
+              widget.source.data_widget = data;
             }
           }
         }

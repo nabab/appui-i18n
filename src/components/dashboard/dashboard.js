@@ -35,7 +35,7 @@
     },
     methods: {
       updateInternalDashboard() {
-        this._dashboard = this.closest('appui-i18n-dashboard');
+        this._dashboard = this.closest('bbn-container').find('appui-i18n-dashboard');
       }
     }
   }];
@@ -115,7 +115,7 @@
           let buttons = [{
             label: bbn._('Update widget data'),
             icon: 'nf nf-fa-retweet',
-            action: 'remake_cache'
+            action: 'remakeCache'
           }, (this.isOptionsProject ? {
             label: bbn._('Create translation files'),
             icon: 'nf nf-md-file_replace_outline',
@@ -137,7 +137,7 @@
             buttons.push({
               label: bbn._('Delete locale folder'),
               icon: 'nf nf-fa-trash',
-              action: 'delete_locale_folder',
+              action: 'deleteLocaleFolder',
             });
           }
 
@@ -177,24 +177,20 @@
         bbn.fn.link(this.baseURL + 'user_history');
       },
       openGlossary(){
-        //open a component popup to select source language and translation language for the table glossary
-          var tab = this.closest('bbn-container').getComponent();
-          this.getPopup({
-            scrollable: false,
-            source: this.primary,
-            component: tab.$options.components.cfgTranslationsForm,
-            label: bbn._('Config your translation tab')
-          })
-
-        },
-
+        this.getPopup({
+          scrollable: false,
+          source: this.primary,
+          component: 'appui-i18n-dashboard-form-glossary',
+          label: bbn._('Config your translation tab')
+        })
+      },
       openProjectLanguagesCfg(){
         this.getPopup({
           //width: 600,
           //height: 300,
           label: bbn._("Config translation languages for the project"),
           scrollable: true,
-          component: this.$options.components.languagesForm,
+          component: 'appui-i18n-dashboard-form-languages',
           componentOptions: {
             source: {
               langs: this.configuredLangs,
@@ -242,118 +238,6 @@
         if (val){
           this.language = bbn.fn.getField(this.source.projects, 'lang', 'id', val)
         }
-      }
-    },
-    components: {
-      cfgTranslationsForm: {
-        template: `
-          <bbn-form :source="formSource"
-                    @submit="link"
-                    @cancel="cancel"
-                    :scrollable="false">
-            <div class="bbn-grid-fields bbn-flex-fill bbn-padding bbn-c">
-              <span>` + bbn._('Select source language:') + `</span>
-              <div>
-                <bbn-dropdown placeholder="` + bbn._('Choose') + `"
-                              :source="source"
-                              bbn-model="formSource.sourceLang"
-                              source-value="code"/>
-              </div>
-              <span>` + bbn._('Select a language for the translation:') + `</span>
-              <div>
-                <bbn-dropdown placeholder="` + bbn._('Choose') + `"
-                              :source="source"
-                              bbn-model="formSource.translationLang"
-                              source-value="code"/>
-              </div>
-            </div>
-          </bbn-form>
-        `,
-        mixins: [bbn.cp.mixins.basic],
-        props: {
-          source: {
-            type: Array
-          }
-        },
-        data(){
-          return {
-            formSource: {
-              sourceLang: '',
-              translationLang: ''
-            }
-          }
-        },
-        methods: {
-          link(){
-            bbn.fn.link(this.baseURL + 'glossary/' + this.formSource.sourceLang + '/' + this.formSource.translationLang);
-          },
-          cancel(){
-            this.getPopup().close();
-          },
-        }
-      },
-      languagesForm: {
-        props: {
-          source: {
-            type: Object
-          },
-          currentLanguage: {
-            type: String
-          },
-          primariesLanguages: {
-            type: Array
-          }
-        },
-        template: `
-        <div class="bbn-w-100">
-          <bbn-form :scrollable="false"
-                    :source="source"
-                    ref="form"
-                    :action="root + 'actions/languages_form'"
-                    confirm-leave="` + bbn._('Are you sure you want to exit without saving changes?') + `"
-                    :prefilled="true"
-                    @success="success">
-            <div bbn-if="primariesLanguages?.length"
-                 class="bbn-padding bbn-grid bbn-grid-gap"
-                 style="grid-template-columns: repeat(3, 1fr)">
-              <div bbn-for="l in primariesLanguages"
-                  class="bbn-spadding bbn-radius bbn-alt-background">
-                <bbn-checkbox :id="l.id"
-                              :checked="source.langs.includes(l.id)"
-                              @change="toggleLang"
-                              :label="l.text"
-                              component="appui-i18n-lang"
-                              :component-options="{code: l.code}"
-                              :disabled="l.code === currentLanguage"/>
-              </div>
-            </div>
-            <h2 bbn-else>` + bbn._('No primary languages found') + `</h2>
-          </bbn-form>
-        </div>`,
-        data(){
-          return {
-            root: appui.plugins['appui-i18n'] + '/'
-          }
-        },
-        methods:{
-          success(d){
-            if (d.success) {
-              appui.success(bbn._('Languages successfully updated'))
-            }
-            else {
-              appui.error();
-            }
-          },
-          toggleLang(val, obj){
-            let idx = this.source.langs.indexOf(obj.id);
-            if (idx > -1) {
-              this.source.langs.splice(idx, 1);
-            }
-            else {
-              this.source.langs.push(obj.id)
-            }
-          }
-        },
       }
     }
   }

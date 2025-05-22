@@ -9,12 +9,7 @@
     data(){
       return {
         /** @todo this property should be true after the success of the form in the case of return of d.no_strings = true*/
-        no_strings : false,
-        id_option: this.source.id,
-        //source language of the path
-        language: this.source.language,
-        /** the css class for progress bar the value is decided by the watch of progress_bar_val */
-        progress_bar_class: ''
+        noStrings : false
       }
     },
     computed: {
@@ -58,63 +53,28 @@
       localeDirs(){
         return this.source?.data_widget?.locale_dirs;
       },
-      dd_primary(){
-        let res = []
-        if (this.primary) {
-          this.primary.forEach((v, i) => {
-            res.push({value: v.code, text: v.text})
-          });
-        }
-        return res;
+      ddPrimary(){
+        return bbn.fn.map(this.primary || [], p => {
+          return {
+            value: p.code,
+            text: p.text
+          };
+        });
       },
 
     },
     methods: {
+      search: bbn.fn.search,
       normalize(val){
-        if (val && (val > 0)){
-          return parseFloat(val.toFixed(2))
-        }
-        else{
-          return 0
-        }
+        return val && (val > 0) ? parseFloat(val.toFixed(2)) : 0;
       },
-      search(...args) {
-        return bbn.fn.search(...args);
-      },
-      getField(...args) {
-        return bbn.fn.getField(...args);
-      },
-      /** set the property language in db for this path */
-      set_language(){
-        /* the data coming from the post change the source of the dashboard at the index of this specific widget*/
-        if (this.dashboard?.data) {
-          this.post(
-            this.root + 'actions/define_path_lang', {
-              id_option: this.source.id,
-              language: this.source.language,
-              id_project: this.idProject
-            }, (d) => {
-              if ( d.success ){
-                delete d.success;
-                delete d.time;
-                this.$nextTick( () => {
-                  this.source.data_widget = d.data_widget;
-                  this.remake_cache();
-                  appui.success(bbn._('Source language set'));
-                  this.$forceUpdate();
-                });
-              }
-            }
-          );
-        }
-      },
-      set_cfg(){
+      setCfg(){
         this.post(this.root + 'options/set_lang', {
           id_option: this.source.id,
           language: this.source.language,
           id_project: this.idProject
-        }, (d) => {
-          if ( d.success ){
+        }, d => {
+          if (d.success) {
             this.source.language = null
             appui.success(bbn._('Source language reset'));
           }
@@ -135,29 +95,18 @@
           })
         });
       },
-      /** removes the property language of the option from its cfg */
-      remove_cfg(){
-        this.post(this.root + '/options/remove_lang', {
-          id_option: this.source.id
-        }, (d) => {
-          if ( d.success ){
-            this.source.language = null
-            appui.success(bbn._('Source language reset for this option'));
-          }
-        })
-      },
-      delete_locale_folder(){
-        this.confirm('Are you sure you want to delete the folder locale for this path?',()=>{
+      deleteLocaleFolder(){
+        this.confirm(bbn._('Are you sure you want to delete the folder locale for this path?'), () => {
           this.post(this.root + 'actions/delete_locale_folder', {
             id_option: this.source.id,
             id_project: this.idProject
-          }, (d) => {
-            if ( d.success ){
-              this.remake_cache()
-              appui.success('Folder locale successfully deleted');
+          }, d => {
+            if (d.success) {
+              this.remakeCache()
+              appui.success(bbn._('Folder locale successfully deleted'));
             }
             else{
-              appui.error('Something went wrong while deleting locale folder')
+              appui.error(bbn._('Something went wrong while deleting locale folder'));
             }
           });
         })
@@ -183,7 +132,7 @@
           this.alert(bbn._('You have to configure at least a language of translation using the button %s of the widget before to open the strings table', '<i class="nf nf-fa-flag"></i>'));
         }
       },
-      remake_cache(){
+      remakeCache(){
         if (this.dashboard?.data && (this.source.language != null)) {
           this.post(this.root + 'actions/reload_widget_cache', {
             id_option: this.source.id,
@@ -218,7 +167,7 @@
         });
       },*/
       /** method to find strings and translation for the option -works with db- only for the id_project === 'option' */
-      find_options(){
+      findOptions(){
         if (this.isOptionsProject) {
           let url = this.root + 'options/find_options';
           this.post(url, {
@@ -334,7 +283,8 @@
         props: ['source', 'data'],
         data(){
           return {
-            root: appui.plugins['appui-i18n'] + '/'
+            root: appui.plugins['appui-i18n'] + '/',
+            widget: this.closest('bbn-floater').opener
           };
         },
         computed: {
@@ -361,70 +311,40 @@
             else {
               this.source.row.languages.push(code);
             }
-            return;
-
-            let dashboard = this.closest('bbn-container').getComponent(),
-              widgets = dashboard.findAll('bbn-widget'),
-              this_widget = dashboard.source.data[this.source.data.widget_idx],
-              //idx = $.inArray(obj.value, dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs );
-              idx = dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs.indexOf(obj.value);
-            //if I want source language in locale dir as default can create error if the po file doesn't exists//
-
-            //case uncheck language
-            if (idx > -1) {
-              if (this_widget.data_widget.locale_dirs.length) {
-                if ( this_widget.data_widget.result[obj.value] !== undefined){
-                  this_widget.data_widget.locale_dirs.splice(idx, 1);
-                  delete this_widget.data_widget.result[obj.value];
-                }
-              }
-            }
-            //case check language
-            else {
-              dashboard.source.data[this.source.data.widget_idx].data_widget.locale_dirs.push(obj.value);
-              //if ( $.inArray(obj.value, this.source.row.languages ) < 0 ){
-              if ( this.source.row.languages.indexOf(obj.value) < 0 ){
-                this.source.row.languages.push(obj.value);
-              }
-              dashboard.source.data[this.source.data.widget_idx].data_widget.result[obj.value] = {
-                lang: obj.value,
-                num_translations: 0,
-                num: 0
-              }
-            }
-          },
-          get_widget(){
-            let widgets = this.closest('bbn-container').findAll('bbn-widget'),
-            widget = bbn.fn.filter(widgets, (a) => {
-              return a.uid === this.source.row.id_option
-            });
-            return widget[0].$children[0];
           },
           update(){
-            this.get_widget().remake_cache();
+            this.widget.remakeCache();
           },
           success(d){
             this.send_no_strings = false;
             if (!!d.success) {
-              this.get_widget().remake_cache();
+              this.widget.remakeCache();
               if ( d.ex_dir.length ){
                 d.ex_dir.forEach((v, i) => {
-                  //this.source.data.widget.remake_cache();
+                  //this.source.data.widget.remakeCache();
                   this.$nextTick(() => {
-                    let st = bbn.fn.getField(this.source.data.primary, 'text', 'code', v) + ' translation files successfully files deleted';
+                    let st = bbn._(
+                      '%s translation files successfully files deleted',
+                      bbn.fn.getField(this.source.data.primary, 'text', 'code', v)
+                    );
                     appui.success(st)
-                  })
+                  });
                 });
               }
               if ( d.new_dir.length ){
                 d.new_dir.forEach((v, i) => {
-                  //this.source.data.widget.remake_cache();
-                  appui.success(  bbn.fn.getField(this.source.data.primary, 'text', 'code', v) + ' translation files successfully created')
+                  //this.source.data.widget.remakeCache();
+                  appui.success(bbn._(
+                    '%s translation files successfully created',
+                    bbn.fn.getField(this.source.data.primary, 'text', 'code', v)
+                  ));
                 });
               }
+
               if (d.done > 0) {
-                appui.success(d.done + ' ' + bbn._('new strings found in this path') )
+                appui.success(bbn._('%s new strings found in this path', d.done));
               }
+
               if ( this.closest('bbn-router') ){
                 let tabs = this.closest('bbn-router').findAll('bbn-container');
                 bbn.fn.log('tabs', tabs, this.source.row.id_option)
@@ -439,7 +359,7 @@
             }
             else if (!!d.no_strings) {
               /** change the property no_strings of the widget to render html */
-              this.get_widget().no_strings = true
+              this.widget.noStrings = true
               appui.warning(bbn._("There are no strings in this path"));
             }
           }
