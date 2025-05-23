@@ -3,22 +3,20 @@
     props: ['source'],
     data(){
       return {
-        column_length: true,
-        hidden_cols: [],
-        showAlert: false,
-        root: appui.plugins['appui-i18n'] + '/',
-        mainPage: appui.getRegistered('appui-i18n')
+        columnLength: true,
+        hiddenCols: [],
+        showAlert: false
       };
     },
     computed: {
       currentProject(){
-        return bbn.fn.getRow(this.mainPage.source.projects, 'code', this.source.id_project);
+        return bbn.fn.getRow(this.mainPage?.source?.projects || [], 'code', this.source.id_project);
       },
       currentLangs(){
         let langs = [];
         if (this.currentProject) {
           bbn.fn.each(this.currentProject.langs, l => {
-            if (this.mainPage.source.primary) {
+            if (this.mainPage?.source?.primary) {
               let a = bbn.fn.getField(this.mainPage.source.primary, 'code', 'id', l);
               if (a) {
                 langs.push(a);
@@ -29,9 +27,7 @@
         return langs;
       },
       isOptions(){
-        return !!this.source
-          && !!this.source.id_project
-          && (this.source.id_project === 'options')
+        return this.source?.id_project === 'options';
       },
       /** the source language of this id_option */
       source_lang(){
@@ -56,23 +52,27 @@
               return '';
             }
             if (!bbn.fn.isNull(translation_db)
-              && !!translation_db.length
+              && translation_db?.length
               && (translation_db === translation_po)
             ) {
-              return `${translation_db} <i class="nf nf-fa-check bbn-large bbn-green" title="` + bbn._('Expression correctly inserted in db and po file') + `" style="float:right"/>`;
+              return `<div class="bbn-vmiddle" style="justify-content: space-between">
+                <span>${translation_db}</span>
+                <i class="nf nf-fa-check bbn-s bbn-green" title="` + bbn._('Expression correctly inserted in db and po file') + `" style="float:right"/>
+              </div>`;
             }
             else if (bbn.fn.isNull(translation_db)
-              || (translation_db.length
-              && (translation_db !== translation_po))
+              || (translation_db?.length
+                && (translation_db !== translation_po))
             ) {
-              return  `<span title="` + (translation_po.length ? bbn._('The translation in the po file is different from the one in database') : '') + `"
-                              class="${translation_po.length ? 'bbn-orange' : 'bbn-red'}">
-                        ${translation_db}
-                      </span>
-                      <i style="float:right"
-                          class="${translation_po.length ? 'nf nf-fa-exclamation' : 'nf nf-fa-exclamation_triangle'} bbn-large ${translation_po.length ? 'bbn-orange' : 'bbn-red'}"
-                          title="` + (translation_po ? (bbn._('The translation in the po file is') + ': ' + translation_po) : bbn._('Translation missing in po file')) + `"/>
-                      `;
+              return  `<div class="bbn-vmiddle" style="justify-content: space-between">
+                <span title="` + (translation_po?.length ? bbn._('The translation in the po file is different from the one in database') : '') + `"
+                      class="${translation_po?.length ? 'bbn-orange' : 'bbn-red'}">
+                  ${translation_db}
+                </span>
+                <i style="float:right"
+                   class="${translation_po?.length ? 'nf nf-fa-exclamation' : 'nf nf-fa-exclamation_triangle'} bbn-s ${translation_po?.length ? 'bbn-orange' : 'bbn-red'}"
+                   title="` + (translation_po ? (bbn._('The translation in the po file is') + ': ' + translation_po) : bbn._('Translation missing in po file')) + `"/>
+              </div>`;
             }
           }
           r.push(obj);
@@ -90,7 +90,7 @@
         }, {
           flabel: bbn._('Remove original expression'),
           buttons: this.buttons,
-          width: this.isOptions ? 50 : 90,
+          width: this.isOptions ? 40 : 70,
           cls: 'bbn-c'
         });
         return r;
@@ -207,7 +207,7 @@
       },
       /** called at @change of the table (when the idx of the row focused changes), insert translation in db and remake the po file */
       insertTranslation(row){
-        if (!!row) {
+        if (row) {
           this.post(this.root + 'actions/insert_translations', {
             row: row,
             langs: this.source.res.languages,
@@ -234,7 +234,7 @@
       },
       /** remakes the model of table in cache */
       remakeCache(){
-        this.column_length = false;
+        this.columnLength = false;
         this.showAlert = true;
         this.post(this.root + 'actions/reload_table_cache', {
           id_option: this.source.res.id_option,
@@ -257,7 +257,7 @@
               }
               this.$nextTick(() => {
                 this.showAlert = false;
-                this.column_length = true;
+                this.columnLength = true;
               });
             }
             else {
@@ -273,17 +273,16 @@
         });
       },
       updateWidget(idWidget, data){
-        let dashboardPage = appui.getRegistered('appui-i18n-dashboard', true);
-        if (!!this.currentProject
-          && dashboardPage
-          && !!dashboardPage.idProject
+        let dashboardPage = this.mainPage.find('appui-i18n-dashboard');
+        if (this.currentProject
+          && dashboardPage?.idProject
           && (dashboardPage.idProject === this.currentProject.id)
         ) {
           let dashboard = dashboardPage.getRef('dashboard');
           if (dashboard) {
             let widget = dashboard.getWidget(idWidget);
             if (widget) {
-              this.$set(widget.source, 'data_widget', data);
+              widget.source.data_widget = data;
             }
           }
         }
@@ -298,7 +297,7 @@
           //this.getPopup().close()
         }
       },
-      hidden_cols(val){
+      hiddenCols(val){
         /** function to make the difference between two arrays */
         Array.prototype.diff = function (a) {
           return this.filter(function (i) {
@@ -313,8 +312,7 @@
           let col_idx = bbn.fn.search(this.columns, 'field', v + '_db'),
             /** the column to hide */
             col = this.columns[col_idx],
-            //idx = $.inArray(v, this.hidden_cols);
-            idx = this.hidden_cols.indexOf(v);
+            idx = this.hiddenCols.indexOf(v);
           if ( idx > -1 ){
             col.hidden = true;
           }
@@ -335,8 +333,8 @@
         template: `
           <div class="bbn-vpadding">
             <span class="bbn-spadding bbn-w-100"
-                  v-for="p in source.paths">
-              <a v-text="p"
+                  bbn-for="p in source.paths">
+              <a bbn-text="p"
                  @click="linkToIde(p)"
                  class="bbn-p"/>
             </span>
@@ -364,37 +362,36 @@
       toolbar: {
         template: `
           <div class="bbn-header bbn-flex-width bbn-left-padding bbn-right-padding bbn-bottom-padding bbn-top-sspadding">
-            <div class="bbn-vmiddle"
-                style="flex-wrap: wrap">
-              <bbn-input :placeholder="_('Search the string')"
-                        v-model="valueToFind"
+            <div class="bbn-vmiddle bbn-flex-wrap">
+              <bbn-input placeholder="` + bbn._('Search the string') + `"
+                        bbn-model="valueToFind"
                         :button-right="valueToFind.length ? 'nf nf-fa-close bbn-red' : 'nf nf-fa-search'"
-                        @clickrightbutton="valueToFind = valueToFind.length ? '' : valueToFind"
+                        @clickrightbutton="valueToFind = valueToFind?.length ? '' : valueToFind"
                         class="bbn-right-sspace bbn-top-sspace"/>
-              <bbn-button :title="_('Force translation files update')"
+              <bbn-button title="` + bbn._('Force translation files update') + `"
                           class="bbn-bg-orange bbn-white bbn-right-sspace bbn-top-sspace"
-                          @click="main.generate"
+                          @click="generate"
                           icon="nf nf-md-file_replace_outline"
-                          :label="_('Create translation files')"/>
-              <bbn-button :title="_('Rebuild table data')"
-                          @click="main.remakeCache"
+                          label="` + bbn._('Create translation files') + `"/>
+              <bbn-button title="` + bbn._('Rebuild table data') + `"
+                          @click="remakeCache"
                           icon="nf nf-fa-retweet"
-                          :label="_('Rebuild table data')"
+                          label="` + bbn._('Rebuild table data') + `"
                           class="bbn-right-sspace bbn-top-sspace"/>
-              <bbn-button :title="_('Check files for new strings')"
-                          @click="main.findStrings"
+              <bbn-button bbn-if="!isOptions"
+                          title="` + bbn._('Check files for new strings') + `"
+                          @click="findStrings"
                           icon="nf nf-fa-search"
-                          :label="_('Parse files for new strings')"
-                          v-if="!isOptions"
+                          label="` + bbn._('Parse files for new strings') + `"
                           class="bbn-top-sspace"/>
             </div>
             <div class="bbn-xs bbn-vmiddle bbn-flex-fill bbn-left-space bbn-top-sspace"
-                v-if="!isOptions"
+                bbn-if="!isOptions"
                 style="justify-content: flex-end">
               <span>
-                <span v-text="_('If the column with')"/>
+                <span>` + bbn._('If the column with') + `</span>
                 <i class="nf nf-fa-asterisk"/>
-                <span v-text="_('is empty be sure to force translation files update and then update the table')"/>
+                <span>` + bbn._('is empty be sure to force translation files update and then update the table') + `</span>
               </span>
             </div>
           </div>
@@ -402,7 +399,7 @@
         props: ['source'],
         data(){
           return {
-            main: null,
+            main: this.closest('appui-i18n-translations'),
             valueToFind: '',
             root: appui.plugins['appui-i18n'] + '/'
           };
@@ -440,10 +437,16 @@
             else if (!this.valueToFind.length && table.currentFilters.conditions.length) {
               table.currentFilters.conditions.splice(0);
             }
+          },
+          generate(){
+            this.main.generate();
+          },
+          remakeCache(){
+            this.main.remakeCache();
+          },
+          findStrings(){
+            this.main.findStrings();
           }
-        },
-        beforeMount(){
-          this.$set(this, 'main', this.closest('appui-i18n-strings'));
         },
         watch: {
           valueToFind(val){

@@ -69,7 +69,7 @@ if ($model->hasData(['id_project', 'id_option', 'row'])
           $i18nCls->cacheSet(
             $model->data['id_option'],
             'get_translations_widget',
-            $i18nCls->getTranslationsWidget($model->data['id_project'], $model->data['id_option'])
+            $i18nCls->getTranslationsWidget($model->data['id_option'])
           );
           $widget = $i18nCls->cacheGet($model->data['id_option'], 'get_translations_widget');
         }

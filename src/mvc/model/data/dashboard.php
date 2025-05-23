@@ -2,6 +2,7 @@
 use bbn\X;
 use bbn\Appui\Project;
 use bbn\Appui\I18n;
+
 $res = [
   'success' => false,
   'paths' => []
@@ -48,7 +49,7 @@ if ($model->hasData('idProject', true)
               $opt['data_widget'] = $i18nCls->cacheGet($opt['id'], 'get_translations_widget');
             }
             else {
-              $opt['data_widget'] = $i18nCls->getTranslationsWidget($idProj, $opt['id']);
+              $opt['data_widget'] = $i18nCls->getTranslationsWidget($opt['id']);
             }
           }
           else {

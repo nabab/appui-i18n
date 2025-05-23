@@ -12,9 +12,9 @@
                 "delete": "CASCADE",
                 "unique": 1
             },
-            "exp": {
+            "hashlang": {
                 "columns": [
-                    "exp",
+                    "hash",
                     "lang"
                 ],
                 "unique": 1
@@ -24,8 +24,8 @@
             "id": [
                 "PRIMARY"
             ],
-            "exp": [
-                "exp"
+            "hash": [
+                "hash"
             ],
             "lang": [
                 "exp"
@@ -48,6 +48,16 @@
                 "type": "varchar",
                 "null": 0,
                 "maxlength": 2
+            },
+            "hash": {
+                "type": "varchar",
+                "null": 1,
+                "extra": "VIRTUAL GENERATED",
+                "virtual": 1,
+                "generation": "sha2(`exp`,512)",
+                "default": "NULL",
+                "defaultExpression": 0,
+                "maxlength": 128
             }
         }
     },
