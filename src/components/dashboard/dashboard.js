@@ -131,7 +131,7 @@
           }, {
             label: bbn._('Open the translations form'),
             icon: 'nf nf-md-translate',
-            action: 'openTranslationsForm',
+            action: 'openTranslate',
           }];
           if (!this.isOptionsProject) {
             buttons.push({

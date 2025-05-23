@@ -124,7 +124,7 @@
           this.alert(bbn._('You have to configure at least a language of translation using the button %s of the widget before to open the strings table', '<i class="nf nf-fa-flag"></i>'));
         }
       },
-      openTranslationsForm(){
+      openTranslate(){
         if (this.configuredLangs) {
           bbn.fn.link(this.baseURL + 'translate/' + this.projectCode + '/' + this.source.id);
         }
