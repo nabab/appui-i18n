@@ -1,13 +1,37 @@
 (() => {
   return {
     data(){
+      const secondaryBg = window.getComputedStyle(document.body).getPropertyValue('--secondary-background');
       return {
         isOptionsProject: this.source.id === 'options',
         isTranslating: false,
         selectedLang: [],
         isLoading: false,
         toTranslate: [],
-        currentIndex: 0
+        currentIndex: 0,
+        formButtons: [{
+          label: bbn._('Previous'),
+          icon: 'nf nf-md-page_previous',
+          iconPosition: 'left',
+          action: this.prevTranslation
+        }, {
+          label: bbn._('Skip'),
+          icon: 'nf nf-md-page_next',
+          action: this.nextTranslation,
+          cls: 'bbn-tertiary',
+        }, {
+          label: bbn._('Save'),
+          icon: 'nf nf-fa-save',
+          iconPosition: 'right',
+          action: this.saveTranslation,
+          preset: 'submit'
+        }],
+        bgColors: [
+          secondaryBg,
+          secondaryBg + 'de',
+          secondaryBg + 'c2',
+          secondaryBg + 'a1'
+        ]
       }
     },
     computed: {
@@ -84,18 +108,68 @@
         this.currentIndex = 0;
       },
       prevTranslation(){
-        if (this.currentIndex > 0) {
-          this.currentIndex--;
+        if (this.isTranslating
+          && (this.currentIndex > 0)
+        ) {
+          this.getRef('form').cancel();
+          this.$nextTick(() => {
+            this.currentIndex--;
+          });
         }
       },
       nextTranslation(){
-        if (this.currentIndex < this.toTranslate.length - 1) {
-          this.currentIndex++;
+        if (this.isTranslating
+          && (this.currentIndex < (this.toTranslate.length - 1))
+        ) {
+          this.getRef('form').cancel();
+          this.$nextTick(() => {
+            this.currentIndex++;
+            this.getSuggestions();
+          });
         }
       },
       saveTranslation(){
-        if (this.currentTranslation) {
+        if (this.isTranslating
+          && this.currentTranslation
+        ) {
+          const translations = {};
+          bbn.fn.each(this.selectedLang, l => {
+            translations[l] = this.currentTranslation[l].translation;
+          });
+          if (bbn.fn.filter(translations, t => t.length).length) {
+            this.post(this.root + 'actions/translate', {
+              project: this.source.project,
+              path: this.source.id,
+              expression: this.currentTranslation.expression,
+              translations
+            }, d => {
+  
+            })
+          }
         }
+      },
+      setSuggest(lang, suggest){
+        if (this.isTranslating
+          && this.currentTranslation
+        ) {
+          this.currentTranslation[lang].translation = suggest;
+        }
+      },
+      getSuggestions(){
+        if (this.isTranslating) {
+          
+        }
+      }
+    },
+    watch: {
+      currentTranslation(){
+        this.$nextTick(() => {
+          const form = this.getRef('form');
+          if (form) {
+            form.init();
+            bbn.fn.log('AAAAAAAAAA')
+          }
+        });
       }
     }
   }

@@ -96,24 +96,44 @@
            class="bbn-overlay bbn-modal">
         <bbn-loader font-size="l"/>
       </div>
-      <div bbn-elseif="toTranslate.length && currentTranslation">
-        <div bbn-text="currentTranslation.expression"/>
-        <div></div>
-        <div>
-          <bbn-button icon="nf nf-md-page_previous"
-                      @click="prevTranslation">
-            <?=_('Previous')?>
-          </bbn-button>
-          <bbn-button icon="nf nf-oct-skip_fill"
-                      @click="nextTranslation"
-                      icon-position="right">
-            <?=_('Skip')?>
-          </bbn-button>
-          <bbn-button icon="nf nf-md-page_next"
-                      @click="saveTranslation"
-                      icon-position="right">
-            <?=_('Save')?>
-          </bbn-button>
+      <div bbn-elseif="toTranslate.length && currentTranslation"
+           class="bbn-flex-height">
+        <div class="bbn-lg bbn-header bbn-no-border bbn-spadding bbn-radius bbn-c bbn-bottom-space"
+             bbn-text="currentTranslation.expression"/>
+        <div class="bbn-flex-fill">
+          <bbn-form :scrollable="true"
+                    :buttons="formButtons"
+                    :source="currentTranslation || {}"
+                    mode="big"
+                    ref="form">
+            <div bbn-for="(lang, idx) in selectedLang"
+                 :class="['bbn-alt-background', 'bbn-spadding', 'bbn-radius', 'bbn-lg', 'bbn-flex-width', {
+                   'bbn-bottom-space': selectedLang[idx+1]
+                 }]">
+              <appui-i18n-lang :code="lang"
+                               style="zoom: 1.2; writing-mode: vertical-lr; align-items: start; gap: var(--sspace)"/>
+              <div class="bbn-flex-fill">
+                <bbn-textarea bbn-model="currentTranslation[lang].translation"
+                              :resizable="false"
+                              class="bbn-w-100 bbn-bottom-sspace"/>
+                <div class="bbn-flex-column"
+                      style="gap: var(--sspace)">
+                  <div bbn-for="(sugg, i) in currentTranslation[lang].suggestions"
+                        class="bbn-flex">
+                    <span :class="['bbn-spadding', 'bbn-radius', 'bbn-reactive', {
+                            'bbn-secondary-text': sugg !== currentTranslation[lang].translation,
+                            'bbn-state-selected': sugg === currentTranslation[lang].translation
+                          }]"
+                          :style="{
+                            'background-color': sugg !== currentTranslation[lang].translation ? bgColors[i] : ''
+                          }"
+                          bbn-text="sugg"
+                          @click="setSuggest(lang, sugg)"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </bbn-form>
         </div>
       </div>
     </template>

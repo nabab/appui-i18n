@@ -25,35 +25,28 @@ if ($model->hasData(['project', 'path', 'langs'], true)
 
   }
 
-  $res = [];
-  foreach ($list as $i => $l) {
-    $res[$l] = [
-      'expression' => $l
+  $expressions = array_map(function($s, $i) use ($i18nCls, $model, $opt) {
+    $r = [
+      'expression' => $s
     ];
     foreach ($model->data['langs'] as $lang) {
-      $res[$l][$lang] = [
-        'translation' => $i18nCls->getTranslation($l, $opt['language'], $lang) ?: '',
+      $r[$lang] = [
+        'translation' => $i18nCls->getTranslation($s, $opt['language'], $lang) ?: '',
+        'suggestions' => []
       ];
-      if (($i < 10)
-        && ($api = $i18nCls->apiTranslate($l, $opt['language'], $lang))
+      if (($i < 20)
+        && ($api = $i18nCls->apiTranslate($s, $opt['language'], $lang))
       ) {
-        $res[$l][$lang] = X::mergeArrays($res[$l][$lang], [
-          'suggestion' => $api['translated'] ?: '',
-          'alternatives' => $api['alternatives'] ?: []
-        ]);
-      }
-      else {
-        $res[$l][$lang] = X::mergeArrays($res[$l][$lang], [
-          'suggestion' => '',
-          'alternatives' => []
-        ]);
+        $r[$lang]['suggestions'] = X::mergeArrays([$api['translated']], $api['alternatives'] ?: []);
       }
     }
-  }
+
+    return $r;
+  }, $list, array_keys($list));
 
   return [
     'success' => !is_null($notTranslated),
-    'expressions' => array_values($res)
+    'expressions' => $expressions
   ];
 }
 
