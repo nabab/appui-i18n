@@ -1,11 +1,29 @@
 {
-    "components\/glossaries": {
-        "Delete original expression": "Delete original expression",
-        "Do you really want to delete the original expression and it's translation?": "Do you really want to delete the original expression and it's translation?",
-        "Original Expression": "Original Expression",
-        "Translation": "Translation"
+    "components\/dashboard": {
+        "Project source language successfully updated": "Project source language successfully updated",
+        "Project source language not updated": "Project source language not updated",
+        "Update widget data": "Update widget data",
+        "Create translation files": "Create translation files",
+        "Setup languages": "Setup languages",
+        "Open the table of strings": "Open the table of strings",
+        "Open the translations form": "Open the translations form",
+        "Delete locale folder": "Delete locale folder",
+        "Config your translation tab": "Config your translation tab",
+        "Config translation languages for the project": "Config translation languages for the project",
+        "Project's languages config": "Project's languages config",
+        "Configure languages for this project": "Configure languages for this project",
+        "User activity": "User activity",
+        "Users activity": "Users activity",
+        "Glossary table": "Glossary table",
+        "The source language for this project is": "The source language for this project is",
+        "Select a language": "Select a language",
+        "Choose the option you want to translate from the options' tree": "Choose the option you want to translate from the options' tree",
+        "Languages configured for translation of this project": "Languages configured for translation of this project",
+        "There are no languages configured for the translation of this project": "There are no languages configured for the translation of this project",
+        "Languages found in the main project's options": "Languages found in the main project's options"
     },
     "components\/translations": {
+        "Create translation files": "Create translation files",
         "Delete original expression": "Delete original expression",
         "This is the original language of the expression": "This is the original language of the expression",
         "Expression correctly inserted in db and po file": "Expression correctly inserted in db and po file",
@@ -32,7 +50,6 @@
         "There are no changes in data": "There are no changes in data",
         "Search the string": "Search the string",
         "Force translation files update": "Force translation files update",
-        "Create translation files": "Create translation files",
         "Rebuild table data": "Rebuild table data",
         "Check files for new strings": "Check files for new strings",
         "Parse files for new strings": "Parse files for new strings",
@@ -43,6 +60,80 @@
         "button before to open the table of strings": "button before to open the table of strings",
         "If the widget seems to have translation files configured but you see this message, try to reload the widget from": "If the widget seems to have translation files configured but you see this message, try to reload the widget from",
         "button and then configure files": "button and then configure files"
+    },
+    "mvc\/templates\/toolbar-strings-table": {
+        "Create translation files": "Create translation files",
+        "Search the string": "Search the string",
+        "Force translation files update": "Force translation files update",
+        "Rebuild table data": "Rebuild table data",
+        "Check files for new strings": "Check files for new strings",
+        "Parse files for new strings": "Parse files for new strings",
+        "is empty be sure to force translation files update and then update the table": "is empty be sure to force translation files update and then update the table",
+        "If the column with ": "If the column with",
+        "Select languages you want to hide from the table": "Select languages you want to hide from the table"
+    },
+    "components\/dashboard\/widget": {
+        "Select a language": "Select a language",
+        "Are you sure you want to exit without saving changes?": "Are you sure you want to exit without saving changes?",
+        "Source language reset": "Source language reset",
+        "Are you sure you want to remove the source language for this path?": "Are you sure you want to remove the source language for this path?",
+        "Are you sure you want to delete the folder locale for this path?": "Are you sure you want to delete the folder locale for this path?",
+        "Folder locale successfully deleted": "Folder locale successfully deleted",
+        "Something went wrong while deleting locale folder": "Something went wrong while deleting locale folder",
+        "You have to configure at least a language of translation using the button %s of the widget before to open the strings table": "You have to configure at least a language of translation using the button %s of the widget before to open the strings table",
+        "Widget updated": "Widget updated",
+        "Select a source language for the path before to update the widget": "Select a source language for the path before to update the widget",
+        "Define languages for the translation": "Define languages for the translation",
+        "Set a source language using the dropdown before to create translation file(s)": "Set a source language using the dropdown before to create translation file(s)",
+        "Check the box to create local folder of translation's files for the language in this path": "Check the box to create local folder of translation's files for the language in this path",
+        "If the language for which you want to create the translation file is not in this list, you have to configure it for the whole project using the form": "If the language for which you want to create the translation file is not in this list, you have to configure it for the whole project using the form",
+        "in the dashboard": "in the dashboard",
+        "%s translation files successfully files deleted": "%s translation files successfully files deleted",
+        "%s translation files successfully created": "%s translation files successfully created",
+        "%s new strings found in this path": "%s new strings found in this path",
+        "There are no strings in this path": "There are no strings in this path",
+        "Reset source language for this path": "Reset source language for this path",
+        "Files of translations found": "Files of translations found",
+        "Total number of expressions": "Total number of expressions",
+        "Number of translations in db": "Number of translations in db",
+        "The number of translations in po file and the number of translations in db are different, please remake the po file": "The number of translations in po file and the number of translations in db are different, please remake the po file"
+    },
+    "components\/dashboard\/form\/glossary": {
+        "Select source language:": "Select source language:",
+        "Choose": "Choose",
+        "Select a language for the translation:": "Select a language for the translation:"
+    },
+    "components\/dashboard\/form\/languages": {
+        "Languages successfully updated": "Languages successfully updated",
+        "Are you sure you want to exit without saving changes?": "Are you sure you want to exit without saving changes?",
+        "No primary languages found": "No primary languages found"
+    },
+    "mvc\/templates\/languages-form-locale": {
+        "Are you sure you want to exit without saving changes?": "Are you sure you want to exit without saving changes?",
+        "Check the box to create local folder of translation's files for the language in this path": "Check the box to create local folder of translation's files for the language in this path"
+    },
+    "mvc\/templates\/languages-form": {
+        "Are you sure you want to exit without saving changes?": "Are you sure you want to exit without saving changes?",
+        "Check the box to activate translation in the language for this root": "Check the box to activate translation in the language for this root"
+    },
+    "components\/translate": {
+        "Files of translations found": "Files of translations found",
+        "Total number of expressions": "Total number of expressions",
+        "Previous": "Previous",
+        "Skip": "Skip",
+        "Save": "Save",
+        "There are no expressions to translate": "There are no expressions to translate",
+        "You are currently translating into": "You are currently translating into",
+        "Stop translation": "Stop translation",
+        "Select the language for which you want to translate": "Select the language for which you want to translate",
+        "Start translation": "Start translation",
+        "Loading suggestions...": "Loading suggestions..."
+    },
+    "components\/glossaries": {
+        "Delete original expression": "Delete original expression",
+        "Do you really want to delete the original expression and it's translation?": "Do you really want to delete the original expression and it's translation?",
+        "Original Expression": "Original Expression",
+        "Translation": "Translation"
     },
     "components\/history": {
         "Original Expression": "Original Expression",
@@ -62,78 +153,6 @@
         "Date of last modification": "Date of last modification",
         "Action": "Action",
         "Status": "Status"
-    },
-    "mvc\/templates\/toolbar-strings-table": {
-        "Search the string": "Search the string",
-        "Force translation files update": "Force translation files update",
-        "Create translation files": "Create translation files",
-        "Rebuild table data": "Rebuild table data",
-        "Check files for new strings": "Check files for new strings",
-        "Parse files for new strings": "Parse files for new strings",
-        "is empty be sure to force translation files update and then update the table": "is empty be sure to force translation files update and then update the table",
-        "If the column with ": "If the column with",
-        "Select languages you want to hide from the table": "Select languages you want to hide from the table"
-    },
-    "mvc\/page\/dashboard": {
-        "Create translation files": "Create translation files",
-        "Are you sure you want to exit without saving changes?": "Are you sure you want to exit without saving changes?",
-        "Select a language": "Select a language",
-        "Config project languges": "Config project languges",
-        "Configure languages for this project": "Configure languages for this project",
-        "User activity": "User activity",
-        "Users activity": "Users activity",
-        "Glossary table": "Glossary table",
-        "The source language for this project is": "The source language for this project is",
-        "Choose the option you want to translate from the options' tree": "Choose the option you want to translate from the options' tree",
-        "Languages configured for translation of this project": "Languages configured for translation of this project",
-        "There are no languages configured for the translation of this project": "There are no languages configured for the translation of this project",
-        "Languages found in the main project's options": "Languages found in the main project's options",
-        "Project source language successfully updated": "Project source language successfully updated",
-        "Project source language not updated": "Project source language not updated",
-        "Update widget data": "Update widget data",
-        "Setup languages": "Setup languages",
-        "Open the table of strings": "Open the table of strings",
-        "Open the translations form": "Open the translations form",
-        "Delete locale folder": "Delete locale folder",
-        "Config your translation tab": "Config your translation tab",
-        "Config translation languages for the project": "Config translation languages for the project",
-        "Select source language:": "Select source language:",
-        "Choose": "Choose",
-        "Select a language for the translation:": "Select a language for the translation:",
-        "No primary languages found": "No primary languages found",
-        "Languages successfully updated": "Languages successfully updated"
-    },
-    "components\/widget": {
-        "Source language set": "Source language set",
-        "Source language reset": "Source language reset",
-        "Source language reset for this option": "Source language reset for this option",
-        "You have to configure at least a language of translation using the button %s of the widget before to open the strings table": "You have to configure at least a language of translation using the button %s of the widget before to open the strings table",
-        "Widget updated": "Widget updated",
-        "Select a source language for the path before to update the widget": "Select a source language for the path before to update the widget",
-        "Define languages for the translation": "Define languages for the translation",
-        "Set a source language using the dropdown before to create translation file(s)": "Set a source language using the dropdown before to create translation file(s)",
-        "Are you sure you want to exit without saving changes?": "Are you sure you want to exit without saving changes?",
-        "Check the box to create local folder of translation's files for the language in this path": "Check the box to create local folder of translation's files for the language in this path",
-        "If the language for which you want to create the translation file is not in this list, you have to configure it for the whole project using the form": "If the language for which you want to create the translation file is not in this list, you have to configure it for the whole project using the form",
-        "in the dashboard": "in the dashboard",
-        "new strings found in this path": "new strings found in this path",
-        "There are no strings in this path": "There are no strings in this path",
-        "Reset source language for this path": "Reset source language for this path",
-        "Files of translations found": "Files of translations found",
-        "Total number of expressions": "Total number of expressions",
-        "Number of translations in db": "Number of translations in db",
-        "The number of translations in po file and the number of translations in db are different, please remake the po file": "The number of translations in po file and the number of translations in db are different, please remake the po file",
-        "No translation files found for this path, to start translation configure at least one language using the": "No translation files found for this path, to start translation configure at least one language using the",
-        "button": "button",
-        "Select a language": "Select a language"
-    },
-    "mvc\/templates\/languages-form-locale": {
-        "Are you sure you want to exit without saving changes?": "Are you sure you want to exit without saving changes?",
-        "Check the box to create local folder of translation's files for the language in this path": "Check the box to create local folder of translation's files for the language in this path"
-    },
-    "mvc\/templates\/languages-form": {
-        "Are you sure you want to exit without saving changes?": "Are you sure you want to exit without saving changes?",
-        "Check the box to activate translation in the language for this root": "Check the box to activate translation in the language for this root"
     },
     "mvc\/page\/home": {
         "Projects": "Projects",

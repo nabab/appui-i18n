@@ -12,7 +12,7 @@
           <span class="bbn-no-wrap"
                 bbn-text="_('Source language')"/>
           <appui-i18n-lang :code="source.language"
-                           class="bbn-r"/>
+                           style="justify-content: end"/>
         </template>
         <template bbn-if="localeDirs?.length">
           <span><?= _("Files of translations found") ?></span>
@@ -24,10 +24,10 @@
           </div>
         </template>
         <template bbn-if="data && data[source.language]">
-          <span bbn-if="data[source.language].num"><?= _('Total number of expressions') ?></span>
+          <span><?= _('Total number of expressions') ?></span>
           <span bbn-text="data[source.language].num"
                 class="bbn-r"/>
-          <div bbn-if="data[source.language].num && (normalize(w.val) !== 100)"
+          <div bbn-if="normalize(w.val) !== 100"
                bbn-for="(w, i) in data"
                class="bbn-grid-full bbn-vmiddle bbn-flex-width bbn-grid-sgap bbn-border bbn-radius bbn-left-xspadding">
             <template bbn-if="isOptionsProject || configuredLangs?.includes(getField(source.primaries, 'id', 'code', i))">
@@ -63,9 +63,13 @@
         </div>
         <bbn-button class="bbn-bg-red bbn-white bbn-top-space bbn-upper"
                     @click="stopTranslation"
-                    icon="nf nf-fa-stop">
+                    icon="nf nf-fa-stop"
+                    :disabled="isGenerating">
           <?=_('Stop translation')?>
         </bbn-button>
+        <div bbn-if="toTranslate.length"
+             bbn-text="_('Expression %d of %d', currentIndex + 1, toTranslate.length)"
+             class="bbn-top-space"/>
       </div>
       <div bbn-else>
         <div class="bbn-secondary-text-alt bbn-upper bbn-c bbn-b bbn-bottom-space bbn-m">
@@ -90,52 +94,65 @@
       </div>
     </div>
   </div>
-  <div class="bbn-flex-fill bbn-background bbn-text bbn-radius bbn-padding bbn-top-space shadow">
-    <template bbn-if="isTranslating">
-      <div bbn-if="isLoading"
-           class="bbn-overlay bbn-modal">
-        <bbn-loader font-size="l"/>
-      </div>
-      <div bbn-elseif="toTranslate.length && currentTranslation"
-           class="bbn-flex-height">
-        <div class="bbn-lg bbn-header bbn-no-border bbn-spadding bbn-radius bbn-c bbn-bottom-space"
-             bbn-text="currentTranslation.expression"/>
-        <div class="bbn-flex-fill">
-          <bbn-form :scrollable="true"
-                    :buttons="formButtons"
-                    :source="currentTranslation || {}"
-                    mode="big"
-                    ref="form">
-            <div bbn-for="(lang, idx) in selectedLang"
-                 :class="['bbn-alt-background', 'bbn-spadding', 'bbn-radius', 'bbn-lg', 'bbn-flex-width', {
-                   'bbn-bottom-space': selectedLang[idx+1]
-                 }]">
-              <appui-i18n-lang :code="lang"
-                               style="zoom: 1.2; writing-mode: vertical-lr; align-items: start; gap: var(--sspace)"/>
-              <div class="bbn-flex-fill">
-                <bbn-textarea bbn-model="currentTranslation[lang].translation"
-                              :resizable="false"
-                              class="bbn-w-100 bbn-bottom-sspace"/>
-                <div class="bbn-flex-column"
-                      style="gap: var(--sspace)">
-                  <div bbn-for="(sugg, i) in currentTranslation[lang].suggestions"
-                        class="bbn-flex">
-                    <span :class="['bbn-spadding', 'bbn-radius', 'bbn-reactive', {
-                            'bbn-secondary-text': sugg !== currentTranslation[lang].translation,
-                            'bbn-state-selected': sugg === currentTranslation[lang].translation
-                          }]"
-                          :style="{
-                            'background-color': sugg !== currentTranslation[lang].translation ? bgColors[i] : ''
-                          }"
-                          bbn-text="sugg"
-                          @click="setSuggest(lang, sugg)"/>
-                  </div>
+  <div bbn-if="isTranslating"
+       class="bbn-flex-fill bbn-background bbn-text bbn-radius bbn-padding bbn-top-space shadow">
+    <div bbn-if="isLoading || isGenerating"
+          class="bbn-overlay bbn-modal">
+      <bbn-loader font-size="l"
+                  :label="isGenerating ? _('Generating files...') : ''"/>
+    </div>
+    <div bbn-elseif="toTranslate.length && currentTranslation"
+          class="bbn-flex-height">
+      <div class="bbn-lg bbn-header bbn-no-border bbn-spadding bbn-radius bbn-c bbn-bottom-space"
+            bbn-text="currentTranslation.expression"/>
+      <div class="bbn-flex-fill">
+        <bbn-form :scrollable="true"
+                  :buttons="formButtons"
+                  :source="currentTranslation || {}"
+                  mode="big"
+                  ref="form">
+          <div bbn-for="(lang, idx) in selectedLang"
+                :class="['bbn-alt-background', 'bbn-spadding', 'bbn-radius', 'bbn-lg', 'bbn-flex-width', {
+                  'bbn-bottom-space': selectedLang[idx+1]
+                }]">
+            <appui-i18n-lang :code="lang"
+                              :style="{
+                                zoom: '1.2',
+                                writingMode: 'vertical-lr',
+                                alignItems: 'start',
+                                gap: 'var(--sspace)',
+                                justifyContent: isSuggestionsActive ? 'start' : 'center',
+                              }"
+                              :only-flag="!isSuggestionsActive"/>
+            <div class="bbn-flex-fill">
+              <bbn-textarea bbn-model="currentTranslation[lang].translation"
+                            :resizable="false"
+                            :class="['bbn-w-100', {'bbn-bottom-sspace': isSuggestionsActive}]"/>
+              <div bbn-if="isSuggestionsActive && currentTranslation[lang]?.suggestions?.length"
+                    class="bbn-flex-column"
+                    style="gap: var(--sspace)">
+                <div bbn-for="(sugg, i) in currentTranslation[lang].suggestions"
+                      class="bbn-flex">
+                  <span :class="['bbn-spadding', 'bbn-radius', 'bbn-reactive', {
+                          'bbn-secondary-text': sugg !== currentTranslation[lang].translation,
+                          'bbn-state-selected': sugg === currentTranslation[lang].translation
+                        }]"
+                        :style="{
+                          'background-color': sugg !== currentTranslation[lang].translation ? bgColors[i] : ''
+                        }"
+                        bbn-text="sugg"
+                        @click="setSuggest(lang, sugg)"/>
                 </div>
               </div>
+              <div bbn-elseif="isSuggestionsActive && isLoadingSuggestions"
+                    class="bbn-vmiddle">
+                <bbn-loadicon :size="20"/>
+                <span class="bbn-left-sspace"><?=_('Loading suggestions...')?></span>
+              </div>
             </div>
-          </bbn-form>
-        </div>
+          </div>
+        </bbn-form>
       </div>
-    </template>
+    </div>
   </div>
 </div>

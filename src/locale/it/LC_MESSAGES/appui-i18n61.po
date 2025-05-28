@@ -1,7 +1,222 @@
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.js
+msgid "Project source language successfully updated"
+msgstr "Lingua di origine del progetto aggiornata con successo"
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.js
+msgid "Project source language not updated"
+msgstr "Lingua di origine del progetto non aggiornata"
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.js
+msgid "Update widget data"
+msgstr "Aggiorna i dati del widget"
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.js
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translations/translations.js
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/templates/toolbar-strings-table.php
+msgid "Create translation files"
+msgstr "Crea i file di traduzione"
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.js
+msgid "Setup languages"
+msgstr "Configura lingue"
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.js
+msgid "Open the table of strings"
+msgstr "Apri la tabella delle stringhe"
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.js
+msgid "Open the translations form"
+msgstr "Apri il modulo delle traduzioni"
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.js
+msgid "Delete locale folder"
+msgstr "Elimina la cartella locale"
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.js
+msgid "Config your translation tab"
+msgstr "Configura la scheda di traduzione"
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.js
+msgid "Config translation languages for the project"
+msgstr "Configurare le lingue di traduzione per il progetto"
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.php
+msgid "Project's languages config"
+msgstr "Configurazione delle lingue del progetto"
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.php
+msgid "Configure languages for this project"
+msgstr "Configurare le lingue per questo progetto"
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.php
+msgid "User activity"
+msgstr "Attività utente"
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.php
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/public/page/history.php
+msgid "Users activity"
+msgstr "Attività degli utenti"
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.php
+msgid "Glossary table"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.php
+msgid "The source language for this project is"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.php
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.php
+msgid "Select a language"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.php
+msgid "Choose the option you want to translate from the options' tree"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.php
+msgid "Languages configured for translation of this project"
+msgstr "Lingue configurate per la traduzione di questo progetto"
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.php
+msgid "There are no languages configured for the translation of this project"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/dashboard.php
+msgid "Languages found in the main project's options"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/form/glossary/glossary.php
+msgid "Select source language:"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/form/glossary/glossary.php
+msgid "Choose"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/form/glossary/glossary.php
+msgid "Select a language for the translation:"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/form/languages/languages.js
+msgid "Languages successfully updated"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/form/languages/languages.php
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/templates/languages-form-locale.php
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/templates/languages-form.php
+msgid "Are you sure you want to exit without saving changes?"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/form/languages/languages.php
+msgid "No primary languages found"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+msgid "Source language reset"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+msgid "Are you sure you want to remove the source language for this path?"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+msgid "Are you sure you want to delete the folder locale for this path?"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+msgid "Folder locale successfully deleted"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+msgid "Something went wrong while deleting locale folder"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+msgid ""
+"You have to configure at least a language of translation using the button %s of "
+"the widget before to open the strings table"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+msgid "Widget updated"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+msgid "Select a source language for the path before to update the widget"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+msgid "Define languages for the translation"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+msgid "Set a source language using the dropdown before to create translation file(s)"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/templates/languages-form-locale.php
+msgid ""
+"Check the box to create local folder of translation's files for the language in "
+"this path"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+msgid ""
+"If the language for which you want to create the translation file is not in this"
+" list, you have to configure it for the whole project using the form"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+msgid "in the dashboard"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+msgid "%s translation files successfully files deleted"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+msgid "%s translation files successfully created"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+msgid "%s new strings found in this path"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.js
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.php
+msgid "There are no strings in this path"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.php
+msgid "Reset source language for this path"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.php
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translate/translate.php
+msgid "Files of translations found"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.php
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translate/translate.php
+msgid "Total number of expressions"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.php
+msgid "Number of translations in db"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/dashboard/widget/widget.php
+msgid ""
+"The number of translations in po file and the number of translations in db are "
+"different, please remake the po file"
+msgstr ""
+
 #: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/glossaries/glossaries.js
 #: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translations/translations.js
 msgid "Delete original expression"
-msgstr ""
+msgstr "Eliminare l'espressione originale"
 
 #: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/glossaries/glossaries.js
 msgid "Do you really want to delete the original expression and it's translation?"
@@ -76,6 +291,42 @@ msgstr "Azione"
 #: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/history/history.php
 msgid "Status"
 msgstr "stato"
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translate/translate.js
+msgid "Previous"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translate/translate.js
+msgid "Skip"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translate/translate.js
+msgid "Save"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translate/translate.js
+msgid "There are no expressions to translate"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translate/translate.php
+msgid "You are currently translating into"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translate/translate.php
+msgid "Stop translation"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translate/translate.php
+msgid "Select the language for which you want to translate"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translate/translate.php
+msgid "Start translation"
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translate/translate.php
+msgid "Loading suggestions..."
+msgstr ""
 
 #: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translations/translations.js
 msgid "This is the original language of the expression"
@@ -183,12 +434,6 @@ msgstr ""
 
 #: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translations/translations.js
 #: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/templates/toolbar-strings-table.php
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js
-msgid "Create translation files"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translations/translations.js
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/templates/toolbar-strings-table.php
 msgid "Rebuild table data"
 msgstr ""
 
@@ -231,151 +476,6 @@ msgstr ""
 
 #: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/translations/translations.php
 msgid "button and then configure files"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.js
-msgid "Source language set"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.js
-msgid "Source language reset"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.js
-msgid "Source language reset for this option"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.js
-msgid ""
-"You have to configure at least a language of translation using the button %s of "
-"the widget before to open the strings table"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.js
-msgid "Widget updated"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.js
-msgid "Select a source language for the path before to update the widget"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.js
-msgid "Define languages for the translation"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.js
-msgid "Set a source language using the dropdown before to create translation file(s)"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.js
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/templates/languages-form-locale.php
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/templates/languages-form.php
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js
-msgid "Are you sure you want to exit without saving changes?"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.js
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/templates/languages-form-locale.php
-msgid ""
-"Check the box to create local folder of translation's files for the language in "
-"this path"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.js
-msgid ""
-"If the language for which you want to create the translation file is not in this"
-" list, you have to configure it for the whole project using the form"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.js
-msgid "in the dashboard"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.js
-msgid "new strings found in this path"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.js
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.php
-msgid "There are no strings in this path"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.php
-msgid "Reset source language for this path"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.php
-msgid "Files of translations found"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.php
-msgid "Total number of expressions"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.php
-msgid "Number of translations in db"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.php
-msgid ""
-"The number of translations in po file and the number of translations in db are "
-"different, please remake the po file"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.php
-msgid ""
-"No translation files found for this path, to start translation configure at "
-"least one language using the"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.php
-msgid "button"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/components/widget/widget.php
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/page/dashboard.php
-msgid "Select a language"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/page/dashboard.php
-msgid "Config project languges"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/page/dashboard.php
-msgid "Configure languages for this project"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/page/dashboard.php
-msgid "User activity"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/page/dashboard.php
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/public/page/history.php
-msgid "Users activity"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/page/dashboard.php
-msgid "Glossary table"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/page/dashboard.php
-msgid "The source language for this project is"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/page/dashboard.php
-msgid "Choose the option you want to translate from the options' tree"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/page/dashboard.php
-msgid "Languages configured for translation of this project"
-msgstr "Lingue configurate per la traduzione di questo progetto"
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/page/dashboard.php
-msgid "There are no languages configured for the translation of this project"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/page/dashboard.php
-msgid "Languages found in the main project's options"
 msgstr ""
 
 #: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/html/page/home.php
@@ -446,62 +546,6 @@ msgstr ""
 msgid "User's translation"
 msgstr ""
 
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js
-msgid "Project source language successfully updated"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js
-msgid "Project source language not updated"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js
-msgid "Update widget data"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js
-msgid "Setup languages"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js
-msgid "Open the table of strings"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js
-msgid "Open the translations form"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js
-msgid "Delete locale folder"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js
-msgid "Config your translation tab"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js
-msgid "Config translation languages for the project"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js
-msgid "Select source language:"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js
-msgid "Choose"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js
-msgid "Select a language for the translation:"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js
-msgid "No primary languages found"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/dashboard.js
-msgid "Languages successfully updated"
-msgstr ""
-
 #: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/js/page/home.js
 msgid "Config languages for the project"
 msgstr ""
@@ -514,17 +558,16 @@ msgstr ""
 msgid "There are no new strings to update"
 msgstr ""
 
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/model/page.php
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/model/page/dashboard.php
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/model/data/main.php
+msgid "The project '%s' is not valid."
+msgstr ""
+
+#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/model/data/main.php
 msgid "Options"
 msgstr ""
 
 #: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/model/page/expressions.php
 msgid "Options - %s"
-msgstr ""
-
-#: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/public/page/dashboard.php
-msgid "Projects Dashboard"
 msgstr ""
 
 #: /home/okrim/_COMPOSER/dev/vendor/bbn/appui-i18n/src/mvc/public/page/glossary.php

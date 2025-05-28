@@ -22,6 +22,10 @@ if ($model->hasData(['project', 'path'], true)) {
     $res['code'] = $opt['code'];
     $res['bcolor'] = $opt['bcolor'] ?? '';
     $res['fcolor'] = $opt['fcolor'] ?? '';
+    $res['isSuggestionsActive'] = defined('BBN_I18N_API_SERVICE')
+      && !empty(BBN_I18N_API_SERVICE)
+      && defined('BBN_I18N_API_URL')
+      && !empty(BBN_I18N_API_URL);
     if ($isOptions) {
       $res['languages'] = array_map(
         fn($l) => X::getField($primaries, ['code' => $l], 'id'),

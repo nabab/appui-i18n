@@ -13,7 +13,7 @@
         return [{
           action: this.deleteExpression,
           icon: 'nf nf-fa-times',
-          title: bb._('Delete original expression')
+          label: bbn._('Delete original expression')
         }];
       },
       deleteExpression(row){
