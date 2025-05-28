@@ -40,7 +40,7 @@ if ($model->hasData(['id_project', 'id_option', 'row'])
     //replace the row in the cache of the table
     $tmp = $i18nCls->cacheGet($model->data['id_option'], $isOptions ? 'get_options_translations_table' : 'get_translations_table');
     if (!empty($tmp) && !empty($tmp['strings'])){
-      $idx = \bbn\X::find($tmp['strings'], ['id_exp' => $row['id_exp']]);
+      $idx = \bbn\X::search($tmp['strings'], ['id_exp' => $row['id_exp']]);
       if (!is_null($idx)) {
         foreach ($modified as $mod) {
           //change the updated string in the row of the cache
