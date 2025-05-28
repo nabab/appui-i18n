@@ -18,7 +18,7 @@
       },
       deleteExpression(row){
         this.confirm(
-          bbn._('Do you really want to delete the original expression and it\'s translation?'),
+          bbn._('Do you really want to delete the original expression and its translation?'),
           () => {
             this.post(this.root + 'actions/delete_expression', {
               id_exp: row.idExp,
