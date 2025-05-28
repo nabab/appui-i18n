@@ -10,14 +10,14 @@
     },
     computed: {
       currentProject(){
-        return bbn.fn.getRow(this.mainPage?.source?.projects || [], 'code', this.source.id_project);
+        return bbn.fn.getRow(this.mainPage?.data?.projects || [], 'code', this.source.id_project);
       },
       currentLangs(){
         let langs = [];
         if (this.currentProject) {
           bbn.fn.each(this.currentProject.langs, l => {
-            if (this.mainPage?.source?.primary) {
-              let a = bbn.fn.getField(this.mainPage.source.primary, 'code', 'id', l);
+            if (this.mainPage?.data?.primary) {
+              let a = bbn.fn.getField(this.mainPage.data.primary, 'code', 'id', l);
               if (a) {
                 langs.push(a);
               }

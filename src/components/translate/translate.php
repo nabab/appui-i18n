@@ -103,8 +103,13 @@
     </div>
     <div bbn-elseif="toTranslate.length && currentTranslation"
           class="bbn-flex-height">
-      <div class="bbn-lg bbn-header bbn-no-border bbn-spadding bbn-radius bbn-c bbn-bottom-space"
-            bbn-text="currentTranslation.expression"/>
+      <div class="bbn-lg bbn-header bbn-no-border bbn-spadding bbn-radius bbn-flex-width bbn-bottom-space">
+        <appui-i18n-lang :code="source.language"
+                         :only-flag="true"
+                         style="zoom: 1.2"/>
+        <span class="bbn-flex-fill bbn-left-sspace"
+              bbn-text="currentTranslation.expression"/>
+      </div>
       <div class="bbn-flex-fill">
         <bbn-form :scrollable="true"
                   :buttons="formButtons"
