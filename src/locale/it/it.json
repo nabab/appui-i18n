@@ -15,7 +15,7 @@
         "User activity": "Attivit\u00e0 utente",
         "Users activity": "Attivit\u00e0 degli utenti",
         "Glossary table": "",
-        "The source language for this project is": "",
+        "The source language for this project is": "La lingua di origine per questo progetto \u00e8",
         "Select a language": "",
         "Choose the option you want to translate from the options' tree": "",
         "Languages configured for translation of this project": "Lingue configurate per la traduzione di questo progetto",
@@ -131,7 +131,7 @@
     },
     "components\/glossaries": {
         "Delete original expression": "Eliminare l'espressione originale",
-        "Do you really want to delete the original expression and it's translation?": "",
+        "Do you really want to delete the original expression and its translation?": "",
         "Original Expression": "Espressione originale",
         "Translation": "Traduzione"
     },

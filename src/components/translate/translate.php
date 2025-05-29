@@ -115,7 +115,8 @@
                   :buttons="formButtons"
                   :source="currentTranslation || {}"
                   mode="big"
-                  ref="form">
+                  ref="form"
+                  @keypress.enter.prevent="saveTranslation">
           <div bbn-for="(lang, idx) in selectedLang"
                 :class="['bbn-alt-background', 'bbn-spadding', 'bbn-radius', 'bbn-lg', 'bbn-flex-width', {
                   'bbn-bottom-space': selectedLang[idx+1]
@@ -131,8 +132,11 @@
                               :only-flag="!isSuggestionsActive"/>
             <div class="bbn-flex-fill">
               <bbn-textarea bbn-model="currentTranslation[lang].translation"
-                            :resizable="false"
-                            :class="['bbn-w-100', {'bbn-bottom-sspace': isSuggestionsActive}]"/>
+                         :resizable="false"
+                         :class="['bbn-w-100', {'bbn-bottom-sspace': isSuggestionsActive}]"
+                         ref="textarea"
+                         rows="3"
+                         @keypress.enter.prevent=""/>
               <div bbn-if="isSuggestionsActive && currentTranslation[lang]?.suggestions?.length"
                     class="bbn-flex-column"
                     style="gap: var(--sspace)">
@@ -146,7 +150,9 @@
                           'background-color': sugg !== currentTranslation[lang].translation ? bgColors[i] : ''
                         }"
                         bbn-text="sugg"
-                        @click="setSuggest(lang, sugg)"/>
+                        @click="setSuggest(lang, sugg)"
+                        @keypress.space="setSuggest(lang, sugg)"
+                        tabindex="0"/>
                 </div>
               </div>
               <div bbn-elseif="isSuggestionsActive && isLoadingSuggestions"

@@ -131,7 +131,7 @@
     },
     "components\/glossaries": {
         "Delete original expression": "Delete original expression",
-        "Do you really want to delete the original expression and it's translation?": "Do you really want to delete the original expression and it's translation?",
+        "Do you really want to delete the original expression and its translation?": "Do you really want to delete the original expression and its translation?",
         "Original Expression": "Original Expression",
         "Translation": "Translation"
     },

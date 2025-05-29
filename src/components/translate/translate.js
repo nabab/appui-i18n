@@ -105,6 +105,10 @@
           if (d.success) {
             if (d.expressions?.length) {
               this.toTranslate = d.expressions;
+              this.currentIndex = 0;
+              this.$nextTick(() => {
+                this.textareaFocus();
+              });
             }
             else {
               this.isTranslating = false;
@@ -173,6 +177,7 @@
           this.$nextTick(() => {
             this.currentIndex--;
             //this.loadSuggestions();
+            this.textareaFocus();
           });
         }
       },
@@ -184,6 +189,7 @@
           this.$nextTick(() => {
             this.currentIndex++;
             //this.loadSuggestions();
+            this.textareaFocus();
           });
         }
       },
@@ -209,6 +215,7 @@
                 appui.success();
                 if (this.currentIndex < (this.toTranslate.length - 1)) {
                   this.currentIndex++;
+                  this.textareaFocus();
                 }
               }
               else {
@@ -292,6 +299,9 @@
             });
           }
         }
+      },
+      textareaFocus(){
+        this.getRef('textarea')?.getRef('element')?.focus();
       }
     },
     watch: {
