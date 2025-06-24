@@ -91,10 +91,12 @@
     </div>
     <div class="bbn-flex-fill bbn-border bbn-radius-bottom bbn-bottom-sspace"
          style="border-top: 0; border-color: var(--header-background); border-width: 0.25rem !important;">
-      <bbn-dashboard bbn-if="widgets?.length"
-                    :source="widgets"
-                    ref="dashboard"
-                    :scrollable="true"/>
+      <div class="bbn-100">
+        <bbn-dashboard bbn-if="widgets?.length"
+                      :source="widgets"
+                      ref="dashboard"
+                      :scrollable="true"/>
+      </div>
     </div>
   </div>
   <div bbn-if="isLoading"

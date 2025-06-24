@@ -7,7 +7,7 @@
                     :source="source"
                     :static="false"
                     :pinned="true"
-    ></bbns-container>
+                    :scrollable="false"/>
     <!--
 		<bbns-container url="home"
 							icon="nf nf-fa-tasks"
