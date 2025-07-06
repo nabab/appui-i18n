@@ -5,7 +5,7 @@ use Gettext\Translations;
 
 /** @var  $projects array of projects*/
 $projects = [];
-//$id_project = $ctrl->data['id_project'] ?? $ctrl->inc->options->fromCode('apst-app', 'project', 'appui');
+//$id_project = $ctrl->data['id_project'] ?? $ctrl->inc->options->fromCode('my-project', 'project', 'appui');
 if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
     && ($uid_languages = $ctrl->inc->options->fromCode('languages', 'i18n', 'appui'))
     && ($ids = $ctrl->inc->options->items($opt_projects))
@@ -161,7 +161,7 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
 
                           $name = $tmp;
                         }
-                        //case of plugins inside current (apst-app), temporary we decided to don't take it inside the json file of apst-app
+                        //case of plugins inside current app, temporary we decided to don't take it inside the json file of the app
                         elseif ((strpos($tmp, 'plugins/') === 0)) {//} && ($parent['code'] === 'app')) {
                           continue;
                         }
@@ -269,7 +269,7 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
 
 
           //if the widget has not cache for this method creates the cache
-          //IF THE CACHE IS ACTIVE WHEN THE PROJECT IS CHANGED BY THE DROPDOWN IT RETURNS THE WIDGETS OF THE PROJECT APST-APP
+          //IF THE CACHE IS ACTIVE WHEN THE PROJECT IS CHANGED BY THE DROPDOWN IT RETURNS THE WIDGETS OF THE DEFAULT PROJECT
           /*if ( empty($translation->cacheHas($id_option, 'get_translations_widget')) ){
             //set data in cache $translation->cacheSet($id_option, (string)method name, (array)data)
             $translation->cacheSet($id_option, 'get_translations_widget',
