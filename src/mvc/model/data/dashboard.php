@@ -14,7 +14,7 @@ if ($model->hasData('idProject', true)
   $idProj = $isOptions ? BBN_APP_NAME : $model->data['idProject'];
   $i18nCls = new I18n($model->db, $idProj);
   $projectCls = new Project($model->db, $idProj);
-  $primaries = $projectCls->getPrimariesLangs();
+  $primaries = $projectCls->getPrimariesLangs() ?: [];
   if ($isOptions) {
     $res['langs'] = array_map(function($l) use($primaries) {
       return X::getField($primaries, ['code' => $l], 'id');
@@ -27,11 +27,12 @@ if ($model->hasData('idProject', true)
     foreach ($paths as $path) {
       if ($opt = $model->inc->options->option($path['id_option'])) {
         $parent = $model->inc->options->option($opt['id_parent']);
-        $opt['title'] = $parent['text'].'/'.$opt['text'];
+        $parentCode = $parent['code'] ?: (!empty($parent['alias']['code']) ? $parent['alias']['code'] : '');
+        $opt['title'] = $parentCode . (!empty($parentCode) ? '/' : '') . $opt['code'];
         if ($isOptions) {
-          if ((($parent['code'] === 'app')
+          if ((($parentCode === 'app')
               && ($opt['code'] === 'main'))
-            || (($parent['code'] === 'lib')
+            || (($parentCode === 'lib')
               && (str_starts_with($opt['code'], 'appui-')))
           ) {
             if ($i18nCls->cacheHas($opt['id'], 'get_options_translations_widget')) {

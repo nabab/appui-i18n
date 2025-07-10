@@ -17,7 +17,8 @@ if ($model->hasData(['project', 'path'], true)) {
   ];
   if ($opt = $model->inc->options->option($path)) {
     $parent = $model->inc->options->option($opt['id_parent']);
-    $res['title'] = $parent['text'].'/'.$opt['text'];
+    $parentCode = $parent['code'] ?: (!empty($parent['alias']['code']) ? $parent['alias']['code'] : '');
+    $res['title'] = $parentCode . (!empty($parentCode) ? '/' : '') . $opt['code'];
     $res['language'] = $opt['language'] ?? '';
     $res['code'] = $opt['code'];
     $res['bcolor'] = $opt['bcolor'] ?? '';
@@ -31,9 +32,9 @@ if ($model->hasData(['project', 'path'], true)) {
         fn($l) => X::getField($primaries, ['code' => $l], 'id'),
         $model->inc->options->findI18nLocales()
       );
-      if ((($parent['code'] === 'app')
+      if ((($parentCode === 'app')
           && ($opt['code'] === 'main'))
-        || (($parent['code'] === 'lib')
+        || (($parentCode === 'lib')
           && (str_starts_with($opt['code'], 'appui-')))
       ) {
         if ($i18nCls->cacheHas($opt['id'], 'get_options_translations_widget')) {

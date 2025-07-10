@@ -4,7 +4,10 @@ use bbn\Appui\I18n;
 if ($model->hasData(['project', 'option'], true)) {
   $project = $model->data['project'];
   $option = $model->data['option'];
+  $opt = $model->inc->options->option($option);
+  $parentOpt = $model->inc->options->option($opt['id_parent']);
   $isOptions = ($project === 'options');
+  $parentCode = $parentOpt['code'] ?: (!empty($parentOpt['alias']['code']) ? $parentOpt['alias']['code'] : '');
   $translation = new I18n($model->db, $isOptions ? null : $project);
 
   //if the table has no cache it creates cache
@@ -26,10 +29,11 @@ if ($model->hasData(['project', 'option'], true)) {
 
   $res = $translation->cacheGet($option, $isOptions ? 'get_options_translations_table' : 'get_translations_table');
   $primaries = $translation->getPrimariesLangs();
+  $t = $parentCode . (!empty($parentCode) ? '/' : '') . $opt['code'];
   return $model->addData([
     'primary' => $primaries,
     'id_project' => $project,
     'res' => $res,
-    'pageTitle' => $isOptions ? \bbn\X::_('Options - %s', $model->inc->options->text($option)) : $model->inc->options->text($option)
+    'pageTitle' => $isOptions ? \bbn\X::_('Options - %s', $t) : $t
   ])->data;
 }
