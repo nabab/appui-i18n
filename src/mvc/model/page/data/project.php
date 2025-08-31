@@ -1,9 +1,5 @@
 <?php
-/*
- * Describe what it does!
- *
- **/
-/** @var $this \bbn\Mvc\Model*/
+/** @var bbn\Mvc\Model $model */
 if ( !empty($model->data['id_project']) ){
   $project = new \bbn\Appui\Project($model->db, $model->data['id_project']);
   if ( $project->check() ){

@@ -4,7 +4,7 @@
 *
 **/
 
-/** @var $this \bbn\Mvc\Model*/
+/** @var bbn\Mvc\Model $model */
 
 
 $model->data['success'] = false;
