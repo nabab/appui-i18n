@@ -7,7 +7,7 @@ use Gettext\Translations;
 $projects = [];
 //$id_project = $ctrl->data['id_project'] ?? $ctrl->inc->options->fromCode('my-project', 'project', 'appui');
 if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
-    && ($uid_languages = $ctrl->inc->options->fromCode('languages', 'i18n', 'appui'))
+    && ($uid_languages = $ctrl->inc->options->fromCode('languages', 'core', 'appui'))
     && ($ids = $ctrl->inc->options->items($opt_projects))
     && ($languages = $ctrl->inc->options->fullOptions($uid_languages))
 ) {

@@ -5,7 +5,7 @@
 Use bbn\X;
 
 $projects_option  = $model->inc->options->fromCode('list', 'project', 'appui');
-$languages_option = $model->inc->options->fromCode('languages', 'i18n', 'appui');
+$languages_option = $model->inc->options->fromCode('languages', 'core', 'appui');
 /** @var  $projects array of projects*/
 $projects = [];
 
