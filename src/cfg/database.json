@@ -46,7 +46,7 @@
             },
             "lang": {
                 "type": "varchar",
-                "null": 0,
+                "null": 1,
                 "maxlength": 2
             },
             "hash": {
@@ -127,7 +127,7 @@
             },
             "lang": {
                 "type": "varchar",
-                "null": 0,
+                "null": 1,
                 "key": "MUL",
                 "maxlength": 2
             },
