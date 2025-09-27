@@ -51,12 +51,9 @@
             },
             "hash": {
                 "type": "varchar",
-                "null": 1,
                 "extra": "VIRTUAL GENERATED",
                 "virtual": 1,
                 "generation": "sha2(`exp`,512)",
-                "default": "NULL",
-                "defaultExpression": 0,
                 "maxlength": 128
             }
         }
