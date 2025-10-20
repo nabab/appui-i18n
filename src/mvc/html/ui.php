@@ -1,5 +1,5 @@
 <div class="appui-i18n-languages languages bbn-overlay">
-  <bbn-router :autoload="true" :nav="true">
+  <bbn-router :autoload="true" mode="tabs">
     <bbns-container url="dashboard"
                     icon="nf nf-fa-edit"
                     :label="_('Projects Dashboard')"

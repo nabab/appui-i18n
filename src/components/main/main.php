@@ -5,7 +5,7 @@
   </div>
   <bbn-router bbn-else
               :autoload="true"
-              :nav="true">
+              mode="tabs">
     <bbns-container url="dashboard"
                     icon="nf nf-md-view_dashboard_variant"
                     :label="_('Projects Dashboard')"
