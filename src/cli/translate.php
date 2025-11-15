@@ -1,6 +1,7 @@
 <?php
 
 Use bbn\X;
+use bbn\Str;
 use Gettext\Translations;
 
 /** @var  $projects array of projects*/
@@ -83,7 +84,7 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
               $files = \bbn\File\Dir::getFiles($locale_dir.'/'.$lang.'/LC_MESSAGES');
               $po    = $mo = null;
               foreach ($files as $f){
-                $ext = \bbn\Str::fileExt($f);
+                $ext = Str::fileExt($f);
                 if (!empty($ext) && ($ext === 'po')) {
                   $po = $f;
                   unlink($f);
@@ -147,25 +148,25 @@ if (($opt_projects = $ctrl->inc->options->fromCode('list', 'project', 'appui'))
 
 
                       if ($ext === 'js') {
-                        $tmp = substr($r['path'][$idx], strlen($root), -3);
-                        if (strpos($tmp, 'components/') === 0) {
+                        $tmp = Str::sub($r['path'][$idx], Str::len($root), -3);
+                        if (Str::pos($tmp, 'components/') === 0) {
                           $bits = X::split($tmp, '/');
                           // double name (dir/file)
                           array_pop($bits);
                           $name = X::join($bits, '/');
                         }
-                        elseif (strpos($tmp, 'mvc/') === 0) {
-                          if (strpos($tmp, 'mvc/js/') === 0) {
-                            $tmp = 'mvc/'.substr($tmp, 7);
+                        elseif (Str::pos($tmp, 'mvc/') === 0) {
+                          if (Str::pos($tmp, 'mvc/js/') === 0) {
+                            $tmp = 'mvc/' . Str::sub($tmp, 7);
                           }
 
                           $name = $tmp;
                         }
                         //case of plugins inside current app, temporary we decided to don't take it inside the json file of the app
-                        elseif ((strpos($tmp, 'plugins/') === 0)) {//} && ($parent['code'] === 'app')) {
+                        elseif ((Str::pos($tmp, 'plugins/') === 0)) {//} && ($parent['code'] === 'app')) {
                           continue;
                         }
-                        elseif (strpos($tmp, 'bbn/') === 0) {
+                        elseif (Str::pos($tmp, 'bbn/') === 0) {
                           $bits = X::split($tmp, '/');
                           // bbn
                           array_shift($bits);
