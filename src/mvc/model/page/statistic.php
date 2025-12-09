@@ -1,12 +1,5 @@
 <?php
-/*
-* Describe what it does!
-*
-**/
-
 /** @var bbn\Mvc\Model $model */
-
-
 $model->data['success'] = false;
 $id_user                = $model->inc->user->getId();
 $is_dev                 = $model->db->selectOne("bbn_users", "admin", ['id' => $id_user]);
