@@ -8,7 +8,7 @@ if (!empty($id_user)) {
     //CASE admin
 
     //$project_count is the number of bbn_project
-    if ($projects = $model->getModel(this.root + 'languages')['projects']) {
+    if ($projects = $model->getModel($model->data['root'] . 'languages')['projects']) {
       $project_count = count($projects);
 
       //number of projects having 'en' as source language
@@ -49,7 +49,7 @@ MYSQL;
 
   //die(var_dump($model->data['source_lang']));
   $dropdown_langs = array_filter(
-    $primaries, function ($i) use ($langs_in_db, $source_lang) {
+    $primaries, function ($i) use ($langs_in_db) {
       return in_array($i['code'], $langs_in_db);
     }
   );
@@ -82,7 +82,7 @@ MYSQL;
 
 
 return [
-  statistics => [
+  'statistics' => [
     'Number of BBN\'s projects in translation:'  => $project_count,
     'Languages of translation:' => $langs_in_db,
     'Number of project(s) having English as source language:' => $source_en,
