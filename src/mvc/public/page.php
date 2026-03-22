@@ -1,7 +1,9 @@
 <?php
 use bbn\Str;
-if (!defined('BBN_BASEURL')
-  || (Str::pos(constant('BBN_BASEURL'), APPUI_I18N_ROOT.'page/') !== 0)
+
+/** @var bbn\Mvc\Controller $ctrl */
+if (($ctrl->getConstant('baseURL') === null)
+  || (Str::pos($ctrl->getConstant('baseURL'), APPUI_I18N_ROOT.'page/') !== 0)
 ){
   $ctrl->setUrl(APPUI_I18N_ROOT.'page')
         ->setIcon('nf nf-fa-flag')
